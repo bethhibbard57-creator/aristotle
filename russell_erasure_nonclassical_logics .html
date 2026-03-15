@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Russell Erased — The Non-Classical Logics and the Aristotelian Repair</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; max-width: 860px; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .tagline { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 2rem; border-bottom: 0.5px solid #ddd; padding-bottom: 1rem; }
+  h2 { font-size: 1.05rem; font-weight: 600; color: #1a1a1a; margin: 2.5rem 0 0.6rem; padding-bottom: 0.3rem; border-bottom: 1px solid #ddd; }
+  h3 { font-size: 0.9rem; font-weight: 600; color: #444; margin: 1.4rem 0 0.4rem; }
+  p { font-size: 13px; line-height: 1.75; color: #222; margin-bottom: 0.8rem; }
+  .conn { background: #fff; border: 0.5px solid #ddd; border-radius: 8px; padding: 0.9rem 1.1rem; margin-bottom: 0.9rem; }
+  .conn-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 0.25rem; }
+  .conn-erased { font-size: 11px; color: #9B4A00; font-style: italic; margin-bottom: 0.2rem; }
+  .conn-repair { font-size: 11px; color: #00439B; font-style: italic; margin-bottom: 0.3rem; }
+  .conn-aristotle { font-size: 11px; color: #00693A; font-style: italic; margin-bottom: 0.3rem; }
+  .conn-body { font-size: 12.5px; color: #333; line-height: 1.65; }
+  .label { font-weight: 600; }
+  .master-claim { background: #f8f4e8; border-left: 4px solid #c4a800; border-radius: 0 8px 8px 0; padding: 0.9rem 1.1rem; margin: 1rem 0 1.5rem; font-size: 13px; line-height: 1.75; color: #3a2a00; }
+  .priest-note { background: #f0e8f5; border-left: 4px solid #8B3A8B; border-radius: 0 8px 8px 0; padding: 0.9rem 1.1rem; margin: 1rem 0 1.5rem; font-size: 13px; line-height: 1.75; color: #2a003a; }
+  .table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 12px; }
+  .table th { background: #f3f1eb; padding: 0.6rem 0.8rem; text-align: left; font-weight: 600; border-bottom: 1px solid #ddd; }
+  .table td { padding: 0.5rem 0.8rem; border-bottom: 0.5px solid #eee; vertical-align: top; line-height: 1.5; }
+  .table tr:last-child td { border-bottom: none; }
+  .erased { color: #9B4A00; font-style: italic; }
+  .repair { color: #00439B; font-style: italic; }
+  .aristotle { color: #00693A; font-style: italic; }
+  footer { margin-top: 3rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>What Russell Erased</h1>
+<p class="tagline">The non-classical logics as repairs to the classical logic's erasure of the Aristotelian apparatus · primary corpus references · March 2026</p>
+
+<div class="master-claim">
+<strong>The central argument:</strong> The non-classical logics — paraconsistent, dialethic, intuitionistic, modal, fuzzy, relevant — are not responses to genuinely new logical problems. They are responses to problems created by the erasure of distinctions that Aristotle's apparatus already contained. Russell's predicate logic, in collapsing the categorical level-structure of the Organon and the biological works into a two-valued propositional calculus, generated paradoxes and logical gaps that could only be repaired by extending the classical system. Each non-classical logic repairs a different symptom of the same erasure. The Aristotelian corpus, properly restored, dissolves the need for most of them — not by adding new machinery but by recovering the distinctions that were lost. The repairs are necessary given the damage. The question is whether the damage was necessary.
+</div>
+
+<!-- WHAT RUSSELL ERASED -->
+<h2>I. What Russell erased — the specific Aristotelian distinctions</h2>
+
+<p>Russell's project in <em>Principia Mathematica</em> was to reduce mathematics to logic by formalising all valid inference in a single two-valued predicate calculus. The project required a uniform notation and a uniform treatment of all predication. The uniformity was the source of the power — and the source of the damage. To achieve it, Russell had to erase or ignore a series of distinctions that Aristotle's apparatus had maintained with precision.</p>
+
+<div class="conn">
+  <div class="conn-title">1. The four-fold categorical grid — Categories Ch. 2</div>
+  <div class="conn-erased">What was erased: the distinction between said-of and in-a-subject, generating four irreducible predication contexts</div>
+  <div class="conn-aristotle">Aristotelian text: Categories Ch. 2 · Topics IV.1–2 · Post. An. I.4 (per se predication)</div>
+  <div class="conn-body">Aristotle's four-fold grid (said-of / not said-of · in a subject / not in a subject) generates four irreducible predication contexts: primary individual being · secondary universal being · universal accident · individual accident. These four contexts are not interchangeable — a predicate true in one context is not automatically true in another. Russell's predicate calculus collapses all four into a single uniform predication relation: F(x), where x is an individual and F is a predicate. The level-distinction between individual and universal is absorbed into a single variable type. The context-distinction between essential and accidental predication disappears. Russell's paradox is the direct result: without the level-distinction, nothing prevents a set from being predicated of itself at a level where self-predication generates contradiction.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">2. The per se / accidental distinction — Posterior Analytics I.4</div>
+  <div class="conn-erased">What was erased: the distinction between what belongs to a subject in virtue of what it is and what belongs to it accidentally</div>
+  <div class="conn-aristotle">Aristotelian text: Post. An. I.4 · Topics IV · Met. Δ.18 · PA I.2–4</div>
+  <div class="conn-body">Aristotle distinguishes sharply between what belongs to a subject per se — in virtue of its genus and species — and what belongs to it accidentally. Per se predication grounds scientific knowledge; accidental predication is outside the scope of demonstration. Russell's predicate calculus treats all true predications as equally well-formed: if 'x is F' is true, it is simply true, with no further distinction between per se and accidental truth. This erasure makes it impossible to distinguish between what a subject is necessarily and what it happens to be — which is precisely the distinction required to dissolve paradoxes that arise from treating accidental predications as necessary ones.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">3. The temporal identity condition — De Interpretatione Ch. 11 · Physics IV.11</div>
+  <div class="conn-erased">What was erased: the requirement that LNC and PEM apply only to subjects with resolved temporal identity, at the same time</div>
+  <div class="conn-aristotle">Aristotelian text: De Int. Ch. 11 · Met. Γ.3 · Phys. IV.11–14 · Cat. Ch. 5 · On Memory Ch. 1</div>
+  <div class="conn-body">Aristotle's four elenchus conditions require that a genuine contradictory pair involve the same subject · same predicate · same respect · same time. The same time condition is not a trivial addition — it grounds LNC in the physics of temporal succession and the psychology of memory. Russell's logic is atemporal: propositions are simply true or false, without temporal indexing as a condition of genuine contradiction. The erasure of the temporal condition means that the future contingents problem (De Int. Ch. 9, the Sea Battle) cannot be resolved within the classical system — it has to be patched by modal logic from outside.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">4. The secundum quid qualification — Sophistical Refutations Ch. 10</div>
+  <div class="conn-erased">What was erased: the distinction between absolute and qualified predication, and the fallacy of suppressing the qualification</div>
+  <div class="conn-aristotle">Aristotelian text: Soph. Ref. Ch. 10 and 23 · Topics II.5 · Phys. I.8 · Phys. VI.9</div>
+  <div class="conn-body">The secundum quid fallacy — treating a qualified predication as absolute — is the master fallacy of the Sophistical Refutations. Aristotle identifies it as the source of every paradox that arises from suppressing a qualification. Russell's calculus has no native mechanism for tracking qualifications: 'F(x)' is either true or false, with no built-in place for the qualifications that make it true in one respect and false in another. When a predication that is true only in a qualified sense is treated as absolutely true, paradox follows. The non-classical logics are attempts to recover the qualification — not by restoring the Aristotelian distinction but by modifying the logic itself.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">5. The categorical placement as truth-condition maker — Parts of Animals I.2–4 · History of Animals</div>
+  <div class="conn-erased">What was erased: the grounding of truth conditions in the genus-species classification — the Porphyrian tree as the ontological structure of per se predication</div>
+  <div class="conn-aristotle">Aristotelian text: PA I.2–5 · HA I.1 · Post. An. I.4 · Topics IV · GA I.1</div>
+  <div class="conn-body">For Aristotle, the truth conditions of per se predications are grounded in the categorical classification of the subject. To know that 'birds have feathers' is per se true requires knowing that birds form a natural genus and that featheredness belongs to the genus-level form. Russell's logic takes truth as a primitive — propositions are simply true or false without grounding in a classificatory structure. The erasure of the classificatory grounding means that the distinction between what is necessarily true of a subject and what is accidentally true of it is lost at the formal level. Fuzzy logic attempts to repair this by allowing degrees of truth — but the degrees it introduces are not the same as Aristotle's level-structured per se predication. They are a blunt instrument where Aristotle had a precise one.</div>
+</div>
+
+<!-- THE SUMMARY TABLE -->
+<h2>II. The non-classical logics and their Aristotelian sources — summary table</h2>
+
+<table class="table">
+  <tr>
+    <th>Non-classical logic</th>
+    <th>Problem it repairs</th>
+    <th>Russell's erasure that caused it</th>
+    <th>Aristotelian text that already handles it</th>
+  </tr>
+  <tr>
+    <td><strong>Paraconsistent / Dialethic</strong> (Priest)</td>
+    <td>Contradictions that appear to be simultaneously true — the Liar, Russell's paradox, semantic paradoxes</td>
+    <td class="erased">Erasure of the secundum quid qualification (Soph. Ref. Ch. 10) and the four-fold categorical grid (Cat. Ch. 2)</td>
+    <td class="aristotle">Soph. Ref. Ch. 10 and 23 · Cat. Ch. 2 · De Int. Ch. 11 · Met. Γ.3</td>
+  </tr>
+  <tr>
+    <td><strong>Intuitionistic</strong> (Brouwer, Heyting)</td>
+    <td>PEM fails for unresolved mathematical and empirical claims — the excluded middle cannot be asserted for all propositions</td>
+    <td class="erased">Erasure of the potential / actual distinction (Phys. III.6) and the temporal identity condition (De Int. Ch. 9)</td>
+    <td class="aristotle">Phys. III.6 · De Int. Ch. 9 · Met. Θ.3–4 · Post. An. I.6</td>
+  </tr>
+  <tr>
+    <td><strong>Modal logic</strong> (Lewis, Kripke)</td>
+    <td>Necessity and possibility cannot be expressed in extensional predicate logic — modalities collapse</td>
+    <td class="erased">Erasure of the temporal identity condition and the distinction between necessary (per se) and contingent (accidental) predication</td>
+    <td class="aristotle">De Int. Ch. 9 · Post. An. I.4 and I.6 · Met. Θ.3 · Phys. IV.11–14</td>
+  </tr>
+  <tr>
+    <td><strong>Fuzzy logic</strong> (Zadeh)</td>
+    <td>Vague predicates — 'tall', 'bald', 'heap' — do not have sharp true/false boundaries; the Sorites paradox</td>
+    <td class="erased">Erasure of the graded per se predication structure (GA IV.1 — resemblance as degrees of formal mastery) and the categorical level as truth-condition maker</td>
+    <td class="aristotle">GA IV.1 · PA I.4 · Post. An. I.4 · Soph. Ref. Ch. 10 (secundum quid applied to gradations)</td>
+  </tr>
+  <tr>
+    <td><strong>Relevant logic</strong> (Anderson, Belnap)</td>
+    <td>Classical logic validates 'ex falso quodlibet' — from a contradiction anything follows; relevance is lost</td>
+    <td class="erased">Erasure of the per se / accidental distinction — without it, there is no formal way to require that premises be relevant to conclusions</td>
+    <td class="aristotle">Post. An. I.4 (per se predication) · Topics I (the predicables as relevance conditions) · Soph. Ref. Ch. 5 (ignoratio elenchi)</td>
+  </tr>
+  <tr>
+    <td><strong>Many-valued logic</strong> (Łukasiewicz)</td>
+    <td>Future contingents require a third truth value — neither true nor false yet</td>
+    <td class="erased">Erasure of the temporal identity condition — without it, the Sea Battle generates a genuine logical gap that cannot be closed within two-valued logic</td>
+    <td class="aristotle">De Int. Ch. 9 · Phys. IV.11–14 · Post. An. I.30 (no demonstration of future contingents)</td>
+  </tr>
+  <tr>
+    <td><strong>Free logic</strong></td>
+    <td>Classical logic quantifies over non-existent objects — 'the present king of France is bald' generates truth-value gaps</td>
+    <td class="erased">Erasure of the distinction between primary and secondary being (Cat. Ch. 2) — Russell's theory of definite descriptions is itself the attempted repair, but it generates new problems</td>
+    <td class="aristotle">Cat. Ch. 2 · De Int. Ch. 1 · Met. Ζ.1 (being said in many ways)</td>
+  </tr>
+</table>
+
+<!-- THE DETAILED ANALYSIS -->
+<h2>III. The detailed analysis — each non-classical logic and its Aristotelian repair</h2>
+
+<h3>Paraconsistent and Dialethic Logic — Graham Priest</h3>
+
+<div class="priest-note">
+<strong>A note on Priest:</strong> Graham Priest has done more than anyone else to map the logical terrain of genuine contradiction, to take the Liar and Russell's paradox seriously as philosophical problems rather than puzzles to be dissolved by technical manoeuvre, and to engage deeply with the Buddhist logical tradition — particularly Nagarjuna's Mulamadhyamakakarika and the catuṣkoṭi. His work on the catuṣkoṭi shows that he knows the four-position structure and its philosophical implications. The critique that follows is not that Priest is wrong to take contradictions seriously — he is right to do so. It is that the apparatus required to handle them without accepting true contradictions was already present in Aristotle and was available to him. The question of whether Priest knows this and declines to say so, or whether he genuinely believes paraconsistent logic is a necessary addition rather than a reconstruction, is left open here — as it should be. What can be said is that the Aristotelian dissolution handles everything paraconsistent logic was built to handle, without requiring the ontological commitment to true contradictions. This makes the paraconsistent apparatus superfluous — which is a significant claim, and one that Priest's readers should evaluate carefully.
+</div>
+
+<div class="conn">
+  <div class="conn-title">What dialethism correctly identifies</div>
+  <div class="conn-erased">The genuine insight: some propositions appear to be both true and false simultaneously — the Liar, Russell's set, Nagarjuna's catuṣkoṭi</div>
+  <div class="conn-aristotle">Aristotelian parallel: Met. Θ.3 · DA III.4 · Phys. III.1 — the superposition states of what is in process, neither fully actual nor fully potential</div>
+  <div class="conn-body">Priest correctly identifies that some states of affairs are genuinely indeterminate — neither fully F nor fully not-F. The Liar sentence is genuinely in an indeterminate state with respect to truth; Russell's set is genuinely in an indeterminate state with respect to membership. These are real logical phenomena that classical two-valued logic cannot handle. Priest's response is to allow both truth values simultaneously — to accept true contradictions (dialetheias). The Aristotelian response is to identify the suppressed qualification: the Liar sentence is false-in-a-qualified-sense (false as a self-referential sentence predicating its own falsity at a specific level) but not false-absolutely. The apparent contradiction dissolves when the qualification is restored. Priest sees superposition and concludes that contradiction must be accepted. Aristotle sees superposition and concludes that a qualification has been suppressed. Both identify the same phenomenon; they differ in what they conclude from it.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">The catuṣkoṭi and Priest's engagement with Buddhist logic</div>
+  <div class="conn-erased">What Priest knows: the four-position structure of the catuṣkoṭi maps directly onto the logical terrain his dialetheism is designed to handle</div>
+  <div class="conn-aristotle">Aristotelian parallel: Cat. Ch. 2 · De Int. Ch. 10 · Met. Γ · Met. Λ.7 and Λ.9</div>
+  <div class="conn-body">Priest has written extensively on Nagarjuna's catuṣkoṭi — the four positions (is · is-not · both · neither) — and argued that dialethism makes formal sense of what Nagarjuna was doing. He is right that the catuṣkoṭi requires a logic that can handle all four positions, including the third (both true and false). What he does not say — or says only obliquely — is that the Aristotelian corpus already contains all four positions from Categories Ch. 2 onward, and that the four elenchus conditions of De Interpretatione Ch. 11 provide the formal mechanism for determining which position a given predication occupies. The Aristotelian four-position structure dissolves the apparent contradiction at position three (both) by showing it to be a case of qualified predication — true in one respect, false in another — rather than a genuine dialethia. The Buddhist tradition arrives at the same four positions through the catuṣkoṭi; Aristotle arrives at them through the categorical analysis. They are the same structure. Paraconsistent logic is a reconstruction of the same territory using different tools.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">What is at stake for Priest in accepting the Aristotelian dissolution</div>
+  <div class="conn-erased">The philosophical cost: accepting the secundum quid dissolution makes the paraconsistent apparatus superfluous — and threatens the metaphysical superstructure built on it</div>
+  <div class="conn-body">If the Aristotelian secundum quid dissolution handles every case that paraconsistent logic was built to handle — and it does — then the ontological commitment to true contradictions becomes unnecessary. Priest's broader philosophical project involves more than the logic: the ontology of truth, the account of content and intentionality, the analysis of change and negation. These are load-bearing for his metaphysics. Accepting the Aristotelian dissolution would require dismantling not just the logic but the superstructure. This is a significant cost — which may explain why the engagement with the Aristotelian apparatus in Priest's published work, while not absent, is less thorough than his engagement with the Buddhist materials, despite the fact that Aristotle's texts make the same argument in a Western framework that is presumably more accessible to him.</div>
+</div>
+
+<h3>Intuitionistic Logic — Brouwer and Heyting</h3>
+
+<div class="conn">
+  <div class="conn-title">What intuitionism correctly identifies</div>
+  <div class="conn-aristotle">Aristotelian text: Phys. III.6 · De Int. Ch. 9 · Met. Θ.3–4 · Post. An. I.6</div>
+  <div class="conn-body">Intuitionism correctly identifies that PEM cannot be asserted without qualification for all propositions — specifically for propositions about unresolved mathematical constructions and unverified empirical claims. The excluded middle fails for future contingents (De Int. Ch. 9) and for what is only potentially the case (Phys. III.6). Aristotle agrees: PEM applies to what is actual and fully determined; it does not apply without qualification to what is only potential or future. The Aristotelian response is to restore the qualification — PEM holds for individuals with resolved temporal identity, not for all propositions universally. Intuitionism responds instead by restricting PEM within the logic itself — modifying the inference rules so that the excluded middle is not a theorem. The Aristotelian dissolution is more surgical: it does not modify the logic but specifies the conditions under which PEM applies. Met. Θ.3 is directly relevant: the Megarians denied potentiality and insisted that only what is actual is real — Aristotle's response establishes that the potential is real without being actual, which is exactly what intuitionism needs but cannot say within its own framework.</div>
+</div>
+
+<h3>Modal Logic — Lewis and Kripke</h3>
+
+<div class="conn">
+  <div class="conn-title">What modal logic correctly identifies</div>
+  <div class="conn-aristotle">Aristotelian text: De Int. Ch. 9 · Post. An. I.4 and I.6 · Met. Θ.3 · Phys. IV.11–14</div>
+  <div class="conn-body">Modal logic correctly identifies that the classical predicate calculus cannot distinguish between what is necessarily true and what is contingently true, between what is possible and what is actual. These distinctions are essential for any adequate logic of natural language and scientific reasoning. Aristotle's apparatus already contains them: Post. An. I.4 distinguishes per se (necessary) from accidental (contingent) predication; De Int. Ch. 9 handles the modal status of future contingents; Met. Θ.3–4 analyses necessity and possibility through the actuality/potentiality distinction. Modal logic reconstructs these distinctions using possible world semantics — a powerful and illuminating framework, but one that introduces its own complications (transworld identity, the accessibility relation, the ontological status of possible worlds). The Aristotelian apparatus handles the same distinctions without requiring possible worlds — by grounding necessity in the per se relationship between subject and predicate at the appropriate categorical level.</div>
+</div>
+
+<h3>Fuzzy Logic — Zadeh and the Sorites Paradox</h3>
+
+<div class="conn">
+  <div class="conn-title">What fuzzy logic correctly identifies — and where Aristotle is more precise</div>
+  <div class="conn-aristotle">Aristotelian text: GA IV.1 · PA I.4 · Post. An. I.4 · Soph. Ref. Ch. 10</div>
+  <div class="conn-body">Fuzzy logic correctly identifies that many predicates do not have sharp boundaries — 'tall', 'bald', 'heap', 'red' apply to a continuous range of cases without a precise threshold. The Sorites paradox (one grain of sand does not make a heap; adding one grain to a non-heap does not make a heap; therefore there are no heaps) arises from treating these vague predicates as if they had sharp boundaries. Fuzzy logic responds by allowing degrees of truth between 0 and 1. The Aristotelian response is more precise: vague predicates apply in virtue of a form that admits of degrees of realisation — not degrees of truth but degrees of formal mastery (GA IV.1). 'Tall' applies per se to a subject insofar as the subject's height realises the relevant form to a degree sufficient for the predicate to apply within the genus. The graduation is ontological (in the degree of formal realisation) not logical (in the truth value). Fuzzy logic correctly identifies the graduation but mislocates it — in truth values rather than in the degrees of formal actualisation that Aristotle identifies in GA IV.1.</div>
+</div>
+
+<h3>Relevant Logic — Anderson and Belnap</h3>
+
+<div class="conn">
+  <div class="conn-title">What relevant logic correctly identifies</div>
+  <div class="conn-aristotle">Aristotelian text: Post. An. I.4 · Topics I (the predicables) · Soph. Ref. Ch. 5 (ignoratio elenchi)</div>
+  <div class="conn-body">Relevant logic correctly identifies that classical logic allows 'explosion' — from a contradiction, anything whatsoever follows (ex falso quodlibet). This is logically valid but inferentially useless: the premises are not relevant to the conclusion. Relevant logic restricts valid inference to cases where the premises are genuinely relevant to the conclusion. The Aristotelian apparatus already has this restriction built in: a valid demonstration requires that the predicate belong to the subject per se — in virtue of what the subject is. An inference from an irrelevant premise violates the per se condition and is not a genuine demonstration even if it is classically valid. Soph. Ref. Ch. 5 identifies ignoratio elenchi — arguing beside the point — as the master fallacy of irrelevance. The Aristotelian framework provides formal relevance conditions through the per se / accidental distinction; relevant logic attempts to reconstruct these conditions from within a framework that erased them.</div>
+</div>
+
+<h3>Many-Valued Logic — Łukasiewicz and Future Contingents</h3>
+
+<div class="conn">
+  <div class="conn-title">What many-valued logic correctly identifies</div>
+  <div class="conn-aristotle">Aristotelian text: De Int. Ch. 9 · Phys. IV.11–14 · Post. An. I.30</div>
+  <div class="conn-body">Łukasiewicz introduced a third truth value (indeterminate) specifically to handle the Sea Battle — the future contingent that is neither true nor false now. He was explicitly responding to De Interpretatione Ch. 9, which he read as showing that classical two-valued logic fails for future contingents. He was right that classical logic fails — but wrong about the Aristotelian diagnosis. Aristotle does not introduce a third truth value; he identifies the conditions under which PEM applies (resolved temporal identity) and shows that unresolved future contingents do not satisfy those conditions. The disjunction (there will or will not be a sea battle) is necessarily true; neither disjunct is yet determined. The solution is not a third truth value but a precise statement of when the two truth values apply. Many-valued logic adds machinery; Aristotle adds a condition. The condition is more economical and more precise.</div>
+</div>
+
+<!-- THE BUDDHIST CONNECTION -->
+<h2>IV. The Buddhist connection — the catuṣkoṭi as the structure both traditions were reaching for</h2>
+
+<div class="conn">
+  <div class="conn-title">The catuṣkoṭi as the common ground</div>
+  <div class="conn-aristotle">Aristotelian parallel: Cat. Ch. 2 · De Int. Ch. 10 · Met. Γ · Met. Λ.7–9 · DA III.4–5</div>
+  <div class="conn-body">The Buddhist catuṣkoṭi — four positions: is · is-not · both · neither — is the logical structure that both the non-classical logics and the Aristotelian apparatus are trying to handle. Dialethism handles position three (both) by accepting true contradictions. Intuitionism handles the neither-true-nor-false cases by restricting PEM. Many-valued logic handles position three and four with intermediate truth values. The Aristotelian apparatus handles all four positions through the categorical grid (Cat. Ch. 2), the elenchus conditions (De Int. Ch. 11), the actuality/potentiality distinction (Met. Θ), and the apophatic limit (Met. Λ.9 — the Unmoved Mover as the fourth position: neither is nor is-not, beyond predication). The catuṣkoṭi is not an exotic Eastern addition to Western logic — it is the structure that the Western logical tradition was working with from the Categories onward and lost when Russell erased the categorical apparatus. The non-classical logics are the West's attempt to recover what the East preserved.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">Nagarjuna's Mulamadhyamakakarika and Met. Λ.9</div>
+  <div class="conn-aristotle">Aristotelian parallel: Met. Λ.7 and Λ.9 · DA III.5 · Phys. VIII.10</div>
+  <div class="conn-body">Nagarjuna's use of the catuṣkoṭi in the Mulamadhyamakakarika applies all four positions to every major metaphysical concept — substance, causation, motion, identity — and shows that each concept, when examined, falls into the fourth position (neither is nor is-not). The conclusion is sunyata — emptiness — the absence of svabhava (own-nature, self-existence). This is not nihilism but the recognition that no concept, when fully examined, has a fixed self-nature that makes it true without qualification. Aristotle arrives at the same limit in Met. Λ.9: noēsis noēseōs — self-thinking thought — where the thinker and the thought are identical and ordinary subject-predicate structure gives way. The apophatic limit of the Aristotelian corpus and the sunyata of Nagarjuna are the same recognition: the ground of all determination is itself undetermined. Neither tradition accepts this as a contradiction — both accept it as the correct terminus of philosophical inquiry.</div>
+</div>
+
+<!-- THE RESTORATION -->
+<h2>V. The restoration — what recovering the Aristotelian apparatus achieves</h2>
+
+<p>Recovering the Aristotelian apparatus does not make the non-classical logics wrong — it makes most of them unnecessary. The distinctions they restore through logical machinery are distinctions that Aristotle maintained through the categorical analysis, the per se / accidental distinction, the temporal identity condition, and the secundum quid qualification. Recovering these distinctions does not require new logical machinery — it requires reading the Organon, the biological works, and the Metaphysics as a unified argument rather than as a collection of historical texts.</p>
+
+<p>What the recovery achieves for each non-classical logic:</p>
+
+<div class="conn">
+  <div class="conn-title">Against dialethism: the secundum quid dissolution makes true contradictions unnecessary</div>
+  <div class="conn-aristotle">Soph. Ref. Ch. 10 · Cat. Ch. 2 · De Int. Ch. 11</div>
+  <div class="conn-body">Every apparent true contradiction dissolves when the suppressed qualification is restored. The Liar sentence is false-in-a-qualified-sense, not false-absolutely. Russell's set contains itself at one level but not at another. Schrödinger's cat is alive in one respect and dead in another — not both alive and dead absolutely. The dissolution does not deny that the apparent contradiction is genuinely puzzling — it identifies precisely which qualification was suppressed and restores it. This is more satisfying than accepting the contradiction because it explains why the paradox arose (suppressed qualification) rather than merely accommodating it (true contradiction).</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">Against intuitionism: the potential/actual distinction preserves PEM without restriction</div>
+  <div class="conn-aristotle">Phys. III.6 · De Int. Ch. 9 · Met. Θ.3–4</div>
+  <div class="conn-body">PEM holds for all fully determinate subjects at resolved times. It does not hold without qualification for future contingents or for what is only potentially the case — not because PEM fails but because the conditions for its application (resolved temporal identity, determinate subject) are not yet satisfied. This preserves PEM as a logical principle while explaining why it cannot be asserted universally without qualification. Intuitionism restricts PEM; the Aristotelian apparatus specifies its conditions. Specifying conditions is more precise than restricting.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">Against fuzzy logic: degrees of formal realisation are ontological, not logical</div>
+  <div class="conn-aristotle">GA IV.1 · PA I.4 · Post. An. I.4</div>
+  <div class="conn-body">The graduation that fuzzy logic places in truth values belongs in the ontology — in the degree to which a subject realises the relevant form. 'Tall' is not half-true of someone of medium height — it is true of them to a degree that depends on their realisation of the relevant formal standard within their genus and context. The truth value is still binary (either the threshold is met or it is not) but the threshold itself is graduated and context-dependent. This is more precise than fuzzy truth values because it locates the graduation in the right place — in the ontology — rather than in the logic.</div>
+</div>
+
+<div class="conn">
+  <div class="conn-title">The one non-classical logic the Aristotelian apparatus genuinely needs: modal logic — but in a restricted form</div>
+  <div class="conn-aristotle">Post. An. I.4 and I.6 · Met. Θ.3 · De Int. Ch. 9</div>
+  <div class="conn-body">Of all the non-classical logics, modal logic is the one whose distinctions (necessity, possibility, contingency) are most clearly present in the Aristotelian apparatus — but the Aristotelian analysis grounds them in the per se / accidental distinction and the actuality / potentiality distinction rather than in possible worlds. A restricted modal logic — one that grounds modal operators in categorical placement rather than possible worlds — is not in conflict with the Aristotelian apparatus but is a formalisation of it. This is the one area where the formal tools of post-Russellian logic genuinely extend the Aristotelian analysis rather than merely reconstructing what was erased. The tools of possible world semantics can be used to model the Aristotelian distinctions even if the ontological commitment to possible worlds is not required.</div>
+</div>
+
+<h2>VI. The thesis stated plainly</h2>
+
+<p>Russell did not create new logical problems. He erased the apparatus that prevented them. The non-classical logics are attempts to recover, within the framework Russell created, the distinctions that Aristotle's apparatus maintained. They are necessary repairs — given the damage. But they are repairs. The wound was the erasure; the restoration is the recovery of the Aristotelian distinctions in their original form, not in the impoverished form that required the repairs.</p>
+
+<p>The four papers demonstrate this at four levels. Paper One shows that every classical logical paradox dissolves by the secundum quid move — restoring the suppressed qualification that Russell's apparatus erases. Paper Two shows that the Organon already contains the four-position structure that the non-classical logics were independently reconstructing. Paper Three shows that the Metaphysics identifies the apophatic limit — the fourth position of the catuṣkoṭi — through the analysis of pure actuality rather than through the acceptance of true contradiction. Paper Four shows that the same four-position structure runs through the entire corpus and that its presence in the Buddhist logical tradition is structural identity, not analogy.</p>
+
+<p>The non-classical logics are the long way around. The direct route was always there.</p>
+
+<footer>This document maps the connections between Russell's erasure of the Aristotelian apparatus and the non-classical logics that attempted to repair the damage. Primary corpus references are given for each logic. To be read alongside: connections_by_paper.html · connections_master_summary.html · INDEX.html. March 2026.</footer>
+
+</body>
+</html>
