@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — On Generation and Corruption Book II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Γενέσεως καὶ Φθορᾶς Β</h1>
+<p class="subtitle">On Generation and Corruption Book II — complete interactive reference · chapters 1–10</p>
+<p class="subtitle">Subject: the four elements, their primary qualities, their transformations into one another, and the eternal cyclical recurrence of generation</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book II applies the principles of Book I to the four elements — earth, water, air, fire — showing how they are constituted by pairs of primary qualities (hot, cold, wet, dry), how they transform into one another, and how the eternal circular motion of the heavens drives the endless cycle of generation and corruption in the sublunary world.</footer>
+
+<script>
+const cats = [
+  {
+    id:"gc2_1", label:"GC II.1 — the primary qualities and the elements", greek:"πρῶται ποιότητες", accent:"#BA7517",
+    children:[
+      {label:"The four primary qualities", children:[
+        {label:"Hot", greek:"θερμόν", note:"Active — tends to unite things of the same kind and separate things of different kinds"},
+        {label:"Cold", greek:"ψυχρόν", note:"Active — tends to consolidate and compress, bringing things together indiscriminately"},
+        {label:"Wet", greek:"ὑγρόν", note:"Passive — what does not resist being bounded by an external limit; readily takes any shape"},
+        {label:"Dry", greek:"ξηρόν", note:"Passive — what resists being bounded externally; maintains its own determinate shape"},
+      ]},
+      {label:"The two active and two passive", note:"Hot and cold are active qualities — they do something to matter. Wet and dry are passive — they describe how matter receives determination. The four combine in pairs to constitute the elements"},
+      {label:"The six possible pairs and the four actual elements", children:[
+        {label:"Fire", note:"Hot + dry — active and self-determining"},
+        {label:"Air", note:"Hot + wet — active and shapeable"},
+        {label:"Water", note:"Cold + wet — consolidating and shapeable"},
+        {label:"Earth", note:"Cold + dry — consolidating and self-determining"},
+        {label:"The impossible pairs", note:"Hot + cold and wet + dry are contrary pairs — they cannot combine. These two impossible combinations reduce six potential pairs to four actual elements"},
+      ]},
+      {label:"Connection to the tetraktys", note:"Four elements constituted by four qualities in six possible pairs, two of which are impossible — the structure is mathematically tight. The four elements are not arbitrary but the exhaustive set of stable quality-combinations"},
+      {label:"Connection to your thesis", note:"The four elements constitute a tetralemmic structure at the physical level — four irreducible modes of material being, each defined by a pair of primary qualities. The same fourfold structure runs from the logical (four predicables, four kinds of change) through the physical (four elements) to the cosmological"},
+    ]
+  },
+  {
+    id:"gc2_2", label:"GC II.2 — how the elements transform into one another", greek:"μεταβολή στοιχείων", accent:"#BA7517",
+    children:[
+      {label:"The mechanism of elemental transformation", note:"Elements transform into one another by replacing one of their constitutive qualities with its contrary — one quality changes while the other persists"},
+      {label:"Adjacent transformations — sharing one quality", children:[
+        {label:"Fire → Air", note:"Fire (hot+dry) loses dry, gains wet → Air (hot+wet). They share hot — easy transformation"},
+        {label:"Air → Water", note:"Air (hot+wet) loses hot, gains cold → Water (cold+wet). They share wet — easy transformation"},
+        {label:"Water → Earth", note:"Water (cold+wet) loses wet, gains dry → Earth (cold+dry). They share cold — easy transformation"},
+        {label:"Earth → Fire", note:"Earth (cold+dry) loses cold, gains hot → Fire (hot+dry). They share dry — easy transformation"},
+      ]},
+      {label:"Opposite transformations — sharing no quality", children:[
+        {label:"Fire → Water", note:"Fire (hot+dry) and Water (cold+wet) share no quality — both qualities must change simultaneously. Harder and slower transformation"},
+        {label:"Air → Earth", note:"Air (hot+wet) and Earth (cold+dry) share no quality — both must change simultaneously. Harder and slower"},
+      ]},
+      {label:"The cycle", note:"The four elements form a cycle — fire, air, water, earth, fire — in which adjacent transformations are easy and fast, opposite transformations are hard and slow. The cycle is continuous and eternal"},
+      {label:"Connection to the tetraktys again", note:"The four elements arranged in a cycle with adjacency relations — this is the tetrahedron's edges projected onto a circle. The four and the six relations between them are the same mathematical structure as the tetraktys"},
+    ]
+  },
+  {
+    id:"gc2_3", label:"GC II.3 — the elements are not Empedocles' four roots", greek:"οὐχ ὡς Ἐμπεδοκλῆς", accent:"#BA7517",
+    children:[
+      {label:"Empedocles' account", note:"Earth, water, fire, air are eternal, unchanging roots — they mix and separate but do not genuinely transform into one another. Love and Strife are the external forces that move them"},
+      {label:"Aristotle's critique", note:"If the elements are truly eternal and unchanging they cannot transform into one another — but we observe that water becomes air, air becomes fire, and so on. The transformations are real"},
+      {label:"Empedocles' elements are too rigid", note:"By making the four roots eternal and indestructible Empedocles cannot account for elemental transformation — he can only account for mixture and separation, not genuine change of one element into another"},
+      {label:"Aristotle's elements are dynamic", note:"The four elements are constituted by qualities — and qualities can change. When a quality changes the element changes with it. The elements are not eternal atoms but dynamic states of matter"},
+      {label:"The underlying matter", note:"Beneath the four elements lies a common substrate — prime matter (ὕλη πρώτη) — that receives all four quality-pairs. It is neither hot nor cold, wet nor dry, but capable of becoming any of the four elements"},
+    ]
+  },
+  {
+    id:"gc2_4", label:"GC II.4 — the underlying matter: prime matter", greek:"ὕλη πρώτη", accent:"#BA7517",
+    children:[
+      {label:"Prime matter defined", note:"The ultimate substrate of all elemental change — what underlies the four elements and persists through their transformations. It has no qualities of its own; it is pure potentiality for quality"},
+      {label:"Prime matter is not any element", note:"Prime matter is not fire or water or air or earth — it is what any of them can become. It is the matter of the elements, not itself an element"},
+      {label:"Prime matter is not perceptible", note:"We never encounter prime matter in experience — we only encounter it as already qualified into one of the four elements. It is a theoretical posit required to explain elemental transformation"},
+      {label:"The hierarchy of matter", children:[
+        {label:"Prime matter", note:"Receives the primary qualities — becomes elements"},
+        {label:"Elemental matter", note:"Receives further forms — becomes homoeomerous stuffs like flesh, bone, wood"},
+        {label:"Homoeomerous matter", note:"Receives further forms — becomes organs and parts of living things"},
+        {label:"Organic matter", note:"Receives the form of a living being — becomes a complete organism"},
+      ]},
+      {label:"Connection to Metaphysics Z–H", note:"The analysis of matter and form in the Metaphysics presupposes this hierarchy — prime matter is the logical limit of the analysis of matter, the pure potentiality beneath all determination"},
+    ]
+  },
+  {
+    id:"gc2_5", label:"GC II.5 — flesh, bone, and the homoeomerous bodies", greek:"ὁμοιομερῆ", accent:"#534AB7",
+    children:[
+      {label:"Homoeomerous bodies defined", note:"Stuffs of which any part has the same composition as the whole — flesh, bone, wood, gold. Any part of flesh is flesh; any part of gold is gold"},
+      {label:"How homoeomerous bodies arise", note:"By specific ratios of mixture of the four elements — flesh is a particular ratio of fire, air, water, and earth. The ratio is the formal principle of the homoeomerous body"},
+      {label:"The ratio as form", note:"What makes flesh flesh is not the elements themselves but the ratio in which they are combined — the λόγος or formal principle. Change the ratio and the flesh becomes something else"},
+      {label:"Connection to mixture in Book I", note:"GC I.6–7 established the conditions for genuine mixture — here that account is applied to show how the elements mix in specific ratios to produce the stuffs of which living bodies are composed"},
+      {label:"The Anaxagorean connection", note:"Anaxagoras held that flesh contains bone, bone contains flesh, and so on — everything in everything. Aristotle's response: in a homoeomerous body the components are present potentially, not actually. The ratio preserves the potentiality of the elements without requiring that all be actually present in all"},
+    ]
+  },
+  {
+    id:"gc2_6", label:"GC II.6 — why generation is eternal", greek:"ἀΐδιος γένεσις", accent:"#534AB7",
+    children:[
+      {label:"The problem", note:"Generation and corruption are perpetual — things are always coming to be and passing away. But why should this be? What ensures that generation does not simply stop?"},
+      {label:"Generation requires an eternal cause", note:"Eternal generation cannot be explained by any finite cause — a finite cause would eventually be exhausted. The eternity of generation requires an eternal cause"},
+      {label:"The celestial sphere as eternal cause", note:"The eternal circular motion of the outermost celestial sphere is the ultimate cause of generation and corruption in the sublunary world — it provides the continuous external efficient cause that keeps the cycle going"},
+      {label:"The sun's annual motion", note:"More proximately: the sun's oblique annual motion along the ecliptic — its seasonal approach and recession — drives the cycle of generation and corruption. Summer generates; winter corrupts. The approach generates; the recession corrupts"},
+      {label:"The two kinds of eternal motion", children:[
+        {label:"Circular motion of the heavens", note:"Always the same — eternal, uniform, without beginning or end. This is the ultimate cause"},
+        {label:"Cyclical generation below", note:"Always changing — things come to be and pass away. But the cycle itself is eternal, driven by the eternal circular motion above"},
+      ]},
+      {label:"Connection to Metaphysics Lambda", note:"The Unmoved Mover moves the outermost sphere by being the object of its desire — the sphere moves eternally in imitation of the eternal actuality of the Unmoved Mover. This is the ultimate ground of eternal generation"},
+    ]
+  },
+  {
+    id:"gc2_7", label:"GC II.7 — why some things are eternal and others not", greek:"τὰ μὲν ἀΐδια τὰ δ᾽ οὔ", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"Given that generation is eternal, why do individual things pass away? Why are they not eternal themselves?"},
+      {label:"The answer: matter and form", note:"Individual things are compounds of matter and form. The form is eternal — the species does not perish. The matter is changeable — the individual instantiation of the form in matter is perishable"},
+      {label:"The species is eternal", note:"'Man generates man' — the form of humanity is perpetuated through the cycle of generation. Individual men perish; man as a species persists eternally through the continuous cycle"},
+      {label:"The individual is perishable", note:"Because the individual is matter + form, and the matter can lose the form, the individual is perishable. The form is separable in thought; the matter drags the individual into the cycle of generation and corruption"},
+      {label:"Connection to Post. An. I.8", note:"Demonstration is of what is eternal — the species, not the individual. Individual perishable things cannot be strictly demonstrated about. This connection makes the epistemological and the physical accounts one structure"},
+      {label:"Connection to Cat. Ch. 5", note:"Primary being is the individual — most fully being. Secondary being is the species and genus — derivatively being. The individual is most real but least eternal; the species is less real but more eternal. This is the paradox that GC II.7 resolves physically"},
+    ]
+  },
+  {
+    id:"gc2_8", label:"GC II.8 — the necessity of the four elements", greek:"ἀνάγκη τεττάρων", accent:"#534AB7",
+    children:[
+      {label:"Are the four elements necessary or contingent?", note:"Could there have been three elements, or five? Or are exactly four elements necessary given the structure of the primary qualities?"},
+      {label:"The argument from the qualities", note:"There are four primary qualities arranged in two contrary pairs: hot/cold and wet/dry. These combine in exactly four stable non-contradictory pairs — giving exactly four elements. This is not contingent but necessary"},
+      {label:"No fifth element in the sublunary world", note:"A fifth sublunary element would require either a fifth quality or a third contrary pair — but hot/cold and wet/dry are the complete set of tangible primary opposites. There is no room for a fifth"},
+      {label:"The fifth element: aether", greek:"αἰθήρ", note:"The heavenly bodies are composed of a fifth element — aether — that is not hot, cold, wet, or dry and does not participate in generation and corruption. It moves eternally in circles. This is not a fifth sublunary element but a distinct kind of matter appropriate to the eternal celestial realm"},
+      {label:"The completeness of the four", note:"The four sublunary elements are necessary and complete — the exhaustive set of stable material states in the changeable world. This mathematical completeness reflects the logical completeness of the primary quality structure"},
+    ]
+  },
+  {
+    id:"gc2_9", label:"GC II.9 — why there are only two contrary quality pairs", greek:"δύο ζεύγη", accent:"#BA7517",
+    children:[
+      {label:"The question", note:"Why are there exactly two pairs of primary tangible contraries — hot/cold and wet/dry — and not more or fewer?"},
+      {label:"The argument", note:"Tangible qualities are those relevant to the generation of natural bodies — the qualities through which bodies act on and are acted on by each other and by us. Hot/cold and wet/dry are the primary tangible contraries; all other tangible qualities (heavy/light, rough/smooth, etc.) are derivative from these"},
+      {label:"Hot and cold as active", note:"Hot separates things of the same kind and unites things of different kinds — it is the principle of qualitative differentiation. Cold consolidates and compresses — it is the principle of qualitative unity"},
+      {label:"Wet and dry as passive", note:"Wet takes any shape — it is the principle of material plasticity. Dry holds its own shape — it is the principle of material determinacy"},
+      {label:"The four as a complete system", note:"Active/passive × differentiating/unifying × plastic/determinate — the four qualities exhaust the primary dimensions of tangible material being. There is no further primary dimension to add"},
+    ]
+  },
+  {
+    id:"gc2_10", label:"GC II.10 — the cycle of elements and the eternity of generation: conclusion", greek:"κύκλος καὶ ἀΐδιον", accent:"#BA7517",
+    children:[
+      {label:"The complete picture", note:"The four elements cycle into one another driven by the eternal motion of the heavens — fire becomes air, air becomes water, water becomes earth, earth becomes fire. The cycle is eternal"},
+      {label:"The two cycles", children:[
+        {label:"The elemental cycle", note:"Fire → air → water → earth → fire — the continuous transformation of the elements into one another. This cycle is the physical basis of all sublunary generation and corruption"},
+        {label:"The seasonal cycle", note:"The sun's annual motion produces summer and winter — approach and recession — which drive generation and corruption in living things. The organic cycle of life and death is grounded in the solar cycle"},
+      ]},
+      {label:"Why the cycle is eternal", note:"The circular motion of the heavens is eternal — it has no beginning and no end. Therefore the elemental cycle it drives is also eternal. Therefore generation and corruption are eternal — there will always be things coming to be and passing away"},
+      {label:"The closing synthesis", note:"Generation and corruption in the sublunary world are the temporal image of the eternal actuality of the heavens. What is eternal above is imitated below through continuous cyclical change — things that cannot be eternal individually maintain eternity as a species through the cycle of generation"},
+      {label:"Connection to Metaphysics Lambda", note:"The Unmoved Mover → eternal circular motion of outermost sphere → solar oblique motion → seasonal cycles → generation and corruption of sublunary things. This is the complete causal chain from pure actuality to perishable individuals. Lambda is the keystone; GC II is the physical counterpart"},
+      {label:"Connection to your thesis", note:"The eternal cycle of generation — driven by an unmoved mover, expressed in the four elements constituted by four quality-pairs — is the cosmological expression of the same structure that appears logically in the four predicables and physically in the four kinds of change. One tetralemmic structure, three levels of application: logical, physical, cosmological"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — The four primary qualities; the four elements; elemental transformation (1–3)", ids:["gc2_1","gc2_2","gc2_3"] },
+  { label:"II — Prime matter; homoeomerous bodies; the eternity of generation (4–6)", ids:["gc2_4","gc2_5","gc2_6"] },
+  { label:"III — Eternal vs perishable; necessity of four elements; the closing synthesis (7–10)", ids:["gc2_7","gc2_8","gc2_9","gc2_10"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

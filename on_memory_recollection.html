@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — On Memory and Recollection</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Μνήμης καὶ Ἀναμνήσεως</h1>
+<p class="subtitle">On Memory and Recollection — complete interactive reference · chapters 1–2</p>
+<p class="subtitle">Memory as the retention of a perceptual image with a temporal mark · recollection as the active recovery of what is stored · the soul's experience of the past as past</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. On Memory and Recollection is the shortest and most philosophically precise of the Parva Naturalia. It is the one place in the entire corpus where Aristotle explicitly analyses how the soul marks experiences as belonging to the past — as having occurred before now. This temporal marking is the psychological ground of the temporal identity condition of LNC (De Int. Ch. 11, Met. Γ.3) and the direct link between the epistemological ascent of Post. An. II.19 and the physics of time in Phys. IV.11–14.</footer>
+
+<script>
+const cats = [
+  {
+    id:"mem1", label:"On Memory Ch. 1 — what memory is: the image with a temporal mark", greek:"μνήμη", accent:"#BA7517",
+    children:[
+      {label:"Memory is not perception or judgment", note:"Memory is not the same as perception — perception is of the present, memory is of the past. Memory is not belief or judgment — we can remember without judging anything. Memory has its own character"},
+      {label:"Memory is of the past", note:"The most important defining feature of memory: it is of what has occurred — of the past as past. The object of memory is always something that has been. This is what distinguishes memory from imagination, which can be of the non-existent or the future"},
+      {label:"Memory is not present in all animals", note:"Memory requires time — it involves the retention of something past. Animals that do not perceive time cannot have memory. Humans have memory because we perceive time — we have the capacity to mark our experiences as having occurred before now"},
+      {label:"The image as the object of memory", note:"What we remember is not the past thing itself — the past thing is gone. What we remember is an image (φάντασμα) — a representation in the soul of what was perceived. Memory is the retention of this image"},
+      {label:"The image as likeness and as sign", note:"The image in memory has a dual character: it can be treated as a likeness of the original thing (we think of the image as representing the past object) or as a thing in itself (we think only of the image, not of what it is an image of). Memory requires the first mode — treating the image as a likeness"},
+      {label:"The temporal mark", note:"What makes memory memory rather than mere imagination is the temporal mark — the sense that the image represents something that occurred before now. The memory image is accompanied by a kind of dating: this happened at a time before the present moment"},
+      {label:"The wax seal analogy", note:"Memory is like the impression left by a seal on wax — the seal is gone but the impression remains. The perceptual event is past; what remains is its impression in the soul. Some people's wax is too soft (impressions form easily but fade quickly — the very young); some too hard (impressions form slowly — the very old). The best memory belongs to those in between"},
+      {label:"Memory belongs to the part of the soul that imagines", note:"Since memory involves an image, it belongs to the imaginative faculty — the same faculty as imagination. But memory adds the temporal mark to the image. Memory is imagination plus the recognition of pastness"},
+      {label:"Connection to De Anima III.3", note:"Imagination (φαντασία) is the movement that arises from actual perception — DA III.3. Memory is imagination retained with a temporal mark. The faculty is the same; what distinguishes memory is the temporal dimension. DA III.3 established imagination as the bridge between perception and nous; memory is imagination with its temporal structure made explicit"},
+      {label:"Connection to Physics IV.11–14", note:"Time is the number of motion with respect to before and after — Phys. IV.11. The temporal mark on memory images is the soul's psychological counterpart of this physical structure. To remember is to locate an image in the before-and-after sequence — to assign it a position in numbered time. The physics of time and the psychology of memory are the same structure from two directions"},
+      {label:"Connection to LNC and your thesis", note:"The temporal identity condition of LNC — same time — requires the capacity to distinguish before and after, to locate predicates in the temporal sequence. Memory is the psychological mechanism of this capacity: the soul can locate past events as past, situate them in the numbered sequence of time, and thereby identify when a given predication held and when it did not. Without memory there is no temporal identity; without temporal identity there is no LNC properly applied. On Memory Ch. 1 is the psychological ground of the logical condition. This is a primary source for Paper One"},
+    ]
+  },
+  {
+    id:"mem1b", label:"On Memory Ch. 1 continued — the perception of time; animals and memory", greek:"αἴσθησις χρόνου", accent:"#BA7517",
+    children:[
+      {label:"We perceive time with the same faculty that perceives magnitude and motion", note:"The perception of time uses the same faculty as the perception of magnitude and motion — the common sense. This faculty perceives the continuous and the before-and-after. Memory requires this faculty because memory requires the perception of temporal distance"},
+      {label:"The magnitude of temporal distance", note:"When we remember, we have a sense not only that the event is past but of how long ago it was — near or far, recent or distant. This sense of temporal distance is a kind of magnitude perception: the time since the event is a measurable interval"},
+      {label:"Memory belongs to the sensitive part of the soul", note:"Because memory involves the perceptual image and the perception of time, it belongs to the sensitive part of the soul — not to the purely rational. Memory is not an intellectual act but a sensitive one. This is why animals other than humans can have memory (those that perceive time) but not recollection (which requires reasoning)"},
+      {label:"The distinction between memory and recollection previewed", note:"Memory is the passive retention of the image with its temporal mark. Recollection is the active recovery — the deliberate search for a past image. Memory is something that happens to us; recollection is something we do. This distinction will be fully developed in Chapter 2"},
+    ]
+  },
+  {
+    id:"mem2", label:"On Memory Ch. 2 — recollection: the active recovery of memory", greek:"ἀνάμνησις", accent:"#534AB7",
+    children:[
+      {label:"Recollection is not memory", note:"Recollection (ἀνάμνησις) is distinct from memory (μνήμη). Memory is the retention of a past image — it can occur without any effort, simply as the persistence of a trace. Recollection is the deliberate recovery of a past image — an active search"},
+      {label:"Recollection is a kind of inference", note:"Recollection involves a kind of reasoning — we move from one image to another by association, by similarity, by contrariety, by temporal proximity, until we reach the image we are seeking. Recollection is cognitive motion toward a past image"},
+      {label:"The associative chain", children:[
+        {label:"By similarity", note:"Thinking of Socrates leads us to think of someone who looks like him"},
+        {label:"By contrariety", note:"Thinking of white leads us to think of black"},
+        {label:"By temporal proximity", note:"Thinking of what preceded an event leads us to the event itself — the temporal sequence is the most powerful associative chain"},
+      ]},
+      {label:"The starting point of recollection", note:"To recollect we need a starting point — something from which the associative chain begins. The best starting points are those from which many chains lead to the target. We should start from what is most familiar or most closely associated with the target"},
+      {label:"Recollection as a kind of syllogism", note:"Recollection has a quasi-syllogistic structure — we move from a starting premise (I last saw X at the feast) through intermediate steps (who was at the feast, what happened next) to a conclusion (X was at the harbour). The movement is inferential, not merely associative"},
+      {label:"The bodily basis of recollection", note:"Recollection has a bodily basis — the physiological traces left by past perceptions. When we try to recollect, we set in motion the physical processes corresponding to the images we are seeking. Sometimes the motion overshoots or misfires — we remember the wrong thing or cannot stop recollecting"},
+      {label:"Why recollection is harder in some states than others", note:"When we are in the grip of strong emotion, or very cold, or drunk, recollection is difficult — the bodily traces are disturbed or inaccessible. The physiological state of the body directly affects the accessibility of past images"},
+      {label:"Recollection belongs only to humans", note:"Only humans recollect — recollection requires deliberate cognitive motion, which requires rational capacity. Other animals have memory but not recollection. This marks the boundary between the sensitive soul (memory) and the rational soul (recollection)"},
+      {label:"Connection to Post. An. II.19", note:"The epistemological ascent: perception → memory → experience → universal → nous. Memory is the stage at which particular perceptions accumulate into an experience. Recollection is the active dimension of this — the deliberate recovery of past images that enables the formation of experience and ultimately of the universal. On Memory Chapter 2 fills in the psychological machinery of the Post. An. II.19 ascent"},
+      {label:"Connection to DA III.3 and DA III.10", note:"Imagination as the bridge to nous — DA III.3. The practical syllogism requires perception of the particular — DA III.10. Recollection is the active dimension of imagination: the deliberate recovery of past images for use in practical reasoning. The practical syllogism can draw on recollected images, not just present perceptions"},
+      {label:"Connection to your thesis", note:"Recollection's quasi-syllogistic structure — moving through an associative chain from a starting point to a target image — is the psychological form of the demonstrative middle term. The middle term connects subject and predicate in demonstration; the associative link connects present to past in recollection. In both cases what is sought is a connection through which something becomes known. Recollection is the temporal form of the demonstrative syllogism — its object is not a universal truth but a particular past event located in numbered time. On Memory Ch. 2 establishes the psychological mechanism by which temporal identity is maintained: the self persists through time because it can recollect — because it can recover the before-and-after sequence of its own experience and locate its past actions in numbered time. This is the psychological ground of the temporal identity condition that Paper One requires"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"Chapter 1 — Memory: the image with a temporal mark", ids:["mem1","mem1b"] },
+  { label:"Chapter 2 — Recollection: the active recovery of past experience", ids:["mem2"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

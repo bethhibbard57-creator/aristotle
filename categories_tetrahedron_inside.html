@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ten Categories — Tetraktys viewed from within</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #faf8f4; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+  h1 { font-family: Georgia, serif; font-size: 1.1rem; font-weight: 500; color: #333; margin-bottom: 0.25rem; text-align: center; }
+  .sub { font-family: Georgia, serif; font-size: 0.8rem; color: #999; font-style: italic; margin-bottom: 1.5rem; text-align: center; }
+  svg { width: 100%; max-width: 660px; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · The Ten Categories</h1>
+<p class="sub">The tetraktys as tetrahedron · Being at the center as operator · viewed from within</p>
+
+<svg viewBox="0 0 660 620" xmlns="http://www.w3.org/2000/svg" style="font-family:Georgia,'Times New Roman',serif;">
+
+  <!-- outer triangle edges -->
+  <line x1="330" y1="80" x2="80" y2="510" stroke="#ccc" stroke-width="1"/>
+  <line x1="330" y1="80" x2="580" y2="510" stroke="#ccc" stroke-width="1"/>
+  <line x1="80" y1="510" x2="580" y2="510" stroke="#ccc" stroke-width="1"/>
+
+  <!-- spokes from center to outer three -->
+  <line x1="330" y1="310" x2="330" y2="142" stroke="#BA7517" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="330" y1="310" x2="138" y2="468" stroke="#BA7517" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <line x1="330" y1="310" x2="522" y2="468" stroke="#BA7517" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+  <!-- face fills -->
+  <polygon points="330,80 80,510 330,310" fill="#E1F5EE" opacity="0.15"/>
+  <polygon points="330,80 580,510 330,310" fill="#EEEDFE" opacity="0.15"/>
+  <polygon points="80,510 580,510 330,310" fill="#FAECE7" opacity="0.15"/>
+
+  <!-- top: Quantity · Quality -->
+  <circle cx="330" cy="80" r="62" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+  <text x="330" y="62" text-anchor="middle" font-size="12" font-weight="600" fill="#26215C">Quantity</text>
+  <text x="330" y="78" text-anchor="middle" font-size="12" font-weight="600" fill="#26215C">Quality</text>
+  <text x="330" y="94" text-anchor="middle" font-size="10" font-style="italic" fill="#3C3489">ποσόν · ποιόν</text>
+  <text x="330" y="110" text-anchor="middle" font-size="9" fill="#888" font-style="italic">intrinsic · row 2</text>
+
+  <!-- bottom left: Relation · Where · When -->
+  <circle cx="80" cy="510" r="68" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.2"/>
+  <text x="80" y="488" text-anchor="middle" font-size="11" font-weight="600" fill="#04342C">Relation</text>
+  <text x="80" y="503" text-anchor="middle" font-size="11" font-weight="600" fill="#04342C">Where · When</text>
+  <text x="80" y="518" text-anchor="middle" font-size="9" font-style="italic" fill="#085041">πρός τι · ποῦ · ποτέ</text>
+  <text x="80" y="533" text-anchor="middle" font-size="9" fill="#888" font-style="italic">situational · row 3</text>
+
+  <!-- bottom right: Position · Having · Doing · Affected -->
+  <circle cx="580" cy="510" r="68" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/>
+  <text x="580" y="486" text-anchor="middle" font-size="11" font-weight="600" fill="#4A1B0C">Position · Having</text>
+  <text x="580" y="501" text-anchor="middle" font-size="11" font-weight="600" fill="#4A1B0C">Doing · Affected</text>
+  <text x="580" y="516" text-anchor="middle" font-size="9" font-style="italic" fill="#712B13">κεῖσθαι · ἔχειν</text>
+  <text x="580" y="529" text-anchor="middle" font-size="9" font-style="italic" fill="#712B13">ποιεῖν · πάσχειν</text>
+  <text x="580" y="543" text-anchor="middle" font-size="9" fill="#888" font-style="italic">dynamic · row 4</text>
+
+  <!-- center: Being -->
+  <circle cx="330" cy="310" r="70" fill="#FAEEDA" stroke="#BA7517" stroke-width="2"/>
+  <text x="330" y="293" text-anchor="middle" font-size="17" font-weight="600" fill="#633806">Being</text>
+  <text x="330" y="312" text-anchor="middle" font-size="12" font-style="italic" fill="#854F0B">οὐσία</text>
+  <text x="330" y="330" text-anchor="middle" font-size="10" fill="#BA7517" font-style="italic">the operator</text>
+  <text x="330" y="347" text-anchor="middle" font-size="9" fill="#bbb" font-style="italic">noēsis noēseōs</text>
+
+  <text x="330" y="600" text-anchor="middle" font-size="10" fill="#ccc" font-style="italic">1 + 2 + 3 + 4 = 10 · the tetraktys · viewed from within</text>
+
+</svg>
+
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Rhetoric I II III</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ῥητορική</h1>
+<p class="subtitle">Rhetoric Books I · II · III — complete interactive reference · 12 + 26 + 19 chapters</p>
+<p class="subtitle">The logical loop completed: from demonstration (Posterior Analytics) through dialectic (Topics) to persuasion — the enthymeme as the rhetorical syllogism, example as the rhetorical induction, and the full circuit of logos, ethos, and pathos</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. The Rhetoric closes the logical loop of the Organon. Demonstration is from true and primary premises to necessary conclusions. Dialectic is from reputable opinions to probable conclusions. Rhetoric is from what an audience will accept to persuasive conclusions. The enthymeme (rhetorical syllogism from probability or sign) and the example (rhetorical induction) are the rhetorical counterparts of the syllogism and induction of the Prior Analytics. Book I covers the kinds of rhetoric and their subjects. Book II covers the means of persuasion — ethos, pathos, and the topoi of the enthymeme. Book III covers style and arrangement.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book I — Ῥητορική Α · The nature of rhetoric; the three kinds; their subjects",
+    groups: [
+      {
+        label: "Rhetoric and its relation to dialectic (I.1–2)",
+        chapters: [
+          {
+            id:"rh1_1", label:"Rhet. I.1 — rhetoric as the counterpart of dialectic", greek:"ἀντίστροφος διαλεκτικῆς", accent:"#BA7517",
+            children:[
+              {label:"The famous opening", note:"Rhetoric is the counterpart of dialectic — both are concerned with things that in a way fall within the knowledge of all people and belong to no delimited science"},
+              {label:"What rhetoric is", note:"The capacity to observe in any given case the available means of persuasion — it is a faculty, not a science. Like dialectic, it can argue both sides of a question"},
+              {label:"The failure of previous rhetoricians", note:"Previous teachers of rhetoric focused only on extra-logical means of persuasion — appeals to emotion, prejudice, pity. These are outside the subject matter; they corrupt the judgment of the audience"},
+              {label:"The proper means of persuasion", note:"The only proper means is the proof — establishing the case by argument. Everything else is secondary and potentially corrupting"},
+              {label:"Rhetoric serves justice", note:"Rhetoric is necessary because truth and justice are naturally stronger than their opposites — rhetoric properly used serves to make truth and justice prevail when logic alone is insufficient for the audience"},
+              {label:"Connection to the Organon", note:"Demonstration (Post. An.) is from necessary premises to necessary conclusions for those who know. Dialectic (Topics) is from reputable premises to probable conclusions for disputants. Rhetoric is from accepted premises to persuasive conclusions for a general audience. Three modes of argument, one logical structure — the syllogism — at three levels of epistemic access"},
+            ]
+          },
+          {
+            id:"rh1_2", label:"Rhet. I.2 — the means of persuasion; the enthymeme and example", greek:"πίστεις", accent:"#BA7517",
+            children:[
+              {label:"The three means of persuasion", children:[
+                {label:"Ethos", greek:"ἦθος", note:"The character of the speaker — the audience is persuaded because they trust the speaker. Ethos must be established in the speech itself, not assumed from prior reputation"},
+                {label:"Pathos", greek:"πάθος", note:"The emotional state of the audience — people judge differently when they are pleased or pained, friendly or hostile. Putting the audience in the right emotional state is a means of persuasion"},
+                {label:"Logos", greek:"λόγος", note:"The argument itself — the demonstration or apparent demonstration through which the case is established. The primary and most properly rhetorical means"},
+              ]},
+              {label:"The enthymeme", greek:"ἐνθύμημα", note:"The rhetorical syllogism — a syllogism from probability or sign rather than from necessary premises. The body of rhetorical proof"},
+              {label:"Example", greek:"παράδειγμα", note:"The rhetorical induction — inference from one particular to another via an implicit universal. The counterpart of dialectical induction"},
+              {label:"Enthymeme vs example", note:"Enthymeme is to rhetoric as syllogism is to demonstration; example is to rhetoric as induction is to dialectic. The full logical structure of the Organon appears at the rhetorical level"},
+              {label:"Connection to Prior Analytics II.23–24", note:"Example is the argument from particular to particular via a universal (Pr. An. II.23). Abduction is inference to the best explanatory middle term (Pr. An. II.24). Both reappear here as the logical basis of rhetorical reasoning"},
+              {label:"Connection to your thesis", note:"The enthymeme is the lowest level of the demonstrative hierarchy — the syllogism operating on probability and sign rather than necessity. The logical loop from demonstration to dialectic to rhetoric shows that the same structure — subject, predicate, middle term — governs all three levels. Improper predication generates fallacy at every level: false demonstration, sophistical refutation, and deceptive rhetoric are all the same error at different epistemic altitudes"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The three kinds of rhetoric and their subjects (I.3–15)",
+        chapters: [
+          {
+            id:"rh1_3", label:"Rhet. I.3 — the three kinds of rhetoric", greek:"τρία γένη", accent:"#BA7517",
+            children:[
+              {label:"Deliberative", greek:"συμβουλευτικόν", note:"Addresses future action — what should be done or not done. Its end is the expedient or harmful. Audience: the assembly"},
+              {label:"Forensic", greek:"δικανικόν", note:"Addresses past action — whether it was just or unjust. Its end is the just or unjust. Audience: the juror"},
+              {label:"Epideictic", greek:"ἐπιδεικτικόν", note:"Addresses present character — praise or blame. Its end is the noble or shameful. Audience: the spectator"},
+              {label:"The temporal structure", note:"Deliberative: future. Forensic: past. Epideictic: present. Each kind of rhetoric has its own temporal orientation — this is not accidental but structural. The kind of argument appropriate to each depends on the temporal mode of its claim"},
+              {label:"Connection to De Int. Ch. 9", note:"The sea battle is a forensic or deliberative problem — past events are determinate, future events are open. The temporal structure of the three kinds of rhetoric maps onto the temporal analysis of truth and necessity in De Interpretatione"},
+            ]
+          },
+          {
+            id:"rh1_4", label:"Rhet. I.4 — deliberative rhetoric: its subjects", greek:"συμβουλευτική", accent:"#BA7517",
+            children:[
+              {label:"The five main subjects of deliberation", children:[
+                {label:"Ways and means", note:"Finance — revenues and expenditures of the state"},
+                {label:"War and peace", note:"The military power of the state and its enemies"},
+                {label:"Defence", note:"The defensive capacity — size and character of the army"},
+                {label:"Imports and exports", note:"Trade — what the state needs and what it produces"},
+                {label:"Legislation", note:"Laws — the framework of the constitution"},
+              ]},
+              {label:"Knowledge required", note:"The deliberative speaker must know the facts about each subject — not in the manner of an expert, but enough to argue intelligently. Rhetoric supplements but does not replace substantive knowledge"},
+            ]
+          },
+          {
+            id:"rh1_5", label:"Rhet. I.5 — happiness and its components", greek:"εὐδαιμονία", accent:"#BA7517",
+            children:[
+              {label:"Why happiness is relevant", note:"Deliberative rhetoric argues for what is good and expedient — its ultimate standard is happiness. To argue that a course of action is good requires knowing what happiness is"},
+              {label:"Happiness defined for rhetorical purposes", note:"Prosperity combined with virtue — or self-sufficiency of life — or the pleasantest life combined with security — or abundance of possessions and bodies, with the power to keep and use them"},
+              {label:"The components of happiness", note:"Good birth · many friends · good friends · wealth · good children · many children · good old age · bodily excellences (health, beauty, strength, stature) · fame · honour · good luck · virtue"},
+              {label:"Connection to the Ethics", note:"The Nicomachean Ethics gives the full analysis of happiness as activity in accordance with virtue. The Rhetoric gives a popular account — what people generally accept happiness to be — since rhetoric argues from accepted opinion, not from philosophical demonstration"},
+            ]
+          },
+          {
+            id:"rh1_6", label:"Rhet. I.6 — the good and the expedient", greek:"ἀγαθόν", accent:"#BA7517",
+            children:[
+              {label:"The good in general", note:"What is worth choosing for its own sake · what produces or preserves good · what good things follow from · what prevents evils"},
+              {label:"Topoi for the good", note:"What is rare is more valuable than what is abundant — gold more than iron. What is desired by the wise or good is better. What is praised is better — praise tracks genuine excellence"},
+              {label:"The comparative good", note:"When two goods are present, the greater is better. What produces the greater good is better. What is prior is better — the cause is better than the effect"},
+              {label:"Connection to Topics III", note:"The comparative topoi of Topics III reappear here — the same logical structure for evaluating competing goods appears in both dialectical and rhetorical contexts"},
+            ]
+          },
+          {
+            id:"rh1_7", label:"Rhet. I.7 — the greater good", greek:"τὸ μεῖζον ἀγαθόν", accent:"#BA7517",
+            children:[
+              {label:"Topoi for comparative goodness", note:"What is an end is better than what is a means. What is self-sufficient is better than what requires supplements. What is more permanent is better. What the wise person would choose is better"},
+              {label:"Quantity and quality", note:"More of a good is better than less — but a qualitatively better good may outweigh a larger quantity of a lesser good. The comparison requires judgment about both dimensions"},
+              {label:"The most extensive good", note:"What benefits more people is better — the good of many outweighs the good of few, all else being equal"},
+            ]
+          },
+          {
+            id:"rh1_8", label:"Rhet. I.8 — the forms of government", greek:"πολιτεῖαι", accent:"#BA7517",
+            children:[
+              {label:"Why forms of government matter for deliberative rhetoric", note:"The audience of deliberative rhetoric is governed — its constitution determines what kind of arguments will be persuasive and what ends are taken as good"},
+              {label:"Four forms", children:[
+                {label:"Democracy", note:"Rule of the many — freedom and equality are the highest values"},
+                {label:"Oligarchy", note:"Rule of the few wealthy — wealth and birth are the highest values"},
+                {label:"Aristocracy", note:"Rule of the excellent — virtue and education are the highest values"},
+                {label:"Monarchy / tyranny", note:"Rule of one — self-sufficiency and order (in monarchy), self-interest (in tyranny)"},
+              ]},
+              {label:"The speaker must know the constitution", note:"Arguments that appeal to democratic values will not persuade an oligarchy and vice versa. Rhetoric is audience-relative — the speaker must know what the audience values"},
+            ]
+          },
+          {
+            id:"rh1_9", label:"Rhet. I.9 — epideictic rhetoric: praise and blame", greek:"ἐπαινεῖν καὶ ψέγειν", accent:"#BA7517",
+            children:[
+              {label:"The noble and the shameful", note:"Epideictic rhetoric praises virtue and blames vice — its standard is the noble (καλόν) and the shameful (αἰσχρόν)"},
+              {label:"The virtues as topics of praise", note:"Justice · courage · temperance · magnificence · magnanimity · liberality · gentleness · prudence · wisdom — these are the subjects of epideictic praise"},
+              {label:"Amplification as the proper method", note:"Epideictic rhetoric amplifies — it takes what is genuinely present and makes it vivid and impressive. Unlike forensic rhetoric, it does not establish facts but illuminates character"},
+              {label:"Connection to the Ethics", note:"The virtues catalogued here are the virtues analysed in the Nicomachean Ethics — epideictic rhetoric is the public expression of the ethical analysis. Praise and blame are the social mechanisms by which virtue is cultivated"},
+            ]
+          },
+          {
+            id:"rh1_10", label:"Rhet. I.10 — forensic rhetoric: action and motive", greek:"δικανική", accent:"#BA7517",
+            children:[
+              {label:"The subject of forensic rhetoric", note:"Wrongdoing — its nature, causes, and the character of those who do wrong. To argue a forensic case requires understanding why people act wrongly"},
+              {label:"Voluntary vs involuntary action", note:"Only voluntary actions are subject to legal judgment — wrongdoing requires that the act was chosen. Involuntary action is not criminal in the proper sense"},
+              {label:"The causes of wrongdoing", note:"Vice and lack of self-control — acting from bad character or from passion overcoming reason. The forensic speaker must show which was operative"},
+              {label:"Connection to the Ethics and the Metaphysics", note:"Voluntary action requires rational choice (proairesis) — the principle of Theta.2's account of rational potentiality. Forensic rhetoric applies the metaphysics of action to the legal context"},
+            ]
+          },
+          {
+            id:"rh1_11", label:"Rhet. I.11 — pleasure and pain", greek:"ἡδονή", accent:"#BA7517",
+            children:[
+              {label:"Why pleasure matters for rhetoric", note:"People seek pleasure and avoid pain — understanding what is pleasant enables the speaker to make the preferred course of action seem desirable"},
+              {label:"Pleasure as the actualization of a natural state", note:"Pleasure accompanies the activity of a natural capacity functioning well — seeing something beautiful, understanding something true. This connects to Theta.6's complete actuality"},
+              {label:"Memory and anticipation as sources of pleasure", note:"The pleasures of memory (past goods) and anticipation (expected goods) are as real as present pleasures — the temporal scope of pleasure is wide"},
+            ]
+          },
+          {
+            id:"rh1_12", label:"Rhet. I.12 — the character and motives of wrongdoers", greek:"ἀδικοῦντες", accent:"#BA7517",
+            children:[
+              {label:"Who is likely to do wrong", note:"Those who think they can — who think they will not be caught, or not be punished, or that the gain outweighs the risk. The forensic speaker must show that the accused is the kind of person who would act this way"},
+              {label:"The role of probability", note:"Forensic argument is largely from probability — this is the kind of person who would do this kind of thing in these circumstances. The enthymeme from character is the main instrument"},
+            ]
+          },
+          {
+            id:"rh1_13", label:"Rhet. I.13 — just and unjust actions; written and unwritten law", greek:"νόμος ἄγραφος", accent:"#BA7517",
+            children:[
+              {label:"Written vs unwritten law", note:"Written law is specific to a city — it can be unjust. Unwritten law is universal — it is the law of nature, recognised by all rational beings"},
+              {label:"Equity", greek:"ἐπιείκεια", note:"Equity is justice that goes beyond the written law — the correction of legal justice where the law fails due to its generality. The equitable person follows the spirit, not merely the letter"},
+              {label:"Appeal to natural law", note:"When the written law is against one's case, appeal to natural justice — when it is in one's favour, insist on the written law. The forensic speaker must know both and know when to invoke each"},
+              {label:"Connection to the Ethics", note:"Nicomachean Ethics V.10 treats equity in detail — here it appears as a rhetorical resource. The Rhetoric applies the ethical analysis to the practical context of the law court"},
+            ]
+          },
+          {
+            id:"rh1_14", label:"Rhet. I.14 — the degrees of wrong", greek:"μᾶλλον ἀδικεῖν", accent:"#BA7517",
+            children:[
+              {label:"Greater and lesser wrongs", note:"Premeditated wrong is worse than impulsive wrong. Wrong against many is worse than wrong against few. Wrong against those who have helped you is worse. Repeated wrong is worse than occasional"},
+              {label:"The comparative topoi applied to wrongs", note:"The same more/less structure that appears in Topics II.4 and III.4 applies to the assessment of wrongs — the forensic speaker must be able to argue that the wrong is greater or lesser than alleged"},
+            ]
+          },
+          {
+            id:"rh1_15", label:"Rhet. I.15 — the non-technical means of persuasion", greek:"ἄτεχνοι πίστεις", accent:"#BA7517",
+            children:[
+              {label:"Non-technical means defined", note:"Those not invented by the speaker but pre-existing — laws, witnesses, contracts, tortures, oaths. The speaker must know how to use and resist these"},
+              {label:"Laws", note:"When the law supports the case, emphasise its authority. When it does not, appeal to equity and natural justice"},
+              {label:"Witnesses", note:"Ancient witnesses (poets, proverbs) are more trustworthy than recent ones — they have no interest in the outcome"},
+              {label:"The technical means are superior", note:"The non-technical means depend on what happens to be available. The technical means — enthymeme, example, ethos, pathos — depend on the speaker's skill and are always available"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Ῥητορική Β · Ethos, pathos, and the topoi of the enthymeme",
+    groups: [
+      {
+        label: "Ethos: the character of the speaker (II.1)",
+        chapters: [
+          {
+            id:"rh2_1", label:"Rhet. II.1 — the three components of ethos", greek:"φρόνησις ἀρετή εὔνοια", accent:"#534AB7",
+            children:[
+              {label:"Why ethos matters", note:"We believe good people more readily and more fully than others — especially in matters where there is no certainty and opinion is divided"},
+              {label:"Three components of credible character", children:[
+                {label:"Practical wisdom", greek:"φρόνησις", note:"The speaker appears to have good judgment — to know what is true and relevant"},
+                {label:"Virtue", greek:"ἀρετή", note:"The speaker appears to have good character — to be honest and not to deceive"},
+                {label:"Good will", greek:"εὔνοια", note:"The speaker appears to have the audience's interests at heart — to be on their side"},
+              ]},
+              {label:"All three must be present", note:"Lack of any one undermines credibility — a wise and honest speaker who does not care about the audience, or a caring honest speaker who is not wise, will not be fully persuasive"},
+              {label:"Ethos in the speech, not outside it", note:"Aristotle insists that character must be established by the speech itself — prior reputation is not the speaker's rhetorical achievement. This makes ethos a proper object of rhetorical art"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Pathos: the emotions of the audience (II.2–11)",
+        chapters: [
+          {
+            id:"rh2_2", label:"Rhet. II.2 — anger", greek:"ὀργή", accent:"#534AB7",
+            children:[
+              {label:"Definition of anger", note:"Anger is a desire accompanied by pain for apparent revenge for an apparent slight to oneself or to one's friends, from people who have no call to slight them"},
+              {label:"The three components", note:"A slight — the contemptuous undervaluation of what one values. Directed at someone who has no right to slight. Accompanied by pain and the desire for revenge"},
+              {label:"How to arouse anger", note:"Make the audience feel that a slight has been committed against them or theirs — show contempt, despite, or insolence by the opponent"},
+              {label:"How to calm anger", note:"Show that the act was not a slight — it was accidental, done in anger, or done out of mistaken belief. Show that the agent is of a type that does not slight"},
+              {label:"The rhetorical method for all emotions", note:"For each emotion Aristotle gives: its definition, the state of mind of the person who feels it, the objects toward which it is felt, the occasions that produce it. This tripartite analysis is the logical structure of the treatment of all eleven emotions in II.2–11"},
+            ]
+          },
+          {
+            id:"rh2_3", label:"Rhet. II.3 — calmness", greek:"πραότης", accent:"#534AB7",
+            children:[
+              {label:"Calmness as the opposite of anger", note:"Calmness is the settling and quieting of anger — the conditions under which anger is calmed are the opposite of those that arouse it"},
+              {label:"Conditions of calmness", note:"When people are playing, joking, feasting — not serious. When time has passed. When the supposed slight is shown to be unintentional or the result of error"},
+            ]
+          },
+          {
+            id:"rh2_4", label:"Rhet. II.4 — friendship and enmity", greek:"φιλία καὶ ἔχθρα", accent:"#534AB7",
+            children:[
+              {label:"Friendship defined", note:"Wishing for someone what you believe to be good things — for their sake, not for your own — and being inclined to bring those good things about"},
+              {label:"The friend vs the merely useful", note:"Friends wish good for the other's sake; those who are merely useful wish good for their own sake. The distinction tracks the Ethics' division of friendship by virtue, pleasure, and utility"},
+              {label:"Enmity as the opposite", note:"Enmity is the disposition to wish harm — it involves anger or contempt. Understanding enmity enables the speaker to expose it or defuse it"},
+            ]
+          },
+          {
+            id:"rh2_5", label:"Rhet. II.5 — fear and confidence", greek:"φόβος καὶ θάρρος", accent:"#534AB7",
+            children:[
+              {label:"Fear defined", note:"A pain or disturbance arising from the impression of impending evil that is destructive or painful — evil that seems near, not distant"},
+              {label:"What makes things fearful", note:"Signs of power to harm · enmity · the capacity to act at will · proximity in time · unpredictability. The fearful is what the powerful enemy can do to the unprepared"},
+              {label:"Confidence as the opposite", note:"Confidence is the expectation, accompanied by an image, that safety is near and the things to be feared are distant or non-existent"},
+              {label:"Rhetorical use", note:"The speaker can make an audience fearful (to motivate action) or confident (to prevent paralysis) by controlling what they take to be near or far, likely or unlikely"},
+            ]
+          },
+          {
+            id:"rh2_6", label:"Rhet. II.6 — shame and shamelessness", greek:"αἰσχύνη", accent:"#534AB7",
+            children:[
+              {label:"Shame defined", note:"A pain or disturbance about evils — past, present, or future — that seem to bring dishonour. Shame is about what people will think"},
+              {label:"Shameless things", note:"Cowardice · injustice · intemperance · meanness. What is shameless before the wise is truly shameful; what is only shameful before the many may merely be unfashionable"},
+              {label:"Audience for shame", note:"We feel shame before those whose opinion matters — the wise, those we admire, those we want to impress. The speaker can invoke shame by making the audience conscious of who is watching"},
+            ]
+          },
+          {
+            id:"rh2_7", label:"Rhet. II.7 — favour and its opposite", greek:"χάρις", accent:"#534AB7",
+            children:[
+              {label:"Favour defined", note:"The feeling in accordance with which we say that a person has favour to show — the readiness to help someone who needs it, not in return for anything, nor for the advantage of the helper"},
+              {label:"The disinterested character of genuine favour", note:"Favour given for reward is not genuine — it is a transaction. Genuine favour is unconditional assistance. Understanding this enables the speaker to present their acts as genuine favour"},
+            ]
+          },
+          {
+            id:"rh2_8", label:"Rhet. II.8 — pity", greek:"ἔλεος", accent:"#534AB7",
+            children:[
+              {label:"Pity defined", note:"A pain caused by the sight of some evil, destructive or painful, which befalls one who does not deserve it, and which we might expect to befall ourselves or one of our friends"},
+              {label:"Three conditions for pity", note:"(1) The person must not deserve the evil. (2) The evil must be significant. (3) We must think it could happen to us — pity requires identification with the victim"},
+              {label:"Who does not feel pity", note:"Those who think themselves already ruined — they feel not pity but despair. Those who think themselves invulnerable — they feel contempt, not pity. Pity requires a certain middling self-assessment"},
+            ]
+          },
+          {
+            id:"rh2_9", label:"Rhet. II.9 — indignation", greek:"νέμεσις", accent:"#534AB7",
+            children:[
+              {label:"Indignation defined", note:"Pain at undeserved good fortune — the opposite of pity. The good person feels indignation when the unworthy prosper"},
+              {label:"The just emotion", note:"Indignation is the pain of the person who cares about justice — who is pained by the disconnect between merit and fortune. It is the emotion that justice produces in those who feel it"},
+              {label:"Connection to the Ethics", note:"The virtuous person is pained by injustice and pleased by justice — indignation (nemesis) is one of the emotions that tracks virtue. The Rhetoric's analysis of indignation applies the Ethics' account of moral sensitivity"},
+            ]
+          },
+          {
+            id:"rh2_10", label:"Rhet. II.10 — envy", greek:"φθόνος", accent:"#534AB7",
+            children:[
+              {label:"Envy defined", note:"A pain caused by seeing the good fortune of those who are our equals — pain at the good, not from desire for it for oneself, but from pain that others have it"},
+              {label:"Envy vs emulation", note:"Envy is directed at equals — we envy those who are similar to us. Emulation (zelos) is directed at what the excellent person has — it is the desire to acquire the good, not to deprive the other of it"},
+              {label:"Envy as a sign of smallness", note:"The envious person is pained by others' good rather than inspired to achieve their own. It is the opposite of magnanimity"},
+            ]
+          },
+          {
+            id:"rh2_11", label:"Rhet. II.11 — emulation", greek:"ζῆλος", accent:"#534AB7",
+            children:[
+              {label:"Emulation defined", note:"A pain caused by seeing in others good things that are honourable and possible for us to acquire — with the aim of acquiring them. Emulation is the good emotion that envy perverts"},
+              {label:"Emulation is virtuous", note:"Emulation drives the person to achieve what they admire in others — it is the emotion of the magnanimous, competitive in the good sense"},
+              {label:"The complete treatment of emotions", note:"II.2–11 covers ten emotions with their opposites — anger/calmness, friendship/enmity, fear/confidence, shame/shamelessness, favour/ingratitude, pity, indignation, envy, emulation. Together they constitute the complete field of emotionally significant states for rhetorical purposes"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Character types by age and fortune (II.12–17)",
+        chapters: [
+          {
+            id:"rh2_12", label:"Rhet. II.12–17 — the characters of youth, age, and the privileged", greek:"ἤθη", accent:"#534AB7",
+            children:[
+              {label:"II.12 — the young", note:"Passionate · easily angered · quick to trust · hopeful · easily shamed · generous · living by feeling rather than calculation · loving honour and victory. The young are good material for inspiring but not for sober deliberation"},
+              {label:"II.13 — the old", note:"Cynical · suspicious · small-minded · always recalling the past · complaining · living by memory rather than hope. The old have been disappointed too often to trust or hope easily"},
+              {label:"II.14 — those in their prime", note:"Neither too confident nor too distrustful — the midpoint of character. Best judges of deliberative matters because they combine experience with energy"},
+              {label:"II.15 — noble birth", note:"The nobly born think themselves superior — they look down on those who share their advantages as equals but have nothing further. Noble birth produces contemptuous pride unless combined with virtue"},
+              {label:"II.16 — wealth", note:"The wealthy are insolent and arrogant — they think they deserve everything because they can buy it. Wealth corrupts character by providing the means to gratify every impulse"},
+              {label:"II.17 — power", note:"Power produces ambition and energy — the powerful are more serious and more decisive than the merely wealthy. But power unchecked produces the same arrogance as wealth"},
+              {label:"Rhetorical use", note:"The speaker must adapt their character-portrayal to the audience — showing what kind of person the opponent is, in terms the audience will recognize from their own experience of that type"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The topoi of the enthymeme (II.18–26)",
+        chapters: [
+          {
+            id:"rh2_18", label:"Rhet. II.18 — general topoi for all three kinds of rhetoric", greek:"κοινοὶ τόποι", accent:"#534AB7",
+            children:[
+              {label:"The common topoi", note:"Topics that can supply premises for enthymemes in any of the three kinds of rhetoric — not specific to deliberative, forensic, or epideictic but applicable to all"},
+              {label:"The possible and the impossible", note:"If a thing can come to be, it has come to be somewhere and at some time. If two contraries are possible, both have been actual — arguing from what is possible to what has occurred"},
+              {label:"Past fact", note:"If a lesser event has occurred, the greater may have too — or vice versa. Arguing from the more to the less or the less to the more"},
+              {label:"Future fact", note:"If someone has the power and the will to do something, they will do it — arguing from capacity and desire to action"},
+              {label:"Degree and comparative", note:"If the more extreme is true, the less extreme is also true — and if the less extreme is false, the more extreme is also false"},
+            ]
+          },
+          {
+            id:"rh2_19", label:"Rhet. II.19 — the topics of the possible, past, future, and degree", greek:"δυνατόν παρελθόν μέλλον", accent:"#534AB7",
+            children:[
+              {label:"The possible and impossible", note:"If two contraries are equally possible, the other is also possible. If the lesser capacity exists, the greater does too — a fortiori"},
+              {label:"Past fact from the possible", note:"What was possible has probably occurred — especially if there was motive and opportunity"},
+              {label:"Future fact", note:"If a thing has already begun it will probably be completed — the part implies the whole tendency"},
+              {label:"Connection to Prior Analytics I.13", note:"The two-sided possible — what can be and can not be. The rhetorical topoi for the possible exploit the same logical structure as the modal syllogistic of Prior Analytics I.13"},
+            ]
+          },
+          {
+            id:"rh2_20", label:"Rhet. II.20 — example and maxim", greek:"παράδειγμα καὶ γνώμη", accent:"#534AB7",
+            children:[
+              {label:"Example in rhetoric", note:"The rhetorical induction — arguing from one case to a conclusion about another case, via an implicit universal. Two kinds: historical example (real events) and invented example (fable, parable)"},
+              {label:"Historical example", note:"The more powerful — real events carry more authority than invented ones. But they require knowledge of history"},
+              {label:"Fable and parable", note:"Easier to invent — and can be tailored precisely to the point being argued. Aesop's fables are the model"},
+              {label:"Maxim", greek:"γνώμη", note:"A general statement about what to do or avoid in practical life — a compressed form of practical wisdom. Maxims are the premises from which enthymemes are constructed"},
+              {label:"Connection to Prior Analytics II.23", note:"Example as the argument from particular to particular via a universal — here deployed rhetorically. The logical structure from the Prior Analytics is the ground of the rhetorical practice"},
+            ]
+          },
+          {
+            id:"rh2_21", label:"Rhet. II.21 — the use of maxims", greek:"χρῆσις γνωμῶν", accent:"#534AB7",
+            children:[
+              {label:"Maxims as compressed enthymemes", note:"A maxim states the conclusion of an enthymeme without the premises — if it is not obvious why it is true, add the reason and the maxim becomes a full enthymeme"},
+              {label:"When maxims are most effective", note:"When they confirm what the audience already half-believes — recognition rather than surprise. The audience supplies the suppressed premises themselves"},
+              {label:"Character through maxims", note:"The choice of maxims reveals character — a speaker who chooses maxims about generosity and virtue appears generous and virtuous. Maxims are an indirect means of establishing ethos"},
+            ]
+          },
+          {
+            id:"rh2_22", label:"Rhet. II.22 — how to construct enthymemes", greek:"ποιεῖν ἐνθυμήματα", accent:"#534AB7",
+            children:[
+              {label:"The material of enthymemes", note:"Probabilities (what usually happens) · signs (what actually is or has been) · examples · maxims · suppositions"},
+              {label:"Probabilities", greek:"εἰκότα", note:"What people expect — the usual course of events. 'Envious people hate' is a probability — generally true, not always"},
+              {label:"Signs", greek:"σημεῖα", note:"Observable indicators of unobservable facts. Necessary signs (τεκμήρια) are convertible — if present, conclusion is certain. Non-necessary signs are not convertible"},
+              {label:"Connection to Prior Analytics II.26", note:"The analysis of probability and sign from Pr. An. II.26 is here applied as the practical method for constructing enthymemes. The rhetorical and logical analyses are the same structure at different levels of application"},
+            ]
+          },
+          {
+            id:"rh2_23", label:"Rhet. II.23 — the twenty-eight topoi of the enthymeme", greek:"εἴκοσι ὀκτώ τόποι", accent:"#534AB7",
+            children:[
+              {label:"The complete set of common topoi", note:"Twenty-eight general argumentative moves applicable across all subjects — the rhetorical counterpart of the Topics' system of topoi"},
+              {label:"Selected key topoi", children:[
+                {label:"From opposites", note:"If courage is noble, cowardice is shameful — contraries carry the same evaluation in opposite directions"},
+                {label:"From correlatives", note:"If it is just to condemn, it is just to be condemned — the action and its reception carry the same value"},
+                {label:"From more and less", note:"If even the gods are ignorant, surely men are — a fortiori from the greater to the lesser"},
+                {label:"From time", note:"What was done willingly in the past shows what would be done willingly again — past action evidences character"},
+                {label:"From turning the argument against the opponent", note:"If the opponent's argument proves too much it proves nothing — showing that the same reasoning would refute the opponent's own position"},
+                {label:"From definition", note:"What the word really means — using the proper definition to show that the case does or does not fall under it"},
+              ]},
+              {label:"Connection to the Topics", note:"The twenty-eight topoi are the rhetorical counterpart of the Topics' system — but organised for practical use in composition rather than for systematic dialectical training. The Topics is the source; the Rhetoric is the application"},
+            ]
+          },
+          {
+            id:"rh2_24", label:"Rhet. II.24 — apparent enthymemes: the nine fallacious topoi", greek:"φαινόμενα ἐνθυμήματα", accent:"#534AB7",
+            children:[
+              {label:"The rhetorical counterpart of the Sophistical Refutations", note:"As the Sophistical Refutations analyses fallacious arguments in dialectic, this chapter analyses fallacious enthymemes in rhetoric — arguments that appear to establish their conclusions but do not"},
+              {label:"From words", note:"Using the same word in different senses — equivocation at the rhetorical level"},
+              {label:"From combination and division", note:"Combining what should be divided or dividing what should be combined — the linguistic fallacy of Soph. Ref. 6"},
+              {label:"From exaggeration", note:"Stating a claim in the most extreme form to make it seem established — the appearance of vehemence substitutes for proof"},
+              {label:"From sign", note:"A sign is not a proof — the argument from sign can always be blocked by showing the sign is not convertible with the conclusion"},
+              {label:"From the accidental", note:"What is true of the accident is treated as true of the subject — the fallacy of accident from Soph. Ref. 9"},
+              {label:"Connection to the complete logical circle", note:"The rhetorical fallacies are the same fallacies as the sophistical ones — homonymy, accident, secundum quid, ignoratio elenchi — deployed at the level of public persuasion. The Rhetoric closes the circle: the same logical errors appear at every level from demonstration to rhetoric"},
+            ]
+          },
+          {
+            id:"rh2_25", label:"Rhet. II.25 — refutation of enthymemes", greek:"λύσις", accent:"#534AB7",
+            children:[
+              {label:"Refutation by counter-syllogism", note:"Construct an enthymeme whose conclusion contradicts the opponent's conclusion — meeting argument with argument"},
+              {label:"Refutation by objection", note:"Attack the premise — show it is false, improbable, or inapplicable to this case"},
+              {label:"Refutation by distinguishing", note:"Show that the premise is true in a different sense from the one required — the secundum quid dissolution applied rhetorically"},
+              {label:"Connection to Topics II.11 and Soph. Ref. 16–28", note:"The methods of refutation in rhetoric are the same as in dialectic and in the dissolution of fallacies — the logical structure of refutation is invariant across all three domains"},
+            ]
+          },
+          {
+            id:"rh2_26", label:"Rhet. II.26 — amplification and depreciation; the conclusion of Book II", greek:"αὔξησις καὶ μείωσις", accent:"#534AB7",
+            children:[
+              {label:"Amplification and depreciation", note:"Making something appear greater or lesser than it is — these are not separate topoi but applications of the degree-topoi to the epideictic context"},
+              {label:"Not a source of enthymemes", note:"Amplification and depreciation do not establish premises — they present what is already established in the most or least impressive light. They are for amplifying proof, not for supplying it"},
+              {label:"The summary", note:"Book II has covered the three means of persuasion completely — ethos (II.1), pathos (II.2–11), logos through enthymeme and example (II.18–26). The material of rhetoric is exhausted; Book III turns to presentation"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book III — Ῥητορική Γ · Style and arrangement",
+    groups: [
+      {
+        label: "Style: the virtues of rhetorical language (III.1–12)",
+        chapters: [
+          {
+            id:"rh3_1", label:"Rhet. III.1 — the importance of delivery and style", greek:"ὑπόκρισις καὶ λέξις", accent:"#993C1D",
+            children:[
+              {label:"Delivery", greek:"ὑπόκρισις", note:"The management of voice — tone, pitch, rhythm. Important in practice but not in theory — it is the province of performance, not of art strictly speaking"},
+              {label:"Style", greek:"λέξις", note:"How things are said, not just what is said. Style matters because the same content expressed differently has different effects on the audience"},
+              {label:"Style is necessary but secondary", note:"The true rhetorician would argue from facts alone — but audiences are not capable of this. Style meets audiences where they are — it is a concession to human weakness, not a virtue in itself"},
+            ]
+          },
+          {
+            id:"rh3_2", label:"Rhet. III.2 — the virtues of style: correctness and clarity", greek:"ἀρετὴ λέξεως", accent:"#993C1D",
+            children:[
+              {label:"The primary virtue of style", note:"Clarity — the style should make the meaning clear. All other virtues are secondary to this"},
+              {label:"Correctness", note:"Correct Greek — proper grammar, proper use of connectives, proper names for things. The foundation of clear style"},
+              {label:"Appropriateness", note:"The style must fit the subject and the occasion — grand style for grand subjects, plain style for plain ones. Mismatch is comic or bathetic"},
+            ]
+          },
+          {
+            id:"rh3_3", label:"Rhet. III.3 — the frigid style: what to avoid", greek:"ψυχρότης", accent:"#993C1D",
+            children:[
+              {label:"The frigid style defined", note:"Cold, lifeless, pompous language that fails to move or illuminate — the opposite of the warm, clear, appropriate style"},
+              {label:"Four sources of frigidity", note:"Compound words used inappropriately · unusual words · epithets that are too long, too strange, or too poetic · metaphors that are far-fetched"},
+            ]
+          },
+          {
+            id:"rh3_4", label:"Rhet. III.4 — the simile", greek:"εἰκών", accent:"#993C1D",
+            children:[
+              {label:"The simile as expanded metaphor", note:"A simile says 'A is like B'; a metaphor says 'A is B'. The simile is less forceful — the comparison is made explicit rather than embodied"},
+              {label:"The proper use of simile", note:"Similes work best in poetry; metaphors work better in prose — prose requires more condensed and forceful language. The simile is appropriate when the comparison needs to be made visible"},
+            ]
+          },
+          {
+            id:"rh3_5", label:"Rhet. III.5 — correct diction", greek:"ὀρθοέπεια", accent:"#993C1D",
+            children:[
+              {label:"Five rules for correct prose", note:"(1) Proper use of connectives. (2) Using proper names for things, not vague terms. (3) Avoiding ambiguity — unless ambiguity is desired. (4) Observing gender correctly. (5) Correct number — singular and plural consistently used"},
+              {label:"Connection to the logical analysis of ambiguity", note:"The rhetorical rule against ambiguity is the application of the logical rule from Topics I.15 and Soph. Ref. 4 — ambiguity in style generates the same equivocation at the level of presentation as homonymy generates at the level of argument"},
+            ]
+          },
+          {
+            id:"rh3_6", label:"Rhet. III.6 — elevation of style", greek:"ὄγκος", accent:"#993C1D",
+            children:[
+              {label:"Elevating the style", note:"Use of description instead of a single name — expand what is brief to give it weight. Metaphor and epithet can elevate; concrete description can also dignify"},
+              {label:"Depreciation through style", note:"Use the name rather than the description — cut the expansion. The contrast between expanded and contracted expression is a rhetorical tool for giving or removing dignity"},
+            ]
+          },
+          {
+            id:"rh3_7", label:"Rhet. III.7 — appropriateness of style", greek:"τὸ πρέπον", accent:"#993C1D",
+            children:[
+              {label:"The appropriate style", note:"The style that fits the subject, the speaker, and the occasion. Emotional subjects need emotional language; intellectual subjects need plain language"},
+              {label:"Emotional language and ethos", note:"Language that conveys the speaker's genuine emotion is persuasive — it contributes to ethos as well as pathos. Artificial emotion is detected and undermines trust"},
+            ]
+          },
+          {
+            id:"rh3_8", label:"Rhet. III.8 — prose rhythm", greek:"ῥυθμός", accent:"#993C1D",
+            children:[
+              {label:"Prose must have rhythm but not metre", note:"Poetry has metre — a fixed pattern. Prose must have rhythm — a pleasing flow — without being metrical. Metrical prose sounds like a performance, not a speech"},
+              {label:"The paean as the appropriate prose rhythm", note:"The paean (either long-short-short or short-short-long) is best for prose — it avoids the too-strong pattern of the iamb and dactyl while maintaining rhythm"},
+            ]
+          },
+          {
+            id:"rh3_9", label:"Rhet. III.9 — the periodic style", greek:"περίοδος", accent:"#993C1D",
+            children:[
+              {label:"The running style", note:"Sentences that go on without natural stopping points — like a river with no banks. Hard to follow, exhausting, unsatisfying"},
+              {label:"The periodic style", note:"Sentences with a definite beginning, middle, and end — a bounded whole. The period is more pleasing because it can be taken in at once and has a satisfying closure"},
+              {label:"The antithetical period", note:"The strongest form — meaning is placed in contrast: 'they helped their friends and hurt their enemies'. Antithesis is memorable because the mind grasps both sides simultaneously"},
+            ]
+          },
+          {
+            id:"rh3_10", label:"Rhet. III.10 — the lively and vivid", greek:"ἀστεῖα καὶ εὐδοκιμοῦντα", accent:"#993C1D",
+            children:[
+              {label:"Liveliness", note:"What makes a saying witty, pleasing, and memorable — it presents something familiar in an unexpected way, creating a small shock of recognition"},
+              {label:"Metaphor from proportion", note:"The best metaphors are proportional — A is to B as C is to D — and present the thing in action rather than in a state. 'He mowed down his enemies' is better than 'he killed his enemies'"},
+              {label:"Bringing before the eyes", note:"The most vivid style makes things present — it creates an image in the mind. Homer's metaphors are the model: he makes the inanimate animate, the static active"},
+            ]
+          },
+          {
+            id:"rh3_11", label:"Rhet. III.11 — wit and humour", greek:"ἀστεῖα", accent:"#993C1D",
+            children:[
+              {label:"Wit in rhetoric", note:"Appropriate wit wins the audience — it shows intelligence and good character. It must be relevant, not offensive, and well-timed"},
+              {label:"The sources of wit", note:"Unexpected metaphor · puns · verbal play · irony. All work by creating a small cognitive surprise — the mind is briefly misled and then corrected"},
+            ]
+          },
+          {
+            id:"rh3_12", label:"Rhet. III.12 — style appropriate to each kind of rhetoric", greek:"ἑκάστου γένους λέξις", accent:"#993C1D",
+            children:[
+              {label:"Written vs spoken style", note:"Written style is more precise and more elaborate — it is read, not heard. Spoken style is more natural and more immediate — the voice and delivery carry what precision cannot"},
+              {label:"Deliberative style", note:"Rougher and more vivid than forensic — it must move an assembly to action, not merely satisfy a jury"},
+              {label:"Forensic style", note:"More elaborate — the audience is at leisure to consider. Epideictic is the most literary, since it is often actually written and read"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Arrangement: the parts of the speech (III.13–19)",
+        chapters: [
+          {
+            id:"rh3_13", label:"Rhet. III.13 — the parts of a speech", greek:"μέρη λόγου", accent:"#993C1D",
+            children:[
+              {label:"The necessary parts", note:"Only two parts are truly necessary: statement of the case and proof. Everything else is an addition"},
+              {label:"The four traditional parts", children:[
+                {label:"Prooemium", note:"Introduction — captures attention, establishes goodwill, states the subject"},
+                {label:"Narrative", note:"Statement of the facts of the case"},
+                {label:"Proof", note:"The argument — enthymemes and examples"},
+                {label:"Epilogue", note:"Conclusion — summary and emotional appeal"},
+              ]},
+              {label:"Other divisions", note:"Counter-statement, recapitulation, and other parts added by previous rhetoricians are not necessary — they depend on the case and the audience"},
+            ]
+          },
+          {
+            id:"rh3_14", label:"Rhet. III.14 — the prooemium", greek:"προοίμιον", accent:"#993C1D",
+            children:[
+              {label:"The function of the prooemium", note:"To make the audience attentive, well-disposed, and ready to follow — to establish the emotional and intellectual conditions for receiving the argument"},
+              {label:"In epideictic", note:"Begin with what is most praiseworthy — not necessarily what comes first logically"},
+              {label:"In forensic", note:"Establish what the case is about and why it matters — remove prejudice against the speaker if any exists"},
+              {label:"In deliberative", note:"Least important — the assembly already knows the subject. Brevity is appropriate"},
+            ]
+          },
+          {
+            id:"rh3_15", label:"Rhet. III.15 — handling prejudice", greek:"διαβολή", accent:"#993C1D",
+            children:[
+              {label:"Prejudice against the speaker", note:"Must be removed in the prooemium — by showing the accusation is false, irrelevant, or less serious than alleged"},
+              {label:"Prejudice on the other side", note:"The speaker can create prejudice against the opponent — by showing their actions in the worst light before the proof proper begins"},
+            ]
+          },
+          {
+            id:"rh3_16", label:"Rhet. III.16 — narrative", greek:"διήγησις", accent:"#993C1D",
+            children:[
+              {label:"Narrative in forensic rhetoric", note:"States the facts as the speaker understands them — clearly, briefly, plausibly. The narrative is not neutral — it frames the facts in the most favourable light"},
+              {label:"Narrative in epideictic", note:"Not a statement of facts but an account of deeds — arranged not chronologically but for greatest effect"},
+              {label:"Narrative in deliberative", note:"Least important — what is past is the background, not the subject. The deliberative argument focuses on what should be done"},
+            ]
+          },
+          {
+            id:"rh3_17", label:"Rhet. III.17 — proof and refutation", greek:"πίστεις", accent:"#993C1D",
+            children:[
+              {label:"The proof is the body of the speech", note:"All the work of Books I and II is deployed here — ethos through the character exhibited in the argument, pathos through the emotions aroused, logos through enthymemes and examples"},
+              {label:"Order of proof", note:"In deliberative: put the strongest argument first — the audience loses patience. In forensic: put the weakest first and the strongest last — building to the conclusion"},
+              {label:"Ethical proof in the argument", note:"Character is shown through the choices made in argument — which topoi are used, which emotions are invoked, which maxims are chosen. The argument itself reveals the speaker"},
+            ]
+          },
+          {
+            id:"rh3_18", label:"Rhet. III.18 — interrogation and wit in debate", greek:"ἐρώτησις", accent:"#993C1D",
+            children:[
+              {label:"When to interrogate", note:"When the opponent has said something that clearly leads to an absurd conclusion — asking the next question forces the absurdity into the open"},
+              {label:"Handling hostile questions", note:"Answer before the opponent finishes — do not let the full implication develop. Distinguish the sense in which the premise is true from the sense in which the conclusion follows"},
+              {label:"Connection to Topics VIII", note:"The practice of interrogation in rhetoric is the application of Topics Book VIII's account of the questioner's strategy — the logical structure of dialectical exchange appears at the rhetorical level"},
+            ]
+          },
+          {
+            id:"rh3_19", label:"Rhet. III.19 — the epilogue; the closing of the Rhetoric", greek:"ἐπίλογος", accent:"#993C1D",
+            children:[
+              {label:"The four functions of the epilogue", children:[
+                {label:"Make the audience well-disposed toward the speaker", note:"Restore or reinforce ethos — remind them of the speaker's character"},
+                {label:"Amplify or depreciate", note:"Make the main points seem larger or smaller — the final emotional pressure"},
+                {label:"Move the emotions of the audience", note:"Bring the audience to the emotional state most favourable for the judgment being sought"},
+                {label:"Recapitulate", note:"Remind the audience of the main points — briefly and without repetition"},
+              ]},
+              {label:"The closing of the Rhetoric", note:"'I have spoken. You have heard. You have the facts. Judge.'"},
+              {label:"The logical loop completed", note:"The Rhetoric closes the circle that the Organon opened. Demonstration (Post. An.) argues from necessity to those who know. Dialectic (Topics) argues from probability to those who reason. Rhetoric argues from probability and sign to any audience. The enthymeme is the syllogism at the level of the many; example is induction at the level of the many. The same logical structure — subject, predicate, middle term — governs all three. Improper predication generates error at every level. The Organon is one structure from the Categories to the Rhetoric"},
+              {label:"Connection to your thesis", note:"The logical loop is the empirical demonstration of your central claim: the Aristotelian logical corpus is a single unified tetralemmic structure. Categories (what is) → Organon (how it is said and argued) → Metaphysics (why it is) → Rhetoric (how it moves). The four positions are not imposed on the corpus from outside — they are the corpus's own architecture, visible once the improper Latin translations are removed and Aristotle is read forward on his own terms"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Poetics</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Ποιητικῆς</h1>
+<p class="subtitle">Poetics — complete interactive reference · chapters 1–26</p>
+<p class="subtitle">Mimesis · the definition of tragedy · plot as the soul of tragedy · recognition and reversal · catharsis · the unity of plot as a temporal identity problem</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. The Poetics is the shortest major work in the corpus and among the most consequential. It closes the logical loop opened by the Rhetoric — as the Rhetoric showed how the syllogistic structure of the Organon operates at the level of public persuasion, the Poetics shows how mimesis and plot operate at the level of emotional and intellectual recognition. The unity of plot is a temporal identity problem: the same agent who acts in ignorance is the same agent who recognises what they have done. Recognition (ἀναγνώρισις) is the lived form of the elenchus.</footer>
+
+<script>
+const cats = [
+  {
+    id:"po1", label:"Poet. 1 — mimesis as the common principle of all the arts", greek:"μίμησις", accent:"#BA7517",
+    children:[
+      {label:"The opening claim", note:"Epic, tragedy, comedy, dithyrambic poetry, music — all are forms of mimesis (imitation/representation). They differ in medium, objects, and manner"},
+      {label:"Three dimensions of difference", children:[
+        {label:"Medium", note:"Words, rhythm, melody — alone or in combination. Epic uses words and rhythm; lyric uses all three"},
+        {label:"Objects", note:"What is imitated: people in action — either better than us, worse than us, or similar. Tragedy imitates better; comedy imitates worse"},
+        {label:"Manner", note:"How the imitation is carried out: in narrative (the poet speaks in their own voice), in dramatic form (characters speak directly), or in both"},
+      ]},
+      {label:"Mimesis is natural to humans", note:"Humans are the most mimetic of animals — we learn through mimesis from childhood. We take pleasure in representations even of things that would be painful to see in reality. The pleasure is cognitive — recognising what the representation is of"},
+      {label:"Connection to your thesis", note:"Mimesis as cognitive recognition — 'this is that' — is the predicate-subject relation in its experiential form. To recognise what a representation represents is to perform a predication: this figure is Achilles, this action is courage. The pleasure of mimesis is the pleasure of correct predication — of seeing the form in the matter. The Poetics grounds the aesthetic in the logical"},
+    ]
+  },
+  {
+    id:"po2", label:"Poet. 2 — the objects of mimesis: better, worse, similar", greek:"βελτίους, χείρους, ὅμοιοι", accent:"#BA7517",
+    children:[
+      {label:"Tragedy and comedy distinguished by their objects", note:"Tragedy imitates people better than us — people of high character acting in serious matters. Comedy imitates people worse than us — people of low character in ridiculous but harmless situations"},
+      {label:"Epic imitates the better", note:"Epic, like tragedy, imitates people of high character — but in narrative form rather than dramatic. Homer is the model of both genres"},
+      {label:"The standard is moral", note:"Better and worse are moral categories — character determines the level of the imitation. This is not aesthetic snobbery but a logical consequence of the definition of tragedy: the action imitates must be serious, and seriousness belongs to serious (better) people"},
+    ]
+  },
+  {
+    id:"po3", label:"Poet. 3 — the manner of mimesis: narrative vs dramatic", greek:"τρόπος μιμήσεως", accent:"#BA7517",
+    children:[
+      {label:"Narrative manner", note:"The poet speaks in their own voice — either always (dithyramb) or partly (Homer, who also gives characters direct speech)"},
+      {label:"Dramatic manner", note:"All the characters act and speak for themselves — the poet's voice disappears. This is the manner of tragedy and comedy"},
+      {label:"The Dorian claim to tragedy and comedy", note:"Both Dorians and Athenians claim to have invented tragedy and comedy — the etymology of the words is disputed. Aristotle notes the dispute but does not resolve it"},
+    ]
+  },
+  {
+    id:"po4", label:"Poet. 4 — the origins of poetry: mimesis and harmony", greek:"αἰτίαι", accent:"#BA7517",
+    children:[
+      {label:"Two natural causes of poetry", children:[
+        {label:"Mimesis is natural", note:"Humans are the most mimetic of animals — we learn and take pleasure through mimesis from earliest childhood. The instinct for representation is natural and universal"},
+        {label:"Harmony and rhythm are natural", note:"The sense of harmony and rhythm is natural — animals have it in rudimentary form; humans develop it fully. Poetry unites mimesis with harmony and rhythm"},
+      ]},
+      {label:"The development of poetry from improvisation", note:"Poetry developed from improvisation — serious poets moved toward hymns and encomia, lesser poets toward invective. The split produced epic and comedy on one side, tragedy and iambic on the other"},
+      {label:"The evolution toward tragedy", note:"Tragedy evolved gradually — from dithyramb through several stages, adding actors, reducing the chorus, developing the dialogue. Each stage was an artistic improvement toward the fully developed form"},
+      {label:"Connection to the Rhetoric", note:"The Rhetoric traced the development of rhetoric from improvisation and tradition. The Poetics parallels this for poetry — both arts evolved from natural instincts toward fully developed forms. The evolutionary account in the Poetics mirrors the dialectical account of the arts in the Rhetoric"},
+    ]
+  },
+  {
+    id:"po5", label:"Poet. 5 — comedy defined; the difference between epic and tragedy", greek:"κωμῳδία", accent:"#BA7517",
+    children:[
+      {label:"Comedy defined", note:"Comedy is mimesis of people worse than average — but only in the dimension of the ridiculous. The ridiculous is a subdivision of the ugly: what is laughable without causing pain or destruction"},
+      {label:"Comedy and harmlessness", note:"The key condition: comedy is harmless. Ridiculousness that harms is not comedy but cruelty. Comedy requires the audience to be safe from the consequences of what they laugh at"},
+      {label:"Epic vs tragedy", note:"Epic and tragedy both imitate serious people in serious actions — but epic is in narrative form and of unlimited length. Tragedy is dramatic and limited to the time of a single revolution of the sun (approximately). This is the formal distinction"},
+      {label:"Epic allows simultaneous actions", note:"Epic can narrate simultaneous actions in different places — the narrator moves between them. Tragedy is confined to what can be staged — what can be present to the audience at once"},
+    ]
+  },
+  {
+    id:"po6", label:"Poet. 6 — the definition of tragedy", greek:"ὁρισμὸς τραγῳδίας", accent:"#BA7517",
+    children:[
+      {label:"The definition", note:"Tragedy is the mimesis of a serious, complete, and substantial action, in language made pleasurable in different ways in different parts, performed by actors rather than narrated, achieving through pity and fear the catharsis of such emotions"},
+      {label:"Unpacking the definition", children:[
+        {label:"Serious", greek:"σπουδαίας", note:"The action and persons are elevated — not trivial or comic"},
+        {label:"Complete", greek:"τελείας", note:"Having a beginning, middle, and end — a unified whole"},
+        {label:"Substantial", greek:"μεγέθος ἐχούσης", note:"Of sufficient length — not too short to allow the full emotional effect"},
+        {label:"Pleasurable language", note:"Different parts use different ornaments — dialogue uses meter, choral parts use song and rhythm"},
+        {label:"Performed not narrated", note:"Characters act; the poet does not tell — the dramatic manner of Poet. 3"},
+        {label:"Catharsis", greek:"κάθαρσις", note:"The purgation or clarification of pity and fear through their arousal. The most contested term in the definition — treated below in ch. 14"},
+      ]},
+      {label:"The six elements of tragedy", children:[
+        {label:"Plot", greek:"μῦθος", note:"The arrangement of the incidents — the most important element, the soul of tragedy"},
+        {label:"Character", greek:"ἦθος", note:"The moral qualities of the persons — second in importance"},
+        {label:"Thought", greek:"διάνοια", note:"What is said in the speeches — the intellectual content"},
+        {label:"Diction", greek:"λέξις", note:"The verbal expression — the craft of language"},
+        {label:"Song", greek:"μελοποιία", note:"The musical element of the choral parts"},
+        {label:"Spectacle", greek:"ὄψις", note:"The visual production — least important for tragedy as an art, most affecting for the audience"},
+      ]},
+      {label:"Plot is the soul of tragedy", note:"Aristotle's most emphatic claim: plot is the primary element — tragedy is not an imitation of persons but of action and life. Character reveals the moral qualities of persons; plot is the structure of the action itself. The action is primary; character is secondary"},
+      {label:"Connection to your thesis", note:"The definition of tragedy structures it as a temporal identity problem. The action is complete — it has a beginning, middle, and end. The completeness of the action is what makes recognition possible: the audience sees the whole and recognises how the parts relate. Catharsis is the emotional expression of the logical resolution — the clearing up of the qualified predications that the action has tangled. The six elements map onto the six categories of causal analysis: plot (efficient + formal), character (material), thought (formal), diction (material + formal), song (material), spectacle (material)"},
+    ]
+  },
+  {
+    id:"po7", label:"Poet. 7 — the unity and magnitude of plot", greek:"ἑνότης καὶ μέγεθος", accent:"#BA7517",
+    children:[
+      {label:"A whole has beginning, middle, and end", note:"A beginning is what does not follow necessarily from something else. A middle is what follows from something and something follows from it. An end is what follows from something but nothing necessarily follows from it"},
+      {label:"The plot must be a unified whole", note:"The arrangement of incidents must form a single whole — as a beautiful creature requires a certain size, neither too small to be taken in at once nor too large to be surveyed at once. The right magnitude allows the whole to be grasped"},
+      {label:"The proper length", note:"Whatever length allows the change from misery to prosperity or from prosperity to misery to occur with probability or necessity — that is the right length. Long enough for the full arc; short enough to be grasped as a whole"},
+      {label:"Connection to your thesis", note:"The unity of plot is a temporal identity structure — the same agent at the beginning is the same agent at the end, but the predicates have changed. The recognition of this identity across the temporal arc of the plot is the cognitive heart of tragedy. The beginning-middle-end structure is the same structure as the Physics' account of motion (from potential to actual) and the Categories' account of primary being receiving contraries through time"},
+    ]
+  },
+  {
+    id:"po8", label:"Poet. 8 — unity of plot is not unity of hero", greek:"οὐ μονοειδής", accent:"#BA7517",
+    children:[
+      {label:"Unity is not about one person", note:"The plot is not unified simply because it follows one person — many things happen to one person, not all of which form a unified whole. The Odyssey is not one action just because it follows Odysseus"},
+      {label:"Unity is about the action", note:"A unified plot is one in which the incidents are so arranged that removing or displacing any one of them would dislocate and damage the whole. Nothing can be added or removed without disrupting the unity"},
+      {label:"The organic unity of plot", note:"Like a living organism — every part is necessary and its removal damages the whole. The plot is unified when it has the organic coherence of a complete living thing. This parallels the Metaphysics' account of form as what makes a thing a unified whole"},
+      {label:"Homer's superiority", note:"Homer understood this — the Iliad is about one action (the wrath of Achilles), not about everything that happened in the Trojan War. His selection principle is the unity of the action, not the unity of the person"},
+    ]
+  },
+  {
+    id:"po9", label:"Poet. 9 — poetry is more philosophical than history", greek:"φιλοσοφώτερον ἡ ποίησις", accent:"#BA7517",
+    children:[
+      {label:"The famous claim", note:"Poetry is more philosophical and more serious than history — because poetry expresses the universal, history the particular. History tells what Alcibiades did; poetry tells what a certain kind of person would do"},
+      {label:"The universal in poetry", note:"The universal is what a certain kind of person will say or do in accordance with probability or necessity. Poetry imitates actions as they would probably or necessarily occur — not as they accidentally did"},
+      {label:"Probability and necessity", note:"The standard for poetic action is probability or necessity — events in the plot must follow from each other by the same logical relation that governs demonstration. Poetic plots are structured like valid arguments"},
+      {label:"The accidental in history", note:"History tells what happened — including the accidental, the coincidental, the merely fortuitous. Poetry filters out the accidental and retains the probable and necessary. This is why poetry is more universal and more philosophical"},
+      {label:"Connection to your thesis", note:"Poetry is more philosophical than history because it operates with universal predications — what a certain kind of person would do — rather than accidental ones — what this person happened to do. The distinction between poetic probability-necessity and historical accident is exactly the distinction between per se and accidental predication that runs through the entire logical corpus. The Poetics is the aesthetic extension of the same logical analysis. Poetry expresses the formal cause; history records the accidental"},
+    ]
+  },
+  {
+    id:"po10", label:"Poet. 10 — simple and complex plots", greek:"ἁπλοῖ καὶ πεπλεγμένοι", accent:"#BA7517",
+    children:[
+      {label:"Simple plot", note:"Action that is continuous and single, in which the change comes about without reversal or recognition. The change from misfortune to fortune or vice versa occurs directly"},
+      {label:"Complex plot", note:"Action in which the change is accompanied by reversal, recognition, or both. These are the more powerful plots — they produce the deepest emotional response"},
+      {label:"Why complex plots are better", note:"Reversal and recognition arise from the internal structure of the plot — they follow by probability or necessity from what has gone before. The complexity is not arbitrary but logical. The best plots are those where the reversal and recognition are most tightly integrated with the action"},
+    ]
+  },
+  {
+    id:"po11", label:"Poet. 11 — reversal and recognition", greek:"περιπέτεια καὶ ἀναγνώρισις", accent:"#BA7517",
+    children:[
+      {label:"Reversal", greek:"περιπέτεια", note:"A change of the action into its opposite — what was intended to produce one effect produces the contrary. The messenger who comes to bring good news brings bad; the action intended to save destroys"},
+      {label:"Reversal must follow by probability or necessity", note:"The reversal is not a random twist but the logical consequence of what preceded — the same necessity that governs demonstration. The best reversals are those that arise from the internal structure of the action"},
+      {label:"Recognition", greek:"ἀναγνώρισις", note:"A change from ignorance to knowledge — of persons or of facts. The most powerful recognition involves a change to love or hatred between persons who are close"},
+      {label:"The best plot combines reversal and recognition", note:"When reversal and recognition coincide — when the action that causes the reversal is also the action that produces recognition — the plot achieves its highest power. The Oedipus is the model: the discovery of who Oedipus is is also the reversal of his fortune"},
+      {label:"Suffering", greek:"πάθος", note:"The third element of complex plot: an action of a destructive or painful kind — death on stage, wounds, sufferings. Suffering intensifies the emotional effect"},
+      {label:"Connection to your thesis", note:"Recognition (ἀναγνώρισις) is the aesthetic form of the elenchus. The elenchus produces recognition — the interlocutor moves from ignorance to knowledge about themselves and their commitments. In tragedy, recognition moves the protagonist from ignorance of who they are and what they have done to knowledge. The same logical structure — from not-knowing to knowing, through the application of the conditions of proper predication — governs both the elenctic dialogue and the tragic plot. The Poetics shows the elenchus operating in the domain of felt experience"},
+    ]
+  },
+  {
+    id:"po12", label:"Poet. 12 — the quantitative parts of tragedy", greek:"μέρη ποσά", accent:"#BA7517",
+    children:[
+      {label:"Prologue", note:"What comes before the entry of the chorus — the opening action"},
+      {label:"Episode", note:"A complete section between two choral odes — the main narrative units of the plot"},
+      {label:"Exodos", note:"The final part after the last choral ode — the resolution and closing"},
+      {label:"Choral parts", note:"Parodos (entry song), stasimon (choral odes between episodes), and kommos (joint lament of chorus and actors)"},
+      {label:"A formal description, not an evaluative one", note:"Chapter 12 simply enumerates the formal parts — it does not evaluate their relative importance. The qualitative analysis (ch. 6) already established that plot is most important; this adds the formal structure of how a tragedy is arranged"},
+    ]
+  },
+  {
+    id:"po13", label:"Poet. 13 — the best tragic plot: the fall of the man between extremes", greek:"ὁ μεταξύ", accent:"#BA7517",
+    children:[
+      {label:"What the best plot should avoid", children:[
+        {label:"Not a good man falling into misfortune", note:"This is merely shocking — it offends our sense of justice without producing the proper tragic emotions"},
+        {label:"Not a bad man rising to good fortune", note:"This is the most untragic situation — it produces neither pity nor fear, merely satisfaction or disgust"},
+        {label:"Not a bad man falling into misfortune", note:"This may produce satisfaction but not pity or fear in their proper forms — we do not pity the deserving sufferer"},
+      ]},
+      {label:"The ideal tragic hero", note:"A person between these extremes — not pre-eminently virtuous and just, not vicious or depraved, but someone who falls into misfortune through a mistake or error (ἁμαρτία). A person of high reputation and good fortune"},
+      {label:"The tragic error", greek:"ἁμαρτία", note:"The flaw or error that leads to the catastrophe — not a moral vice but a mistake, a miscalculation, an error of judgment. The protagonist does not deserve their fate but the fall follows from their own action"},
+      {label:"Connection to your thesis", note:"The tragic hero is the person between extremes — like the mean in ethics. But the tragic mean is not virtue; it is the condition of being neither fully good nor fully bad, in the middle position where both pity and fear are possible. This is the second position of the catuṣkoṭi — neither fully is nor is-not — the position of qualified being, of the person in process, of the subject caught between the predicates that define them and the predicates that will come to define them through the action. Tragedy shows the catuṣkoṭi's second and third positions enacted in human experience"},
+    ]
+  },
+  {
+    id:"po14", label:"Poet. 14 — catharsis: pity and fear and their proper arousal", greek:"κάθαρσις", accent:"#BA7517",
+    children:[
+      {label:"Fear and pity can be aroused by spectacle or by plot", note:"The inferior way to arouse fear and pity is through spectacle — stage effects, costume, violence. The superior way is through the internal structure of the plot — when the incidents follow necessarily and the horror arises from what happens between closely related persons"},
+      {label:"The proper sources of pity and fear", note:"The most powerful tragic situations involve close relations — when the destructive action occurs between family members, friends, those who love each other. The horror is greatest when it strikes closest"},
+      {label:"Catharsis", greek:"κάθαρσις", note:"The term from the definition — most naturally read as purification or clarification of the emotions. Through the arousal of pity and fear in a safe context (the theatre) the emotions are exercised, clarified, and brought into proper order. Not suppression but education of the emotions"},
+      {label:"The cognitive dimension of catharsis", note:"Catharsis involves recognition — as the plot resolves, the audience recognises what happened and why. The emotional release accompanies a cognitive clarification: we understand the action, the error, the necessity, and the suffering. Pity and fear are purified because we now understand what we were feeling"},
+      {label:"Connection to the Rhetoric", note:"The Rhetoric analysed fear, pity, and the other emotions as subjects of rhetorical manipulation. The Poetics shows how the same emotions are properly educated through tragedy. The aesthetic and rhetorical accounts are complementary — both concerned with the right ordering of emotional response through logos"},
+      {label:"Connection to your thesis", note:"Catharsis is the aesthetic expression of the elenchus. The elenchus purifies beliefs — bringing them from contradictory confusion to coherent knowledge. Catharsis purifies emotions — bringing them from confused feeling to properly ordered response. Both operate through recognition: the elenchus produces recognition of contradictions in one's beliefs; tragedy produces recognition of the necessity in the suffering. The Poetics shows the logical structure of the elenchus operating at the level of felt emotional experience — the aesthetic form of the catuṣkoṭi's dissolution"},
+    ]
+  },
+  {
+    id:"po15", label:"Poet. 15 — the requirements for character in tragedy", greek:"ἦθος", accent:"#BA7517",
+    children:[
+      {label:"Four requirements for character", children:[
+        {label:"Good", note:"The character should be morally admirable — not perfect, but having genuine moral qualities that make their fall tragic rather than merely unfortunate"},
+        {label:"Appropriate", note:"Character must be appropriate — the brave character should be a man (women can be brave, but the manner differs). Character should fit the type"},
+        {label:"Like reality", note:"Character should be true to life — not idealised beyond what humans are capable of"},
+        {label:"Consistent", note:"Even if inconsistency is the subject, the inconsistency should be consistent — the character should be consistently inconsistent"},
+      ]},
+      {label:"Character should not be the primary focus", note:"Recall ch. 6: plot is the soul of tragedy, not character. Character matters insofar as it makes the action and its consequences intelligible — the hero's qualities must be such that the fall follows by probability and necessity from who they are"},
+      {label:"The deus ex machina", note:"The resolution should arise from within the plot — not from a god descending to sort things out artificially. The deus ex machina is the sign of a failed plot: what could not be resolved through the internal logic of the action is resolved by external intervention"},
+    ]
+  },
+  {
+    id:"po16", label:"Poet. 16 — the kinds of recognition", greek:"εἴδη ἀναγνωρίσεως", accent:"#BA7517",
+    children:[
+      {label:"Six kinds of recognition, ranked from worst to best", children:[
+        {label:"By signs — tokens", note:"Birthmarks, scars, objects left with a child. The most artless — the recognition is external to the action"},
+        {label:"By signs — invented by the poet", note:"The character announces who they are. Artless — no internal necessity"},
+        {label:"Through memory", note:"Recognising someone through a memory triggered by seeing or hearing. Better — involves the character's inner life"},
+        {label:"Through reasoning", note:"Inferring identity from evidence — as in detective reasoning. Better still — involves intellectual work"},
+        {label:"False reasoning of the audience", note:"The audience is led to expect one recognition and gets another — a kind of dramatic irony that produces its own recognition"},
+        {label:"From the incidents themselves", note:"The recognition arises necessarily and naturally from the structure of the action — no external sign, no inference, just the unfolding of events. The best kind"},
+      ]},
+      {label:"The best recognition is from the action itself", note:"The recognition in the Oedipus Tyrannus is the model: the investigation of Oedipus's own origins is the action that produces the recognition. The recognition is not added to the plot but is the plot — the investigation is simultaneously the catastrophe"},
+      {label:"Connection to your thesis", note:"The six kinds of recognition form a hierarchy from accidental to per se — from recognition by external signs (accidental) to recognition from the action itself (per se). This mirrors the hierarchy from accidental to per se predication in the logical corpus. The best recognition is the most properly predicated — it arises from the essence of the action, not from external tokens. The Poetics applies the logical distinction between per se and accidental predication to the aesthetics of plot structure"},
+    ]
+  },
+  {
+    id:"po17", label:"Poet. 17 — the poet must visualise the action; the general plot first", greek:"ἐναργής", accent:"#BA7517",
+    children:[
+      {label:"The poet must visualise the action", note:"The poet should put the action before their eyes — imagining what would be seen on stage. This ensures that nothing is inconsistent or impossible, since the poet as spectator will notice contradictions"},
+      {label:"Draft the general outline first", note:"Before developing the specific scenes and episodes, the poet should sketch the general plot in the most universal terms — the bare structural outline without particular names or details. Then fill in with episodes"},
+      {label:"The universality principle in practice", note:"The general outline is the universal; the specific scenes are the particulars. Poet. 9 said poetry expresses the universal — this chapter shows how to compose from the universal toward the particular, paralleling the logical method of proceeding from first principles to particular conclusions"},
+    ]
+  },
+  {
+    id:"po18", label:"Poet. 18 — complication and resolution; the four kinds of tragedy", greek:"δέσις καὶ λύσις", accent:"#BA7517",
+    children:[
+      {label:"Complication and resolution", children:[
+        {label:"Complication", greek:"δέσις", note:"Everything from the beginning to the turning point — the tying of the knot. The incidents that build toward the crisis"},
+        {label:"Resolution", greek:"λύσις", note:"From the turning point to the end — the untying of the knot. The resolution of the crisis through to the final outcome"},
+      ]},
+      {label:"The four kinds of tragedy", children:[
+        {label:"Complex", note:"Depending entirely on reversal and recognition — the highest kind"},
+        {label:"Pathetic", note:"Depending primarily on suffering — as in the tragedies of destruction"},
+        {label:"Ethical", note:"Depending primarily on character — as in tragedies of moral choice"},
+        {label:"Simple", note:"Depending on neither reversal, recognition, nor character — the lowest kind"},
+      ]},
+      {label:"The complication/resolution structure as logical", note:"Complication (δέσις) is the binding of the predicates into a problem — the situation in which the protagonist cannot easily escape the contradiction between who they are and what they have done. Resolution (λύσις) is the untying — the reaching of a determinate outcome. The logical structure is the same as the aporiai and their resolutions in the Metaphysics"},
+    ]
+  },
+  {
+    id:"po19", label:"Poet. 19 — thought and diction", greek:"διάνοια καὶ λέξις", accent:"#BA7517",
+    children:[
+      {label:"Thought", note:"Everything that should be achieved by speech — proving, refuting, arousing emotions, amplifying and deprecating. Thought in tragedy does what rhetoric does in public discourse — it is the application of rhetorical technique to dramatic speech"},
+      {label:"Thought is treated in the Rhetoric", note:"Aristotle explicitly defers the analysis of thought to the Rhetoric — the two works are connected. The speeches in tragedy are governed by the same rhetorical principles as actual speeches; the Rhetoric provides the theory"},
+      {label:"Diction", note:"The craft of verbal expression — covered in the following chapters (20–22). Diction is the medium through which thought and character are expressed"},
+    ]
+  },
+  {
+    id:"po20", label:"Poet. 20–22 — diction: letters, syllables, nouns, verbs, metaphor", greek:"λέξις", accent:"#BA7517",
+    children:[
+      {label:"Ch. 20 — the elements of language", note:"Letters (vowels, consonants, semivowels) → syllables → connecting words → nouns → verbs → sentences. The analysis of language from its smallest units to complete expressions"},
+      {label:"Ch. 21 — the kinds of nouns", note:"Simple vs compound · proper vs coined · metaphorical · ornamental · lengthened · shortened · altered. The taxonomy of nominal forms relevant to poetic diction"},
+      {label:"Ch. 22 — the virtue of diction: clarity and elevation", note:"Good poetic diction must be clear without being common. Ordinary words give clarity; unusual, metaphorical, and coined words give elevation. The best diction combines both — the elevation must not obscure the meaning"},
+      {label:"Metaphor as the most important device", note:"Metaphor is the greatest thing in poetry and cannot be taught — it requires a natural talent for seeing similarities between things. The metaphor transfers a name from genus to species, species to genus, species to species, or by analogy"},
+      {label:"Connection to Topics I.17 and Rhetoric III.10", note:"Finding similarities (Topics I.17) is an instrument of dialectical argument. The best metaphors are from proportion — A:B::C:D (Rhetoric III.10). The Poetics, Topics, and Rhetoric share the same analysis of analogy and similarity — the aesthetic, dialectical, and rhetorical are three applications of the same logical instrument"},
+    ]
+  },
+  {
+    id:"po23", label:"Poet. 23–24 — epic poetry: its unity and its difference from tragedy", greek:"ἐποποιία", accent:"#BA7517",
+    children:[
+      {label:"Ch. 23 — epic must have unity of action", note:"Same principle as tragedy: epic must have a unified action, not a biography of one person. The Iliad and the Odyssey are unified around single actions — not around everything that happened to Achilles or Odysseus"},
+      {label:"Epic is longer but unified", note:"Epic's length allows multiple simultaneous sub-plots — but these must all serve the unity of the main action. The length is not mere extension but the space required for the full development of the unified action"},
+      {label:"Ch. 24 — epic and tragedy compared", note:"Epic shares with tragedy: plot, character, thought, diction. It lacks: song and spectacle. Epic adds: greater length, the possibility of simultaneous actions, and the narrative mode. Tragedy is more concentrated and intense; epic is broader"},
+      {label:"Homer surpasses all others in epic", note:"Homer is pre-eminent in understanding the principle of unity — he does not try to include everything, but selects what belongs to the action. He also knows how to speak in his own voice least of all — he steps aside for his characters"},
+    ]
+  },
+  {
+    id:"po25", label:"Poet. 25 — critical objections and their answers", greek:"λύσεις", accent:"#BA7517",
+    children:[
+      {label:"The kinds of error in poetry", children:[
+        {label:"Essential errors", note:"Errors that affect the art itself — depicting something impossible that serves no poetic purpose, making the plot incoherent"},
+        {label:"Incidental errors", note:"Errors in factual accuracy — getting the name of a plant or animal wrong — that do not affect the poetic aim"},
+      ]},
+      {label:"The standard of criticism depends on the art", note:"We should not criticise a poet for anatomical inaccuracy if the poetic aim is achieved. Different arts have different standards — what is an error in medicine may not be an error in poetry"},
+      {label:"The defence of impossible possibilities", note:"The impossible that is convincing is preferable to the possible that is unconvincing. If a centaur makes the plot work better than a horse, use the centaur. Poetic probability takes precedence over physical possibility"},
+      {label:"Connection to your thesis", note:"The defence of the impossible-but-convincing is the aesthetic expression of the post. An. I.27 principle — more precision is not always better if it sacrifices the essential. The poet's standard is the universal-probable; the natural scientist's standard is the particular-necessary. Both are legitimate, but they are different modes of truth governed by different standards of proper predication"},
+    ]
+  },
+  {
+    id:"po26", label:"Poet. 26 — tragedy is superior to epic", greek:"κρεῖττον ἡ τραγῳδία", accent:"#BA7517",
+    children:[
+      {label:"The objection: epic is more elevated", note:"Epic is aimed at cultivated audiences who do not need the physical action of stage performance — it is the superior art for superior people"},
+      {label:"Aristotle's response", note:"This confuses the art with the performance. The objection is against actors, not against tragedy as an art. Tragedy can be read as well as watched — the Oedipus produces its effect when read"},
+      {label:"Tragedy is superior on three grounds", children:[
+        {label:"More concentrated", note:"Tragedy achieves its end in a shorter compass — the unity of action is tighter and the effect more intense"},
+        {label:"More unified", note:"Epic allows digressions that dilute the unity of action. Tragedy maintains concentration throughout"},
+        {label:"More vivid", note:"The dramatic mode produces a more immediate emotional response than narrative. The spectator sees the action rather than hearing about it"},
+      ]},
+      {label:"The closing of the Poetics", note:"The Poetics ends by establishing tragedy as the highest form of poetry — the art that most fully achieves the aims of mimesis: universal representation of serious action, arousing pity and fear, achieving catharsis. The Poetics closes the aesthetic loop of the corpus — as the Rhetoric closed the argumentative loop"},
+      {label:"Connection to your thesis", note:"The Poetics' closing argument — that tragedy is superior because it is more unified, more concentrated, and achieves its aim more completely — is the aesthetic expression of the metaphysical principle that actuality is prior to potentiality and that completeness is the mark of excellence. Tragedy achieves its catharsis more completely than epic; the contemplative life achieves happiness more completely than the practical life; the Unmoved Mover achieves actuality more completely than any natural thing. The same structure of degrees of completion governs the aesthetic, the ethical, and the metaphysical. One corpus, one argument"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Mimesis and its kinds; the origins of poetry (1–5)", ids:["po1","po2","po3","po4","po5"] },
+  { label:"II — Tragedy defined; its elements; plot as soul (6–9)", ids:["po6","po7","po8","po9"] },
+  { label:"III — Simple and complex plots; reversal, recognition, catharsis (10–14)", ids:["po10","po11","po12","po13","po14"] },
+  { label:"IV — Character; the kinds of recognition; the poet's method (15–18)", ids:["po15","po16","po17","po18"] },
+  { label:"V — Thought, diction, and language (19–22)", ids:["po19","po20"] },
+  { label:"VI — Epic poetry; critical problems; tragedy superior to epic (23–26)", ids:["po23","po25","po26"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

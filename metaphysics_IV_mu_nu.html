@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Metaphysics IV: Μ Ν</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τὰ Μετὰ τὰ Φυσικά · Tetralemmic Position IV</h1>
+<p class="subtitle">Metaphysics Μ (Mu) · Ν (Nu)</p>
+<p class="subtitle">The limits of being: mathematical objects, the critique of Platonic Forms, the Good — the elenchus that leaves Lambda standing</p>
+<p class="subtitle" style="color:#888">The fourth and resolving tetralemmic position — the elenchus performed and the competitor dissolved. Mu and Nu do not introduce a new positive account. They perform the systematic elenchus on every form of the Platonic claim that abstract objects — numbers, Forms, the Good — are primary substances. Each version of the claim is shown to fail on its own terms. What survives the elenchus is the account of Positions I–III: being is form, form is actuality, actuality at its limit is the Unmoved Mover. The Metaphysics closes not with a new assertion but with the dissolution of the last alternative.</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Mu (10 chapters) and Nu (6 chapters) together constitute the closing elenctic movement of the Metaphysics. They are dense, technically demanding, and often read as merely polemical — but their structural role is precise: they are the fourth position of the tetralemma, the position that dissolves by showing every competitor to be self-refuting or causally inert. After Mu-Nu, only Lambda's account remains. The Metaphysics is a single progressive elenctic argument.</footer>
+
+<script>
+const books = [
+  {
+    book: "Μ — Mu (Book XIII) · Mathematical objects and Platonic Forms",
+    groups: [
+      {
+        label: "Mathematical objects: do they exist separately? (Μ.1–3)",
+        chapters: [
+          {
+            id:"mMu1", label:"Met. Μ.1 — the subject; three positions on mathematical objects", greek:"μαθηματικά", accent:"#BA7517",
+            children:[
+              {label:"The subject of Mu", note:"Mathematical objects — numbers, geometrical figures, lines, surfaces, solids. Do they exist? If so, how? Three positions to be examined"},
+              {label:"Three positions", children:[
+                {label:"Separate and sensible", note:"Mathematical objects are separate substances and are the sensible things themselves — the Pythagorean view. Numbers are the things"},
+                {label:"Separate and non-sensible", note:"Mathematical objects are separate substances distinct from sensible things — the Platonic view. Numbers exist alongside the things"},
+                {label:"Not separate but in the things", note:"Mathematical objects exist but not separately — they are abstract features of sensible things, separated only in thought — Aristotle's own view"},
+              ]},
+              {label:"The agenda", note:"Mu.1–3 refute the first two positions and establish the third. Mu.4–10 then examine the Platonic theory of Forms more directly"},
+            ]
+          },
+          {
+            id:"mMu2", label:"Met. Μ.2 — mathematical objects are not sensible things", greek:"οὐ τὰ αἰσθητά", accent:"#BA7517",
+            children:[
+              {label:"Against the Pythagorean view", note:"If numbers are the sensible things then a single thing would have contradictory mathematical properties — the same body would be both a number and a magnitude, which are different things"},
+              {label:"Mathematical objects do not change", note:"Mathematical objects are studied as immovable and eternal — but sensible things move and change. If they were the same, mathematics would be about changing things, which it manifestly is not"},
+              {label:"The precision problem", note:"Mathematics proceeds with complete precision — perfect circles, exact ratios. Sensible things are never perfectly precise. If mathematical objects were sensible things, mathematics would be imprecise"},
+              {label:"The conclusion", note:"Mathematical objects are not identical to sensible things — the Pythagorean position fails. Mathematical objects are studied with more precision and as more determinate than sensibles can be"},
+            ]
+          },
+          {
+            id:"mMu3", label:"Met. Μ.3 — mathematical objects are not separate substances", greek:"οὐ χωριστά", accent:"#BA7517",
+            children:[
+              {label:"Against the Platonic view", note:"If mathematical objects are separate substances alongside sensibles, there would be three worlds — Forms, mathematical objects (the Platonic intermediates), and sensibles. This multiplies entities without necessity"},
+              {label:"The duplication problem", note:"For every sensible triangle there would be a mathematical triangle (intermediate) and a Form of triangle — three triangles where one suffices. Occam's razor: do not multiply entities beyond necessity"},
+              {label:"Aristotle's positive account", note:"Mathematical objects exist but not separately — they are what we get when we consider sensible things in abstraction from their matter, motion, and sensible qualities. The geometer studies the bronze sphere as a sphere, abstracting from the bronze"},
+              {label:"Abstraction", greek:"ἀφαίρεσις", note:"Mathematical objects are reached by subtraction — removing from consideration everything except the mathematical structure. They are not separate existents but aspects of sensible things considered in isolation"},
+              {label:"Connection to Post. An. I.27", note:"The most abstract science is the most exact — arithmetic abstracts most, physics least. The hierarchy of abstraction from Post. An. I.27 is grounded here in the metaphysics of mathematical objects"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Platonic Forms: the full elenchus (Μ.4–5)",
+        chapters: [
+          {
+            id:"mMu4", label:"Met. Μ.4 — the Platonic Forms: origin of the theory and first objections", greek:"εἴδη Πλατωνικά", accent:"#BA7517",
+            children:[
+              {label:"The historical origin", note:"The theory of Forms arose from the Socratic practice of seeking universal definitions — what is piety, what is courage, what is justice? Plato concluded that the universal definitions refer to separately existing entities"},
+              {label:"The valid insight", note:"There is something right in the search for universals — knowledge requires stable, universal objects. Aristotle acknowledges this. But Plato went wrong by making the universals separate substances"},
+              {label:"The Heraclitean influence", note:"Plato also inherited the Heraclitean view that sensible things are always in flux — if sensible things are always changing, they cannot be the stable objects of knowledge. Therefore knowledge must be of something beyond sensibles — the Forms"},
+              {label:"The error", note:"The correct response to Heraclitean flux is not to posit separate eternal entities but to distinguish form from matter within sensible things — the form is stable, the matter changes. Plato did not make this distinction"},
+              {label:"First objections", note:"Forms are the same kind of thing as the things they explain — man-in-himself is just another man. Adding a Form adds nothing explanatory. The Forms face the same difficulties as sensible things, plus the additional difficulty of being separate"},
+            ]
+          },
+          {
+            id:"mMu5", label:"Met. Μ.5 — the Third Man and the main objections to Forms", greek:"τρίτος ἄνθρωπος", accent:"#BA7517",
+            children:[
+              {label:"The Third Man argument fully stated", note:"If man and individual men are both called 'man' because they share something, there must be a Form that they both share — the Form of man. But then the Form of man and individual men are both called 'man' — and they must share another Form, and so on infinitely"},
+              {label:"The self-predication problem", note:"If the Form of man is itself a man (it is man-in-himself), then it has the same problems as sensible men — it requires an explanation, it participates in the Form of man, and the regress begins"},
+              {label:"Forms do not explain generation", note:"Even granting Forms, Plato cannot explain why sensible things come to be — Forms are eternal and do not cause generation. 'Man generates man' — the efficient cause is another man, not the Form of man"},
+              {label:"Forms do not explain knowledge", note:"If knowledge of Forms is separate from knowledge of sensibles, knowing the Form does not help us know the sensible — the gap between the two domains is unbridgeable"},
+              {label:"Participation is unexplained", note:"Plato says sensibles participate in Forms — but what is participation? It is a metaphor, not an explanation. The relation between Form and sensible remains obscure"},
+              {label:"The elenctic structure", note:"Each objection shows that the Platonic account fails on its own terms — it was supposed to explain knowledge, generation, and being, and it explains none of them. This is the elenchus: the position is reduced to inconsistency with its own aims"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Numbers as Forms; the generation of numbers (Μ.6–9)",
+        chapters: [
+          {
+            id:"mMu6", label:"Met. Μ.6 — are ideal numbers the same as mathematical numbers?", greek:"ἀριθμοὶ εἰδητικοί", accent:"#BA7517",
+            children:[
+              {label:"The Platonic position", note:"Plato posited ideal numbers — numbers as Forms, separate, eternal, each unique. These are distinct from the mathematical numbers used in calculation"},
+              {label:"Three possible positions on numbers", children:[
+                {label:"Ideal numbers combinable with each other", note:"The units of different ideal numbers can be added together — 2 + 3 = 5 applies across ideal numbers. This is the ordinary mathematical view"},
+                {label:"Ideal numbers not combinable", note:"The units of different ideal numbers are incomparable — the 2 of the Form of 2 cannot be added to the 3 of the Form of 3. Each number is a unique, incomparable entity"},
+                {label:"Some combinable, some not", note:"A mixed view — some units are combinable, some not"},
+              ]},
+              {label:"The problem with incomparable units", note:"If the units of different ideal numbers cannot be combined, arithmetic becomes impossible — you cannot add 2 and 3 to get 5. But arithmetic is the science of number — a theory of number that makes arithmetic impossible refutes itself"},
+            ]
+          },
+          {
+            id:"mMu7", label:"Met. Μ.7 — how are ideal numbers generated?", greek:"γένεσις ἀριθμῶν", accent:"#BA7517",
+            children:[
+              {label:"The Platonic account of generation", note:"Numbers are generated from the One and the Great-and-Small (the indefinite dyad) — the formal and material principles of Plato's later doctrine"},
+              {label:"The first problem: the One generates many", note:"If the One generates the number 2 by acting on the Great-and-Small, does the One remain one while generating? If it is divided into the two units of 2, the One is no longer one — it has been destroyed in generating"},
+              {label:"The second problem: the Great-and-Small", note:"The Great-and-Small is Plato's material principle — but it is not a determinate material. It is a principle of indeterminacy, the source of multiplicity and difference. But an indeterminate principle cannot generate determinate numbers"},
+              {label:"The third problem: priority", note:"If numbers are prior to everything else and are generated from the One, what is the status of the One before generation? If it exists prior to the numbers, it is a substance — but then it faces all the problems of separate substances"},
+            ]
+          },
+          {
+            id:"mMu8", label:"Met. Μ.8 — refutation of all versions of separate number", greek:"ἀναίρεσις", accent:"#BA7517",
+            children:[
+              {label:"The systematic refutation", note:"Mu.8 goes through every possible version of the claim that numbers are separate substances and refutes each in turn — the most systematic elenchus in the Metaphysics"},
+              {label:"Against numbers as Forms", note:"If numbers are Forms they face all the problems of Forms — the Third Man regress, inexplicability of generation, uselessness for knowledge of sensibles"},
+              {label:"Against numbers as intermediates", note:"If numbers are Platonic intermediates — between Forms and sensibles — they inherit problems from both sides. They are neither purely formal (Form) nor grounded in sensible matter"},
+              {label:"Against numbers as principles of sensibles", note:"If numbers are the principles of sensible things (Pythagorean view), the same number would have to be both a principle and a result — the same number would be prior and posterior to itself"},
+              {label:"The completeness of the refutation", note:"Every possible position on separate numbers has been refuted. What remains is the view of Mu.3: numbers are abstractions from sensibles, not separate entities. The elenchus is complete for mathematical objects"},
+            ]
+          },
+          {
+            id:"mMu9", label:"Met. Μ.9 — numbers and the good; the unity of the first principle", greek:"τἀγαθόν", accent:"#BA7517",
+            children:[
+              {label:"The Platonic identification of the One and the Good", note:"Plato identified the Form of the Good with the One — the highest principle is both the source of being and the source of goodness. This is the most ambitious Platonic claim"},
+              {label:"The problem", note:"If the One is the Good and numbers are generated from the One, then all numbers are in some sense good. But then evil and deficiency — which also involve number — are also good. The identification collapses"},
+              {label:"The prior question", note:"Before asking whether the One is the Good we must ask: is the One a substance? Mu.8 has shown that separate numbers are not substances. Therefore the One is not a substance, and the identification of One and Good cannot be a claim about the highest substance"},
+              {label:"What the Good is", note:"The good is not a separate Platonic Form — it is the final cause immanent in each thing and the Unmoved Mover as the object of universal desire. Lambda.10's account of the good is what survives the elenchus of Mu.9"},
+            ]
+          },
+          {
+            id:"mMu10", label:"Met. Μ.10 — closing summary of Mu", greek:"σύνοψις", accent:"#BA7517",
+            children:[
+              {label:"The results of Mu", note:"Mathematical objects exist but not separately — they are abstractions from sensibles. Forms do not exist as separate substances — the Third Man and related arguments show they cannot do what they are supposed to do. Numbers are not the principles of things"},
+              {label:"What is preserved", note:"The valid insight of Platonism — that knowledge requires universal and stable objects — is preserved in Aristotle's account. The universals are real; they exist as the forms immanent in sensible things and grasped by nous in abstraction"},
+              {label:"What is dissolved", note:"The separate existence of universals — the positing of a second world of eternal, unchanging entities alongside sensibles — is dissolved by the elenchus. There is one world; its formal structure is knowable through abstraction; its ground is the Unmoved Mover"},
+              {label:"The elenctic achievement", note:"Mu performs on the theory of mathematical objects and Forms the same operation that Gamma performed on Protagoras and Heraclitus — showing that the position is self-refuting on its own terms. The elenchus is the method of the entire Metaphysics"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Ν — Nu (Book XIV) · Numbers, the One, the Good, and the completion of the elenchus",
+    groups: [
+      {
+        label: "The One and the principles of number (Ν.1–3)",
+        chapters: [
+          {
+            id:"mNu1", label:"Met. Ν.1 — the One and the dyad as principles", greek:"τὸ ἓν καὶ ἡ δυάς", accent:"#534AB7",
+            children:[
+              {label:"The position under examination", note:"Plato and his followers posited the One and the Great-and-Small (the indefinite dyad) as the two primary principles — the formal and material principles from which numbers and everything else are generated"},
+              {label:"The problem with the dyad as material principle", note:"The Great-and-Small is supposed to be the material principle — the source of plurality and difference. But matter is what receives form; the Great-and-Small is not a receptive substrate but an active principle of doubling and halving"},
+              {label:"The dyad generates falsely", note:"The indefinite dyad does not generate numbers in the way Plato claims — 2 x 1 = 2 is not the same as the generation of the number 2 as a Form. Mathematical operations on the dyad give mathematical results, not ideal substances"},
+              {label:"The One cannot be a principle of number if number is prior", note:"If numbers are prior to the One (because the One is a number), the One cannot be the principle of numbers — the principle must be prior to what it generates. If the One is prior, it is not a number — but then what is it?"},
+            ]
+          },
+          {
+            id:"mNu2", label:"Met. Ν.2 — the contraries as principles", greek:"τἀναντία ἀρχαί", accent:"#534AB7",
+            children:[
+              {label:"The Platonic-Pythagorean tradition", note:"Many thinkers posited contraries as the first principles — the One/Many, Limited/Unlimited, Odd/Even. The table of opposites from Alpha.5 is the background"},
+              {label:"The problem with contraries as principles", note:"If contraries are the first principles then the first principle has a contrary — but the first principle should be prior to all contrariety. What is prior to both contraries is more fundamental than either"},
+              {label:"The good and evil as principles", note:"Some posit good and evil as contraries at the root of everything — but then evil is co-equal with good as a first principle. This makes evil fundamental to the structure of reality, which contradicts the unity and goodness of the first principle"},
+              {label:"Aristotle's correction", note:"Contraries are not principles — they are features of things that have principles. The real principles are matter and form, potentiality and actuality. Contrariety is a structural feature of the world, not a pair of co-equal first causes"},
+            ]
+          },
+          {
+            id:"mNu3", label:"Met. Ν.3 — numbers cannot be generated from contraries", greek:"οὐ γεννῶνται", accent:"#534AB7",
+            children:[
+              {label:"The generation problem revisited", note:"If numbers are generated from contraries (One and Many, Odd and Even), the generation must be either arithmetic, geometric, or some other operation. Each possibility generates different problems"},
+              {label:"Arithmetic generation fails", note:"Adding one to one gives two — but this is a mathematical operation, not the ontological generation of the number 2 as a substance. Mathematical operations do not generate substances"},
+              {label:"The prior existence problem", note:"For any generation, the matter must pre-exist the generated thing — the bronze pre-exists the statue. But if numbers are the first things, there is nothing prior to serve as their matter. The generation of numbers from first principles requires something prior to the first principles"},
+              {label:"The reductio", note:"Every account of how numbers are generated either (a) requires something prior to the alleged first principles, contradicting their priority, or (b) gives a mathematical operation rather than ontological generation, failing to establish numbers as substances"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The completion of the elenchus; what survives (Ν.4–6)",
+        chapters: [
+          {
+            id:"mNu4", label:"Met. Ν.4 — numbers are not causes of things", greek:"αἴτια οὐκ εἰσί", accent:"#534AB7",
+            children:[
+              {label:"The causal claim", note:"Plato and the Pythagoreans claimed that numbers explain sensible things — things are as they are because of number. This is the strongest version of the mathematical realist claim"},
+              {label:"Numbers as formal causes fail", note:"If a number is the form of a sensible thing, then having the same number would make things the same — but many different things have the same number (four legs, four seasons, four elements) yet are entirely different kinds of thing"},
+              {label:"Numbers as efficient causes fail", note:"Numbers do not act — they are not agents that produce anything. The number 4 does not cause anything to have four parts. Efficient causation requires an active principle, not a mathematical object"},
+              {label:"Numbers as final causes fail", note:"The final cause is the good — what something is for. Numbers are not goods; they do not explain why things are as they are for the better. The final cause must be the Unmoved Mover, not a number"},
+              {label:"The verdict", note:"Numbers are causally inert with respect to sensible things — they explain nothing about why things are, come to be, or are good. The entire Pythagorean-Platonic programme of explanation through number fails at the level of causation"},
+            ]
+          },
+          {
+            id:"mNu5", label:"Met. Ν.5 — the Good cannot be a number or a separate Form", greek:"τἀγαθόν οὐκ ἀριθμός", accent:"#534AB7",
+            children:[
+              {label:"The Platonic Form of the Good", note:"Plato posited the Form of the Good as the highest Form — beyond being in dignity and power (Republic 509b). The Good is the source of being and truth for all other Forms"},
+              {label:"The Form of the Good is causally inert", note:"If the Form of the Good is a separate entity, how does it cause anything? It cannot act — it is eternal and unchanging. It cannot be the final cause unless things desire it, but separate Forms do not generate desire in sensibles"},
+              {label:"The Good as number fails", note:"Plato also identified the Good with the One — but Nu.1–3 have shown that the One cannot be a first principle in the Platonic sense. Therefore the identification of the Good with the One fails along with the theory of ideal numbers"},
+              {label:"What the Good actually is", note:"The Good is the final cause — what things are oriented toward and desire. For sensible things it is their proper actualization; for the cosmos it is the Unmoved Mover. The good is not a separate Form but the actuality that each thing strives toward"},
+              {label:"Lambda.10 confirmed", note:"The account of the Good in Lambda.10 — the general in the army, both separate and immanent — survives the elenchus of Nu.5. The Platonic Form of the Good is dissolved; the Aristotelian final cause remains"},
+            ]
+          },
+          {
+            id:"mNu6", label:"Met. Ν.6 — the completion of the Metaphysics", greek:"τελευτή", accent:"#534AB7",
+            children:[
+              {label:"The final argument", note:"Nu.6 completes the elenchus with a final series of arguments against those who make numbers or other abstract objects the principles of all things — showing in each case that the position generates insurmountable difficulties"},
+              {label:"The principle of non-contradiction applied to Platonic principles", note:"The Platonic principles — One, Great-and-Small, Good, Numbers — either (a) exist separately and face the Third Man regress, the inexplicability of generation, and causal inertness, or (b) do not exist separately and are merely abstractions — in which case they are not primary substances and the Platonic programme collapses"},
+              {label:"The elenctic structure of Mu-Nu", note:"Mu-Nu together have performed the elenchus on every version of the claim that abstract objects are primary substances: mathematical objects (Mu.1–3), Forms (Mu.4–5), ideal numbers (Mu.6–9), the One and the Good (Nu.1–5). Each version fails. The elenchus is complete"},
+              {label:"What remains after the elenchus", note:"The account of Positions I–III stands unrefuted: being is substance, substance is form, form is actuality, actuality at its limit is the Unmoved Mover — self-thinking thought, pure actuality, the ground and final cause of all being and motion. No competitor survives"},
+              {label:"The Metaphysics as a single elenctic argument", note:"The structure is now fully visible: Position I (Alpha-Beta-Gamma) poses the question and defends the conditions of inquiry. Position II (Delta-Epsilon-Zeta-Eta) determines the terms and establishes the positive account. Position III (Theta-Iota-Kappa-Lambda) completes the positive account in its fullest form. Position IV (Mu-Nu) performs the elenchus on the last remaining competitor and dissolves it. The Metaphysics is one argument from first question to final dissolution"},
+              {label:"Connection to your thesis", note:"The four-position structure of the Metaphysics is the catuṣkoṭi operating at the level of the inquiry into being itself. Position I: the question (what is being?). Position II: the positive answer (being is form-as-actuality). Position III: the answer at its limit (pure actuality, the Unmoved Mover). Position IV: the dissolution of the competitor (neither Platonic Forms nor numbers nor the Good as separate substance). The four positions are not arbitrary — they are the necessary logical structure of any inquiry that proceeds by elenchus to a first principle that survives all refutation. This is paper three's argument"},
+              {label:"The apophatic closure", note:"The Metaphysics does not end with a positive statement of what the Unmoved Mover is — Lambda.9 established that it exceeds subject-predicate structure. Mu-Nu clear the field not in order to make a new positive assertion but in order to leave the silence of Lambda.7 and Lambda.9 as the final word. The inquiry ends where language ends — at the threshold of nous touching nous. This structural identity with the catuṣkoṭi's fourth position — neither is nor is-not — is not analogy but identity of logical form"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

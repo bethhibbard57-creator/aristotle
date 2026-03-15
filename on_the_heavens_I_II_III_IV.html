@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — On the Heavens I–IV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Οὐρανοῦ</h1>
+<p class="subtitle">On the Heavens Books I–IV — complete interactive reference</p>
+<p class="subtitle">I: the fifth element and the eternal heavens · II: the celestial spheres and their motions · III: the four sublunary elements · IV: natural place, weight, and lightness</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. On the Heavens extends Physics VIII into cosmology. Book I establishes the fifth element — aether — and the eternity of the heavens. Book II examines the structure and motions of the celestial spheres. Books III–IV treat the four sublunary elements, their natural places, and the properties of heaviness and lightness. Together the four books give the complete physical cosmology that GC II and Metaphysics Lambda presuppose.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book I — Περὶ Οὐρανοῦ Α · The fifth element; the eternity and uniqueness of the heavens",
+    groups: [
+      {
+        label: "The body that moves in a circle; the fifth element (I.1–4)",
+        chapters: [
+          {
+            id:"dc1_1", label:"DC I.1–2 — natural science studies bodies and magnitudes in motion", greek:"φυσικὴ θεωρία", accent:"#BA7517",
+            children:[
+              {label:"The subject", note:"Natural science studies body and magnitude — continuous three-dimensional extension — as moved and as having principles of motion. On the Heavens begins where Physics VIII ended: with the primary moved body, the outermost celestial sphere"},
+              {label:"Three kinds of magnitudes", note:"Line (one dimension) · surface (two dimensions) · body (three dimensions). Body is the most complete — it has all three dimensions. There is no fourth spatial dimension; body is the limit of spatial extension"},
+              {label:"The perfection of three", note:"Three is complete — it has beginning, middle, and end. The Pythagoreans were right about this: we call the whole universe and all things by the name of 'three'. This is not mysticism but the logical structure of spatial extension"},
+              {label:"Connection to Physics", note:"Physics studied motion in general — the definition of motion, its conditions, its kinds. On the Heavens studies the primary moved body: what it is, what moves it, and why its motion is eternal and circular"},
+            ]
+          },
+          {
+            id:"dc1_3", label:"DC I.2–3 — the fifth element: aether", greek:"αἰθήρ", accent:"#BA7517",
+            children:[
+              {label:"The argument for a fifth element", note:"Every natural body has a natural motion. The four sublunary elements move in straight lines — up or down. But the heavenly bodies move in circles. Circular motion is natural to the heavenly bodies. No sublunary element moves naturally in circles. Therefore the heavenly bodies are made of a different element"},
+              {label:"Aether defined", note:"Aether is the element whose natural motion is circular. It is prior to the four sublunary elements — prior in nature, in account, and in perfection. Its name derives from its eternal running (ἀεὶ θεῖν — always running)"},
+              {label:"Properties of aether", children:[
+                {label:"Ungenerated", note:"Aether does not come to be — it has always existed. Circular motion has no contrary and therefore no privation from which it could arise"},
+                {label:"Incorruptible", note:"Aether does not pass away — there is no contrary motion to corrupt it. What has no contrary has no natural destruction"},
+                {label:"Unalterable", note:"Aether does not change in quality — alteration requires contrary qualities, and aether has none. It is always the same in quality"},
+                {label:"Unaugmentable and undimishable", note:"Aether does not grow or shrink — growth requires matter to be added, which would require aether to have matter in the sublunary sense"},
+              ]},
+              {label:"The perfection of the heavens", note:"Because aether is ungenerated, incorruptible, and unalterable, the heavenly bodies are perfect and eternal — they have existed forever and will exist forever, always the same"},
+              {label:"Connection to Lambda.6 and Physics VIII.5", note:"The Unmoved Mover has infinite power and no magnitude. The heavenly bodies are made of aether — the element with infinite durability but finite extent. The aether transmits the eternal motion of the Unmoved Mover into the natural world"},
+              {label:"Connection to GC I.2 and GC II.1", note:"GC I.2 distinguished generation, corruption, alteration, and locomotion. GC II.1 showed the four sublunary elements are constituted by primary qualities. On the Heavens I.2–3 shows that the heavenly element is constituted by none of these qualities — it is in a category apart"},
+            ]
+          },
+          {
+            id:"dc1_4", label:"DC I.3–4 — circular motion has no contrary; the heavens are eternal", greek:"ἐναντία οὐκ ἔχει", accent:"#BA7517",
+            children:[
+              {label:"Circular motion has no contrary", note:"Straight-line motions are contrary to each other — upward is contrary to downward. But circular motion has no contrary — there is no opposite direction that is simply contrary to it. Clockwise and counterclockwise are different but not contrary in the way up and down are"},
+              {label:"What has no contrary cannot be corrupted", note:"Corruption always involves the contrary overcoming — hot is corrupted by cold, wet by dry. What has no contrary has nothing to overcome it. Therefore the circular motion and what moves in circles cannot be corrupted"},
+              {label:"The heavens have always existed and always will", note:"The argument is complete: aether moves naturally in circles; circular motion has no contrary; what has no contrary cannot be corrupted; therefore aether is incorruptible; therefore the heavens are eternal"},
+              {label:"Universal agreement and intuition", note:"All peoples place the gods and the divine at the outermost limit — in the heavens. This intuition tracks truth: the outermost is the most perfect, the most divine, the most eternal"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The uniqueness and finitude of the cosmos (I.5–9)",
+        chapters: [
+          {
+            id:"dc1_5", label:"DC I.5–7 — the cosmos is unique: there is only one world", greek:"εἷς ὁ κόσμος", accent:"#BA7517",
+            children:[
+              {label:"The argument from natural place", note:"Earth naturally moves to the center; fire naturally moves to the periphery. If there were two worlds, the earth of each would move toward its own center. But natural motion is toward the center absolutely — not toward a relative center. Therefore there can be only one center and one world"},
+              {label:"The argument from the totality of matter", note:"All the matter there is constitutes this one world. If there were another world, its matter would have to be outside this world — but all matter is in this world by definition. There is no matter left over for another world"},
+              {label:"The argument from form", note:"The form of the cosmos is complete — it lacks nothing. A second world would be a second instance of the same form. But form is not individuated by matter in the celestial realm — aether has no individuation through matter in the way sublunary things do. One form, one instance"},
+              {label:"Against the infinite worlds of the atomists", note:"Democritus posited infinitely many worlds. Aristotle's argument rules this out — there is only one natural place for earth, one center, one periphery. Infinitely many worlds would require infinitely many centers and peripheries, which contradicts the uniqueness of natural place"},
+            ]
+          },
+          {
+            id:"dc1_8", label:"DC I.8–9 — the heavens have no weight or lightness; the cosmos has no outside", greek:"οὐ βαρύ οὐδὲ κοῦφον", accent:"#BA7517",
+            children:[
+              {label:"Aether has no weight or lightness", note:"Weight and lightness are tendencies toward natural place — down for heavy things, up for light things. Aether moves in circles and has no up or down natural place. Therefore it has no weight or lightness"},
+              {label:"The cosmos has no outside", note:"The cosmos is everything — there is no place outside it. Place is the boundary of a container; the cosmos has no container. Therefore there is no place outside the cosmos — no void, no matter, no time"},
+              {label:"No void outside the cosmos", note:"The void (if it existed) would be empty place. But place requires a container and a contained. Outside the cosmos there is no container and no contained — therefore no void. The arguments of Physics IV against the void apply here at the cosmic scale"},
+              {label:"Time is bounded by the cosmos", note:"Time is the number of the motion of the outermost sphere. Outside the cosmos there is no sphere and therefore no motion and therefore no time. The cosmos is the temporal as well as spatial boundary of the natural world"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The eternity and perfection of the cosmos (I.10–12)",
+        chapters: [
+          {
+            id:"dc1_10", label:"DC I.10–12 — the cosmos is ungenerated and indestructible", greek:"ἀγένητος καὶ ἄφθαρτος", accent:"#BA7517",
+            children:[
+              {label:"Against those who say the cosmos was generated", note:"Plato (Timaeus) described the generation of the cosmos — but Aristotle argues this must be understood metaphorically. A genuinely generated cosmos would require matter prior to it and a time before it — but there is no time or place before the cosmos"},
+              {label:"The argument from what precedes generation", note:"Before any generation there is something — the matter and the prior state. But before the cosmos there can be nothing — no matter, no time, no place. Therefore the cosmos was not generated from anything — it has always been"},
+              {label:"Against those who say the cosmos will be destroyed", note:"Some say the cosmos will eventually be dissolved — by strife (Empedocles) or by the victory of one element. Aristotle's response: what is indestructible by nature cannot be destroyed. And the heavens have been shown to be indestructible"},
+              {label:"The completeness of the cosmos", note:"The cosmos is complete — it lacks nothing that could make it better. A perfect and complete thing has no tendency toward destruction. The cosmos is perfect, eternal, and sufficient unto itself"},
+              {label:"Connection to your thesis", note:"The cosmos as ungenerated, indestructible, eternal, and unique is the cosmological expression of the Unmoved Mover's pure actuality. The cosmos is not the Unmoved Mover — it is the Unmoved Mover's effect. But it participates in eternity through its aethereal constitution. This is the physical image of the catuṣkoṭi's fourth position instantiated at the cosmological level: the cosmos as a whole is neither generated nor destroyed, neither becoming nor ceasing — it simply is, eternally"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Περὶ Οὐρανοῦ Β · The celestial spheres: structure, motion, and order",
+    groups: [
+      {
+        label: "The spheres and their motions (II.1–8)",
+        chapters: [
+          {
+            id:"dc2_1", label:"DC II.1–2 — the heavens are spherical and move in a circle eternally", greek:"σφαιροειδής", accent:"#534AB7",
+            children:[
+              {label:"The sphere is the most perfect shape", note:"The sphere has no beginning and no end — every point on its surface is equidistant from the center. The circle is the most perfect line; the sphere is the most perfect solid. The heavens, being most perfect, must be spherical"},
+              {label:"The circular motion is the most perfect motion", note:"Circular motion is continuous and uniform — it repeats the same path forever without deviation. It is the only motion that can be both eternal and uniform. The heavens must move in circles because they are perfect"},
+              {label:"The outermost sphere moves fastest", note:"The outermost sphere completes one rotation in the shortest time — the diurnal rotation. Inner spheres move more slowly. Speed decreases toward the center — the moon is slowest of the celestial bodies"},
+              {label:"Connection to Physics VIII.8", note:"Circular motion is primary among locomotions because it is the only continuous, eternal, uniform motion. On the Heavens II.1–2 gives the cosmological application — the spheres move in circles because circular motion is the most perfect and the most divine"},
+            ]
+          },
+          {
+            id:"dc2_3", label:"DC II.3–5 — why the spheres move in opposite directions; the poles", greek:"ἐναντίαι κινήσεις", accent:"#534AB7",
+            children:[
+              {label:"The outermost sphere and the planetary spheres", note:"The outermost sphere (stars) moves westward daily. The planets move eastward along the ecliptic over longer periods. These are opposite motions — but not contrary in the full sense, since both are circular"},
+              {label:"The poles are fixed", note:"The cosmos rotates about fixed poles — the north and south celestial poles. The axis is fixed because the cosmos is a sphere rotating about its center. The poles are the points of greatest rest in the rotating cosmos"},
+              {label:"Right and left, up and down, front and back in the cosmos", note:"Aristotle assigns spatial orientations to the cosmos — the poles correspond to up/down, the rotation defines front/back and right/left. The cosmos has a natural orientation derived from its living-like character"},
+              {label:"The cosmos is like a living thing", note:"The cosmos has a principle of motion within itself — the souls of the spheres. It has spatial orientation — poles, equator, ecliptic. It is complete and self-sufficient. It is like a perfect living being, though not alive in the biological sense"},
+            ]
+          },
+          {
+            id:"dc2_6", label:"DC II.6–8 — the stars move with their spheres; they are spherical", greek:"ἄστρα σφαιροειδῆ", accent:"#534AB7",
+            children:[
+              {label:"Stars are carried by their spheres, not by their own motion", note:"The stars do not move independently — they are fixed to the aethereal spheres that carry them. The sphere moves; the star is carried along. Stars have no independent locomotion of their own"},
+              {label:"Stars do not rotate on their own axes", note:"If stars rotated on their own axes we would see changes in their appearance — but we do not. Stars present the same face always. They are fixed points on rotating spheres"},
+              {label:"Stars are spherical", note:"The sphere is the most perfect shape — and stars, being divine and perfect, must be spherical. Also a rotating sphere presents the same appearance from all directions — consistent with our observation of stars as fixed points of light"},
+              {label:"Stars do not generate heat by their motion", note:"The heat of the sun is not caused by the friction of its motion through air — aether is frictionless and produces no heat. The sun's heat comes from its interaction with the sublunary air below the sphere of the moon"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The order and number of the spheres; the earth (II.9–14)",
+        chapters: [
+          {
+            id:"dc2_9", label:"DC II.9–10 — the harmony of the spheres; the number of motions", greek:"ἁρμονία σφαιρῶν", accent:"#534AB7",
+            children:[
+              {label:"Against the harmony of the spheres", note:"The Pythagoreans held that the moving spheres produce musical notes and together make a cosmic harmony. Aristotle rejects this — if the spheres moved through air and produced sound, the sound would be deafening and we would have adapted to it or it would destroy us"},
+              {label:"The spheres move through aether, not air", note:"Aether produces no friction and no sound. The celestial motions are silent — their perfection is expressed in the regularity of their motion, not in audible harmony"},
+              {label:"The number of motions", note:"Following Eudoxus and Callippus, Aristotle counts 47 or 55 unmoved movers — one for each sphere. Each sphere requires its own unmoved mover to account for its specific motion. Lambda.8 discusses this plurality of movers"},
+            ]
+          },
+          {
+            id:"dc2_11", label:"DC II.11–14 — the earth: its position, shape, and rest", greek:"γῆ", accent:"#534AB7",
+            children:[
+              {label:"The earth is at the center", note:"The earth is at the center of the cosmos — this is its natural place. All heavy things move toward the center; they converge on the earth. The earth is the natural resting place of all heavy matter"},
+              {label:"The earth is spherical", note:"The earth is spherical — shown by the circular shadow it casts on the moon during lunar eclipses, and by the fact that different stars are visible at different latitudes. Aristotle gives the first clear systematic argument for the spherical earth"},
+              {label:"The earth is small relative to the cosmos", note:"The size of the earth is small compared to the stellar sphere — this explains why stars appear as points rather than as extended objects. The Greeks knew the earth was spherical and had reasonable estimates of its size"},
+              {label:"The earth is at rest", note:"The earth is at rest at the center — it does not rotate or orbit. Heavy things naturally move to the center and rest there. The earth is the accumulation of all heavy matter at its natural place"},
+              {label:"Connection to your thesis", note:"The spherical earth at the center of a spherical cosmos, surrounded by spherical celestial spheres — this is the physical expression of the complete actuality of the cosmos. Each level of the cosmos is a sphere, and the sphere is the most perfect solid — the physical image of formal completeness. The cosmological structure is the spatial expression of the logical structure: center (being) surrounded by determinations (categories), surrounded by the outermost (pure actuality)"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book III — Περὶ Οὐρανοῦ Γ · The four sublunary elements: generation and properties",
+    groups: [
+      {
+        label: "The sublunary elements and their generation (III.1–8)",
+        chapters: [
+          {
+            id:"dc3_1", label:"DC III.1–2 — the elements are generated; their generation from each other", greek:"γένεσις στοιχείων", accent:"#BA7517",
+            children:[
+              {label:"The sublunary elements are generated", note:"Unlike aether, the four sublunary elements come to be and pass away — they are generated from each other. Fire becomes air, air becomes water, water becomes earth, earth becomes fire — the cycle of GC II.2"},
+              {label:"Against Plato's triangles", note:"Plato (Timaeus) constructed the elements from triangles — fire from tetrahedra, air from octahedra, water from icosahedra, earth from cubes. Aristotle objects: if the elements were constructed from plane figures, they could be dissolved back into plane figures, which is not what we observe"},
+              {label:"Elements must be three-dimensional bodies", note:"The elements are bodies — three-dimensional. Their principles must be principles of bodies, not of planes. The primary qualities (hot, cold, wet, dry) are principles of bodies — they belong to three-dimensional matter, not to geometrical surfaces"},
+              {label:"The elements are not indivisible", note:"The atomists said the elements are composed of indivisible atoms. Aristotle: if they were indivisible, they could not mix or transform into each other. But we observe mixing and transformation. Therefore they are not indivisible"},
+            ]
+          },
+          {
+            id:"dc3_3", label:"DC III.3–8 — properties of the elements; objections to rival theories", greek:"ἰδιότητες στοιχείων", accent:"#534AB7",
+            children:[
+              {label:"III.3 — there is a finite number of elements", note:"The elements are finite in number — the primary tangible qualities are finite (hot, cold, wet, dry) and their combinations are finite (four stable pairs). Therefore there are exactly four sublunary elements — not infinitely many as Anaxagoras thought"},
+              {label:"III.4 — against Anaxagoras", note:"Anaxagoras: everything is in everything — infinitely many material principles. Aristotle: if everything were in everything, there would be no pure elements. But we observe elements that appear homogeneous. Anaxagoras's position makes the phenomena inexplicable"},
+              {label:"III.5 — against the atomists", note:"The atomists: indivisible atoms in different shapes constitute all things. Aristotle: atoms in different shapes would have different weights by virtue of shape alone — but weight is not caused by shape but by the natural tendency toward a place. Shape does not determine natural place; the element's qualitative nature does"},
+              {label:"III.6 — against those who posit void", note:"The void would provide no resistance to motion — motion through void would be instantaneous (Physics IV.8). But we observe that different things move at different speeds. Therefore there is no void"},
+              {label:"III.7–8 — the elements have natural places and natural motions", note:"Each element has a natural place — earth at center, fire at periphery, water and air between. Each moves naturally toward its place. The natural motions are up and down — simple, rectilinear, toward the natural place"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IV — Περὶ Οὐρανοῦ Δ · Natural place, weight, lightness, and the elements",
+    groups: [
+      {
+        label: "Weight, lightness, and natural place (IV.1–5)",
+        chapters: [
+          {
+            id:"dc4_1", label:"DC IV.1–2 — heavy and light: absolute and relative", greek:"βαρύ καὶ κοῦφον", accent:"#BA7517",
+            children:[
+              {label:"Absolute heavy and light", note:"Earth is absolutely heavy — it always moves downward, toward the center, in every circumstance. Fire is absolutely light — it always moves upward, toward the periphery. These are not relative terms"},
+              {label:"Relative heavy and light", note:"Water is heavier than air but lighter than earth. Air is lighter than water but heavier than fire. Relative weight and lightness are matters of degree within the scale between absolute heavy and absolutely light"},
+              {label:"Previous accounts fail", note:"Plato (Timaeus): weight is the tendency toward what is like oneself. Aristotle: this does not explain why earth falls toward the center regardless of what is there — it falls toward the center because that is its natural place, not because there is more earth there"},
+              {label:"The correct account", note:"Weight and lightness are the tendencies of bodies toward their natural places — downward for heavy, upward for light. Natural place is the primary fact; weight and lightness are derivative from it"},
+            ]
+          },
+          {
+            id:"dc4_3", label:"DC IV.3–5 — the elements and their places; why fire is lightest and earth heaviest", greek:"στοιχεῖα καὶ τόποι", accent:"#BA7517",
+            children:[
+              {label:"The order of the elements", note:"From center outward: earth, water, air, fire. This is the order of increasing lightness — earth absolutely heavy, fire absolutely light, water and air between. The natural places are arranged in this order"},
+              {label:"Why this order", note:"The order of the elements reflects the order of their constitutive qualities. Earth (cold + dry) tends to the densest, most compressed place — the center. Fire (hot + dry) tends to the most expansive — the periphery. Water and air occupy the intermediate positions corresponding to their intermediate qualities"},
+              {label:"The elements fill the cosmos completely", note:"The sublunary cosmos is completely filled by the four elements — there is no void between them. Each element occupies its natural place, and together they fill the entire sublunary sphere from the center outward to the sphere of the moon"},
+              {label:"Connection to GC II.1–3", note:"GC II.1 established the primary qualities constituting the elements; GC II.2 showed their cycle of transformation. On the Heavens IV completes the picture by showing how the elements are spatially ordered in the cosmos — each in its natural place, constituting the layered sublunary world"},
+              {label:"Closing connection to the whole corpus", note:"On the Heavens completes the cosmological level of the structure. The Unmoved Mover (Lambda, Physics VIII) moves the outermost sphere (On the Heavens I–II). The outermost sphere drives the celestial spheres. The celestial spheres drive the sublunary cycles (GC II). The sublunary cycles produce the elements in their natural places (On the Heavens III–IV). The elements combine to form homoeomerous stuffs (GC II.5). These become the matter of living things (De Anima, biological works). The chain is complete — from pure actuality at the top to the most material at the bottom, every level connected by causal chains of motion, form, and final cause"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Prior Analytics Book II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἀναλυτικὰ Πρότερα Β</h1>
+<p class="subtitle">Prior Analytics Book II — complete interactive reference · chapters 1–27</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book II moves from the formal syllogistic into its applications: properties of syllogisms, false premises, circular reasoning, conversion of conclusions, reduction ad impossibile, induction, example, abduction, and the fallacies.</footer>
+
+<script>
+const cats = [
+
+  // GROUP A: PROPERTIES OF SYLLOGISMS
+  {
+    id:"pb1", label:"Pr. An. II.1 — how many conclusions a syllogism can have", greek:"συμπεράσματα", accent:"#BA7517",
+    children:[
+      {label:"The question", note:"Can a single syllogism establish more than one conclusion?"},
+      {label:"Direct and converted conclusions", note:"From a valid syllogism a further conclusion can be drawn by converting the original conclusion — but this is a second syllogism, not a second conclusion of the first"},
+      {label:"The rule", note:"Each syllogism establishes exactly one conclusion — the one that follows from those premises in that figure"},
+      {label:"Implications", note:"Chains of reasoning are sequences of syllogisms, not single syllogisms with multiple outputs"},
+    ]
+  },
+  {
+    id:"pb2", label:"Pr. An. II.2 — true conclusions from false premises: first figure", greek:"ψευδεῖς προτάσεις", accent:"#BA7517",
+    children:[
+      {label:"The central question", note:"Can a true conclusion follow from false premises?"},
+      {label:"Answer: yes", note:"A true conclusion can follow from two false premises — the logical form is independent of the truth of the premises"},
+      {label:"First figure examples", note:"If both premises are wholly false a true conclusion can still result if the false premises happen to entail a true proposition"},
+      {label:"Partially false premises", note:"If one premise is true and one false a true conclusion can also follow in the first figure"},
+      {label:"The deeper point", note:"Validity is about the form of the inference, not the content. This is Aristotle's clearest statement of the formal nature of syllogistic logic"},
+      {label:"Connection to demonstration", note:"Demonstration requires true premises — but the syllogistic itself does not. The difference between syllogism and demonstration is not logical form but epistemic status of premises"},
+    ]
+  },
+  {
+    id:"pb3", label:"Pr. An. II.3 — true conclusions from false premises: second and third figures", greek:"δεύτερον καὶ τρίτον", accent:"#BA7517",
+    children:[
+      {label:"Second figure", note:"A true conclusion can follow from false premises in the second figure — same result as first figure"},
+      {label:"Third figure", note:"Same — true conclusions from false premises are possible in all three figures"},
+      {label:"The general result", note:"The phenomenon is figure-independent — it follows from the formal nature of the syllogistic itself, not from any feature of a particular figure"},
+    ]
+  },
+  {
+    id:"pb4", label:"Pr. An. II.4 — when a true conclusion cannot come from false premises", greek:"ὅτε οὐ δυνατόν", accent:"#BA7517",
+    children:[
+      {label:"The limit", note:"If the conclusion is a necessary truth it does not follow that the premises are true — but if we know the premises are the immediate grounds of the conclusion then false premises cannot yield it"},
+      {label:"In demonstration specifically", note:"Demonstrative premises must be true — the demonstrative syllogism is not merely valid but sound"},
+      {label:"The distinction", note:"Formal validity: can a valid form have false premises and true conclusion? Yes. Soundness: can a demonstration have false premises? No. Book II draws this distinction clearly"},
+    ]
+  },
+  {
+    id:"pb5", label:"Pr. An. II.5 — circular proof", greek:"κύκλῳ ἀπόδειξις", accent:"#BA7517",
+    children:[
+      {label:"Circular proof defined", note:"Using the conclusion to prove one of its own premises — the conclusion appears as a premise in the proof of itself"},
+      {label:"In the first figure", note:"If we prove A from B and C, can we then prove B from A and C? Only if B and C are convertible — i.e., equivalent in predication range"},
+      {label:"The restriction", note:"Circular proof is only possible when the terms are coextensive — when the predications are reciprocal. This is a very strong condition"},
+      {label:"Why circular proof is defective", note:"Even when formally possible it gives no explanatory gain — we already know what we are proving before we prove it. It is valid but epistemically empty"},
+      {label:"Connection to demonstration", note:"Posterior Analytics will show that demonstration must be non-circular — the premises must be prior to and explanatory of the conclusion"},
+    ]
+  },
+  {
+    id:"pb6", label:"Pr. An. II.6 — circular proof in second and third figures", greek:"κύκλος", accent:"#BA7517",
+    children:[
+      {label:"Second figure circular proof", note:"Possible only under very restricted conditions — terms must be coextensive"},
+      {label:"Third figure circular proof", note:"Same restriction — the formal conditions for circularity in second and third figures are even harder to satisfy than in the first"},
+      {label:"The general result", note:"Circular proof is a logical curiosity — formally possible in narrow conditions but epistemically worthless. It confirms rather than establishes"},
+    ]
+  },
+  {
+    id:"pb7", label:"Pr. An. II.7 — reductio ad impossibile", greek:"εἰς τὸ ἀδύνατον", accent:"#BA7517",
+    children:[
+      {label:"Reductio defined", note:"Assuming the contradictory of the desired conclusion and deriving a contradiction with one of the premises — thereby establishing the conclusion indirectly"},
+      {label:"Structure", note:"To prove C: assume not-C. Together with premise P, derive Q. But Q contradicts the other premise R. Therefore not-C is false, so C is true"},
+      {label:"Relation to direct proof", note:"Every reductio corresponds to a direct syllogism — the same terms, just differently arranged. Reductio is a method of discovery, not a distinct logical form"},
+      {label:"When reductio is necessary", note:"For Baroco (AOO-2) and Bocardo (OAO-3) — moods that cannot be reduced by simple conversion and require reductio for their proof"},
+      {label:"Connection to the elenchus", note:"Reductio is the argumentative deployment of the contradictory pair — De Int. Ch. 11's elenchus is the logical ground of reductio ad impossibile"},
+    ]
+  },
+  {
+    id:"pb8", label:"Pr. An. II.8 — conversion of syllogisms: converting the conclusion", greek:"ἀντιστροφή συλλογισμοῦ", accent:"#BA7517",
+    children:[
+      {label:"The procedure", note:"Given a valid syllogism, convert the conclusion and combine it with one premise to derive the contradictory of the other premise"},
+      {label:"First figure conversion", note:"Barbara: all M-P, all S-M → all S-P. Convert conclusion to some P-S, combine with all S-M → destroys the major premise"},
+      {label:"The logical relationship", note:"Converting a syllogism's conclusion generates a new syllogism that attacks one of the original premises — it is the systematic exploration of the logical space around a valid inference"},
+    ]
+  },
+  {
+    id:"pb9", label:"Pr. An. II.9 — conversion in second figure", greek:"δεύτερον σχῆμα", accent:"#BA7517",
+    children:[
+      {label:"Conversion of second figure syllogisms", note:"Same procedure — convert the conclusion and combine with one premise to refute the other"},
+      {label:"The pattern", note:"Conversion of syllogisms is figure-independent — it works systematically across all three figures by the same method"},
+    ]
+  },
+  {
+    id:"pb10", label:"Pr. An. II.10 — conversion in third figure", greek:"τρίτον σχῆμα", accent:"#BA7517",
+    children:[
+      {label:"Third figure syllogism conversion", note:"Same method — the third figure's particular conclusions convert to particular premises that refute one of the original universals"},
+      {label:"Completing the treatment", note:"Chapters 8–10 systematically apply conversion to all three figures — showing the logical interdependence of premises and conclusions in every valid form"},
+    ]
+  },
+
+  // GROUP B: INFERENCE FORMS BEYOND THE SYLLOGISM
+  {
+    id:"pb11", label:"Pr. An. II.11 — syllogism in reductio and in ostensive proof compared", greek:"ὀστενσικόν", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"Is a reductio proof the same syllogism as the corresponding direct proof, or a different one?"},
+      {label:"Aristotle's answer", note:"They involve the same terms in the same relations — the logical structure is identical. The difference is in how we arrive at the premises, not in the formal structure"},
+      {label:"Ostensive proof", note:"Proves the conclusion directly from premises known to be true"},
+      {label:"Reductio", note:"Proves the conclusion by showing its denial is incompatible with the premises — indirect but formally equivalent"},
+      {label:"The epistemological difference", note:"Ostensive proof is more revealing — it shows why the conclusion is true. Reductio shows only that the conclusion cannot be false. Both are valid; demonstration prefers the ostensive"},
+    ]
+  },
+  {
+    id:"pb12", label:"Pr. An. II.12 — consequences of premises for conclusions", greek:"ἀκολουθία", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"If the conclusion is false, what can we infer about the premises?"},
+      {label:"Modus tollens structure", note:"If all S is P (conclusion) is false, then either not all M is P or not all S is M — one of the premises must be false"},
+      {label:"The principle", note:"The falsity of the conclusion distributes back to the premises — but we cannot always say which premise is false without further investigation"},
+      {label:"Connection to scientific refutation", note:"This is how Aristotle conceives scientific error correction — a false conclusion reveals a flaw somewhere in the premises, driving us back to examine them"},
+    ]
+  },
+  {
+    id:"pb13", label:"Pr. An. II.13 — the method of selection for definitions", greek:"ὁρισμός", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"How to use the syllogistic method of selecting premises to find definitions"},
+      {label:"The procedure", note:"Collect the predicates of the term to be defined — divide them into those that are wider, equal, and narrower in extent than the term"},
+      {label:"Finding the definition", note:"The definition consists of those predicates that are coextensive with the term and collectively necessary — the essential predicates that cannot be removed without changing what the thing is"},
+      {label:"Connection to the Porphyrian tree", note:"The procedure generates the hierarchical structure of genus and differentia — definition by genus and differentia is the output of this selection method applied systematically"},
+      {label:"Connection to the Categories", note:"The categories determine which predicates can appear in definitions — essential predicates (being, quality, quantity) vs accidental ones (where, when, position)"},
+    ]
+  },
+  {
+    id:"pb14", label:"Pr. An. II.14 — the method of selection for problems", greek:"προβλήματα", accent:"#534AB7",
+    children:[
+      {label:"Applying the method to dialectical problems", note:"The same procedure that finds premises for demonstrations also finds premises for dialectical arguments"},
+      {label:"Dialectical vs demonstrative use", note:"In demonstration we seek premises that are true and primary. In dialectic we seek premises that are reputable and accepted by the interlocutor"},
+      {label:"The method is neutral", note:"The syllogistic machinery does not know whether it is being used demonstratively or dialectically — it is a general logic applicable to any domain"},
+    ]
+  },
+  {
+    id:"pb15", label:"Pr. An. II.15 — problems from the same premises", greek:"ἐκ τῶν αὐτῶν", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"How many distinct problems can be investigated using the same set of terms?"},
+      {label:"The answer", note:"Multiple conclusions can be drawn from the same terms by varying which is taken as the conclusion and which as premises — the terms form a logical field of possible syllogisms"},
+      {label:"Practical significance", note:"A scientist investigating one domain will find that the same terms yield multiple demonstrable conclusions — science is the systematic exploitation of a term-field"},
+    ]
+  },
+
+  // GROUP C: MODES OF ARGUMENT
+  {
+    id:"pb16", label:"Pr. An. II.16 — petitio principii (begging the question)", greek:"τὸ ἐν ἀρχῇ αἰτεῖσθαι", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Assuming as a premise what you are trying to prove — circular reasoning in the specific form of taking the conclusion as a premise"},
+      {label:"Not always obvious", note:"Can occur when the premise and conclusion are equivalent but not identical in form — the question-begging is hidden"},
+      {label:"In demonstration", note:"Begging the question is a fatal flaw — demonstration must proceed from premises that are prior to and better known than the conclusion"},
+      {label:"In dialectic", note:"Also prohibited — a dialectical proof that assumes what is in question has not established anything against the opponent"},
+      {label:"The criterion", note:"A premise begs the question if it is neither more known than nor prior to the conclusion in the order of explanation"},
+    ]
+  },
+  {
+    id:"pb17", label:"Pr. An. II.17 — the false cause fallacy", greek:"τὸ παρὰ τὸ αἴτιον", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"In a reductio proof: attributing the impossibility to the wrong premise — blaming the wrong assumption for the contradiction"},
+      {label:"The error", note:"The contradiction follows from the conjunction of assumptions. The false cause fallacy picks the wrong one as responsible"},
+      {label:"Example", note:"In a reductio: assume not-C; derive absurdity from not-C together with P and Q. The fallacy attributes the absurdity to P or Q when it actually follows from not-C"},
+      {label:"Significance", note:"This is the logical analysis of a specific form of explanatory error — claiming the wrong cause for an observed effect. The logical and the causal analysis are parallel"},
+    ]
+  },
+  {
+    id:"pb18", label:"Pr. An. II.18 — the false premise in a refutation", greek:"ψευδὴς πρότασις", accent:"#0F6E56",
+    children:[
+      {label:"Which premise is false in a bad argument?", note:"If a conclusion is false, the falsity must be traced to a premise — the question is which one"},
+      {label:"The diagnostic procedure", note:"Convert the conclusion and combine with each premise in turn — the premise that yields a further false conclusion is the culprit"},
+      {label:"Connection to scientific method", note:"This chapter describes how to trace errors back to their source in premises — the logical analysis of how false beliefs propagate through chains of reasoning"},
+    ]
+  },
+  {
+    id:"pb19", label:"Pr. An. II.19 — that the first figure is most scientific", greek:"ἐπιστημονικώτατον", accent:"#0F6E56",
+    children:[
+      {label:"The claim", note:"The first figure is the most scientific — best suited to demonstration and to acquiring knowledge"},
+      {label:"Why", children:[
+        {label:"Proves all four types of proposition", note:"Universal affirmative, universal negative, particular affirmative, particular negative — no other figure does this"},
+        {label:"The universal affirmative is most scientific", note:"The universal affirmative (Barbara) shows what a thing is essentially — it is the form of definition and demonstration"},
+        {label:"Self-evident necessity", note:"First figure syllogisms are perfect — the necessity is immediately visible without reduction"},
+      ]},
+      {label:"The universal affirmative A", note:"'All S is P' — the form in which scientific knowledge is primarily expressed. It says what the thing is, universally and affirmatively"},
+    ]
+  },
+  {
+    id:"pb20", label:"Pr. An. II.20 — induction", greek:"ἐπαγωγή", accent:"#0F6E56",
+    children:[
+      {label:"Induction defined", note:"The inference from particular cases to a universal — the reverse of syllogistic deduction"},
+      {label:"Structure of induction", note:"S1 is P, S2 is P, S3 is P... and S1, S2, S3 exhaust M → All M is P. The enumeration of all cases underwrites the universal"},
+      {label:"Perfect induction", note:"When the enumeration is complete — all particulars are listed. This gives certainty but is rarely available"},
+      {label:"Imperfect induction", note:"When only some cases are listed — gives probability but not necessity. The basis of empirical generalization"},
+      {label:"The syllogistic form of induction", note:"Aristotle shows induction can be expressed as a syllogism in the third figure — the particular cases are the minor premises, the universal is the conclusion"},
+      {label:"Connection to nous", note:"In Posterior Analytics II.19, induction culminating in complete enumeration produces nous — immediate intellectual grasp of the universal. The logical and epistemological accounts connect here"},
+    ]
+  },
+  {
+    id:"pb21", label:"Pr. An. II.21 — error in knowledge", greek:"ἀγνόημα", accent:"#0F6E56",
+    children:[
+      {label:"How error about universals and particulars arises", note:"We can know a universal and yet be mistaken about a particular that falls under it — through ignorance of the particular case"},
+      {label:"Example", note:"I know that all mules are sterile. I believe this animal is not a mule. Therefore I believe this animal is not sterile — but I am wrong about what kind of animal it is"},
+      {label:"The structure of the error", note:"The error is not in the universal knowledge but in the minor premise — the identification of the particular"},
+      {label:"Connection to the syllogistic", note:"Knowledge errors have syllogistic structure — they arise from false premises in the minor position, not from flaws in the universal major"},
+    ]
+  },
+  {
+    id:"pb22", label:"Pr. An. II.22 — when terms are convertible", greek:"ἀντιστρέφειν", accent:"#0F6E56",
+    children:[
+      {label:"Convertible terms defined", note:"Terms that have the same extension — everything that is A is B and everything that is B is A"},
+      {label:"When to prefer one over the other as middle", note:"If A and B are convertible and we want to prove C, we should prefer the middle term that is better known or more definitional"},
+      {label:"The choice of middle term", note:"When multiple middles are available the one that is the cause or essence is to be preferred — this anticipates the Posterior Analytics doctrine of the proper middle"},
+      {label:"Connection to definition", note:"The best middle term for a demonstration is the definition — it states what the subject essentially is and thereby explains why the predicate belongs to it"},
+    ]
+  },
+
+  // GROUP D: NON-STANDARD INFERENCE
+  {
+    id:"pb23", label:"Pr. An. II.23 — argument from example", greek:"παραδείγματα", accent:"#993C1D",
+    children:[
+      {label:"Example defined", greek:"παράδειγμα", note:"Inference from one particular to another via a universal — not induction (which goes from particular to universal) but inference through a universal"},
+      {label:"Structure", note:"This particular F is G. All F is G (the universal). That particular F is also G — the universal licenses the transfer from one case to another"},
+      {label:"Relation to induction and syllogism", note:"Example is between induction and syllogism — it uses a universal but does not establish it. The universal is assumed or known, not derived"},
+      {label:"Use in rhetoric", note:"The rhetorical example is the counterpart of the dialectical induction — both work through particulars, but example transfers between particulars via an implicit universal"},
+      {label:"Connection to the Rhetoric", note:"This chapter is the logical foundation of the Rhetoric's treatment of example as a mode of persuasion — the same structure in both texts"},
+    ]
+  },
+  {
+    id:"pb24", label:"Pr. An. II.24 — abduction", greek:"ἀπαγωγή", accent:"#993C1D",
+    children:[
+      {label:"Abduction defined", greek:"ἀπαγωγή", note:"Reducing a problem to a more tractable one — not proof but a step toward proof. Finding a middle term that makes the conclusion plausible"},
+      {label:"Structure", note:"We want to show S is P. We notice that if M were true, S is P would follow. And M is itself plausible or more easily established. So we reduce the problem to establishing M"},
+      {label:"Relation to induction and syllogism", note:"Abduction is neither induction nor deduction — it is inference to the best explanation. The middle term is hypothesized rather than demonstrated"},
+      {label:"Connection to scientific discovery", note:"Abduction is the logic of hypothesis formation — how science moves from observations to explanatory principles. Aristotle identifies the logical structure of what later philosophy calls inference to the best explanation"},
+      {label:"Peirce's later development", note:"Peirce rediscovered and named this form of reasoning in the 19th century — but the structure is already fully articulated here"},
+    ]
+  },
+  {
+    id:"pb25", label:"Pr. An. II.25 — objection", greek:"ἔνστασις", accent:"#993C1D",
+    children:[
+      {label:"Objection defined", greek:"ἔνστασις", note:"A premise opposed to a premise — a counter-premise that blocks a proposed inference"},
+      {label:"Universal objection", note:"Counters a universal premise with a universal counter-premise", eg:"Against 'all pleasure is good': 'no pleasure is good'"},
+      {label:"Particular objection", note:"Counters a universal premise with a particular counter-instance", eg:"Against 'all pleasure is good': 'some pleasure is not good'"},
+      {label:"Objection vs refutation", note:"An objection attacks a premise. A refutation attacks the conclusion. Aristotle distinguishes them precisely"},
+      {label:"Which figure for objections", note:"Objections use the first or third figure — first figure for universal objections, third for particular ones (since the third figure always yields particulars)"},
+      {label:"Connection to the Topics", note:"The Topics is largely about finding objections to proposed theses — this chapter gives the logical structure underlying that dialectical practice"},
+    ]
+  },
+  {
+    id:"pb26", label:"Pr. An. II.26 — probability and sign", greek:"εἰκός καὶ σημεῖον", accent:"#993C1D",
+    children:[
+      {label:"Probability", greek:"εἰκός", note:"A reputable premise — what is usually the case, what people generally accept as true", eg:"Envious people hate those they envy — generally true"},
+      {label:"Sign", greek:"σημεῖον", note:"A premise that is factual and serves as evidence for a conclusion — an observable indicator of an unobserved fact", children:[
+        {label:"Necessary sign", greek:"τεκμήριον", note:"A sign that is convertible — if the sign is present the conclusion must hold, and vice versa", eg:"She has milk — she has given birth (convertible)"},
+        {label:"Non-necessary sign", note:"A sign that is not convertible — presence of the sign makes the conclusion probable but not certain", eg:"He breathes fast — he has a fever (not convertible: other causes of fast breathing exist)"},
+      ]},
+      {label:"Enthymeme", greek:"ἐνθύμημα", note:"A rhetorical syllogism from probability or sign — the rhetorical counterpart of the dialectical syllogism"},
+      {label:"Connection to the Rhetoric", note:"Rhetoric I.2 defines the enthymeme as a syllogism from probabilities or signs — this chapter gives the logical analysis that the Rhetoric presupposes"},
+    ]
+  },
+  {
+    id:"pb27", label:"Pr. An. II.27 — physiognomy", greek:"φυσιογνωμία", accent:"#993C1D",
+    children:[
+      {label:"The application", note:"Inferring character from physical features — a practical application of the sign-reasoning of II.26"},
+      {label:"The logical structure", note:"If a certain physical feature F is a sign of character trait C, and person P has F, then P has C — a syllogism from sign"},
+      {label:"The condition for validity", note:"The sign must belong uniquely to one animal kind — otherwise the inference from the sign to the character is not secure"},
+      {label:"The interest of this chapter", note:"It shows the syllogistic applied to empirical inference about individuals — the farthest point from formal logic, demonstrating the universality of the syllogistic method"},
+      {label:"Connection to the biological works", note:"The same inferential structure governs Aristotle's biological investigations — observable signs (features, behaviors) license inferences to underlying natures"},
+    ]
+  },
+
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Properties of syllogisms: truth, falsity, circularity, conversion (1–10)", ids:["pb1","pb2","pb3","pb4","pb5","pb6","pb7","pb8","pb9","pb10"] },
+  { label:"II — Inference structures: reductio, induction, selection method (11–22)", ids:["pb11","pb12","pb13","pb14","pb15","pb16","pb17","pb18","pb19","pb20","pb21","pb22"] },
+  { label:"III — Non-standard inference: example, abduction, objection, sign, physiognomy (23–27)", ids:["pb23","pb24","pb25","pb26","pb27"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

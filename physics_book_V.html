@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Physics Book V</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Φυσικὴ Ἀκρόασις Ε</h1>
+<p class="subtitle">Physics Book V — complete interactive reference · chapters 1–6</p>
+<p class="subtitle">Subject: the classification of change — its kinds, its unity, and its contrariety</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Physics Book V applies the general definition of motion from Book III to the full taxonomy of change. It distinguishes change from motion, classifies the kinds of motion by category, defines what makes a motion one and what makes motions contrary to each other. These distinctions are the logical infrastructure that Books VI–VIII require for the analysis of continuity, infinity of motion, and the Unmoved Mover.</footer>
+
+<script>
+const cats = [
+  {
+    id:"ph5_1", label:"Phys. V.1 — change in general: its kinds and subjects", greek:"μεταβολή", accent:"#BA7517",
+    children:[
+      {label:"Change vs motion", note:"Change (μεταβολή) is the wider term — it includes coming-to-be and passing-away as well as motion. Motion (κίνησις) is change within a subject that persists — alteration, growth, locomotion. Generation and corruption are changes but not motions in the strict sense"},
+      {label:"From what and to what", note:"Every change is from something to something — from a subject to a subject, from a subject to a non-subject, from a non-subject to a subject, or from a non-subject to a non-subject"},
+      {label:"The four combinations", children:[
+        {label:"Subject to subject", note:"Alteration — the man becomes musical. Both terms are subjects; the man persists"},
+        {label:"Subject to non-subject", note:"Corruption — the living being dies. The being-alive (subject) gives way to being-dead (non-subject in the sense of privation of life)"},
+        {label:"Non-subject to subject", note:"Generation — the non-musical becomes musical, the non-existent comes to exist"},
+        {label:"Non-subject to non-subject", note:"Not a genuine change — there is no stable subject and no determinate term. This combination does not occur"},
+      ]},
+      {label:"Only three genuine kinds", note:"Subject-to-subject (motion), non-subject-to-subject (generation), subject-to-non-subject (corruption). The fourth is not a change at all — change requires at least one determinate term"},
+      {label:"Connection to GC I.2", note:"The four kinds of change from GC I.2 — generation, corruption, alteration, growth — are here placed within a more general taxonomy. Physics V.1 gives the logical structure; GC I.2 gives the physical application"},
+    ]
+  },
+  {
+    id:"ph5_2", label:"Phys. V.2 — the kinds of motion: by category", greek:"εἴδη κινήσεως", accent:"#BA7517",
+    children:[
+      {label:"Motion occurs in three categories only", note:"Not every category admits of motion — only quality, quantity, and place. Being (substance) does not admit of motion in the strict sense — generation and corruption are changes, not motions"},
+      {label:"Alteration", greek:"ἀλλοίωσις", note:"Motion in the category of quality — becoming pale, becoming hot, becoming musical. The subject persists while a quality changes"},
+      {label:"Growth and diminution", greek:"αὔξησις καὶ φθίσις", note:"Motion in the category of quantity — growing larger, shrinking smaller. The subject persists while its quantity changes"},
+      {label:"Locomotion", greek:"φορά", note:"Motion in the category of place — moving from here to there. The subject persists while its location changes"},
+      {label:"No motion in substance, relation, doing, being-affected", note:"Substance changes by generation and corruption, not motion. Relation, doing, and being-affected change only insofar as their subjects change in quality, quantity, or place"},
+      {label:"Why these three categories", note:"Quality, quantity, and place are the categories that admit of contraries with a continuous range between them — hot and cold with intermediate temperatures, large and small with intermediate sizes, here and there with intermediate positions. Motion is always between contraries along a continuum"},
+      {label:"Connection to Categories", note:"The Categories established ten categories. Physics V.2 shows that only three admit of motion in the strict sense. This is not a limitation of the Categories but a discovery about the nature of motion — it requires continuity and contrariety, which only these three categories provide"},
+    ]
+  },
+  {
+    id:"ph5_3", label:"Phys. V.3 — together, apart, contact, between, successive, contiguous, continuous", greek:"ἅμα χωρίς ἁφή μεταξύ", accent:"#BA7517",
+    children:[
+      {label:"Together and apart", note:"Together (ἅμα): in the same place at the same time. Apart (χωρίς): in different places. These are the most basic spatial relations — the ground of all contact and continuity"},
+      {label:"Contact", greek:"ἁφή", note:"Things whose extremities are together — their limits are simultaneously in the same place. Contact is the condition of causal interaction (GC I.9)"},
+      {label:"Between", greek:"μεταξύ", note:"What a changing thing naturally reaches before it reaches the terminus of the change — the intermediate through which change passes. Between requires at least three terms: two extremes and what lies between them"},
+      {label:"Successive", greek:"ἐφεξῆς", note:"What comes after a beginning, with nothing of the same kind in between — the next house, the next number. No contact required, just order with no same-kind intermediate"},
+      {label:"Contiguous", greek:"ἐχόμενον", note:"Successive and in contact — the limits touch. Bricks in a wall are contiguous"},
+      {label:"Continuous", greek:"συνεχές", note:"Contiguous things whose touching limits have become one and the same — not merely touching but merged. A continuous thing is one whose parts share a single limit. Continuity is the highest degree of togetherness"},
+      {label:"The hierarchy", note:"Continuous → contiguous → successive → between → together. Each step relaxes a condition. Continuity is the strongest relation; succession the weakest that still involves order"},
+      {label:"Connection to your thesis", note:"These definitions are the spatial and logical infrastructure of temporal identity. Same time requires understanding what together-in-time means. The Ship of Theseus problem is a question about whether the ship-at-t1 and the ship-at-t2 are continuous, contiguous, or merely successive. The categories of Physics V.3 give the precise vocabulary for that question"},
+    ]
+  },
+  {
+    id:"ph5_4", label:"Phys. V.4 — what makes a motion one", greek:"μία κίνησις", accent:"#BA7517",
+    children:[
+      {label:"Three conditions for a motion to be one", children:[
+        {label:"One in kind", note:"Motion in the same category — two locomotions are the same kind of motion; a locomotion and an alteration are not"},
+        {label:"One in subject", note:"The same subject undergoes the motion — one thing moving is one motion in this sense"},
+        {label:"One in time", note:"The motion occurs in one uninterrupted time — a motion that stops and resumes is not strictly one motion but two"},
+      ]},
+      {label:"All three required", note:"A motion is strictly one only if it is one in kind, subject, and time simultaneously. A motion that is one in two of these but not the third is one only in a qualified sense"},
+      {label:"Perfect unity: uniform motion", note:"The most perfectly one motion is uniform — the same kind, same subject, same time, and the same rate throughout. Non-uniform motion is one in subject and time but not in rate — it is less perfectly one"},
+      {label:"Connection to LNC conditions", note:"The three conditions for a motion being one — same kind, same subject, same time — are the physical counterparts of the four LNC conditions (same subject, same predicate, same respect, same time). What makes a motion one is structurally identical to what makes a predication one genuine contradictory pair. The logical and physical analyses converge"},
+    ]
+  },
+  {
+    id:"ph5_5", label:"Phys. V.5 — contrary motions", greek:"ἐναντίαι κινήσεις", accent:"#BA7517",
+    children:[
+      {label:"What makes motions contrary", note:"Motions are contrary when they are between contrary termini — motion from hot to cold is contrary to motion from cold to hot. The contrariety of the termini determines the contrariety of the motions"},
+      {label:"Motion and rest as contraries", note:"Motion and rest are contrary in a qualified sense — rest is the privation of motion. But rest at a contrary place is more properly contrary to a given motion than rest in general"},
+      {label:"Contrary locomotions", note:"Upward motion is contrary to downward motion — the termini (up and down) are contrary. Circular motion has no terminus — and therefore no contrary. This is why circular motion can be eternal (Physics VIII)"},
+      {label:"Contrary alterations", note:"Becoming hot is contrary to becoming cold — the termini are the contrary qualities. Becoming more pale is contrary to becoming less pale"},
+      {label:"The significance of contrariless circular motion", note:"Because circular motion has no contrary, it cannot be disrupted by an opposing motion. This is the physical basis of the eternity of celestial motion and the argument for the Unmoved Mover in Physics VIII"},
+      {label:"Connection to Metaphysics Iota.3", note:"Contrariety is the greatest difference within a genus — Iota.3. Physics V.5 applies this to motion: the greatest difference between motions is motion between contrary termini. Contrary motions are the greatest possible difference between motions of the same kind"},
+    ]
+  },
+  {
+    id:"ph5_6", label:"Phys. V.6 — whether rest is contrary to motion or to rest", greek:"ἠρεμία", accent:"#BA7517",
+    children:[
+      {label:"The question", note:"Is rest contrary to motion, or is rest at one terminus contrary to rest at the other terminus? Or is motion contrary to motion and rest merely privation?"},
+      {label:"Rest is the privation of motion", note:"Rest is not a positive state alongside motion — it is the absence of motion in what is capable of moving. A stone is not resting; a sleeping man is resting because he can move"},
+      {label:"But rest at contraries is contrary to motion", note:"Rest-at-the-top is contrary to motion-downward in a meaningful sense — they are incompatible and point in opposite directions. This is contrary in a qualified sense — not simple contrariety but opposition between a state and a process"},
+      {label:"Motion is more properly contrary to motion", note:"The strict contrariety is between motions — upward motion and downward motion. Rest is the absence of motion, not its contrary in the primary sense"},
+      {label:"The transition to Book VI", note:"Books III–V have established what motion is, what its conditions are, and how it is classified. Book VI will analyse motion as continuous — showing that motion, time, and magnitude are all continuous and infinitely divisible in the same way"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Change and its kinds; the three genuine forms (1)", ids:["ph5_1"] },
+  { label:"II — Kinds of motion by category; spatial and temporal relations (2–3)", ids:["ph5_2","ph5_3"] },
+  { label:"III — Unity of motion; contrary motions; rest (4–6)", ids:["ph5_4","ph5_5","ph5_6"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

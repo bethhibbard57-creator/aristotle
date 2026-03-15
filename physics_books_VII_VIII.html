@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Physics Books VII & VIII</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Φυσικὴ Ἀκρόασις Η–Θ</h1>
+<p class="subtitle">Physics Books VII & VIII — complete interactive reference · VII: 5 chapters · VIII: 10 chapters</p>
+<p class="subtitle">VII: contact of mover and moved; comparison of motions · VIII: the eternity of motion; the Unmoved Mover — the Physics and the Metaphysics converge</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book VII is preparatory — it establishes that every moved thing is moved by something in contact with it, and examines how motions can be compared. Book VIII is the culmination of the entire Physics: the argument from the eternity of motion to the existence of an eternal Unmoved Mover that is the first cause of all natural motion. Physics VIII and Metaphysics Lambda are the same argument from two directions — the Physics approaches it from motion, Lambda approaches it from being. They meet at the same point: pure actuality, self-thinking thought, the ground of all change.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book VII — Η · Contact of mover and moved; comparison of motions",
+    groups: [
+      {
+        label: "Every moved thing is moved by something in contact with it (VII.1–2)",
+        chapters: [
+          {
+            id:"ph7_1", label:"Phys. VII.1 — everything that moves is moved by something", greek:"πᾶν τὸ κινούμενον ὑπό τινος κινεῖται", accent:"#BA7517",
+            children:[
+              {label:"The claim", note:"Nothing moves itself in the primary sense — every moving thing is moved by something else, or by a part of itself that is itself moved by something else"},
+              {label:"The regress argument", note:"If A is moved by B, B by C, and so on — either the series terminates in a first mover that is not itself moved, or it goes on infinitely. If infinite, motion would never have started. Therefore there must be a first mover"},
+              {label:"The first mover need not be in the series", note:"The first mover is not itself in the series of movers-moved — it initiates the series without being moved by anything in it. This is the Unmoved Mover"},
+              {label:"Connection to Physics VIII", note:"This argument is the logical precursor of Physics VIII's full demonstration — VII.1 establishes that the regress must terminate; VIII establishes what the terminating first mover must be"},
+            ]
+          },
+          {
+            id:"ph7_2", label:"Phys. VII.2 — the mover must be in contact with the moved", greek:"ἁπτόμενον", accent:"#BA7517",
+            children:[
+              {label:"The contact requirement", note:"The mover must be in contact with what it moves — there is no action at a distance in Aristotle's physics. This follows from the analysis of contact in Physics V.3 and GC I.9"},
+              {label:"For each kind of motion", note:"In alteration: the altering agent must touch what is altered — fire heats by contact. In growth: the nourishing substance must be in contact with what grows. In locomotion: the pusher must push by contact"},
+              {label:"The apparent exception: throwing", note:"A thrown stone continues to move after it leaves the hand — but the hand is no longer in contact. Aristotle's solution: the air is set in motion by the hand, and the air then moves the stone. Motion is passed through the medium"},
+              {label:"The implication", note:"All causal chains in nature are chains of contact — each link moves the next by physical contact. This requires that the chain be finite and that there be a first mover — an Unmoved Mover that initiates the chain without being part of it"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Comparison of motions (VII.3–5)",
+        chapters: [
+          {
+            id:"ph7_3", label:"Phys. VII.3 — alteration and what is altered", greek:"ἀλλοίωσις", accent:"#BA7517",
+            children:[
+              {label:"What undergoes alteration", note:"Only what is perceptible by the senses is altered in the primary sense — alteration is change in sensible quality. The alterable is the subject of sensible quality-change"},
+              {label:"Forms and knowledge are not altered", note:"The acquisition of knowledge is not alteration — the soul does not change in quality when it learns; it is actualized, not altered. Similarly the virtues are not alterations but completions"},
+              {label:"Distinction from generation", note:"Alteration is change in quality while the subject persists — it is not the coming-to-be or passing-away of the subject itself. Generation is change in being; alteration is change in quality"},
+            ]
+          },
+          {
+            id:"ph7_4", label:"Phys. VII.4 — whether motions can be compared", greek:"σύγκρισις κινήσεων", accent:"#BA7517",
+            children:[
+              {label:"The question", note:"Can any two motions be compared — is one faster or slower than another? Or can only motions of the same kind be compared?"},
+              {label:"Motions of different kinds cannot be directly compared", note:"Is becoming musical faster than growing? The question seems malformed — the termini are in different categories and there is no common measure. Speed is distance per time, but what is the distance in an alteration?"},
+              {label:"Motions of the same kind can be compared", note:"Two locomotions can be compared — which covers more distance in the same time. Two alterations of the same quality can be compared — which changes more in the same time"},
+              {label:"The general principle", note:"Comparison requires a common genus — things that differ too much in kind cannot be compared on a single scale. This applies to motions as to everything else"},
+            ]
+          },
+          {
+            id:"ph7_5", label:"Phys. VII.5 — the proportion of mover, moved, distance, and time", greek:"ἀναλογία", accent:"#BA7517",
+            children:[
+              {label:"The basic proportionality", note:"If a force F moves a body W over distance D in time T, then: F moves W/2 over 2D in T, or over D in T/2. The proportionality of force, weight, distance, and time"},
+              {label:"The limits of the proportion", note:"The proportionality does not hold without limit — F/2 may not be able to move W at all. There is a threshold below which a force cannot move a given weight, regardless of time"},
+              {label:"Significance", note:"This is the first systematic statement of a kinematic proportion in Western science — the precursor of the dynamical laws of motion. Aristotle identifies the relevant variables and their relationships, even if he gets the proportionality wrong by modern standards"},
+              {label:"Connection to your thesis", note:"The proportionality of mover and moved shows that causal relations in nature are quantitatively structured — the four causes have measurable expressions. This is the physical ground of the mathematical order of nature that the Metaphysics' account of form as actuality requires"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book VIII — Θ · The eternity of motion and the Unmoved Mover",
+    groups: [
+      {
+        label: "Motion is eternal: there was no first motion (VIII.1–2)",
+        chapters: [
+          {
+            id:"ph8_1", label:"Phys. VIII.1 — motion is eternal: it has no beginning and no end", greek:"ἀΐδιος ἡ κίνησις", accent:"#534AB7",
+            children:[
+              {label:"The central claim of Book VIII", note:"Motion always was and always will be — there was no first moment at which motion began and there will be no last moment at which it ends. Motion is eternal"},
+              {label:"The argument from the nature of time", note:"Time is eternal — there was no first moment of time. But time is the number of motion. If time is eternal, motion must be eternal — for time is inseparable from motion"},
+              {label:"The argument from before and after", note:"Before any supposed first motion there would be a time — but time requires motion. If there is time before the first motion, there is motion before the first motion, contradicting the assumption that it was first"},
+              {label:"The argument from potentiality", note:"If there was a time when nothing was moving, all things were at rest. But rest is the privation of motion in what can move. For things to start moving from universal rest, something must have changed — which is itself a motion. Universal rest is self-undermining"},
+              {label:"Connection to GC II.6", note:"GC II.6 argued that the eternity of generation requires an eternal cause. Physics VIII.1 establishes the eternity of motion as the premise for the argument for an eternal Unmoved Mover. The two texts are phases of the same argument"},
+            ]
+          },
+          {
+            id:"ph8_2", label:"Phys. VIII.2 — objections answered; the priority of actuality", greek:"ἀντιλέγοντες", accent:"#534AB7",
+            children:[
+              {label:"Objection: the crafts suggest a beginning of motion", note:"Crafts like building and medicine seem to produce motion from rest — the builder starts building, the doctor starts healing. Does this not show that motion can begin from rest?"},
+              {label:"Response", note:"The craftsman was always in motion in some respect — the builder was moving before building (walking, breathing). The apparent beginning of a specific motion presupposes a prior motion. There is no genuine emergence of motion from absolute rest"},
+              {label:"Objection: animals wake and start moving", note:"Animals sleep and then wake — motion begins from what seems like rest. Does this not show motion beginning from rest?"},
+              {label:"Response", note:"Sleep is not true rest for a living being — the vital processes continue. And the waking is caused by something external — the warmth of the sun, a noise. There is always a prior cause"},
+              {label:"The priority of actuality", note:"Actuality is prior to potentiality — the actual mover is prior to the potential motion. What begins a motion must already be in some state of actuality. There is no motion from pure potentiality — actuality must precede"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Self-movers and the first mover (VIII.3–6)",
+        chapters: [
+          {
+            id:"ph8_3", label:"Phys. VIII.3 — some things are always in motion, some always at rest, some sometimes one and sometimes the other", greek:"τριχῶς", accent:"#534AB7",
+            children:[
+              {label:"Three kinds of things", children:[
+                {label:"Always in motion", note:"The heavenly bodies — their circular motion is eternal and uniform. These are the primary movers of the natural world"},
+                {label:"Always at rest", note:"The Unmoved Mover — pure actuality with no potentiality, no matter, no tendency to change"},
+                {label:"Sometimes in motion, sometimes at rest", note:"Terrestrial things — animals, plants, the elements. They move and are at rest alternately"},
+              ]},
+              {label:"The explanation of the intermediate class", note:"Things that are sometimes in motion and sometimes at rest are set in motion by things that are always in motion — the eternal circular motions of the heavens drive the cycles of generation and corruption in the sublunary world"},
+              {label:"Connection to GC II.6 and Lambda.6", note:"The three kinds of substance in Lambda.1 — sensible perishable, sensible eternal, immovable — correspond exactly to the three kinds of things here. Physics VIII.3 and Metaphysics Lambda are the same classification from two angles"},
+            ]
+          },
+          {
+            id:"ph8_4", label:"Phys. VIII.4 — the moved is always moved by something", greek:"ὑπό τινος κινεῖται", accent:"#534AB7",
+            children:[
+              {label:"Restating VII.1 with greater precision", note:"Every moved thing is moved by something — either by itself or by something else. If by itself, it has a part that moves and a part that is moved. If by something else, the chain must terminate"},
+              {label:"Natural motions", note:"Earth falls downward naturally — is this self-motion? No — the earth is moved by what generated it (which gave it the form and nature that causes it to fall) or by what removed the obstacle preventing its fall"},
+              {label:"The generator as remote mover", note:"The father is the efficient cause of the son — and indirectly of all the son's natural motions. The generator gives the form; the form is the principle of natural motion; the generator is therefore the ultimate source of natural motion in the generated thing"},
+              {label:"The implication", note:"Natural motions always have an external cause — either immediate (the remover of an obstacle) or remote (the generator). There is no genuine self-motion in the natural world below the level of soul"},
+            ]
+          },
+          {
+            id:"ph8_5", label:"Phys. VIII.5 — the first mover is unmoved", greek:"τὸ πρῶτον κινοῦν ἀκίνητον", accent:"#534AB7",
+            children:[
+              {label:"The regress must terminate", note:"The chain of movers-moved must terminate — otherwise the eternal motion could not have originated. The terminating first mover cannot itself be moved — if it were, it would require a prior mover"},
+              {label:"The first mover is unmoved", note:"The Unmoved Mover is the terminus of all causal chains. It moves other things without being moved by anything. It is the first cause of all motion in the universe"},
+              {label:"Why the first mover cannot be moved accidentally", note:"Even if the first mover is not moved essentially, it might be moved accidentally — as the soul is moved accidentally when the body is moved. But the first mover of the eternal motion cannot be accidentally moved either — any accidental motion would require an explanation, leading to a further regress"},
+              {label:"The first mover is eternal and without magnitude", note:"A finite body cannot have infinite power — and the eternal motion requires infinite power (it has gone on forever and will continue forever). Therefore the first mover has infinite power. But no finite body can have infinite power. Therefore the first mover has no body — no magnitude. It is incorporeal"},
+              {label:"Connection to Metaphysics Lambda.6–7", note:"Lambda.6 argues from the eternity of motion to the necessity of an eternal unmoved substance. Lambda.7 identifies this as nous — self-thinking thought. Physics VIII.5 arrives at the same point from the chain of movers: no magnitude, infinite power, eternal, unmoved. The two arguments are one"},
+            ]
+          },
+          {
+            id:"ph8_6", label:"Phys. VIII.6 — there is one primary Unmoved Mover", greek:"εἷς τὸ πρῶτον", accent:"#534AB7",
+            children:[
+              {label:"Why one, not many", note:"The eternal circular motion of the outermost sphere is one continuous motion — it has one cause. If there were many first movers, there would be competing principles and no guarantee of the unity of the cosmos"},
+              {label:"The unity of the primary motion", note:"The primary motion is the rotation of the outermost sphere — one rotation, uniform, eternal, continuous. One motion requires one unmoved cause. The primary Unmoved Mover is one"},
+              {label:"Other unmoved movers are subordinate", note:"Each celestial sphere may have its own unmoved mover — but all are subordinate to the primary. The primary Unmoved Mover is the source of all eternal motion; the others are derivative"},
+              {label:"The Unmoved Mover is at the periphery", note:"The outermost sphere moves fastest — it is closest to the primary Unmoved Mover, which is at or beyond the periphery of the cosmos. Motion in the natural world diminishes as it descends toward the center"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Circular motion is primary; the Unmoved Mover moves as final cause (VIII.7–10)",
+        chapters: [
+          {
+            id:"ph8_7", label:"Phys. VIII.7 — locomotion is the primary kind of motion", greek:"φορὰ πρώτη", accent:"#534AB7",
+            children:[
+              {label:"The priority of locomotion", note:"Among the three kinds of motion — alteration, growth, locomotion — locomotion is primary. All other motions require locomotion: for alteration to occur, the altering agent must come into contact with the altered, which requires locomotion"},
+              {label:"Alteration requires prior locomotion", note:"For fire to heat water, fire must approach water — locomotion. For the doctor to heal the patient, the doctor must go to the patient — locomotion. All causal interaction requires spatial contact, which requires locomotion"},
+              {label:"Growth requires prior locomotion", note:"For food to nourish the body, it must be brought into contact with the body — locomotion of the food. Growth is always accompanied by prior locomotion of what is to be assimilated"},
+              {label:"Generation requires prior locomotion", note:"For generation to occur, the generating and generated must come together — locomotion. The seasonal approach of the sun (its locomotion along the ecliptic) drives the cycle of generation and corruption"},
+              {label:"Connection to GC II.6", note:"The sun's annual motion — locomotion — is the proximate cause of eternal generation. GC II.6 gave the cosmological account; Physics VIII.7 gives the causal priority analysis. Locomotion is primary because all other change depends on it"},
+            ]
+          },
+          {
+            id:"ph8_8", label:"Phys. VIII.8 — circular locomotion is the primary locomotion", greek:"κυκλοφορία πρώτη", accent:"#534AB7",
+            children:[
+              {label:"Three kinds of locomotion", note:"In a straight line (rectilinear) · in a circle · in a combination of both. Circular motion is primary"},
+              {label:"Why circular motion is primary", children:[
+                {label:"Circular motion is continuous", note:"Rectilinear motion must stop and reverse at the endpoints — it is not genuinely continuous. Circular motion has no endpoint and reversal — it continues indefinitely without interruption"},
+                {label:"Circular motion is prior in account", note:"The circle is a complete and perfect figure — it has a definite beginning and end that are the same point. Rectilinear motion has beginning and end as separate points — less perfect"},
+                {label:"Circular motion is eternal", note:"Only circular motion can be eternal and uniform — it has no contrary (V.5) and no terminus at which it must stop. Rectilinear motion is always finite — it reaches an end and must reverse or stop"},
+              ]},
+              {label:"The celestial motion is the primary motion", note:"The eternal circular motion of the outermost sphere is the primary locomotion — and therefore the primary motion — in the universe. All other motion derives from and depends on this primary motion"},
+            ]
+          },
+          {
+            id:"ph8_9", label:"Phys. VIII.9 — rectilinear motion cannot be eternal or continuous", greek:"οὐκ ἄπειρος εὐθεῖα", accent:"#534AB7",
+            children:[
+              {label:"The argument", note:"Rectilinear motion must terminate — it reaches an endpoint and must either stop or reverse. Reversal is not one continuous motion but two motions separated by a moment of rest at the turning point"},
+              {label:"The turning point involves rest", note:"At the moment of reversal the moving thing must be at rest — even instantaneously — because it must have ceased the first motion before beginning the reverse motion. Therefore rectilinear motion back and forth is not one continuous motion"},
+              {label:"The oscillating pendulum", note:"A pendulum swings back and forth — but this is not one continuous motion. It is a series of motions separated by moments of rest at the turning points. No rectilinear back-and-forth motion can be truly continuous"},
+              {label:"Only circular motion is truly continuous", note:"Circular motion has no turning point — it flows continuously without interruption. This is why the celestial spheres move in circles rather than straight lines — circular motion is the only kind that can be eternal and continuous"},
+            ]
+          },
+          {
+            id:"ph8_10", label:"Phys. VIII.10 — the Unmoved Mover has no magnitude; it moves as final cause", greek:"ἄνευ μεγέθους κινεῖ ὡς τέλος", accent:"#534AB7",
+            children:[
+              {label:"The Unmoved Mover has no magnitude", note:"A finite body cannot have infinite power. The eternal motion requires infinite power — it has moved forever and will move forever. Therefore the source of eternal motion has infinite power. A finite body cannot have infinite power. Therefore the Unmoved Mover has no body — no magnitude"},
+              {label:"The Unmoved Mover is at the periphery", note:"It is associated with the outermost sphere — the sphere of the fixed stars, which rotates fastest and whose motion is closest to the uniform eternal motion of the first principle. The Unmoved Mover is at or beyond the edge of the physical cosmos"},
+              {label:"How the Unmoved Mover moves without being moved", note:"The Unmoved Mover moves as an object of desire and love — as the beautiful moves without being moved. It does not push or pull; it is the final cause of the eternal circular motion. The outermost sphere moves eternally because it desires the Unmoved Mover"},
+              {label:"The final cause as primary cause of motion", note:"The final cause — what something is for — is the primary cause of motion in nature. The Unmoved Mover as final cause is the deepest explanation of why anything moves. All natural motion is oriented toward the good; the highest good is the Unmoved Mover"},
+              {label:"The Physics closes where the Metaphysics begins", note:"Physics VIII.10 arrives at the same point as Metaphysics Lambda.7 — pure actuality, no magnitude, moves as final cause, object of desire. The Physics approached it from the analysis of motion; the Metaphysics approached it from the analysis of being. They are the same argument and the same conclusion"},
+              {label:"Connection to your thesis", note:"The Unmoved Mover moves as final cause — as the object of desire, not as an efficient cause pushing from behind. This is the physical expression of the teleological structure established in Physics II.8–9. Final causation is primary; mechanical causation is derivative. The catuṣkoṭi's fourth position — beyond is and is-not, beyond motion and rest — is the position of the Unmoved Mover: the ground and limit of all determination, not itself determined. Physics VIII.10 and Metaphysics Lambda.7 together give the complete account of what that position is in natural and metaphysical terms. The Physics is complete"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

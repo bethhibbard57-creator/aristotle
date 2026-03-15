@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Politics I–II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Πολιτικά Α–Β</h1>
+<p class="subtitle">Politics Books I & II — complete interactive reference</p>
+<p class="subtitle">I: the city and its natural origins; the household; slavery; property · II: critique of ideal states — Plato, Phaleas, Hippodamus</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Politics Book I establishes the city as a natural community — the completion of the household and village, prior to them in the order of nature though posterior in the order of generation. It analyses the household's internal relations and gives the famous account of man as a political animal. Book II examines proposed ideal states and property arrangements, giving Aristotle's critique of Plato's Republic and Laws and of the proposals of Phaleas and Hippodamus.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book I — Πολιτικά Α · The city and its natural origins",
+    groups: [
+      {
+        label: "The city as the highest community; man as political animal (I.1–2)",
+        chapters: [
+          {
+            id:"pol1_1", label:"Pol. I.1 — every community aims at some good; the city is the highest", greek:"πᾶσα κοινωνία ἀγαθοῦ τινος ἕνεκεν", accent:"#BA7517",
+            children:[
+              {label:"The opening parallel with the Ethics", note:"Every community is established for the sake of some good — for people always act for the sake of what they think good. NE I.1 opened identically: every action aims at some good. The Politics opens by extending the Ethics' principle to communities"},
+              {label:"The city is the highest community", note:"The city (πόλις) encompasses all other communities — household, village — and aims at the highest good. Since it aims at the highest good, it is the most authoritative and all-encompassing of communities"},
+              {label:"The method: analysis into elements", note:"To understand the city we must analyse it into its elements — as with everything else. The method of the Politics is the same as the method of natural science: analysis of the composite into its primary components"},
+              {label:"Connection to NE X.9", note:"The Ethics handed off to the Politics: the complete account of the human good requires political science. Politics I.1 takes up exactly where NE X.9 left off — the city as the condition of human flourishing"},
+            ]
+          },
+          {
+            id:"pol1_2", label:"Pol. I.2 — the natural development of the city; man as political animal", greek:"ζῷον πολιτικόν", accent:"#BA7517",
+            children:[
+              {label:"The household comes first", note:"The most basic community is the household — constituted by the pairing of male and female (for reproduction) and master and slave (for preservation). These pairings are natural, not conventional"},
+              {label:"The village comes second", note:"Several households combine into a village — the first community beyond the household, aiming at more than daily needs. Villages are natural extensions of households"},
+              {label:"The city comes third — and is primary in nature", note:"Several villages combine into a city — the complete community, sufficient for all the needs of life. The city is the natural completion of the prior communities. Though last in generation, the city is first in nature — the end toward which the prior communities tend"},
+              {label:"The city is prior by nature", note:"As with all natural wholes, the whole is prior to its parts. The hand separated from the body is not a hand except in name. The individual separated from the city is not fully human — they are either a beast or a god"},
+              {label:"Man is by nature a political animal", greek:"ζῷον πολιτικόν", note:"Man is by nature a political animal — more so than bees or any herd animal. The person who lives outside the city by nature (not by force) is either inferior to humanity or superior to it — either a beast or a god"},
+              {label:"Speech and the political nature", note:"Man alone has speech (λόγος) — not merely voice (φωνή). Voice signals pleasure and pain (which animals have); speech declares what is advantageous and harmful, just and unjust. The sharing of these perceptions is what makes a household and a city"},
+              {label:"The natural priority of the city", note:"The city is prior in nature to the individual — as the whole is prior to the part. The individual outside the city cannot be self-sufficient; they depend on the city for full human development"},
+              {label:"Connection to your thesis", note:"Man as political animal — ζῷον πολιτικόν — is the political expression of the function argument of NE I.7. The function of man (rational activity in accordance with virtue) can only be fully exercised in the political community. The city is the material and formal cause of the good human life — without it, the form cannot be actualised. The political is the fourth level of the tetralemmic structure: logical (Organon), physical (Physics/Metaphysics), psychological (DA), political (Politics). Each level is the actualisation of the formal structure at that domain of being"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The household: its relations and its management (I.3–13)",
+        chapters: [
+          {
+            id:"pol1_3", label:"Pol. I.3–4 — the parts of the household; slavery", greek:"οἰκονομία", accent:"#BA7517",
+            children:[
+              {label:"Three relations in the household", note:"Master and slave · husband and wife · parent and child. These are the three natural relations that constitute the household. Each has a different character and requires a different kind of authority"},
+              {label:"I.4 — the slave as an instrument", note:"The slave is a living instrument for the maintenance of life — a tool that acts for itself. The slave is part of the master in a way that other property is not. Aristotle's account of slavery is hierarchical and teleological — the slave exists for the master's purposes"},
+              {label:"The naturalness of slavery examined", note:"Aristotle argues that some people are slaves by nature — their rational capacity is limited to understanding reason in others but not exercising it themselves. Whether this is defensible is contested; the philosophical structure is: natural slavery is the application of the form/matter relation to human beings — the slave's body is the matter; the master's reason is the form"},
+              {label:"The philosophical structure", note:"Whatever one thinks of the specific doctrine of natural slavery, the structural analysis is clear: the household is a microcosm of the four causes at the social level. The master-slave relation instantiates formal-material causation; the husband-wife relation instantiates efficient causation (reproduction); the parent-child relation instantiates final causation (the child as the end of the family's continuation)"},
+            ]
+          },
+          {
+            id:"pol1_8", label:"Pol. I.8–11 — the art of household management; the unnatural art of money-making", greek:"χρηματιστική", accent:"#BA7517",
+            children:[
+              {label:"Natural wealth-acquisition", note:"Natural wealth-acquisition is the art of providing what the household and city need — food, clothing, shelter. It has a natural limit: enough for the good life"},
+              {label:"The unnatural art of money-making", note:"The art of money-making (χρηματιστική) in the unnatural sense uses exchange and money to accumulate wealth without limit. It has no natural limit — the goal is always more money. This is unnatural because it treats money (a means) as an end"},
+              {label:"The philosophical analysis", note:"The unlimited nature of unnatural money-making is the same error as treating any means as an end — the category error identified in NE I.5 (the life of money-making). The confusion of means and ends in economics is the practical expression of the logical error of confusing accidental and per se predication"},
+              {label:"Retail trade as intermediate", note:"Retail trade is intermediate between natural and unnatural acquisition — it uses exchange, but not primarily for unlimited accumulation. The boundary between natural and unnatural is whether the acquisition serves the good life or supplants it"},
+            ]
+          },
+          {
+            id:"pol1_12", label:"Pol. I.12–13 — the authority relations in the household; virtue of the parts", greek:"ἀρχαί", accent:"#BA7517",
+            children:[
+              {label:"Three kinds of authority", note:"The master's authority over the slave is despotic — no deliberation required on the slave's part. The husband's authority over the wife is political — she deliberates but lacks full authority. The parent's authority over the child is kingly — the child has deliberative capacity but not yet fully developed"},
+              {label:"Virtue differs by role", note:"The virtue of the slave, the wife, the child, and the free man differ — each has virtues appropriate to their function in the household. There is no single virtue of 'human being' that applies identically to all roles"},
+              {label:"Connection to NE and the political animal", note:"The household is a political community in miniature — it has authority relations, different virtues for different roles, and a common good. The city extends and completes these relations. Politics I.12–13 establishes the plurality of virtues that the city will need to coordinate"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Πολιτικά Β · Critique of ideal states",
+    groups: [
+      {
+        label: "Critique of Plato's Republic and Laws (II.1–6)",
+        chapters: [
+          {
+            id:"pol2_1", label:"Pol. II.1–5 — the critique of Plato's Republic", greek:"Πολιτεία", accent:"#534AB7",
+            children:[
+              {label:"The unity of the city: Plato's error", note:"Plato argues for maximal unity in the city — common wives, children, and property to eliminate private interests. Aristotle argues this destroys the city rather than unifying it — a city is not a household and a household is not a single person. Over-unity kills the political"},
+              {label:"The community of women and children fails", note:"If all citizens are parents of all children and children of all parents, the bond of parenthood is diluted to nothing. Specific love — this is my child — is stronger than diluted universal concern. Common ownership of children produces negligence, not care"},
+              {label:"Community of property fails", note:"Common property is less well-maintained than private property. People care for their own; what belongs to everyone is neglected by everyone. The pleasure of ownership is real and legitimate"},
+              {label:"The two senses of 'mine'", note:"'All things in common' uses 'mine' in a weak sense — mine as one among many owners. Private property uses 'mine' in the strong sense — mine alone. Plato sacrifices the strong for the weak and loses both the attachment and the care"},
+              {label:"Connection to your thesis", note:"The unity/plurality problem in the city is the political form of the one/many problem in the Metaphysics. Iota.1–2 analysed the senses of unity — numerical, specific, generic, analogical. Pol. II.1–5 shows what happens when political unity is misapplied: collapsing specific identity into generic produces not a unified city but a destroyed one. The political elenchus of Plato's Republic is the application of Iota's analysis of unity to collective life"},
+            ]
+          },
+          {
+            id:"pol2_6", label:"Pol. II.6 — the critique of Plato's Laws", greek:"Νόμοι", accent:"#534AB7",
+            children:[
+              {label:"The Laws is better than the Republic but still flawed", note:"Plato's Laws moves toward conventional arrangements — private property, traditional marriage, a mixed constitution. But it still fails on several points"},
+              {label:"The property arrangement is poorly designed", note:"The Laws tries to limit inequality without abolishing private property — but the mechanism is inadequate. The limits are too loose and the provisions for the poor too weak"},
+              {label:"The constitution is unstable", note:"Plato's mixed constitution in the Laws leans too heavily toward oligarchy — it gives too much power to the wealthy. An unstable mixture produces faction, not stability"},
+              {label:"The general principle emerging", note:"Both Republic and Laws fail because they proceed from abstract ideals without adequately considering human nature — what people are actually like, what they will actually do. Good political arrangements must be grounded in accurate psychology, not in idealisations"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Critiques of Phaleas and Hippodamus; Spartan, Cretan, and Carthaginian constitutions (II.7–12)",
+        chapters: [
+          {
+            id:"pol2_7", label:"Pol. II.7–8 — Phaleas and Hippodamus", greek:"Φαλέας καὶ Ἱππόδαμος", accent:"#534AB7",
+            children:[
+              {label:"Phaleas: equality of property as the cure for faction", note:"Phaleas proposed equalising land holdings to eliminate the economic basis of faction. Aristotle's critique: the desire for more is not only about necessities but about luxuries and honour. Equalising property does not equalise desire — desire is unlimited"},
+              {label:"The root of faction is not property but desire", note:"People commit injustice not only from poverty but from ambition, honour, and the desire for superiority. Equalising property addresses the material symptom without the psychological cause — virtue, not equality, is the proper cure for faction"},
+              {label:"Hippodamus: the first theorist of the ideal city", note:"Hippodamus proposed a city of 10,000 citizens divided into three classes — artisans, farmers, soldiers. Three kinds of law — insult, damage, homicide. Three kinds of land — sacred, public, private. Aristotle criticises the rigidity of the threefold division and the impracticality of many of the proposals"},
+              {label:"The merit of Hippodamus", note:"Hippodamus was the first person who attempted to theorise about the best constitution without having any political experience. Aristotle values the theoretical attempt even while criticising the specific proposals"},
+            ]
+          },
+          {
+            id:"pol2_9", label:"Pol. II.9–12 — Sparta, Crete, and Carthage", greek:"Σπάρτη, Κρήτη, Καρχηδών", accent:"#534AB7",
+            children:[
+              {label:"Sparta: admired but flawed", note:"The Spartan constitution is widely admired — its military discipline and communal life. Aristotle finds serious flaws: the helot system is unstable, the ephors too powerful and often corrupt, women are too free and too powerful in private life, the system is calibrated entirely for war and fails in peace"},
+              {label:"The Spartan error: optimising for one virtue", note:"Sparta optimised entirely for military virtue — courage and endurance. But the city needs all the virtues, not just military ones. A city that excels at war and fails at peace has optimised for means rather than ends — the same error as the life of money-making"},
+              {label:"Crete: ancestral model for Sparta", note:"The Cretan constitution is older than Sparta's and similar in structure. Aristotle notes it is less developed and more corrupt — but historically important as the precedent"},
+              {label:"Carthage: the most stable of the three", note:"The Carthaginian constitution mixes elements of monarchy, oligarchy, and democracy in a more successful way than Sparta or Crete. Its stability comes from the balance of its parts — the different elements check each other. Aristotle gives Carthage qualified praise as the closest existing constitution to his own ideal"},
+              {label:"Connection to your thesis", note:"The critique of Sparta's single-virtue optimisation is the political expression of the tetralemmic principle: no single position can be the whole truth. A city calibrated entirely for courage has collapsed the four-position structure into one. The result is instability — the same instability that results from collapsing the four logical positions into one. The political critique and the logical critique have the same structure"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

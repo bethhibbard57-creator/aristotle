@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Nicomachean Ethics V–VI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .phronesis-flag { font-size: 10px; color: #8B3A8B; font-style: italic; margin-left: 8px; font-weight: 600; letter-spacing: 0.04em; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-header-ph { background: #f0e8f5; border-left: 4px solid #8B3A8B !important; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .ph-group-label { font-size: 10px; color: #8B3A8B; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἠθικὰ Νικομάχεια Ε–Ζ</h1>
+<p class="subtitle">Nicomachean Ethics Books V & VI — complete interactive reference</p>
+<p class="subtitle">V: justice — the complete virtue · VI: the intellectual virtues — practical wisdom, sophia, nous</p>
+<p class="subtitle" style="color:#8B3A8B; font-weight:600;">Book VI on the intellectual virtues receives extended treatment — φρόνησις and νοῦς are the psychological ground of the thesis</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book V treats justice as the complete virtue — the virtue that is exercised toward others and encompasses all the other virtues in its scope. Book VI analyses the intellectual virtues: the five ways the soul achieves truth — scientific knowledge, craft, practical wisdom, philosophical wisdom, and nous. Practical wisdom (φρόνησις) is the master intellectual virtue for action; nous is its ground and limit. Together Books V–VI complete the bridge between the ethics of character and the account of theoretical reason that Book X will bring to its culmination.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book V — Ἠθικὰ Νικομάχεια Ε · Justice: the complete virtue",
+    groups: [
+      {
+        label: "Justice in general: complete and partial (V.1–3)",
+        chapters: [
+          {
+            id:"ne5_1", label:"NE V.1–2 — justice as complete virtue toward others", greek:"δικαιοσύνη τελεία ἀρετή", accent:"#BA7517",
+            children:[
+              {label:"Two senses of justice", children:[
+                {label:"General justice", note:"Complete virtue — the whole of virtue exercised in relation to others. Justice in this sense is not a particular virtue alongside courage and temperance but the exercise of all virtues directed outward toward others"},
+                {label:"Particular justice", note:"A specific virtue — concerned with fair distribution and fair exchange. This is one virtue among others, with its own excess and deficiency"},
+              ]},
+              {label:"General justice as complete virtue", note:"The just person in the general sense is the person who observes the law and deals fairly with others. Law aims at the common good — and the person who acts lawfully exercises all the virtues insofar as they bear on others"},
+              {label:"Justice is toward another", note:"Justice is the only virtue defined by its relation to another person — it is other-regarding by definition. This makes it the most complete virtue: a person can be courageous for themselves alone, but justice requires a community"},
+              {label:"Injustice as pleonexia", greek:"πλεονεξία", note:"The unjust person seeks more than their share — pleonexia, wanting more. Justice is giving each their due; injustice is taking what belongs to another"},
+              {label:"Connection to the Politics", note:"Justice as the complete virtue toward others connects the Ethics directly to the Politics — the political community is the condition of justice in the full sense. The good person and the good citizen are identical only in the best constitution"},
+            ]
+          },
+          {
+            id:"ne5_3", label:"NE V.3–4 — particular justice: distributive and corrective", greek:"διανεμητικὸν καὶ διορθωτικόν", accent:"#BA7517",
+            children:[
+              {label:"Distributive justice", greek:"δικαιοσύνη διανεμητική", note:"Concerned with the distribution of goods (honour, wealth, offices) among members of a community. The just distribution is proportional — each receives in proportion to their merit or contribution"},
+              {label:"The geometric proportion", note:"Distributive justice is a geometric proportion — A:B = C:D, where A and B are persons and C and D are their shares. Equal persons receive equal shares; unequal persons receive unequal shares in the same ratio as their inequality"},
+              {label:"Corrective justice", greek:"δικαιοσύνη διορθωτική", note:"Concerned with rectifying unjust transactions — whether voluntary (contracts) or involuntary (crimes). The just correction restores equality — returning things to the state before the unjust transaction"},
+              {label:"The arithmetic proportion", note:"Corrective justice operates by arithmetic proportion — restoring the mean between gain and loss. The judge takes from the gainer and gives to the loser until both are at the mean"},
+              {label:"Connection to your thesis", note:"The two kinds of justice are two kinds of proportion — geometric and arithmetic. These are formal structures: the just is the proportionate, the unjust is the disproportionate. Justice is the application of mathematical form to social relations — the ethical expression of the formal cause operating in the domain of human interaction"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Reciprocity, political justice, equity (V.4–10)",
+        chapters: [
+          {
+            id:"ne5_5", label:"NE V.5 — reciprocal justice and the market", greek:"τὸ ἀντιπεπονθός", accent:"#BA7517",
+            children:[
+              {label:"Reciprocity and exchange", note:"In exchange, the proportionate reciprocal holds society together — people exchange goods and services according to their relative value. Without proportionate exchange, society dissolves"},
+              {label:"Money as the measure", note:"Money (νόμισμα) is the common measure that makes all goods commensurable — it is the conventional substitute for need as the ground of exchange. Money measures the value of all exchangeable goods"},
+              {label:"The formal structure", note:"Exchange is just when the ratio of the values exchanged is equal — A gives to B in proportion to B's giving to A. Justice in exchange is the geometric proportion applied to reciprocal giving"},
+            ]
+          },
+          {
+            id:"ne5_6", label:"NE V.6–7 — political justice: natural and legal", greek:"τὸ πολιτικὸν δίκαιον", accent:"#BA7517",
+            children:[
+              {label:"Political justice", note:"Justice among those who share a life aimed at self-sufficiency under law — free and equal persons in a community. This is the proper domain of justice; other forms are justice only by analogy"},
+              {label:"Natural justice", greek:"φυσικὸν δίκαιον", note:"What has the same validity everywhere regardless of whether it is enacted in law — the universal standard of justice that transcends particular legal systems"},
+              {label:"Legal justice", greek:"νομικὸν δίκαιον", note:"What is initially indifferent but becomes binding once enacted in law — the specific positive laws of a community. These vary by community"},
+              {label:"Natural and legal justice are both genuine", note:"Natural justice is not rendered invalid by the existence of legal variation. The fact that laws differ does not mean there is no natural standard — just as fire burns the same everywhere even though customs differ"},
+              {label:"Connection to Rhetoric I.13", note:"Written and unwritten law — the appeal to natural justice in forensic rhetoric. NE V.7 gives the philosophical grounding of the rhetorical distinction: natural justice is real and provides the standard against which positive law is measured"},
+            ]
+          },
+          {
+            id:"ne5_8", label:"NE V.8 — justice and voluntariness", greek:"ἑκούσιον", accent:"#BA7517",
+            children:[
+              {label:"Just and unjust acts require voluntariness", note:"A person acts justly or unjustly only if the action is voluntary — known, from one's own principle, and chosen. Involuntary harmful acts are not unjust acts — they may be unfortunate or mistaken but not unjust"},
+              {label:"The connection to Book III", note:"The analysis of voluntariness from III.1 is here applied to justice specifically. The just and the unjust are subsets of the voluntary — only what is done knowingly and from choice counts as just or unjust in the full sense"},
+              {label:"The just person vs just acts", note:"Doing a just act does not make one just — it must be done as the just person would do it: knowingly, by choice, from a stable character. This parallels the distinction of NE II.4: acts can be just without the agent being just"},
+            ]
+          },
+          {
+            id:"ne5_9", label:"NE V.9 — can one be voluntarily unjust to oneself?", greek:"ἑαυτὸν ἀδικεῖν", accent:"#BA7517",
+            children:[
+              {label:"The puzzle", note:"Can one treat oneself unjustly? If justice requires two parties — the just person and the person dealt with justly — can one be both at once?"},
+              {label:"The answer", note:"One cannot be unjust to oneself in the strict sense — justice and injustice require a genuine other. What appears as injustice to oneself is really the conflict between parts of the soul — one part dominating another"},
+              {label:"The political analogy", note:"The just city is one in which the right part (reason) rules the others (spirit and appetite). The just soul is similarly ordered. Self-harm is not injustice to oneself but disorder of the soul"},
+            ]
+          },
+          {
+            id:"ne5_10", label:"NE V.10 — equity: justice beyond the letter of the law", greek:"ἐπιείκεια", accent:"#BA7517",
+            children:[
+              {label:"Equity defined", note:"Equity is better than legal justice — not better than justice simply, but better than justice as the law expresses it. It is the correction of legal justice where the law errs through its generality"},
+              {label:"Why law must be general", note:"Law speaks universally — it cannot address every particular case. When the universal rule fails in a particular case, we must do what the lawgiver would have said if they had known"},
+              {label:"The equitable person", note:"The equitable person does not insist on the letter of the law when it fails to deliver justice — they take less than the law would give them if the law's full application would be unjust in the circumstances"},
+              {label:"Equity and the particular", note:"Equity is the virtue of judging rightly in the particular case when the universal rule falls short. It is the ethical application of the distinction between universal and particular — and the practical analogue of the perception of the practically wise person"},
+              {label:"Connection to your thesis", note:"Equity is the practical expression of the secundum quid dissolution. The universal law is the unqualified rule; equity restores the qualification the particular case requires. The equitable person recognises that the universal does not apply without qualification to this particular case — the same move that dissolves the logical paradoxes when applied to the universal claims of the Liar, Russell, and the Sea Battle"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book VI — Ἠθικὰ Νικομάχεια Ζ · The intellectual virtues: φρόνησις, σοφία, νοῦς",
+    groups: [
+      {
+        label: "The five ways the soul achieves truth (VI.1–3)",
+        chapters: [
+          {
+            id:"ne6_1", label:"NE VI.1–2 — why we need intellectual virtues; the two parts of the rational soul", greek:"διανοητικαὶ ἀρεταί", accent:"#534AB7",
+            children:[
+              {label:"The definition of virtue refers to reason", note:"NE II.6 defined virtue as the disposition determined by the logos of the practically wise person. To understand virtue fully we must understand what kind of logos and what kind of reason is involved"},
+              {label:"Two parts of the rational soul", children:[
+                {label:"The scientific part", greek:"ἐπιστημονικόν", note:"Contemplates things whose principles cannot be otherwise — necessary truths. The domain of theoretical knowledge"},
+                {label:"The calculative part", greek:"λογιστικόν", note:"Deliberates about things that can be otherwise — contingent matters where action is possible. The domain of practical reason"},
+              ]},
+              {label:"VI.2 — the function of each part", note:"The function of the intellectual parts is truth — the scientific part aims at theoretical truth; the calculative part aims at practical truth, i.e. truth in agreement with right desire"},
+              {label:"Practical truth", note:"Practical truth is not correspondence with an independent fact but agreement between what reason prescribes and what desire seeks — the rational ordering of desire toward genuine goods. This is what practical wisdom achieves"},
+            ]
+          },
+          {
+            id:"ne6_3", label:"NE VI.3 — the five intellectual virtues", greek:"πέντε ἀρεταί διανοητικαί", accent:"#534AB7",
+            children:[
+              {label:"Scientific knowledge", greek:"ἐπιστήμη", note:"Knowledge of what is necessary — demonstrative knowledge from necessary premises. The capacity to demonstrate from first principles. Connected to Post. An."},
+              {label:"Craft", greek:"τέχνη", note:"Reasoned productive capacity — knowing how to make things. Concerned with production (ποίησις), not action (πρᾶξις)"},
+              {label:"Practical wisdom", greek:"φρόνησις", note:"Reasoned capacity for action — knowing how to act well in particular situations. Concerned with action (πρᾶξις), not production. The master virtue of the calculative soul"},
+              {label:"Philosophical wisdom", greek:"σοφία", note:"The combination of scientific knowledge and nous about the highest things — the most complete theoretical knowledge. The master virtue of the scientific soul"},
+              {label:"Nous", greek:"νοῦς", note:"The intuitive grasp of first principles — what cannot be demonstrated but is grasped immediately. The ground of scientific knowledge and philosophical wisdom. Connected to DA III.5 and Post. An. II.19"},
+              {label:"The five are exhaustive", note:"These five exhaust the ways the soul achieves truth about what is and what should be done. Together they constitute the complete intellectual life of the human being"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "⬦ PHRONESIS — practical wisdom in full (VI.4–13)",
+        chapters: [
+          {
+            id:"ne6_4", label:"NE VI.4–5 — craft vs practical wisdom; what practical wisdom is", greek:"φρόνησις ὁρισμός", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"VI.4 — craft is about production, practical wisdom about action", note:"Craft aims at an external product — the house, the statue. Its excellence is in the product, not in the maker's state. Practical wisdom aims at action — the well-lived life. Its excellence is in the agent's activity itself"},
+              {label:"VI.5 — practical wisdom defined through Pericles", note:"Pericles is the model of practical wisdom — a person who can discern what is good for themselves and for others, and who can bring this discernment to bear in particular situations. Practical wisdom is the capacity to deliberate well about what conduces to the good life in general"},
+              {label:"Practical wisdom is about particulars as well as universals", note:"Practical wisdom must know both the universal (what is good for human beings) and the particular (what is good in this situation, for this person, at this time). The universal without the particular is blind; the particular without the universal is incomplete"},
+              {label:"Practical wisdom cannot be forgotten", note:"Unlike craft knowledge, practical wisdom is not a skill that can be lost while remaining who one is. Practical wisdom is bound up with character — losing it would mean losing one's moral self"},
+              {label:"Connection to NE II.6", note:"Virtue is defined by the logos of the practically wise person — NE II.6. NE VI.5 now gives the positive account of what that person is: one who deliberates well about the good life in general and can act on that deliberation in particular situations"},
+            ]
+          },
+          {
+            id:"ne6_7", label:"NE VI.7 — philosophical wisdom vs practical wisdom", greek:"σοφία καὶ φρόνησις", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"Philosophical wisdom is the highest theoretical virtue", note:"Sophia is scientific knowledge of the highest things combined with nous — knowledge of what is most honourable. It is not wisdom about what is good for human beings but about what is best simply"},
+              {label:"Practical wisdom is not the highest form of knowledge", note:"Practical wisdom is wisdom about human affairs — the contingent, the variable, the particular. It is not about the eternal and necessary truths that sophia studies"},
+              {label:"The distinction", note:"Sophia asks what is eternally and necessarily true — what the cosmos is, what the first principles are. Phronesis asks what is good for human beings to do here and now. Both are intellectual virtues but of different kinds and directed at different objects"},
+              {label:"Neither is reducible to the other", note:"A person can be theoretically wise without being practically wise (the absent-minded philosopher who cannot manage their own affairs) and practically wise without being theoretically wise (the experienced statesman with no philosophical learning). Both are genuine virtues"},
+              {label:"Connection to NE X", note:"Book X will argue that the contemplative life — exercising sophia and nous — is the highest human life. The distinction between sophia and phronesis is preparatory for that argument: sophia governs the highest life; phronesis governs the second-best life of political activity"},
+            ]
+          },
+          {
+            id:"ne6_8", label:"NE VI.8 — practical wisdom about the particular", greek:"τὸ καθ᾽ ἕκαστον", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"Practical wisdom requires knowledge of particulars", note:"The practically wise person must know not only the universal principle but the particular circumstances — who, what, when, where, how. Without this knowledge, the universal principle cannot be applied"},
+              {label:"Experience and the particular", note:"Knowledge of particulars comes from experience — from living through situations, making choices, and learning from the outcomes. The young cannot be practically wise — they lack the experience from which practical wisdom grows"},
+              {label:"The priority of the particular in practice", note:"In practice, the particular is prior — we must act in this situation, not in situations-in-general. The universal principle guides, but the particular perception is what triggers action. Without perception of the particular, the universal is inert"},
+              {label:"Connection to Post. An. I.31 and II.19", note:"Post. An. I.31: perception is not knowledge in the strict sense — it gives the fact, not the reason. But Post. An. II.19: knowledge begins from perception. NE VI.8 resolves the tension: in practical matters, the perception of the particular is not a mere starting point but remains operative throughout — practical wisdom always returns to the particular"},
+            ]
+          },
+          {
+            id:"ne6_9", label:"NE VI.9 — good deliberation", greek:"εὐβουλία", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"Good deliberation is not mere cleverness", note:"Good deliberation (εὐβουλία) is not the ability to calculate quickly or to find means to any end. The clever person can find means to bad ends as well as good ones"},
+              {label:"Good deliberation is about the right end", note:"Good deliberation hits upon the right thing — the genuinely good end — by the right means, in the right time. It is deliberation oriented by virtue toward the genuine good"},
+              {label:"Good deliberation takes time", note:"Unlike cleverness, good deliberation is not impulsive — it involves genuine deliberation, working through alternatives, considering consequences. Hasty action is not the mark of practical wisdom"},
+              {label:"The connection to virtue", note:"Good deliberation presupposes that the end is genuinely good — which requires virtue of character. The clever person without virtue can deliberate well about bad ends. Only the virtuous person deliberates well about the right end"},
+            ]
+          },
+          {
+            id:"ne6_10", label:"NE VI.10–11 — understanding, judgment, and sympathetic understanding", greek:"σύνεσις καὶ γνώμη", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"Understanding", greek:"σύνεσις", note:"The capacity to judge correctly about what practical wisdom prescribes — to evaluate and assess the practically wise person's prescriptions. Not productive but critical"},
+              {label:"Judgment", greek:"γνώμη", note:"Sound judgment about what is equitable — the capacity to judge correctly in particular cases where the universal rule needs to be set aside. The intellectual ground of equity (NE V.10)"},
+              {label:"Sympathetic understanding", greek:"συγγνώμη", note:"The capacity to judge correctly about difficult cases by entering sympathetically into the agent's situation. The practically wise person understands why others act as they do — and judges with this understanding"},
+              {label:"The family of practical virtues", note:"Practical wisdom, good deliberation, understanding, judgment, and sympathetic understanding are all aspects of the same intellectual capacity — the capacity to perceive, deliberate, and judge correctly about action in particular situations"},
+            ]
+          },
+          {
+            id:"ne6_12", label:"NE VI.12–13 — why we need practical wisdom and virtue; their unity", greek:"χρεία φρονήσεως", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"Practical wisdom is not merely cleverness directed at virtue", note:"It might seem that we only need virtue for the right end and cleverness to find the means — practical wisdom would then be reducible to cleverness in the service of virtue. But this is wrong"},
+              {label:"Practical wisdom makes virtue genuine", note:"Without practical wisdom, virtue is not fully virtue — it is natural virtue, the untrained disposition that can go wrong in complex situations. Practical wisdom transforms natural virtue into genuine virtue by giving it correct perception of the particular"},
+              {label:"The unity of the virtues", note:"Practical wisdom is one — but it encompasses all the virtues. To have genuine practical wisdom is to have all the virtues, because practical wisdom perceives the good in every domain of action. The virtues are unified through practical wisdom"},
+              {label:"Virtue makes the end right; practical wisdom makes the means right", note:"Virtue of character gives the right end — the genuinely good end that desire is oriented toward. Practical wisdom finds the right means to that end. Neither is sufficient without the other — the full ethical life requires both"},
+              {label:"Connection to your thesis", note:"The unity of the virtues through practical wisdom is the ethical expression of the unity of the soul through nous. As nous is the ground of all the intellectual virtues (VI.3), practical wisdom is the ground of all the character virtues. The two grounds are related: practical wisdom operates through nous in its practical mode — the perception of the good in the particular is a form of direct intellectual grasp analogous to the theoretical nous of DA III.4–5. The ethics and the psychology are one account at two levels"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "⬦ NOUS in the practical context (VI.6, VI.11, VI.12)",
+        chapters: [
+          {
+            id:"ne6_6", label:"NE VI.6 — nous grasps the indemonstrable first principles", greek:"νοῦς τῶν ἀρχῶν", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"Scientific knowledge proceeds from first principles", note:"Demonstration proceeds from premises — but the premises themselves cannot be demonstrated without regress. Something must be known non-demonstratively"},
+              {label:"Nous grasps first principles directly", note:"Nous — intellectual intuition — is the state that grasps first principles immediately and with certainty. It is not a process of reasoning but a direct intellectual grasp — the same nous of DA III.4–5 and Post. An. II.19"},
+              {label:"Nous is more accurate than scientific knowledge", note:"Because scientific knowledge proceeds from first principles and nous grasps the first principles themselves, nous is epistemically prior and more accurate than scientific knowledge. It is the ground on which all knowledge rests"},
+              {label:"Connection to DA III.5", note:"The active nous of DA III.5 — separable, unmixed, impassible — is what makes the grasp of first principles possible. NE VI.6 gives the epistemological description; DA III.5 gives the psychological ground. They are the same nous from two angles"},
+              {label:"Connection to Post. An. II.19", note:"The epistemological ascent culminating in nous grasping first principles — Post. An. II.19. NE VI.6 names the same state as one of the five intellectual virtues. The epistemological, psychological, and ethical accounts converge on the same faculty"},
+            ]
+          },
+          {
+            id:"ne6_11b", label:"NE VI.11 — nous in practical reasoning: perception of the particular", greek:"νοῦς τοῦ καθ᾽ ἕκαστον", accent:"#8B3A8B",
+            ph: true,
+            children:[
+              {label:"Nous in practical matters", note:"In practical reasoning, nous operates at both ends — it grasps the universal first principles of practical reason (that happiness is the end, that virtue is required) and it perceives the particular case directly"},
+              {label:"The perception of the last particular", note:"In deliberation, reasoning works from the universal toward the particular until we reach something immediately actionable — the last particular, which we perceive rather than infer. This perception is a kind of nous"},
+              {label:"Nous as the limit of practical reasoning", note:"Just as theoretical nous grasps first principles that cannot be further justified, practical nous perceives the particular that cannot be further analysed. Both are forms of direct intellectual contact — the theoretical and the practical expressions of the same faculty"},
+              {label:"The circle of practical wisdom", note:"Practical wisdom starts from nous (grasp of the universal end), deliberates through the intermediate steps, and terminates in nous (perception of the particular action). Nous is both the beginning and the end of practical reasoning — the alpha and omega of ethical action"},
+              {label:"Connection to your thesis", note:"Nous in its practical form — perceiving the last particular — is the ethical expression of the direct intellectual contact that Theta.10 and DA III.6 describe for theoretical nous. In both cases nous grasps its object without combination and division, without predication in the ordinary sense — by direct contact. The practical and theoretical forms of nous are the same faculty at two levels. This is the psychological ground of the claim that the catuṣkoṭi's fourth position — beyond predication, grasped directly or not at all — corresponds to what nous does at its limit, both theoretically and practically"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  const isPh = c.ph;
+  return `<div class="cat-block">
+    <div class="header-row toggle ${isPh ? 'cat-header-ph' : 'cat-header'}" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+      ${isPh ? `<span class="phronesis-flag">◆ PHRONESIS / NOUS</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g => {
+      const isPh = g.label.includes('PHRONESIS') || g.label.includes('NOUS');
+      return `<div class="${isPh ? 'ph-group-label' : 'group-label'}">${g.label}</div>` +
+        g.chapters.map(c => renderCat(c)).join('');
+    }).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

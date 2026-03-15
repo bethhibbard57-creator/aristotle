@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Nicomachean Ethics I–II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἠθικὰ Νικομάχεια Α–Β</h1>
+<p class="subtitle">Nicomachean Ethics Books I & II — complete interactive reference</p>
+<p class="subtitle">I: the good and happiness · II: virtue of character — its nature and acquisition</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. NE Books I–II establish the foundations of Aristotle's ethics. Book I defines the good as the end of action, identifies happiness (εὐδαιμονία) as the highest good, gives the function argument for what happiness is, and establishes the method of ethical inquiry. Book II defines virtue of character as a stable disposition toward the mean, explains how virtues are acquired through habituation, and introduces the conditions that make an action virtuous. Together they are the ground on which the entire Ethics rests.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book I — Ἠθικὰ Νικομάχεια Α · The good; happiness; method",
+    groups: [
+      {
+        label: "Every action aims at some good; the highest good (I.1–3)",
+        chapters: [
+          {
+            id:"ne1_1", label:"NE I.1 — every action and inquiry aims at some good", greek:"πᾶσα πρᾶξις ἀγαθοῦ τινος ἐφίεται", accent:"#BA7517",
+            children:[
+              {label:"The opening claim", note:"Every art, inquiry, action, and pursuit seems to aim at some good. The good has rightly been declared that at which all things aim — the Good is the universal object of desire and action"},
+              {label:"The hierarchy of ends", note:"Some ends are activities themselves; some are products beyond the activities. Where there are ends beyond the activity, the products are better than the activities"},
+              {label:"The master science", note:"The end of the master science or faculty governs the ends of all subordinate sciences — as riding governs bridle-making, strategy governs riding. The master science is politics — it determines which sciences the city should cultivate"},
+              {label:"Connection to the Metaphysics", note:"The good as the universal object of desire — Lambda.7: the Unmoved Mover moves as the object of desire. NE I.1 opens the Ethics at exactly the point where the Metaphysics concluded: the good is what everything aims at"},
+            ]
+          },
+          {
+            id:"ne1_2", label:"NE I.2 — the highest good is the object of politics", greek:"πολιτική", accent:"#BA7517",
+            children:[
+              {label:"There must be one highest good", note:"If there is a hierarchy of ends, the highest end — the one desired for its own sake — is the good we are seeking. Without such a final end, desire would be empty and action purposeless"},
+              {label:"The highest good belongs to politics", note:"Politics determines which sciences should exist and which arts citizens should learn. Its end therefore encompasses all other ends — the good for the city is the highest practical good"},
+              {label:"The good for man vs the good for the city", note:"The good for one man and the good for the city are the same in kind — but the city's good is greater and more complete. It is finer and more divine to secure the good of a city than that of one person"},
+              {label:"Connection to the Politics", note:"The Ethics and Politics are one continuous inquiry — the Ethics establishes what the good for man is; the Politics establishes the conditions under which it can be realized. They cannot be read in separation"},
+            ]
+          },
+          {
+            id:"ne1_3", label:"NE I.3 — the method of ethics: precision appropriate to the subject", greek:"μέθοδος", accent:"#BA7517",
+            children:[
+              {label:"Ethics admits only approximate truth", note:"Our discussion will be adequate if it achieves as much clarity as the subject matter allows — ethical matters and questions of what is advantageous have no fixity. We must be content with a rough outline"},
+              {label:"The educated man's standard", note:"The mark of the educated person is to look for precision in each class of things just so far as the nature of the subject admits. It is equally absurd to accept probable reasoning from a mathematician and to demand demonstration from a rhetorician"},
+              {label:"The audience for ethics", note:"The young are not a proper audience for political science — they are inexperienced in life and led by their feelings. The proper audience has lived enough to have experience and to be able to benefit from generalizations about conduct"},
+              {label:"Connection to Topics I.2 and Posterior Analytics I.27", note:"Different methods for different domains — the educated person knows the appropriate method for each. Ethics uses dialectical argument from reputable opinions; natural science uses demonstration from necessary premises. The method of ethics is not a defect but appropriate to its subject"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Happiness: the highest good and its nature (I.4–8)",
+        chapters: [
+          {
+            id:"ne1_4", label:"NE I.4 — happiness is agreed to be the highest good; what is it?", greek:"εὐδαιμονία", accent:"#BA7517",
+            children:[
+              {label:"The name is agreed on", note:"Virtually everyone agrees that the highest good is happiness — εὐδαιμονία. But people disagree profoundly about what happiness is. The name is settled; the content is not"},
+              {label:"Three common views", children:[
+                {label:"The many", note:"Identify happiness with pleasure — a life of enjoyment. But this is a slavish choice — the life of grazing animals"},
+                {label:"The cultivated", note:"Identify happiness with honour — a life of public recognition. But honour depends on those who give it, not on the person who has it. Honour seems too superficial to be the good"},
+                {label:"The practically wise", note:"Identify happiness with virtue — a life of excellent activity. But virtue can coexist with terrible suffering and misfortune. Something more complete seems required"},
+              ]},
+              {label:"The method: start from what is known to us", note:"We must begin from what is familiar to us and reason toward first principles — not the reverse. We start from the phenomenon of human life and reason toward what constitutes its highest fulfilment"},
+            ]
+          },
+          {
+            id:"ne1_5", label:"NE I.5 — the three lives and the life of money-making", greek:"τρεῖς βίοι", accent:"#BA7517",
+            children:[
+              {label:"The life of pleasure", note:"Pursued by the many — reduces humans to the level of cattle. Pleasure cannot be the highest good because it is not distinctive of humans and does not engage the best of what we are"},
+              {label:"The life of honour", note:"Pursued by the politically active — honour is what the virtuous man seeks. But honour is too dependent on those who give it. More plausible: virtue, which grounds the claim to honour"},
+              {label:"The life of contemplation", note:"Deferred to Book X — the highest life, but requiring the full development of the Ethics to establish"},
+              {label:"The life of money-making", note:"Wealth is manifestly not the good — it is merely useful, a means to other ends. The person who makes wealth their end has confused means with ends — a category error"},
+            ]
+          },
+          {
+            id:"ne1_6", label:"NE I.6 — critique of the Platonic Form of the Good", greek:"ἡ τοῦ ἀγαθοῦ ἰδέα", accent:"#BA7517",
+            children:[
+              {label:"The obligation to criticise", note:"We must examine the universal good and go through the difficulties it presents — even though friends introduced this theory. Piety requires that we honour truth above our friends"},
+              {label:"The Form of the Good is not useful", note:"Even if there were a single Form of the Good, it would not be achievable or attainable by humans — and what we are seeking is the practically attainable good. A separate Form does us no practical good"},
+              {label:"Good is said in many ways", note:"Good is predicated in every category — in substance (God, nous), in quality (the virtues), in quantity (the right amount), in relation (the useful), in time (the right moment). There is no single Form that covers all these"},
+              {label:"Connection to Metaphysics Mu-Nu", note:"The critique of the Platonic Form of the Good here parallels Met. Mu.9 — the Form of the Good is causally inert and cannot explain why particular goods are good. Aristotle's positive account (Lambda.10, NE I) is what survives the elenchus"},
+            ]
+          },
+          {
+            id:"ne1_7", label:"NE I.7 — the function argument: happiness as excellent activity", greek:"ἔργον ἀνθρώπου", accent:"#BA7517",
+            children:[
+              {label:"The formal conditions on happiness", children:[
+                {label:"Complete", note:"Chosen always for itself and never for the sake of something else — never merely instrumental"},
+                {label:"Self-sufficient", note:"When isolated it makes life desirable and lacking in nothing — it needs no supplement to be fully satisfying"},
+                {label:"Most final", note:"The end we always choose for its own sake — the terminus of all practical reasoning"},
+              ]},
+              {label:"The function argument", note:"Every thing has a function — the function of a knife is to cut, the function of a lyre-player is to play well. What is the function of man as man? Not mere life (shared with plants), not sentient life (shared with animals), but the active exercise of the soul's faculties in accordance with virtue"},
+              {label:"The conclusion", note:"Human good is the active exercise of the soul's faculties in accordance with virtue — and if there are more than one virtue, in accordance with the best and most complete. And this must be in a complete life — for one swallow does not make a spring"},
+              {label:"Connection to De Anima", note:"The function of man is the activity of the rational soul — the highest faculty analysed in DA III. The function argument connects directly to the hierarchy of soul-faculties: man's distinctive function is the exercise of nous in action and contemplation"},
+              {label:"Connection to Metaphysics Theta.6", note:"Activity (ἐνέργεια) as complete actuality — happiness is an activity, not a state. It is the full exercise of human capacities, not merely having them. This connects the Ethics to the Metaphysics' account of actuality as prior to potentiality"},
+              {label:"Connection to your thesis", note:"The function argument is a formal argument about predication — what belongs to man as man, not accidentally. It uses the same per se / accidental distinction as the logical and metaphysical analyses. Happiness is predicated per se of man qua rational animal; pleasure and wealth are predicated only accidentally. The Ethics' central argument is a logical argument about proper predication"},
+            ]
+          },
+          {
+            id:"ne1_8", label:"NE I.8 — confirmation from common views about happiness", greek:"ἔνδοξα", accent:"#BA7517",
+            children:[
+              {label:"The method of confirmation", note:"A theory of happiness must be tested against the phenomena — against common views and reputable opinions. A theory that cannot accommodate what people generally recognise about happiness is suspect"},
+              {label:"Three kinds of goods", children:[
+                {label:"External goods", note:"Wealth, friends, good birth, beautiful children, noble appearance. Necessary conditions for happiness but not its substance"},
+                {label:"Goods of the body", note:"Health, strength, beauty. Also necessary conditions but not the substance of happiness"},
+                {label:"Goods of the soul", note:"Virtues, practical wisdom, theoretical wisdom. These are happiness in the primary sense — the exercise of the soul's faculties is happiness itself"},
+              ]},
+              {label:"Happiness requires some external goods", note:"The fully happy person needs a minimum of external goods — severe poverty, friendlessness, ugly appearance can disfigure happiness. But the primary ingredient is activity of the soul in accordance with virtue"},
+              {label:"The theory accommodates all three views", note:"Pleasure: virtuous activity is pleasant for the person of good character. Honour: the virtuous person deserves honour. Virtue: virtue is constitutive of happiness, not merely instrumental. The account unifies the three common views"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Happiness, virtue, and the soul (I.9–13)",
+        chapters: [
+          {
+            id:"ne1_9", label:"NE I.9 — is happiness acquired or given by fortune?", greek:"κτητή ἢ τύχης", accent:"#BA7517",
+            children:[
+              {label:"Happiness is not simply a gift of fortune", note:"If happiness were purely a matter of luck, it would be fragile and insecure — dependent on circumstances beyond our control. But what is most divine and blessed in us should not be precarious"},
+              {label:"Happiness is an achievement of activity", note:"Because happiness is activity in accordance with virtue, it can be acquired through effort — through training, habituation, and the exercise of rational choice. It is in our power to be happy, at least in the primary sense"},
+              {label:"Fortune's role is limited", note:"External goods (health, wealth, friends) are needed as conditions — and these require some good fortune. But the core of happiness — virtuous activity — is not determined by fortune. Even in adversity the virtuous person acts with nobility"},
+              {label:"The stability of happiness", note:"The happy person is stable — not easily disturbed by fortune's changes. True happiness does not fluctuate with external circumstances. Virtue gives a stable foundation that mere pleasure and honour cannot provide"},
+            ]
+          },
+          {
+            id:"ne1_10", label:"NE I.10 — should we call no one happy until they are dead?", greek:"οὐδένα πρὸ τοῦ τέλους εὐδαίμονα", accent:"#BA7517",
+            children:[
+              {label:"Solon's dictum", note:"Solon said we should call no one happy until they are dead — only then can we see whether their life was truly complete and not overturned by misfortune at the end"},
+              {label:"Aristotle's response", note:"We should not wait until death to call someone happy — that would make happiness something that benefits only the dead. The happy person is one who exercises virtue throughout a complete life"},
+              {label:"The completeness condition", note:"Happiness requires a complete life — not just moments of virtue. 'One swallow does not make a spring' — happiness is not an episode but a whole life of virtuous activity"},
+              {label:"Can happiness be overturned after death?", note:"Posthumous misfortunes (disgrace of descendants) may marginally affect the happiness of the dead — but only slightly. The dead are not fully affected by what happens after them"},
+            ]
+          },
+          {
+            id:"ne1_11", label:"NE I.11 — do the fortunes of the living affect the dead?", greek:"οἱ τελευτήσαντες", accent:"#BA7517",
+            children:[
+              {label:"The question", note:"Can the fortunes of one's children and descendants after death add to or subtract from one's happiness?"},
+              {label:"The answer", note:"Yes, but only weakly. The fortunes of descendants are too remote and varied to affect the core of a person's happiness — which was grounded in their own virtuous activity during their life"},
+              {label:"Connection to your thesis", note:"The question of whether posthumous events affect the happiness of the dead is a question about temporal identity — whether the person at t1 (alive) is the same subject as the person affected by events at t2 (after death). Aristotle's answer respects the temporal boundary: the dead are not fully subjects of the living's predicates. This is the ethical application of the temporal identity condition"},
+            ]
+          },
+          {
+            id:"ne1_12", label:"NE I.12 — happiness is praised or honoured, not merely praised", greek:"ἐπαινετόν ἢ τίμιον", accent:"#BA7517",
+            children:[
+              {label:"The distinction", note:"Things worthy of praise are praised in relation to something else — we praise courage by reference to what it achieves. Things worthy of honour are honoured as ends in themselves — the gods and the most excellent things"},
+              {label:"Happiness is honoured, not merely praised", note:"Happiness is not praised relative to something beyond it — it is the end. It is therefore in the category of the honoured and the divine, not merely the praiseworthy"},
+              {label:"Virtue is praiseworthy", note:"Virtues are praised — courage, justice, temperance are praised because they lead to or constitute happiness. But happiness itself is the end that makes praise possible"},
+            ]
+          },
+          {
+            id:"ne1_13", label:"NE I.13 — the soul and its parts; transition to virtue", greek:"ψυχή", accent:"#BA7517",
+            children:[
+              {label:"Ethics requires psychology", note:"To examine virtue we must understand the soul — for virtue is a state of the soul and produces excellent activity of the soul. We need a working account of the soul's structure"},
+              {label:"The rational and irrational parts", children:[
+                {label:"The vegetative part", note:"Nutrition and growth — shared with plants. Not involved in virtue in the strict sense"},
+                {label:"The desiderative part", note:"Desire and appetite — has a share in reason insofar as it can be guided by reason. This is where virtue of character is located — the right ordering of desire by reason"},
+                {label:"The rational part properly", note:"Reason in the strict sense — the faculty of nous. This is where intellectual virtue is located"},
+              ]},
+              {label:"The two kinds of virtue", note:"Intellectual virtues (virtues of the rational part proper) and virtues of character (virtues of the desiderative part insofar as it participates in reason). The distinction structures the entire remaining Ethics"},
+              {label:"Connection to De Anima", note:"The psychology of NE I.13 is a simplified version of DA's full account — the three soul-faculties (vegetative, perceptive/desiderative, rational) appear here as the ground of the ethical analysis. The Ethics presupposes De Anima"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Ἠθικὰ Νικομάχεια Β · Virtue of character: nature, acquisition, and definition",
+    groups: [
+      {
+        label: "Virtues of character are acquired by habituation (II.1–4)",
+        chapters: [
+          {
+            id:"ne2_1", label:"NE II.1 — virtues of character arise through habituation", greek:"ἐξ ἔθους", accent:"#534AB7",
+            children:[
+              {label:"Intellectual vs character virtues", note:"Intellectual virtues arise and grow mostly from teaching — they require experience and time. Virtues of character arise from habit — the word 'character' (ἦθος) is derived from 'habit' (ἔθος) with a small change"},
+              {label:"Virtues are not natural but not contrary to nature", note:"We are not virtuous by nature — nature gives us the capacity for virtue, not virtue itself. We become virtuous by acting virtuously — just as we become builders by building, lyre-players by playing"},
+              {label:"The paradox of habituation", note:"How can we become just by doing just acts? We must already be doing just acts to become just. The resolution: before we have the virtue we can still do acts of the right kind — but without the virtue, without the right motive, and without the stability of the truly virtuous person"},
+              {label:"The importance of early habituation", note:"It makes a great difference how we are habituated from childhood — whether virtuously or not. Therefore the lawgiver must take great care to habituate citizens correctly from the beginning. Ethics is inseparable from politics"},
+            ]
+          },
+          {
+            id:"ne2_2", label:"NE II.2 — the aim of ethical inquiry is action, not knowledge", greek:"πρᾶξις σκοπός", accent:"#534AB7",
+            children:[
+              {label:"We are not inquiring to know what virtue is but to become good", note:"The aim of ethical inquiry is practical — we want to become virtuous, not merely to know what virtue is. This distinguishes ethics from theoretical philosophy"},
+              {label:"The mean relative to us", note:"Virtue concerns actions and feelings — and in these the excess and deficiency both miss the mark. The right amount is the mean — not too much, not too little. This is easy to say; hard to determine in particular cases"},
+              {label:"The analogy with physical training", note:"Excessive exercise destroys strength; too little allows it to deteriorate. The right amount produces and maintains strength. The same with courage, temperance, and the other virtues — excess and deficiency corrupt; the mean preserves"},
+            ]
+          },
+          {
+            id:"ne2_3", label:"NE II.3 — the role of pleasure and pain in virtue", greek:"ἡδονὴ καὶ λύπη", accent:"#534AB7",
+            children:[
+              {label:"Virtue is about pleasure and pain", note:"It is on account of pleasure that we do base things and on account of pain that we abstain from noble things. For this reason we must be brought up to feel pleasure and pain in the right things — moral education is the education of the emotions"},
+              {label:"Pleasure as the criterion of virtue", note:"The person who abstains from bodily pleasures and delights in this abstention is temperate. The person who is pained by it is intemperate. Similarly for courage: the courageous person faces danger without being excessively pained by it"},
+              {label:"Actions cannot be virtuous if done without pleasure", note:"If a person does just acts but takes no pleasure in them, they are not yet just — they are doing just acts but their character has not been formed. The fully virtuous person enjoys virtuous activity"},
+              {label:"Connection to DA III.9–10", note:"Desire as the source of action — virtuous action requires rightly ordered desire. The moral education described here is the education of desire — making the desiderative part of the soul respond correctly to reason's guidance"},
+            ]
+          },
+          {
+            id:"ne2_4", label:"NE II.4 — how virtuous acts differ from acts of the virtuous person", greek:"ὁ δίκαιος", accent:"#534AB7",
+            children:[
+              {label:"The puzzle", note:"If we become just by doing just acts, then just acts must be possible before we are just. But we call acts just only if they are what a just person would do. Is this circular?"},
+              {label:"The resolution", note:"For an act to be virtuous it must: (1) be done knowingly, (2) be chosen for its own sake, (3) proceed from a stable and settled character. Acts done by the novice may be just in form but lack conditions (2) and (3)"},
+              {label:"The three conditions", children:[
+                {label:"Knowingly", note:"The agent must know what they are doing and that it is virtuous — not acting from ignorance"},
+                {label:"Chosen for its own sake", note:"The act must be chosen because it is noble, not for some ulterior motive — not for reward or to avoid punishment"},
+                {label:"From stable character", note:"The act must flow from a settled disposition — not from a momentary impulse or a one-off decision"},
+              ]},
+              {label:"Craft analogy breaks down", note:"In crafts, producing good products is enough — a good chair is a good chair regardless of the carpenter's state of mind. But in virtue, the character of the agent is constitutive — the same outward act can be virtuous or not depending on the agent's state"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Virtue defined: the mean; the definition (II.5–9)",
+        chapters: [
+          {
+            id:"ne2_5", label:"NE II.5 — virtue is a state of character, not a feeling or a capacity", greek:"ἕξις", accent:"#534AB7",
+            children:[
+              {label:"Three candidates for what virtue is", children:[
+                {label:"Feelings", greek:"πάθη", note:"Fear, confidence, desire, anger, pity — things accompanied by pleasure or pain. But we are not praised or blamed for our feelings as such — only for how we respond to them"},
+                {label:"Capacities", greek:"δυνάμεις", note:"What makes us capable of feeling the feelings. But we are not praised or blamed for having capacities — the capacity for anger is neither virtuous nor vicious"},
+                {label:"States of character", greek:"ἕξεις", note:"What makes us stand well or badly with respect to feelings. This is virtue — a stable disposition toward the feelings and actions in a good way"},
+              ]},
+              {label:"Virtue is a state of character", note:"Virtue is a ἕξις — a stable, settled disposition that determines how one responds to situations. It is not what one feels but how one is disposed to feel and act — consistently, reliably, appropriately"},
+              {label:"Connection to Metaphysics Delta.19–20", note:"Disposition (διάθεσις) and having (ἕξις) from the Categories and Metaphysics Delta. The ἕξις is the most stable kind of disposition — Aristotle's analysis of virtue as ἕξις connects directly to the categorical analysis of having"},
+            ]
+          },
+          {
+            id:"ne2_6", label:"NE II.6 — the definition of virtue: a disposition toward the mean", greek:"ὁρισμός ἀρετῆς", accent:"#534AB7",
+            children:[
+              {label:"The genus: virtue is a state of character", note:"Following the form of a definition: genus + differentia. The genus of virtue is state of character (ἕξις)"},
+              {label:"The differentia: disposed toward the mean", note:"What differentiates virtue from other states of character is that virtue aims at the mean — the intermediate between excess and deficiency in feelings and actions"},
+              {label:"The mean relative to us", note:"The mean is not arithmetic — not the middle between 10 and 2 (which is 6). The mean relative to us is what is neither too much nor too little for this person, in this situation, at this time. It requires practical wisdom to determine"},
+              {label:"The full definition", note:"Virtue is a state of character concerned with choice, lying in the mean relative to us, this being determined by reason and by that reason by which the practically wise person would determine it"},
+              {label:"Virtue is an extreme in the direction of the best", note:"Though virtue is the mean between excess and deficiency, it is the extreme with respect to what is best — in achieving excellence there is no excess. The mean is a kind of peak, not a mediocrity"},
+              {label:"Connection to your thesis", note:"The definition of virtue as the mean is a formal definition in the sense of the Topics — genus (state of character) + differentia (disposed toward the mean). The mean is determined by the logos of the practically wise person — the same practical nous that governs action. Virtue as the mean is the ethical application of the logical and metaphysical doctrine that the intermediate between extremes is determined by the form, not by arithmetic"},
+            ]
+          },
+          {
+            id:"ne2_7", label:"NE II.7 — the virtues listed: courage and the others", greek:"αἱ ἀρεταί", accent:"#534AB7",
+            children:[
+              {label:"Courage", greek:"ἀνδρεία", note:"Mean between cowardice (deficiency) and rashness (excess) with respect to fear and confidence. Proper object: the noble death in battle"},
+              {label:"Temperance", greek:"σωφροσύνη", note:"Mean between licentiousness (excess) and insensibility (deficiency) with respect to bodily pleasures"},
+              {label:"Liberality", greek:"ἐλευθεριότης", note:"Mean between prodigality and miserliness with respect to giving and taking wealth"},
+              {label:"Magnificence", greek:"μεγαλοπρέπεια", note:"Mean between vulgarity and pettiness with respect to large-scale expenditure"},
+              {label:"Magnanimity", greek:"μεγαλοψυχία", note:"Mean between vanity and pusillanimity with respect to great honours — the crown of the virtues"},
+              {label:"The remaining virtues", note:"Proper ambition (moderate desire for honour) · gentleness (anger rightly ordered) · social virtues (wit, friendliness, truthfulness about oneself) · shame (not strictly a virtue but a praiseworthy state in the young)"},
+              {label:"The structure of the list", note:"Each virtue is defined by its mean position between two named vices — one of excess, one of deficiency. The triadic structure (excess/mean/deficiency) is the formal skeleton of all virtue-analysis in the Ethics"},
+            ]
+          },
+          {
+            id:"ne2_8", label:"NE II.8 — the three states: excess, mean, deficiency", greek:"τρία εἴδη", accent:"#534AB7",
+            children:[
+              {label:"There are always three states", note:"For every virtue there is an excess, a deficiency, and the mean. The excess and deficiency are vices; the mean is virtue. This triadic structure is universal"},
+              {label:"The extremes are more opposed to each other than to the mean", note:"Cowardice and rashness are more opposed to each other than either is to courage — the extremes are in full opposition; each is only partially opposed to the mean"},
+              {label:"The extreme closer to the mean seems less bad", note:"Sometimes one extreme appears more like the mean than the other — rashness appears more like courage than cowardice does. This is because we naturally incline toward one extreme and must overcorrect"},
+              {label:"Our own inclinations distort our perception of the mean", note:"Because we are pulled by pleasure toward excess and by fear toward deficiency, we must drag ourselves away from our natural inclination to find the mean. Correct perception of the mean requires training and self-knowledge"},
+            ]
+          },
+          {
+            id:"ne2_9", label:"NE II.9 — how to hit the mean: practical guidance", greek:"πρακτικαί συμβουλαί", accent:"#534AB7",
+            children:[
+              {label:"Hitting the mean is difficult", note:"To feel anger or pleasure or fear to the right person, to the right extent, at the right time, with the right motive, in the right way — this is not easy. The mean is rare, difficult, and praiseworthy"},
+              {label:"Three practical rules", children:[
+                {label:"Avoid the extreme further from the mean", note:"Of the two vices, avoid the one that is more contrary to the virtue — the one you are further from naturally"},
+                {label:"Notice your own inclination and pull against it", note:"We each have our own natural tendencies toward one extreme. Notice which extreme you are pulled toward and pull in the opposite direction — like straightening a bent stick"},
+                {label:"Be especially wary of pleasure", note:"Pleasure is the hardest to resist — we are not impartial judges of it. We must be most vigilant about pleasure and most willing to drive it away"},
+              ]},
+              {label:"Precision is impossible", note:"How much deviation from the mean counts as a vice? There is no precise answer — it depends on the case. This is where the practically wise person's judgment is irreplaceable — ethical rules cannot substitute for practical wisdom"},
+              {label:"Transition to Book III", note:"Book II has defined virtue as a state of character aimed at the mean. Book III will examine the conditions under which virtue operates — voluntary action, choice, and deliberation — and then catalogue the individual virtues in detail"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

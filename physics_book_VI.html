@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Physics Book VI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Φυσικὴ Ἀκρόασις Ζ</h1>
+<p class="subtitle">Physics Book VI — complete interactive reference · chapters 1–10</p>
+<p class="subtitle">Subject: the continuity of motion — time, magnitude, and motion are mutually continuous and infinitely divisible; Zeno's paradoxes fully dissolved</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Physics Book VI is the mathematical heart of the Physics — a rigorous demonstration that time, magnitude, and motion are all continuous in the same sense and mutually imply each other's continuity. Every argument is tightly interlocked. The book culminates in the full dissolution of all four of Zeno's paradoxes, showing in each case that the paradox rests on a confusion between potential and actual infinity, or between the indivisible and the continuous.</footer>
+
+<script>
+const cats = [
+  {
+    id:"ph6_1", label:"Phys. VI.1 — the continuous cannot be composed of indivisibles", greek:"τὸ συνεχὲς οὐκ ἐξ ἀδιαιρέτων", accent:"#BA7517",
+    children:[
+      {label:"The central claim", note:"A continuous magnitude cannot be composed of indivisible parts — points cannot make a line, instants cannot make time, nor indivisible motions make a motion"},
+      {label:"The argument from contact", note:"Points have no parts — they are pure limits with no extension. Two points in contact share their limits, but since they have no parts their limits are the same point. So two points in contact are one point — they cannot be added to make an extended line"},
+      {label:"The general principle", note:"What is continuous must be divisible into parts that are themselves divisible. If any part is indivisible, the whole is not truly continuous — there is a gap or a limit rather than a seamless flow"},
+      {label:"Applied to time and motion", note:"Time is continuous — no instant of time is the last before a gap. Motion is continuous — no position is the last before a jump. If either were composed of indivisibles, Zeno's paradoxes would be genuine impossibilities"},
+      {label:"Connection to Zeno", note:"Zeno assumed that a continuous magnitude is composed of infinitely many indivisible points or instants. Aristotle's response begins here: the continuous is not composed of indivisibles but is infinitely divisible — always further divisible but never divided into ultimate atoms"},
+    ]
+  },
+  {
+    id:"ph6_2", label:"Phys. VI.2 — time, magnitude, and motion are mutually continuous", greek:"ἀλλήλοις ἀνάλογα", accent:"#BA7517",
+    children:[
+      {label:"The mutual implication", note:"If magnitude is continuous, motion over that magnitude is continuous; if motion is continuous, the time of the motion is continuous; and conversely. The three are mutually dependent in their continuity"},
+      {label:"Proof: motion implies magnitude's continuity", note:"If a motion is continuous — no gaps — the magnitude traversed must also be continuous. A continuous motion over a discontinuous magnitude would require jumping between points, which is not motion but teleportation"},
+      {label:"Proof: magnitude implies motion's continuity", note:"If the magnitude is continuous — infinitely divisible — the motion over it must be too. For every sub-interval of the magnitude there is a corresponding sub-interval of the motion"},
+      {label:"Proof: motion implies time's continuity", note:"If the motion is continuous, the time of the motion must be continuous — the time cannot have gaps while the motion flows smoothly"},
+      {label:"The three are analogous", note:"Magnitude, motion, and time are all continuous in the same sense — all three are infinitely divisible, all three have no smallest part, all three consist of intervals rather than points"},
+      {label:"Connection to IV.11", note:"Time as the number of motion — Physics IV.11. The continuity of time is grounded in the continuity of motion, which is grounded in the continuity of magnitude. The three-way implication shows that the temporal analysis and the spatial analysis are a single structure"},
+    ]
+  },
+  {
+    id:"ph6_3", label:"Phys. VI.3 — the now and the instant are indivisible limits, not parts", greek:"τὸ νῦν ἀδιαίρετον", accent:"#BA7517",
+    children:[
+      {label:"The now is a limit, not a part", note:"The present instant has no duration — it is the limit between past and future, not an interval with extent. Time is made of intervals; the now is what divides intervals, not what they are made of"},
+      {label:"Nothing moves in the now", note:"Motion requires a before and after — an interval of time. In the indivisible now there is no before and after, so nothing can be moving in the now. At any instant a moving thing is at a position but not moving"},
+      {label:"The paradox of rest and motion", note:"If at every instant a moving thing is at a position and not moving, when does it move? Aristotle's answer: motion is a property of intervals, not of instants. To be moving is to be at different positions at different times — which requires an interval"},
+      {label:"Connection to Zeno's arrow", note:"Zeno: at every instant the arrow is at rest (occupying a definite space equal to itself). At every instant it is not moving. Therefore it never moves. Aristotle's dissolution: being at a position at an instant is not the same as being at rest. Rest requires an interval of time at the same position. The arrow is not resting; it is simply at a position — which is true of moving things too"},
+      {label:"Connection to your thesis", note:"The now as indivisible limit rather than part is the temporal analogue of the point as limit rather than part of a line. This is the physical ground for the claim that temporal identity (same time) is a matter of intervals, not instants — the LNC condition 'same time' means 'in the same temporal interval', not 'at the same durationless instant'"},
+    ]
+  },
+  {
+    id:"ph6_4", label:"Phys. VI.4 — everything that is moving has moved and will move", greek:"τὸ κινούμενον κεκίνηται", accent:"#BA7517",
+    children:[
+      {label:"The claim", note:"Anything that is in motion has already traversed some distance and will traverse more — there is no first moment of motion and no last moment"},
+      {label:"No first moment of motion", note:"Suppose T is the first moment of a motion. Before T the thing was at rest. At T it begins to move. But at T it is at a position — and to be moving requires having been at a different position at some earlier time. So T cannot be the first moment — there must be an earlier moment of motion"},
+      {label:"No last moment of motion", note:"Similarly, suppose T is the last moment of motion. At T the thing is at a position — but to be finishing a motion requires having been moving up to T. There is always a last sub-interval, not a last instant"},
+      {label:"Motion occupies open intervals", note:"Motion occupies time intervals that are open at both ends — there is no first or last instant of motion, only a first and last interval. This is what continuity means for motion"},
+      {label:"The rest that precedes and follows", note:"Before the motion there is rest; after, rest again. The transition from rest to motion is instantaneous — the now at which rest ends and motion begins is a limit, not a part of either"},
+    ]
+  },
+  {
+    id:"ph6_5", label:"Phys. VI.5 — the divisibility of motion matches the divisibility of time and magnitude", greek:"διαίρεσις ἀνάλογος", accent:"#BA7517",
+    children:[
+      {label:"The proportionality theorem", note:"If the time is divided, the motion is divided in the same ratio; if the motion is divided, the time is divided in the same ratio; if the magnitude is divided, the motion and time are divided in the same ratio"},
+      {label:"Faster and slower motions", note:"A faster motion traverses more distance in the same time, or the same distance in less time — and both of these definitions are equivalent. Speed is the ratio of distance to time"},
+      {label:"Equal motions take equal times over equal distances", note:"Two motions are equal if they traverse the same distance in the same time. This gives a quantitative criterion for the identity of motions — the physical basis of measurement"},
+      {label:"The infinite divisibility is shared", note:"Because time, motion, and magnitude are mutually continuous, their infinite divisibility is mutual — dividing any one of them forces a corresponding division in the others. This is the mathematical structure underlying all kinematic analysis"},
+    ]
+  },
+  {
+    id:"ph6_6", label:"Phys. VI.6 — the finite and the infinite in motion", greek:"πεπερασμένον καὶ ἄπειρον", accent:"#BA7517",
+    children:[
+      {label:"Can a finite motion occur in infinite time?", note:"A finite magnitude can be traversed in infinite time — if the motion slows down indefinitely, approaching zero speed asymptotically. The time can be infinite while the distance is finite"},
+      {label:"Can an infinite motion occur in finite time?", note:"No — an actually infinite distance cannot be traversed in any finite time. Infinite distance would require infinite time"},
+      {label:"The asymmetry", note:"Finite distance / infinite time: possible. Infinite distance / finite time: impossible. The asymmetry reflects the asymmetry of potential and actual infinity — infinite divisibility (potential) is compatible with finite extent, but actual infinite extent cannot be traversed"},
+      {label:"The infinite divisibility does not imply infinite distance", note:"That a finite distance is infinitely divisible does not mean it is infinite in extent — these are two different senses of infinite. The confusion between them is the source of Zeno's paradoxes"},
+    ]
+  },
+  {
+    id:"ph6_7", label:"Phys. VI.7 — there is no motion or rest in the now", greek:"ἐν τῷ νῦν οὐ κίνησις", accent:"#BA7517",
+    children:[
+      {label:"Motion requires an interval", note:"Motion is from one position to another — this requires a before and after, an interval. The indivisible now has no interval and therefore no room for motion"},
+      {label:"Rest requires an interval", note:"Rest is being at the same position for a period of time — this also requires an interval. In the indivisible now, nothing is resting any more than it is moving"},
+      {label:"At the now: a position, not a state", note:"At any given now, a thing is simply at a position — neither moving nor resting. Moving and resting are properties of intervals of time, not of instants"},
+      {label:"The dissolution of the arrow paradox completed", note:"Zeno's arrow: at every instant the arrow is at rest (in a space equal to itself). Aristotle: at every instant the arrow is at a position — but being at a position is not being at rest. Rest requires occupying the same position for an interval. The paradox dissolves"},
+      {label:"Connection to your thesis", note:"The arrow paradox is another form of the secundum quid fallacy — treating what is true at an instant (being at a position) as if it were true across an interval (being at rest). The qualification 'at an instant' vs 'across an interval' is suppressed. Restoring it dissolves the paradox. This is the temporal version of Paper One's master dissolution"},
+    ]
+  },
+  {
+    id:"ph6_8", label:"Phys. VI.8 — the transition from motion to rest and rest to motion", greek:"μεταβολὴ εἰς ἠρεμίαν", accent:"#BA7517",
+    children:[
+      {label:"The problem", note:"When does a moving thing first come to rest? At the first instant it is at rest? But there is no first instant of rest — for any instant of rest we can find a still earlier one"},
+      {label:"The solution", note:"A thing first comes to rest in an interval, not at an instant — the transition from motion to rest occurs over an interval, not at a point. The last instant of motion and the first instant of rest are the same limit: the now that bounds the two intervals"},
+      {label:"The now as shared limit", note:"The now that terminates the motion is the same now that begins the rest — it is their shared boundary. It belongs fully to neither interval but is the limit of both"},
+      {label:"No instantaneous change of state", note:"State-changes (from moving to resting) are associated with instants — the instants that bound intervals. But the state itself (moving, resting) belongs to intervals. There is no instant at which the change occurs as a temporal process — the change is the boundary between two intervals"},
+    ]
+  },
+  {
+    id:"ph6_9", label:"Phys. VI.9 — Zeno's four paradoxes fully dissolved", greek:"Ζήνων", accent:"#534AB7",
+    children:[
+      {label:"The dichotomy", note:"To cross a room one must first cross half, then half of what remains, infinitely many steps. Resolution: the steps are potentially infinite (the room is infinitely divisible) but not actually infinite (the room is finite in extent). An infinite series of potential divisions does not require an infinite series of actual traversals"},
+      {label:"Achilles and the tortoise", note:"Achilles must reach where the tortoise was before he can pass it — an infinite series of catching-up steps. Resolution: same as the dichotomy. The catching-up steps are potential divisions of a finite interval. The interval is traversed in finite time regardless of how many potential divisions it contains"},
+      {label:"The arrow", note:"At every instant the arrow is at a position equal to itself — at rest. At no instant is it moving. Therefore it never moves. Resolution (from VI.3 and VI.7): being at a position at an instant is not being at rest. Rest requires an interval. At an instant nothing moves or rests — it is simply at a position"},
+      {label:"The stadium", note:"Two rows of equal bodies pass each other in opposite directions alongside a stationary row. One body passes twice as many of the moving row as of the stationary row in the same time — which seems to imply half the time equals the whole time. Resolution: the paradox confuses the time taken to pass a moving body with the time taken to pass a stationary one. These are different relative motions and there is no contradiction"},
+      {label:"The common structure of all four", note:"All four paradoxes either (1) treat potential infinity as actual infinity (dichotomy, Achilles), (2) treat instantaneous position as instantaneous state (arrow), or (3) confuse relative and absolute motion (stadium). In every case the error is a suppressed qualification — the secundum quid fallacy in its temporal-spatial form"},
+      {label:"Connection to your thesis", note:"Zeno's four paradoxes are four instances of the same logical error — suppressing a qualification. The dichotomy and Achilles suppress the potential/actual distinction. The arrow suppresses the instant/interval distinction. The stadium suppresses the relative/absolute distinction. All four are dissolved by restoring the suppressed qualification. This is Paper One's dissolution method applied to the most famous logical puzzles in the Western tradition. Physics VI.9 is a primary source for the central argument of Paper One"},
+    ]
+  },
+  {
+    id:"ph6_10", label:"Phys. VI.10 — the indivisible cannot be in motion", greek:"τὸ ἀδιαίρετον οὐ κινεῖται", accent:"#BA7517",
+    children:[
+      {label:"The argument", note:"Motion requires traversing a distance — from one position to another. If the moving thing were indivisible (a pure point) it would have no parts to be at different positions, and no extent over which to be distributed. Motion requires extended subjects"},
+      {label:"The point cannot move", note:"A mathematical point is indivisible — it has no parts. If a point moved, it would occupy different positions at different times. But since it has no extent, the positions it occupies are points — and points have no size. The motion of a point across a line would be a sequence of points, not a continuous motion"},
+      {label:"What can move must be divisible", note:"Only what has parts — only what is extended — can genuinely be in motion. The physical implication: all moving things are extended; there are no physical atoms that are true indivisibles in motion"},
+      {label:"Connection to the atomists", note:"The atomists (Leucippus, Democritus) posited indivisible atoms in motion through void. Aristotle's argument here shows that genuine motion of indivisibles is impossible — and his earlier argument shows that void is impossible. The atomist picture is doubly refuted"},
+      {label:"Closing reflection on Book VI", note:"Book VI has shown: the continuous cannot be composed of indivisibles; time, motion, and magnitude are mutually continuous; motion occupies intervals not instants; the infinite divisibility of the continuous is potential not actual; all four Zeno paradoxes dissolve on these grounds; and indivisibles cannot move. The mathematical physics of motion is complete"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Continuity: the continuous cannot be composed of indivisibles; time, magnitude, motion are mutually continuous (1–2)", ids:["ph6_1","ph6_2"] },
+  { label:"II — The now as limit; motion occupies intervals not instants (3–4)", ids:["ph6_3","ph6_4"] },
+  { label:"III — Proportionality of time, motion, magnitude; the finite and infinite (5–6)", ids:["ph6_5","ph6_6"] },
+  { label:"IV — No motion or rest in the now; transitions; Zeno dissolved; indivisibles cannot move (7–10)", ids:["ph6_7","ph6_8","ph6_9","ph6_10"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

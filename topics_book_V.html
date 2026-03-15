@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Topics Book V</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τοπικά Ε</h1>
+<p class="subtitle">Topics Book V — complete interactive reference · chapters 1–9</p>
+<p class="subtitle">Subject: the property — topoi for establishing or refuting that something is or is not the unique property of a species</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book V treats property (ἴδιον) — what belongs to a species alone, to all of it, and always, but is not its essence. The property converts with the species: if S has property P then P belongs only to S, and if P belongs to something then it is S. The topoi here test this convertibility from multiple angles.</footer>
+
+<script>
+const cats = [
+  {
+    id:"t5_1", label:"Top. V.1 — the definition of property and its conditions", greek:"ἴδιον", accent:"#BA7517",
+    children:[
+      {label:"Property defined", note:"What belongs to a species alone, to all of it, and always — but is not the essence of the species"},
+      {label:"Four conditions for a property", children:[
+        {label:"Uniqueness", note:"Belongs to that species alone — nothing else has this predicate universally"},
+        {label:"Universality", note:"Belongs to every member of the species without exception"},
+        {label:"Always", note:"Belongs at every time — not just sometimes"},
+        {label:"Not the essence", note:"Is not what the species is — not the definition. If it were the essence it would be a definition, not a property"},
+      ]},
+      {label:"Convertibility", note:"A property converts with its species — 'all S is P' and 'all P is S'. This is the logical hallmark of the property and the main thing to establish or refute"},
+      {label:"Essential vs relative property", note:"Some properties are essential — they follow necessarily from the essence. Others are relative — they belong to the species in relation to something else at some time"},
+      {label:"Example", greek:"capable of grammar", note:"Belonging to man alone, to all men, and always — but not what man is. It converts: everything capable of grammar is man, and every man is capable of grammar"},
+    ]
+  },
+  {
+    id:"t5_2", label:"Top. V.2 — topoi against property claims: failure of uniqueness", greek:"μὴ ἴδιον", accent:"#BA7517",
+    children:[
+      {label:"The uniqueness attack", note:"Show that something other than the species also has the proposed property — this immediately refutes the uniqueness condition"},
+      {label:"Topos: find another subject", note:"Find any other species or individual to which the proposed property also belongs — the property fails if it is shared"},
+      {label:"Topos: the property belongs to the genus too", note:"If the proposed property belongs to the genus as well as the species, it is a property of the genus, not the species — it is too wide"},
+      {label:"Topos: the property belongs to a coordinate species", note:"If a coordinate species under the same genus also has the property, it is not unique to this species"},
+      {label:"The non-convertibility refutation", note:"Show that the proposed property does not convert — find something that has P but is not S. This is the sharpest attack on a property claim"},
+    ]
+  },
+  {
+    id:"t5_3", label:"Top. V.3 — topoi against property claims: failure of universality", greek:"μὴ κατὰ παντός", accent:"#BA7517",
+    children:[
+      {label:"The universality attack", note:"Show that the proposed property fails to hold of some member of the species — one counterexample defeats a universal property claim"},
+      {label:"Topos: find a member lacking the property", note:"Find even one individual that belongs to the species but does not have the proposed property"},
+      {label:"Topos: temporal failure", note:"Show that there is a time at which members of the species lack the property — infants, the diseased, the sleeping", eg:"'Walking upright' fails as a property of man — infants and the paralysed do not walk upright"},
+      {label:"The precision required", note:"A property must hold universally and always — any exception, however marginal, defeats it. This is stricter than the conditions for genus"},
+    ]
+  },
+  {
+    id:"t5_4", label:"Top. V.4 — topoi against property claims: obscurity and redundancy", greek:"ἀσάφεια καὶ περιττόν", accent:"#BA7517",
+    children:[
+      {label:"Obscurity", note:"If the proposed property is harder to understand than the species itself, it fails as a property — a property should illuminate the species, not obscure it"},
+      {label:"Topos: the property uses the species in its own statement", note:"If you need to mention the species in order to state the property, the property is circular — it does not independently identify the species"},
+      {label:"Redundancy", note:"If part of the proposed property is unnecessary — if removing it still leaves something that converts with the species — the full statement is not the property but contains excess"},
+      {label:"Topos: strip down the property statement", note:"Remove parts of the proposed property one at a time — if the remainder still converts with the species, the removed part was redundant and the property is not correctly stated"},
+      {label:"The precision standard", note:"A property must be exactly co-extensive and as simple as possible — not too wide, not too narrow, not circular, not redundant"},
+    ]
+  },
+  {
+    id:"t5_5", label:"Top. V.5 — topoi for establishing property claims", greek:"κατασκευή", accent:"#BA7517",
+    children:[
+      {label:"Establishing uniqueness", note:"Show that no other species has the proposed property — systematic elimination of possible competitors"},
+      {label:"Establishing universality", note:"Show that the property holds of every member of the species — either by complete induction or by deriving it from the essence"},
+      {label:"Establishing permanence", note:"Show that the property holds at every time — by connecting it to something that cannot be lost while the species persists"},
+      {label:"The strongest establishment", note:"Derive the property from the definition — show it follows necessarily from the essence. This makes the property an essential property and the establishment maximally secure"},
+      {label:"Connection to demonstration", note:"When a property follows necessarily from the essence it can be demonstrated — the demonstration takes the definition as its major premise and derives the property as its conclusion. Post. An. I.4 per se predication in the second sense"},
+    ]
+  },
+  {
+    id:"t5_6", label:"Top. V.6 — the property relative to another thing", greek:"πρὸς ἕτερον", accent:"#BA7517",
+    children:[
+      {label:"Relative property defined", note:"A property that belongs to a species not absolutely but in relation to something else", eg:"The most capable of knowledge among animals — man's property relative to other animals"},
+      {label:"Testing relative properties", note:"Same conditions apply — uniqueness, universality, always — but in the relative context. The comparison class must be specified"},
+      {label:"Topos: change the comparison class", note:"A property that holds relative to one class may fail relative to another — specify the comparison class precisely or the property claim is incomplete"},
+      {label:"Relative properties and per se properties", note:"A per se property belongs to the species regardless of comparison. A relative property depends on the context. Both are genuine properties but of different logical strength"},
+    ]
+  },
+  {
+    id:"t5_7", label:"Top. V.7 — topoi from opposites applied to property", greek:"ἐκ τῶν ἐναντίων", accent:"#BA7517",
+    children:[
+      {label:"The topos", note:"If P is a property of S, then the contrary of P is a property of the contrary of S — or at least the contrary of P is not a property of S"},
+      {label:"Testing by contraries", note:"Find the contrary of the proposed property and the contrary of the species — check whether the contrary property belongs to the contrary species"},
+      {label:"The symmetry condition", note:"Properties and their contraries should be symmetric across contrary species — asymmetry reveals that the original property claim is incorrect"},
+      {label:"Example", note:"If 'capable of virtue' is a property of man, then 'incapable of virtue' should be a property of whatever is contrary to man — if no such contrary exists, the topos does not apply"},
+    ]
+  },
+  {
+    id:"t5_8", label:"Top. V.8 — topoi from coordinate terms and inflections", greek:"σύστοιχα", accent:"#BA7517",
+    children:[
+      {label:"The topos", note:"If P is a property of S, then the coordinate terms and inflections of P should be properties of the corresponding coordinates and inflections of S"},
+      {label:"Example", note:"If 'capable of grammar' is a property of man, then 'grammatical capacity' should be a property of humanity (the abstract) — the property should carry through the paronymous family"},
+      {label:"Testing by inflection", note:"Check whether the property holds when subject and predicate are restated in different grammatical forms — if it fails for an inflection, the original property is not correctly stated"},
+      {label:"Connection to Top. II.3", note:"The coordinate terms topos for accident is here applied to property — the same instrument, applied to a stronger predicative relation"},
+    ]
+  },
+  {
+    id:"t5_9", label:"Top. V.9 — summary of property topoi and transition to definition", greek:"μετάβασις", accent:"#BA7517",
+    children:[
+      {label:"The complete set of property topoi", note:"Uniqueness, universality, permanence, non-circularity, non-redundancy, symmetry with contraries, consistency across coordinates — these are the complete tests for a property claim"},
+      {label:"Property as the threshold of definition", note:"A property is not the essence but is uniquely tied to it — it is the closest a predication can get to definition without being the definition itself"},
+      {label:"Why property matters for the Topics", note:"Establishing a property is easier than establishing a definition — it requires less. But the tools developed for property feed directly into the treatment of definition in Books VI–VII"},
+      {label:"The logical structure", note:"Accident: may or may not belong. Genus: must belong, in the what-it-is, to the wider class. Property: must belong, uniquely and always, to this species alone. Definition: states the essence. The predicables form a hierarchy of necessity"},
+      {label:"Transition to Books VI–VII", note:"Definition is the most demanding predicable — it must satisfy all the conditions of genus and property simultaneously while also stating the essence. Books VI–VII give the fullest treatment"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Definition and conditions of property (1)", ids:["t5_1"] },
+  { label:"II — Topoi against property claims (2–4)", ids:["t5_2","t5_3","t5_4"] },
+  { label:"III — Topoi for establishing property; relative property (5–6)", ids:["t5_5","t5_6"] },
+  { label:"IV — Topoi from opposites, coordinates, and transition (7–9)", ids:["t5_7","t5_8","t5_9"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

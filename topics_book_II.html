@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Topics Book II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τοπικά Β</h1>
+<p class="subtitle">Topics Book II — complete interactive reference · chapters 1–11</p>
+<p class="subtitle">Subject: the accident — how to establish or refute that something belongs or does not belong to a subject</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book II treats the accident (συμβεβηκός) — what may or may not belong to a subject. It provides the topoi (places) for arguing that an accident does or does not belong, covering opposites, comparatives, time, and more/less. Book III continues with accident, focusing on comparative judgments.</footer>
+
+<script>
+const cats = [
+  {
+    id:"t2_1", label:"Top. II.1 — how many ways accident-problems arise", greek:"πόσαχῶς", accent:"#BA7517",
+    children:[
+      {label:"The two tasks", note:"Either establish that an accident belongs to a subject, or refute that it does. Every accident-problem requires one of these two moves"},
+      {label:"Universal vs particular accident", note:"Some accident problems ask whether something belongs universally (to all of a kind); others whether it belongs to a particular case. Strategies differ accordingly"},
+      {label:"The topos defined", greek:"τόπος", note:"A general argumentative move applicable to a range of cases — a place from which arguments can be drawn. Book II catalogues the topoi for accident"},
+      {label:"Why accident first", note:"Accident is the widest predicable — anything that can be predicated at all but is not definition, genus, or property is an accident. The most general predicative relation"},
+    ]
+  },
+  {
+    id:"t2_2", label:"Top. II.2 — topoi from opposites", greek:"ἐκ τῶν ἐναντίων", accent:"#BA7517",
+    children:[
+      {label:"The basic move", note:"If one of a pair of opposites belongs to one of a pair of opposite subjects, the other opposite belongs to the other subject"},
+      {label:"The four kinds of opposites", children:[
+        {label:"Contraries", greek:"ἐναντία", note:"If health belongs to the body, does disease also belong to the body? — both contraries can belong to the same subject at different times"},
+        {label:"Relative opposites", greek:"πρός τι", note:"If double belongs to the half, does half belong to the double?"},
+        {label:"Privation and possession", greek:"στέρησις καὶ ἕξις", note:"If sight belongs to the eye, does blindness? — the possession and its privation belong to the same subject"},
+        {label:"Contradiction", greek:"ἀντίφασις", note:"If being good belongs to something, does not-being-good also belong? — no, contradiction excludes the other"},
+      ]},
+      {label:"The argument form", note:"From the belonging of one opposite, infer (or refute) the belonging of the other — constrained by which kind of opposite is involved"},
+      {label:"Connection to Categories Ch. 10", note:"The four types of opposites from Cat. Ch. 10 are the basis of this topos — the Topics applies the theoretical analysis of the Categories"},
+    ]
+  },
+  {
+    id:"t2_3", label:"Top. II.3 — topoi from coordinate terms and inflections", greek:"σύστοιχα καὶ πτώσεις", accent:"#BA7517",
+    children:[
+      {label:"Coordinate terms", greek:"σύστοιχα", note:"Terms derived from the same root — just, justly, justice; brave, bravely, bravery. What holds of one tends to hold of its coordinates"},
+      {label:"The topos", note:"If justice is good, then just actions are good and the just man is good — the coordinate terms carry the predication across"},
+      {label:"Grammatical inflections", greek:"πτώσεις", note:"Nominative, genitive, dative — the same predication should hold across grammatical forms if it holds at all"},
+      {label:"The test", note:"If you can show that an inflection or coordinate does not carry the predication, you refute the original. If it does carry through, the original is supported"},
+      {label:"Connection to the Categories", note:"Paronymous names (Cat. Ch. 1) — 'brave' from 'bravery' — are the categorical basis of this topos. Coordinate terms are paronymous clusters"},
+    ]
+  },
+  {
+    id:"t2_4", label:"Top. II.4 — topoi from the more and the less", greek:"τὸ μᾶλλον καὶ ἧττον", accent:"#BA7517",
+    children:[
+      {label:"The four forms", children:[
+        {label:"More to less", note:"If what admits of more does not belong where it is more expected, it does not belong where it is less expected", eg:"If pleasure is not good even in its highest form, it is not good at all"},
+        {label:"Less to more", note:"If what admits of less belongs where it is less expected, it belongs where it is more expected", eg:"If even slight courage is a virtue, great courage is a virtue"},
+        {label:"Equal to equal", note:"If an attribute belongs to one of two equally situated things it belongs to the other — and if it does not belong to one it does not belong to the other"},
+        {label:"More vs more", note:"If the greater A is more F than the greater B, and the lesser A is also more F than the lesser B, then A is simply more F than B"},
+      ]},
+      {label:"The underlying principle", note:"These topoi exploit the gradable nature of many predicates — things that admit of more and less. They are especially powerful for qualities and comparative evaluations"},
+      {label:"Connection to Categories Ch. 8", note:"Quality admits of more and less (Cat. Ch. 8) — the more/less topoi are the dialectical application of this categorical property"},
+    ]
+  },
+  {
+    id:"t2_5", label:"Top. II.5 — topoi from time", greek:"ἐκ τοῦ χρόνου", accent:"#BA7517",
+    children:[
+      {label:"Temporal qualification of accidents", note:"Accidents may belong at one time and not another — the same subject can have and lack an accident through time"},
+      {label:"The topos", note:"If someone claims an accident belongs without temporal qualification, show it fails at some time — the universal claim is refuted by a temporal counter-instance"},
+      {label:"Reciprocal temporal topoi", note:"If it belongs at one time it does not follow it belongs always — but if it belongs always it belongs at every time"},
+      {label:"Connection to Cat. Ch. 5", note:"Primary being receives contraries through time — the Categories grounds the temporal qualification of accidents. This topos makes it dialectically operational"},
+      {label:"Connection to the Ship of Theseus", note:"The Ship problem turns precisely on temporal qualification — what holds of the ship at t1 may not hold at t2. The temporal topos is the logical structure underlying the puzzle"},
+    ]
+  },
+  {
+    id:"t2_6", label:"Top. II.6 — topoi from what is the same in several respects", greek:"κατὰ πλείω", accent:"#BA7517",
+    children:[
+      {label:"The move", note:"If a predicate is claimed to belong in several respects, attacking in one respect weakens the whole claim — you need only refute it in one sense"},
+      {label:"If the predicate is ambiguous", note:"Show that in one sense it clearly does not belong — this undermines the unqualified assertion"},
+      {label:"Connection to homonymy", note:"This topos is the dialectical deployment of the homonymy distinction — ambiguous terms must be pinned down to a specific sense before the question can be answered"},
+      {label:"Connection to De Int. Ch. 8", note:"Unity of the proposition — if the subject or predicate is ambiguous the proposition fractures. This topos exploits that fracture dialectically"},
+    ]
+  },
+  {
+    id:"t2_7", label:"Top. II.7 — the topos from definition", greek:"ἐκ τοῦ ὁρισμοῦ", accent:"#BA7517",
+    children:[
+      {label:"Using definition against accident claims", note:"If you have the definition of a term, you can test whether the accident claim is consistent with it — or whether the definition itself entails or precludes the accident"},
+      {label:"Substituting the definition", note:"Replace the term with its definition in the proposition — if the result is absurd or clearly false, the original proposition is undermined"},
+      {label:"The power of this topos", note:"Definitions are the most secure premises — if the accident claim contradicts the definition it is immediately refuted. Conversely if it follows from the definition it is established"},
+      {label:"Preview of Books VI–VII", note:"The detailed treatment of definition as a predicable — where topoi for testing definitions are developed — applies the same principle at greater depth"},
+    ]
+  },
+  {
+    id:"t2_8", label:"Top. II.8 — topoi for establishing accidents", greek:"κατασκευή", accent:"#BA7517",
+    children:[
+      {label:"Establishing vs refuting", note:"Books II–III focus mainly on refutation — but the same topoi apply in reverse to establish that an accident belongs"},
+      {label:"Universal establishment", note:"To establish that an accident belongs universally, show it belongs in all cases — or derive it from what is accepted universally"},
+      {label:"Particular establishment", note:"To establish that an accident belongs in a particular case, show the case falls under a universal that carries the accident"},
+      {label:"The asymmetry", note:"Refutation requires only one counterexample; establishment of a universal requires showing there are no counterexamples — the asymmetry of universal and particular"},
+    ]
+  },
+  {
+    id:"t2_9", label:"Top. II.9 — that what applies to the greater should apply to the less", greek:"ἀπὸ τοῦ μείζονος", accent:"#BA7517",
+    children:[
+      {label:"The topos", note:"If an attribute belongs to the thing that seems less likely to have it, it belongs to the thing that seems more likely — a fortiori"},
+      {label:"Example", note:"If even the unjust man sometimes acts justly, surely the just man does — the stronger case is established through the weaker"},
+      {label:"The reverse", note:"If the attribute fails to belong even to the thing most likely to have it, it certainly does not belong to the thing less likely — the stronger refutation"},
+      {label:"Connection to II.4", note:"This is a specific application of the more/less topoi — the a fortiori argument is the sharpest form of the comparative move"},
+    ]
+  },
+  {
+    id:"t2_10", label:"Top. II.10 — topoi from similar cases", greek:"ἐκ τῶν ὁμοίων", accent:"#BA7517",
+    children:[
+      {label:"The topos", note:"What holds in similar cases should hold here — arguing by similarity to transfer a predication from an accepted case to the case under dispute"},
+      {label:"The strength of the topos", note:"Depends on how similar the cases genuinely are — the interlocutor can attack the similarity. The questioner must be prepared to defend the likeness"},
+      {label:"Analogy as similarity across genera", note:"When the similarity crosses a genus boundary it becomes analogy — as sight is to the eye so understanding is to the soul. The strongest form of the similarity topos"},
+      {label:"Connection to I.17", note:"Finding similarities (Top. I.17) is an instrument of argument — this chapter shows how that instrument generates specific topoi for accident"},
+    ]
+  },
+  {
+    id:"t2_11", label:"Top. II.11 — how to respond to topoi from the questioner", greek:"πρὸς τὸν ἐρωτῶντα", accent:"#BA7517",
+    children:[
+      {label:"The respondent's perspective", note:"Books II–III catalogue topoi from the questioner's perspective — this chapter briefly addresses how the respondent can resist them"},
+      {label:"Denying the similarity", note:"Attack the similarity on which a topos from similar cases rests — show the cases differ in a relevant way"},
+      {label:"Distinguishing the sense", note:"Attack ambiguity — show the term is used in different senses in the premise and the conclusion"},
+      {label:"Temporal qualification", note:"Concede the predication with temporal restriction — not always, but at some time. This defeats the universal claim while conceding something"},
+      {label:"Preview of Book VIII", note:"The full treatment of how to respond as a respondent in dialectical exchange — the practice of dialectic — is given in Book VIII"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Introduction and topoi from opposites and coordinates (1–3)", ids:["t2_1","t2_2","t2_3"] },
+  { label:"II — Topoi from degree, time, and respect (4–6)", ids:["t2_4","t2_5","t2_6"] },
+  { label:"III — Topoi from definition, establishment, and similarity (7–11)", ids:["t2_7","t2_8","t2_9","t2_10","t2_11"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

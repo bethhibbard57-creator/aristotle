@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Parts of Animals Book I</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Ζῴων Μορίων Α</h1>
+<p class="subtitle">Parts of Animals Book I — complete interactive reference · chapters 1–5</p>
+<p class="subtitle">The methodological preface to the entire biological corpus — how to classify animals, why the four causes are all needed, and why the final cause is primary in biology</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Parts of Animals Book I is the most philosophically dense text in the biological corpus. It establishes the method of biological inquiry, defends the use of genus-based classification over cross-cutting attribute-based division, shows that all four causes are required for biological explanation, and argues that the final cause — the form and function of the organism — is the primary explanatory principle. It is the logical and metaphysical apparatus of the Organon and the Physics applied explicitly to the study of living things.</footer>
+
+<script>
+const cats = [
+  {
+    id:"pa1_1", label:"PA I.1 — two kinds of scientific competence: the general and the specific", greek:"δύο εἴδη ἐπιστήμης", accent:"#BA7517",
+    children:[
+      {label:"The educated person and the expert", note:"There are two kinds of competence in any science: (1) the general competence of the educated person who can judge whether an inquiry is being conducted well — who knows the method; (2) the specific competence of the expert who knows the facts of the domain. Both are required; neither alone is sufficient"},
+      {label:"The educated person judges method, not content", note:"The educated person — the person with general scientific training — does not need to know every fact about every science. They need to know whether the method is correct: whether the right questions are being asked, whether the explanations are of the right kind, whether the causes are properly identified"},
+      {label:"Connection to Post. An. I.27", note:"The more exact science is the one that proceeds from fewer and more primary principles — Post. An. I.27. The educated person is one who understands the principles well enough to judge when they are being applied correctly. Parts of Animals I.1 operationalises this epistemological standard for biology"},
+      {label:"Connection to your thesis", note:"The two kinds of competence correspond to two levels of the classificatory enterprise: the logical level (knowing that the genus-species-differentia apparatus is the correct one) and the empirical level (knowing which genera, species, and differentiae actually exist in nature). Your thesis operates at the logical level; the biological works operate at the empirical level. Both are required for the complete account of what makes predications true"},
+    ]
+  },
+  {
+    id:"pa1_2", label:"PA I.2–3 — should we study each species separately or treat genera first?", greek:"εἴδη ἢ γένη", accent:"#BA7517",
+    children:[
+      {label:"The methodological question", note:"Should the biologist describe each species one by one (man, then horse, then eagle...) or should they first identify the common attributes of genera and then note the specific differences? This is the key methodological question of biological classification"},
+      {label:"The problem with species-by-species description", note:"If we describe each species separately, we will repeat ourselves enormously — the same attributes appear in dozens of species. Man has blood; so does horse; so does eagle. Repeating this for every species is inefficient and obscures the structural unity of the animal kingdom"},
+      {label:"The problem with cross-cutting attribute division", note:"If we organise by single attributes — all feathered animals together, all blooded animals together — we will split natural groups. Man and monkey belong together as primates; organising by single attributes separates them and groups man with eagles (both blooded) while separating him from fish (also blooded but vastly different)"},
+      {label:"The correct method: genus first, then differentiae", note:"The correct method is to identify the large natural genera — birds, fish, blooded animals, bloodless animals — and then within each genus identify the differentiae that distinguish the species. This preserves natural groupings and avoids the twin errors of species-by-species repetition and cross-cutting attribute distortion"},
+      {label:"The Porphyrian tree in practice", note:"This is exactly the Porphyrian tree as a working biological instrument. The tree descends from the most general genus (animal) through successive differentiae to the infima species (this particular kind of bird). Parts of Animals I.2–3 is the methodological defence of the tree structure as the correct instrument for biological classification"},
+      {label:"Connection to Topics IV and Post. An. II.13", note:"Topics IV: the genus must be predicated in the what-it-is. Post. An. II.13: the correct method of definition by genus and differentia. Parts of Animals I.2–3 shows these logical requirements operating in the concrete practice of biological classification. The logic and the biology are one method at two levels"},
+      {label:"Connection to your thesis", note:"This is the passage most directly relevant to your claim that categorical classification gives us the truth values for actual predications. The genus determines what attributes belong per se to the members of that genus. When we know that something is a bird (belongs to the genus aves), we know which predicates are true of it per se — having feathers, being warm-blooded, laying eggs — and which are only accidentally true. The genus is the truth-condition maker. This is the empirical grounding of the logical doctrine that per se predication is grounded in the categorical placement of the subject"},
+    ]
+  },
+  {
+    id:"pa1_3", label:"PA I.3 — dichotomous division fails; the correct method of division", greek:"διχοτομία", accent:"#BA7517",
+    children:[
+      {label:"The failure of strict dichotomy", note:"Plato's method of dichotomous division — dividing each genus into exactly two by a single differentia — fails in biology. Nature does not always divide by exactly two. There are more than two kinds of bird, more than two kinds of fish. Strict binary division distorts the biological reality"},
+      {label:"Division by privation is misleading", note:"Dichotomous division produces one positive and one privative class — feathered vs unfeathered. But the privative class is not a natural group — it includes fish, snakes, and humans, who share nothing except the absence of feathers. Privative divisions do not carve nature at its joints"},
+      {label:"Multiple differentiae at each level", note:"At each level of the classificatory tree there may be more than two natural subgroups. Birds divide into many kinds — eagles, hawks, sparrows, ostriches — not into two. The tree must be allowed to branch into as many sub-groups as nature actually contains"},
+      {label:"The differentiae must be natural", note:"The correct differentiae are those that capture genuine natural groupings — that track the formal structure of the animals. Blood/bloodless, feathered/scaled/smooth — these are natural differentiae because they correspond to deep structural differences in the animals' organisation. Arbitrary or superficial differentiae produce unnatural groups"},
+      {label:"Connection to Soph. Ref. Ch. 8 — form of expression", note:"The fallacy of form of expression — treating grammatical form as logical form. Dichotomous division imposes a grammatical form (binary opposition) on natural reality. Nature does not always present binary oppositions; imposing binary form on non-binary reality generates the same distortion as the form-of-expression fallacy. The correct classification must follow the form of nature, not the form of language"},
+    ]
+  },
+  {
+    id:"pa1_4", label:"PA I.4 — the four causes are all needed in biology; the final cause is primary", greek:"τέτταρα αἴτια ἐν βιολογίᾳ", accent:"#534AB7",
+    children:[
+      {label:"All four causes operate in biology", note:"Every biological explanation requires all four causes — material (what the animal is made of), formal (what kind of animal it is — its species), efficient (what generated it), and final (what its parts are for). Omitting any one produces an incomplete explanation"},
+      {label:"The final cause is primary in biology", note:"In biology the final cause — what the organism is for, what its parts are for — is the most explanatory. We explain the heart by what it does (pumps blood to maintain life) not by what it is made of (muscle tissue). Function explains structure; structure does not explain function"},
+      {label:"Form and final cause coincide in living things", note:"In living things the formal cause and the final cause largely coincide — the form of the organism is what the organism is for. The soul is both the form of the body and the final cause of the body's development. This is the biological expression of the metaphysical principle that form is the cause of being (Met. Zeta.17)"},
+      {label:"The material cause is for the sake of the formal-final", note:"The material composition of an organism exists for the sake of its form and function — flesh and bone are the matter required for the form of a human being to be realised. The matter serves the form; the form does not serve the matter. This is hypothetical necessity (Physics II.9) at work in biology"},
+      {label:"Necessity in biology is hypothetical", note:"In biology we explain by hypothetical necessity — if there is to be a bird, there must be hollow bones (for lightness in flight). The necessity runs from the end (form/function) back to the required matter. We do not say hollow bones produce birds; we say birds require hollow bones"},
+      {label:"Connection to Physics II.8–9", note:"Teleology in nature — Physics II.8. Hypothetical necessity — Physics II.9. Parts of Animals I.4 is the explicit application of both to the biological domain. The Physics established the principles; Parts of Animals I applies them to living things specifically"},
+      {label:"Connection to your thesis", note:"The primacy of the final cause in biology is the ontological ground of your claim that categorical classification gives truth values for actual predications. The species-form is the final cause of the individual organism — what the organism is for, what it is trying to be. The per se attributes of a species are those that belong to the organism in virtue of its species-form — its final cause. To know what predicates are true per se of an animal is to know its species-form — its telos. The truth conditions for biological predications are teleological. This is the deepest connection between the biological works and the logical thesis"},
+    ]
+  },
+  {
+    id:"pa1_5", label:"PA I.5 — the nobility of studying living things; the great chain of being", greek:"ἡ τῶν ζῴων ἱστορία", accent:"#534AB7",
+    children:[
+      {label:"The famous defence of biology", note:"Some people think the study of animals — especially the lesser ones — is beneath the dignity of philosophy. Aristotle disagrees emphatically: every living thing is wonderful, and the study of every kind reveals something of the divine"},
+      {label:"Even the humblest animals are worthy of study", note:"The person who finds the study of animals undignified should remember Heraclitus' reply to the visitors who found him warming himself by the kitchen fire: 'Even here the gods are present.' In every living thing, however humble, there is something of form and purpose — something of the divine"},
+      {label:"Nature does nothing in vain", note:"Every part of every animal has a function — nature does nothing without purpose. This is the teleological principle applied universally: wherever there is life, there is form; wherever there is form, there is purpose; wherever there is purpose, there is something worthy of knowledge"},
+      {label:"The hierarchy of living things", note:"Living things form a hierarchy from the simplest to the most complex — from plants through animals to human beings. At each level, more of the formal-teleological structure is realised. The hierarchy is not merely descriptive but normative — it tracks the degree of actualisation of form"},
+      {label:"The great chain of being", note:"Nature passes continuously from lifeless to living by such small steps that the boundary is imperceptible — from plants to the lowest animals, from the lowest to the highest. The continuity of nature is the continuity of form progressively actualised in matter. The biological world instantiates the same form/matter, actuality/potentiality structure as the metaphysical world"},
+      {label:"Connection to GC, On the Heavens, and Metaphysics", note:"The great chain of being connects the biological works to the cosmological: the elements → homoeomerous stuffs → organs → organisms → human beings → the divine. The same vertical structure runs from prime matter at the bottom through the hierarchy of living forms to the Unmoved Mover at the top. Biology is the middle term of this chain — it is where form most fully actualises itself in matter short of the purely formal"},
+      {label:"Connection to your thesis", note:"The great chain of being is the ontological ground of the classificatory system. The hierarchy of genera and species is not arbitrary — it tracks the degree of formal actualisation in matter. The truth values of predications about living things are grounded in their position in this hierarchy. A predicate is true per se of a subject when it belongs to the subject in virtue of the subject's position in the great chain — in virtue of what the subject most essentially is. The biological classification system is the empirical expression of the metaphysical hierarchy of form and actuality. This is the bridge between the logical apparatus of the Organon and the empirical world of living things — and it is exactly what your thesis requires"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Two kinds of competence; the methodological question (1–2)", ids:["pa1_1","pa1_2"] },
+  { label:"II — Why dichotomous division fails; the correct method (3)", ids:["pa1_3"] },
+  { label:"III — The four causes in biology; the final cause is primary (4)", ids:["pa1_4"] },
+  { label:"IV — The nobility of biological study; the great chain of being (5)", ids:["pa1_5"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

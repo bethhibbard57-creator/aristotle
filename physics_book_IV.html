@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Physics Book IV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Φυσικὴ Ἀκρόασις Δ</h1>
+<p class="subtitle">Physics Book IV — complete interactive reference · chapters 1–14</p>
+<p class="subtitle">Subject: place, void, and time — the three conditions within which all natural motion occurs</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Physics Book IV analyses the three conditions of natural motion: place (the where of motion), void (its alleged condition), and time (the measure of motion). The analysis of time in IV.10–14 is among the most consequential passages in the entire corpus for your thesis — time as the number of motion with respect to before and after, requiring a counting soul, connects directly to the temporal identity condition of LNC and to the Buddhist analysis of temporal flux.</footer>
+
+<script>
+const cats = [
+  {
+    id:"ph4_1", label:"Phys. IV.1 — why place matters; the conditions for having a place", greek:"τόπος", accent:"#BA7517",
+    children:[
+      {label:"Why the physicist must study place", note:"Everything that exists is somewhere — in a place. Place is a condition of natural existence. And all natural motion is motion from place to place or within place. A physics without a theory of place is incomplete"},
+      {label:"The puzzles about place", note:"Place seems to be real — things are in places and move between them. But it is hard to say what place is. Is it the matter of the thing? Its form? Some extension between the boundaries? Each option faces difficulties"},
+      {label:"What we mean by place", note:"We say something is in place when it is surrounded by something else — when there is something outside it that encloses it. Place seems to be the boundary between the thing and what surrounds it"},
+      {label:"The power of place", note:"Place seems to have a kind of power — fire goes up, earth goes down. Each element has a natural place toward which it tends. Place is not merely a container but a principle of order and direction in nature"},
+      {label:"Four candidates for what place is", children:[
+        {label:"The form of the thing", note:"The shape that bounds the thing from outside — but the form is in the thing, not around it"},
+        {label:"The matter of the thing", note:"What the thing is made of — but matter is part of the thing, not what contains it"},
+        {label:"Some extension between boundaries", note:"An empty space that the thing occupies — but this is the void, which must be examined separately"},
+        {label:"The boundary of the surrounding body", note:"Aristotle's answer — the innermost unmoved boundary of what contains the thing"},
+      ]},
+    ]
+  },
+  {
+    id:"ph4_2", label:"Phys. IV.2 — difficulties about place", greek:"ἀπορίαι τόπου", accent:"#BA7517",
+    children:[
+      {label:"Does place exist?", note:"If everything that exists is in a place, is place itself in a place? If so, we have an infinite regress. If not, place is an exception to the rule that everything is somewhere"},
+      {label:"Is place the matter or form?", note:"Place seems similar to matter — it is what a thing is in. And to form — it bounds the thing. But it differs from both: when a thing moves, its place stays while the thing goes; matter and form move with the thing"},
+      {label:"The growing body puzzle", note:"If a vessel is filled with water and the water is replaced by air, the place is the same though the contents have changed. Place seems to be something that remains when the contents change — but what is this something?"},
+      {label:"The river puzzle", note:"A river flows — the water moves but the river seems to stay in place. The banks constitute the place of the river. But the banks are themselves in a place. Where does the regress stop?"},
+    ]
+  },
+  {
+    id:"ph4_3", label:"Phys. IV.3 — place is not matter, form, or extension", greek:"οὐχ ὕλη οὐδ᾽ εἶδος", accent:"#BA7517",
+    children:[
+      {label:"Not matter", note:"Matter is the substrate of the thing — what remains when the form changes. But place remains when the thing moves away entirely. Matter stays with the thing; place stays when the thing leaves"},
+      {label:"Not form", note:"Form is in the thing — it is what the thing is. But place is outside the thing — it is what surrounds it. Form cannot be separated from the thing; place can (when the thing moves away, the place remains)"},
+      {label:"Not extension", note:"If place were a three-dimensional extension — a void — there would be two bodies in the same place: the thing and the extension it occupies. And the extension would itself need a place. The regress begins"},
+      {label:"The correct answer previewed", note:"Place is the innermost unmoved boundary of what contains the thing — neither in the thing (like form and matter) nor a separate extension, but the inner surface of the container at the point where it meets the contained thing"},
+    ]
+  },
+  {
+    id:"ph4_4", label:"Phys. IV.4 — place defined: the innermost unmoved boundary of the container", greek:"τόπος ὁρισμός", accent:"#BA7517",
+    children:[
+      {label:"The definition", note:"Place is the first unmoved boundary of what contains — τὸ τοῦ περιέχοντος πέρας ἀκίνητον πρῶτον. The innermost surface of the container, considered as unmoved"},
+      {label:"Unpacking the definition", children:[
+        {label:"Boundary", note:"Place is a limit or surface — not a three-dimensional volume but a two-dimensional boundary"},
+        {label:"Of what contains", note:"It is the boundary of the container, not of the contained thing — the inner surface of the jar, not the outer surface of the water"},
+        {label:"Innermost", note:"The immediate container — not the outer wall of the room but the inner surface of the jar that immediately surrounds the water"},
+        {label:"Unmoved", note:"The boundary must be considered as unmoved — as the fixed limit within which the thing moves. This is why the river has a place even though the water flows"},
+      ]},
+      {label:"Natural place", note:"Each element has a natural place — upward for fire, downward for earth. These are defined by the structure of the cosmos: the center and the periphery. Natural motion is motion toward natural place"},
+      {label:"Place has power", note:"Place is not merely a passive container — it orders natural things by giving each kind a natural place toward which it tends. The power of place is the teleological ordering of natural motion"},
+      {label:"Connection to Categories Ch. 6", note:"Place (where) is one of the ten categories — δ.6 of the Categories gives the categorical analysis. Physics IV.4 gives the physical definition. Together they show that the category of place has a genuine physical content"},
+    ]
+  },
+  {
+    id:"ph4_5", label:"Phys. IV.5 — further consequences of the definition of place", greek:"ἑπόμενα", accent:"#BA7517",
+    children:[
+      {label:"The universe has no place", note:"The universe as a whole is not in anything — there is nothing outside it to contain it. The universe has no place in the proper sense. But its parts have places relative to each other"},
+      {label:"The outermost sphere", note:"The outermost celestial sphere is in place only accidentally — in respect of its parts, which are in place relative to each other. The sphere as a whole rotates but does not move from place to place"},
+      {label:"Place is always equal to what is in it", note:"A place is exactly the size of what occupies it — neither larger nor smaller. When the thing moves away and something else enters, the place is the same but the occupant has changed"},
+      {label:"Things in things", note:"A thing can be in place in many senses — the wine is in the jar, the jar is in the house, the house is in the city. The immediate place is the jar; the more remote places are the house and city. Being in place is a graduated relation"},
+    ]
+  },
+  {
+    id:"ph4_6", label:"Phys. IV.6 — the void: previous views and arguments for it", greek:"κενόν — δόξαι", accent:"#BA7517",
+    children:[
+      {label:"What the void is supposed to be", note:"The void (κενόν) is empty place — place without a body in it. The atomists (Leucippus and Democritus) posited void as necessary for motion: if there is no empty space, there is nowhere for things to move to"},
+      {label:"Arguments for the void", children:[
+        {label:"Motion requires empty space", note:"For a body to move, the space it moves into must be empty — otherwise two bodies would be in the same place"},
+        {label:"Compression requires void", note:"When a body is compressed, its parts move closer together — the void between them is eliminated. Compression implies prior void"},
+        {label:"Growth requires void", note:"When a body grows it takes up more space — something must give way. If growth is real, there must be void to receive the extra matter"},
+        {label:"The ash and water argument", note:"A vessel full of ash takes water — the water occupies the spaces between the ash particles. Therefore there are empty spaces in the ash"},
+      ]},
+      {label:"Aristotle's response previewed", note:"All these arguments can be answered without positing void — motion can occur by mutual replacement, compression by rearrangement, growth by transformation. The void is not required"},
+    ]
+  },
+  {
+    id:"ph4_7", label:"Phys. IV.7 — the void does not exist as a separate extension", greek:"κενὸν οὐκ ἔστι", accent:"#BA7517",
+    children:[
+      {label:"The void as separate extension", note:"If void exists it must be a three-dimensional extension that is empty — place without matter. But a three-dimensional extension that is empty is indistinguishable from place itself"},
+      {label:"The redundancy argument", note:"If place already does what void is supposed to do — provide space for bodies to be and move — then void is redundant. The void is just an empty place, and empty places exist only when things have moved away"},
+      {label:"Void as cause of motion fails", note:"The void is supposed to be the cause of motion — providing space to move into. But if void has no qualities, it cannot differentiate up from down — and yet natural motion is directed. The void cannot account for the directedness of natural motion"},
+      {label:"The place account is sufficient", note:"Everything the void was supposed to explain is already explained by the account of place and natural place. Void is not required"},
+    ]
+  },
+  {
+    id:"ph4_8", label:"Phys. IV.8 — the void does not explain motion; motion in void is impossible", greek:"κίνησις ἐν κενῷ", accent:"#BA7517",
+    children:[
+      {label:"Motion in void would be unlimited", note:"In a medium, resistance slows motion — denser media produce slower motion. In void there is no resistance. But then motion would be instantaneous — no time would be needed to traverse any distance. Instantaneous motion is impossible"},
+      {label:"Ratios break down in void", note:"The speed of motion is in inverse ratio to the density of the medium. But void has no density — you cannot form a ratio between something and nothing. The mathematical framework of motion collapses in void"},
+      {label:"No differentiation in void", note:"The void has no qualities — it is pure empty extension. But natural motion is toward natural place — up or down, center or periphery. Without qualitative differentiation, natural place is impossible, and without natural place, directed natural motion is impossible"},
+      {label:"Mutual replacement", note:"Aristotle's positive account: motion occurs by mutual replacement — when A moves into B's place, B moves into C's place, and so on. This is motion in a plenum without void. The ancient example: fish swimming through water"},
+      {label:"Connection to your thesis", note:"The void is the physical analogue of the empty logical space between contradictories — the alleged middle between is and is-not. Aristotle's argument that void does not exist and cannot explain motion is parallel to his argument that there is no middle between contradictories (PEM). The physical and logical analyses are structurally identical"},
+    ]
+  },
+  {
+    id:"ph4_9", label:"Phys. IV.9 — resolving the arguments for void", greek:"λύσεις", accent:"#BA7517",
+    children:[
+      {label:"Resolving the motion argument", note:"Motion does not require pre-existing empty space — it requires mutual displacement. Bodies exchange places; there is always something in every place"},
+      {label:"Resolving the compression argument", note:"Compression does not eliminate void between parts — it brings parts into closer contact by rearranging them. The matter is the same; the arrangement changes. No void required"},
+      {label:"Resolving the growth argument", note:"Growth occurs by transformation of matter — food becomes flesh, not by occupying previously void spaces but by changing its form. The matter of the food takes on the form of the body that absorbs it"},
+      {label:"Resolving the ash and water argument", note:"The water does not fill void spaces in the ash — it displaces the air between the ash particles. Two bodies are not in the same place; the air is displaced as the water enters"},
+      {label:"The completeness of the dissolution", note:"Every argument for void has been dissolved without positing void. Void is not required for any natural phenomenon — motion, compression, growth, or interpenetration of bodies"},
+    ]
+  },
+  {
+    id:"ph4_10", label:"Phys. IV.10 — time: the puzzles", greek:"χρόνος — ἀπορίαι", accent:"#BA7517",
+    children:[
+      {label:"Does time exist?", note:"The past is no longer, the future is not yet, and the present is an instant without duration — if time is composed of past, future, and present, and only the present exists, time seems to barely exist at all"},
+      {label:"The now", greek:"τὸ νῦν", note:"The present moment — the now. Is the now always the same or always different? If always the same, nothing would be before or after anything else — all time would be simultaneous. If always different, what happened to the previous now? Did it perish? When?"},
+      {label:"Time and motion", note:"Time seems to be connected to motion — when we perceive no change, we do not perceive time passing. But time is not the same as motion — the same motion can seem faster or slower to different observers, but time presumably flows uniformly"},
+      {label:"These puzzles require careful dissolution", note:"Aristotle will dissolve each puzzle through the definition of time — showing that the puzzles arise from treating the now as a thing rather than a limit, and from not distinguishing time from motion properly"},
+    ]
+  },
+  {
+    id:"ph4_11", label:"Phys. IV.11 — time defined: the number of motion with respect to before and after", greek:"ἀριθμὸς κινήσεως κατὰ τὸ πρότερον καὶ ὕστερον", accent:"#BA7517",
+    children:[
+      {label:"Time and motion are connected but not identical", note:"We perceive time when we perceive motion — but time is not motion itself. The same motion can seem fast or slow; we would not say time moves at different rates for different observers"},
+      {label:"The before and after in motion", note:"Motion has a before and after — there is a part of the motion that has occurred and a part yet to come. This ordering of before and after in motion is the basis of our perception of time"},
+      {label:"The definition", note:"Time is the number of motion with respect to before and after — ἀριθμὸς κινήσεως κατὰ τὸ πρότερον καὶ ὕστερον. Time is not motion but the measure of motion — the numbered aspect of motion's before-and-after"},
+      {label:"Number in what sense", note:"Time is number in the sense of what is counted, not in the sense of the number we count with. The number of horses in a herd is the horses counted — ten horses. Time is the motions counted in terms of before and after"},
+      {label:"The now as the unit of measurement", note:"The now is to time as the point is to a line — it is the limit between past and future, the unit by which we measure temporal extension. The now divides time without being a part of it"},
+      {label:"Time requires a soul to count", note:"Number requires a numberer — something that counts. Time, as number, requires a soul to perceive and count the before and after in motion. Without a soul there is motion but no numbered time — only the substrate of time"},
+      {label:"Connection to LNC and your thesis", note:"The temporal identity condition of LNC — same time — is now grounded in the analysis of time as the number of motion with respect to before and after. Same time means: counted as the same unit of numbered motion. Different times mean: different units in the before-and-after sequence. The four conditions of LNC are not arbitrary — they are grounded in the deepest analyses of the Physics and Metaphysics"},
+      {label:"Connection to Buddhist temporal analysis", note:"The Buddhist analysis of momentariness — all conditioned things arise and pass away in moments — is the metaphysics of a world where time is primary and substrates are constructed. Aristotle's analysis is the converse: substance is primary, time is the number of its motions. Both analyses take seriously the irreducibility of temporal succession — their difference is in what is taken as primitive"},
+    ]
+  },
+  {
+    id:"ph4_12", label:"Phys. IV.12 — time and motion are in each other", greek:"ἐν ἀλλήλοις", accent:"#BA7517",
+    children:[
+      {label:"Motion is in time", note:"All motion takes time — faster and slower motions are distinguished by the time they take. Time measures motion by being the standard against which motions are compared"},
+      {label:"Time is in motion", note:"Time has no existence apart from the before-and-after structure of motion — time just is the numbered order of before and after in change. Without motion there is no time"},
+      {label:"Rest is also in time", note:"Things at rest are also in time — they persist through time without moving. Time measures their persistence as well as change. Being-at-rest-for-a-time is a temporal determination even without motion"},
+      {label:"Things not in time", note:"What is eternal and unchanging is not in time — the Unmoved Mover, mathematical objects (as studied in abstraction). They are not measured by time because they do not change and have no before and after"},
+      {label:"Connection to Post. An. I.8", note:"Demonstration is of what is eternal — what is not in time in Aristotle's sense. The eternal truths of mathematics and first philosophy are not temporal. Physics IV.12 clarifies the boundary between the temporal (natural science) and the atemporal (mathematics, first philosophy)"},
+    ]
+  },
+  {
+    id:"ph4_13", label:"Phys. IV.13 — the now: same and different", greek:"τὸ νῦν", accent:"#BA7517",
+    children:[
+      {label:"The now is always the same and always different", note:"The now is always the same in substrate — it is the present moment, the limit of past and future. But it is always different in being — each now is a different position in the temporal sequence"},
+      {label:"The analogy with the moving point", note:"A point moving along a line is always the same point (in substrate) but always at a different position (in being). The now is like the moving point on the line of time — the same limit, always at a new position"},
+      {label:"The now is not a part of time", note:"The now does not have duration — it is an instant, not an interval. Time is composed of intervals (before and after), not of nows. The now is the boundary between intervals, not an interval itself"},
+      {label:"Dissolving the puzzle", note:"The puzzle was: if the now is always the same, nothing is before or after anything else. If always different, what happened to the previous now? The resolution: the now is the same in substrate (the present limit) but different in position (each position is a different now). The puzzle arose from not distinguishing substrate from positional being"},
+      {label:"Connection to your thesis", note:"The now as same-in-substrate but different-in-position is the temporal analogue of the primary being that receives contraries through time (Cat. Ch. 5). The same subject, different positions in the temporal sequence — this is the physical basis of the temporal identity condition. The Ship of Theseus and the Sea Battle are problems about what counts as the same position in the temporal sequence"},
+    ]
+  },
+  {
+    id:"ph4_14", label:"Phys. IV.14 — time, soul, and the universe", greek:"χρόνος καὶ ψυχή", accent:"#BA7517",
+    children:[
+      {label:"Would there be time without a soul?", note:"Time is the number of motion — but number requires a numberer. If there were no soul to count, there would be no number and therefore no time. There would be the substrate of time — the before-and-after in motion — but not time itself"},
+      {label:"The substrate of time exists independently", note:"The before-and-after structure of motion is objective — it does not depend on a counting soul. What depends on the soul is the numbering of that structure — the transformation of the before-and-after into counted time"},
+      {label:"Is there one time or many?", note:"There seems to be one time — when we count different motions simultaneously, we count them by the same time. Time is one because the primary motion (the rotation of the outermost sphere) is one, and all other times are measured by it"},
+      {label:"Time and the eternal now", note:"The now is always the same in a sense — the present is always present. But the now is always different in another sense — each present is a new position. This is the paradox of time: always flowing, always now"},
+      {label:"Connection to Lambda and the Unmoved Mover", note:"The Unmoved Mover is outside time — pure actuality without before or after, without motion, without number. Time is the measure of motion; the Unmoved Mover has no motion to be measured. Lambda's pure actuality is the timeless ground of all temporal motion — the eternal now that is not a position in the sequence but the condition of the sequence itself"},
+      {label:"Connection to your thesis", note:"Time requires a soul — number requires a numberer. This connects to Post. An. II.19's epistemological ascent (perception → nous) and to the Buddhist analysis of consciousness as the condition of experienced temporal succession. The temporal identity condition of LNC is not merely physical but requires a perceiving subject to constitute the 'same time'. This is not subjectivism — the before-and-after is objective — but it grounds the LNC conditions in the structure of conscious temporal experience"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Place defined: the innermost unmoved boundary of the container (1–5)", ids:["ph4_1","ph4_2","ph4_3","ph4_4","ph4_5"] },
+  { label:"II — The void: arguments for and against; motion in void impossible (6–9)", ids:["ph4_6","ph4_7","ph4_8","ph4_9"] },
+  { label:"III — Time defined: the number of motion; the now; soul (10–14)", ids:["ph4_10","ph4_11","ph4_12","ph4_13","ph4_14"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Politics III–IV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Πολιτικά Γ–Δ</h1>
+<p class="subtitle">Politics Books III & IV — complete interactive reference</p>
+<p class="subtitle">III: citizenship, constitutions, justice, and the rule of law · IV: the kinds of constitution in practice; the best attainable constitution</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book III is the philosophical core of the Politics — it defines the citizen, classifies constitutions, analyses the claims of different groups to rule, defends the collective wisdom of the many, and examines the rule of law vs the rule of the best person. Book IV turns from the ideal to the actual — analysing what kinds of constitutions exist, which are best for most cities under most conditions, and how they should be organised. Together Books III–IV give both the normative standard and the practical analysis of political life.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book III — Πολιτικά Γ · Citizenship, constitutions, and political justice",
+    groups: [
+      {
+        label: "Who is a citizen? The definition and its implications (III.1–5)",
+        chapters: [
+          {
+            id:"pol3_1", label:"Pol. III.1 — the citizen defined", greek:"πολίτης", accent:"#BA7517",
+            children:[
+              {label:"Why the question matters", note:"The city is a composite — to understand it we must understand what it is composed of. The city is composed of citizens. So we must first ask: what is a citizen?"},
+              {label:"The citizen defined", note:"The citizen in the unqualified sense is one who shares in the administration of justice and in holding office. The citizen is defined by participation in the political functions of the city — not by birth, residence, or descent alone"},
+              {label:"The citizen differs in different constitutions", note:"In a democracy the citizen participates directly; in an oligarchy participation is restricted by property; in a monarchy citizenship is different again. The definition must be flexible enough to cover all these cases"},
+              {label:"The temporary and the permanent office holder", note:"Some offices are for a limited term; others (like juror and assembly member) are indefinite and open to all. The citizen in the fullest sense participates in both kinds"},
+              {label:"Connection to your thesis", note:"The definition of the citizen by participation — by active exercise of political functions — is the political application of the actuality/potentiality distinction. The potential citizen (a resident who could participate) differs from the actual citizen (one who does participate). The city as community of active citizens is a community of actualities — the political analogue of the community of actualised souls in the Ethics. Proper predication of 'citizen' requires the same conditions as proper predication of virtue: not merely having the capacity but exercising it"},
+            ]
+          },
+          {
+            id:"pol3_4", label:"Pol. III.4–5 — is the virtue of the good citizen the same as the virtue of the good person?", greek:"ἀρετὴ πολίτου καὶ ἀνδρός", accent:"#BA7517",
+            children:[
+              {label:"The question", note:"Must a good citizen be a good person? Or can one be a good citizen without being a good person — and vice versa?"},
+              {label:"The virtue of the citizen is relative to the constitution", note:"The virtue of a good citizen varies with the constitution — what makes a good Spartan citizen is not what makes a good Athenian citizen. Citizen virtue is relative; human virtue is absolute"},
+              {label:"The virtue of a good person is absolute", note:"The virtue of a good person — practical wisdom, courage, justice, temperance — is the same in all constitutions. The good person is good absolutely; the good citizen is good relative to their particular constitution"},
+              {label:"They coincide only in the best constitution", note:"The virtues of the good citizen and the good person coincide only in the best constitution — where the constitution aims at the true good and the citizen participates fully in ruling and being ruled. Everywhere else they come apart"},
+              {label:"Connection to NE and the Politics", note:"This is the key junction between the Ethics and the Politics. The Ethics defined virtue absolutely; the Politics shows that the political conditions for the exercise of virtue vary. Only in the best constitution is the gap between political virtue and human virtue closed — this is why the Politics must describe the best constitution"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The classification of constitutions; correct and deviant (III.6–8)",
+        chapters: [
+          {
+            id:"pol3_6", label:"Pol. III.6–7 — the classification of constitutions", greek:"πολιτεῖαι", accent:"#BA7517",
+            children:[
+              {label:"The criterion of classification", note:"Constitutions differ in who holds authority (one, few, or many) and whether they rule for the common good or for their own benefit. This gives six kinds: three correct and three deviant"},
+              {label:"The six constitutions", children:[
+                {label:"Monarchy", greek:"βασιλεία", note:"Rule by one for the common good. Correct form"},
+                {label:"Aristocracy", greek:"ἀριστοκρατία", note:"Rule by the few best for the common good. Correct form"},
+                {label:"Polity", greek:"πολιτεία", note:"Rule by the many for the common good. Correct form — but the hardest to achieve"},
+                {label:"Tyranny", greek:"τυραννίς", note:"Rule by one for the ruler's own benefit. Deviant form — the worst single-ruler constitution"},
+                {label:"Oligarchy", greek:"ὀλιγαρχία", note:"Rule by the few wealthy for their own benefit. Deviant form"},
+                {label:"Democracy", greek:"δημοκρατία", note:"Rule by the many poor for their own benefit. Deviant form"},
+              ]},
+              {label:"The defining feature of oligarchy and democracy", note:"Oligarchy is not simply rule by the few but rule by the wealthy for the wealthy. Democracy is not simply rule by the many but rule by the poor for the poor. The essential distinction is economic, not numerical"},
+              {label:"Connection to your thesis", note:"The six constitutions form a tetralemmic-adjacent structure — three correct, three deviant, organised by two axes: number of rulers (one/few/many) and aim (common good/private good). The political world is structured by the same fourfold analysis as the logical, physical, and psychological worlds. The deviant constitutions are improper predications of political authority — they predicate rule of those who lack the proper qualification (the common good). The Political elenchus of deviant constitutions is the application of the per se / accidental distinction to political legitimacy"},
+            ]
+          },
+          {
+            id:"pol3_8", label:"Pol. III.8 — oligarchy and democracy: the real distinction", greek:"ὀλιγαρχία καὶ δημοκρατία", accent:"#BA7517",
+            children:[
+              {label:"The error about oligarchy and democracy", note:"It is not primarily the number of rulers that defines oligarchy and democracy but their economic character. If the wealthy are few and rule for themselves — oligarchy. If the poor are many and rule for themselves — democracy. If somehow the wealthy were many and the poor few and each ruled for themselves, the terms would still apply"},
+              {label:"The real distinction is between wealth and freedom", note:"Oligarchs claim to rule because they are wealthy — property gives a claim to rule. Democrats claim to rule because they are free — freedom gives a claim to rule. Both claims have some merit and some deficiency"},
+              {label:"Neither claim is fully correct", note:"Wealth alone does not qualify one for political rule — the wealthy can be unjust or incompetent. Freedom alone does not qualify either — the free poor can be ignorant of political matters. The claim of merit (virtue) is stronger than either"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Who should rule? The claims of different groups; the wisdom of the many (III.9–13)",
+        chapters: [
+          {
+            id:"pol3_9", label:"Pol. III.9–11 — justice in the city; the wisdom of the many", greek:"δικαιοσύνη πολιτική", accent:"#BA7517",
+            children:[
+              {label:"III.9 — political justice is for the common good", note:"The city exists for the good life — not merely for mutual defence or trade. The city that aims only at security or economic exchange falls short of the true end. The true end is the good life for all citizens"},
+              {label:"III.10 — the competing claims to rule", note:"Who should rule — the wealthy, the virtuous, the free, the majority? Each has a claim; none has the only claim. The just resolution must weigh all the claims"},
+              {label:"III.11 — the wisdom of the many", note:"The many, each of whom is not particularly virtuous or wise, may collectively be better judges than any one person or small group. When many people come together each contributes their part of virtue and wisdom — the assembled whole exceeds any individual part"},
+              {label:"The banquet analogy", note:"A feast contributed by many is better than one given by a single host — even if the single host is a better cook than any individual contributor. Collective provision surpasses individual provision in certain domains"},
+              {label:"The limits of the collective wisdom argument", note:"The argument applies only when the many are not too degraded — a mob of slaves or animals cannot collectively be wise. The collective wisdom of the many is a claim for citizens with basic competence, not for any random group"},
+              {label:"Connection to your thesis", note:"The wisdom of the many is the political expression of the inductive method — the accumulation of particular perceptions and experiences into a collective universal. Post. An. II.19's epistemological ascent at the level of individual cognition becomes the political assembly's collective ascent at the level of communal judgment. The political and the epistemological are structured by the same logic of accumulation and convergence"},
+            ]
+          },
+          {
+            id:"pol3_13", label:"Pol. III.12–13 — the claim of the absolutely best person", greek:"ὁ ἄριστος", accent:"#BA7517",
+            children:[
+              {label:"The problem of the absolutely best person", note:"What if there is one person so superior in virtue that they exceed all others as much as a god exceeds human beings? The laws cannot apply to them — they would be a law unto themselves. What do we do?"},
+              {label:"The answer: ostracism or kingship", note:"If such a person exists, either the city ostracises them (removes the excessive element that disrupts equality) or makes them king — a monarch whose virtue entitles them to rule absolutely. The absolutely best person is the exception that tests every general rule"},
+              {label:"Kingship as the limiting case", note:"Absolute kingship — one person ruling by virtue alone — is the theoretical limit of the classification system. It corresponds to the divine: the person who is so good that they are a god among human beings cannot be a citizen at all. The political and the divine touch at this limit"},
+              {label:"Connection to NE X.7 and EE VIII.3", note:"The absolutely best person who is a god among men is the political limit that corresponds to the contemplative philosopher and the Unmoved Mover. The EE VIII.3 divine standard — god as the measure — appears here in political form: the absolutely best person is the political analogue of the divine. The limit of the political is the divine, just as the limit of the ethical is the contemplative, and the limit of the physical is the Unmoved Mover"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Kingship: its kinds and the rule of law (III.14–18)",
+        chapters: [
+          {
+            id:"pol3_14", label:"Pol. III.14–17 — the kinds of kingship; is kingship the best constitution?", greek:"βασιλεία", accent:"#BA7517",
+            children:[
+              {label:"Five kinds of kingship", note:"Spartan kingship (military command in war) · Barbarian kingship (tyranny-like but by consent) · Aisymnete (elected tyranny in emergencies) · Heroic kingship (founder-kings by consent and heredity) · Absolute kingship (rule of one over all by virtue). Each is a different application of the principle of one-person rule"},
+              {label:"Is kingship the best constitution?", note:"Kingship may be best when one person is supremely virtuous — but such persons are rare. And even the best king cannot administer everything personally — he needs laws and subordinates. The question is whether law or the best person is the higher authority"},
+              {label:"III.16 — the argument for the rule of law", note:"Law is reason without desire — it rules without passion. The best person has both reason and desire — and desire can corrupt even the best. Law is the safer ruler because it is free from the distorting influence of passion"},
+              {label:"The rule of law as institutionalised reason", note:"Law is the rational principle of the city made permanent and impersonal. It embodies collective wisdom across time — the accumulated practical wisdom of the community, not subject to the fluctuations of individual character"},
+              {label:"Connection to your thesis", note:"The rule of law as reason without desire is the political expression of the nous/desire distinction in De Anima III.9–10. Pure nous — like the Unmoved Mover — is without desire; it is pure formal principle. Law as institutionalised nous is the political approximation of the divine standard. The best constitution is the one most fully governed by law — by collective practical wisdom institutionalised — rather than by individual passion and desire. The political tetralemma: individual passion (worst) · individual virtue (good) · collective judgment (better) · law as institutionalised reason (best)"},
+            ]
+          },
+          {
+            id:"pol3_18", label:"Pol. III.18 — the education of the king", greek:"παιδεία βασιλέως", accent:"#BA7517",
+            children:[
+              {label:"The absolute king must be educated", note:"If there is to be an absolute king, they must be educated in a way that makes them genuinely virtuous — not merely powerful. Kingship without virtue is tyranny. The education of the ruler is the condition of the legitimacy of rule"},
+              {label:"Education as the political counterpart of habituation", note:"Just as virtue in the individual requires habituation (NE II.1), virtue in the ruler requires political education — formation in the principles of justice, the good of the community, and the exercise of practical wisdom in governance"},
+              {label:"Transition to Book IV", note:"Book III has established the theoretical framework — the definition of citizenship, the classification of constitutions, and the principle of the rule of law. Book IV turns to the practical — which constitutions actually exist, which are best for most circumstances, and how they should be organised"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IV — Πολιτικά Δ · The kinds of constitution in practice; the best attainable",
+    groups: [
+      {
+        label: "The political scientist must study all constitutions (IV.1–2)",
+        chapters: [
+          {
+            id:"pol4_1", label:"Pol. IV.1–2 — the political scientist must know all constitutions", greek:"πᾶσαι πολιτεῖαι", accent:"#BA7517",
+            children:[
+              {label:"Not only the best but all constitutions", note:"The political scientist must know not only the best constitution but all constitutions — the best for ideal conditions, the best for particular circumstances, the best given certain assumptions, and how to reform existing ones"},
+              {label:"The analogy with physical training", note:"The trainer must know not only the ideal training regimen but how to train different bodies with different starting conditions. The political scientist similarly must be able to prescribe for different political bodies in different conditions"},
+              {label:"The four tasks of political science", children:[
+                {label:"The best constitution absolutely", note:"The ideal — what would be best if conditions were fully favourable"},
+                {label:"The best given the circumstances", note:"What is best for this particular city with its particular history, population, and resources"},
+                {label:"The best given certain assumptions", note:"If a city wants to be a democracy, which kind of democracy is best? The political scientist must know the best version of each type"},
+                {label:"Reform of existing constitutions", note:"How to preserve and improve constitutions that already exist — the most practically important task"},
+              ]},
+              {label:"Connection to your thesis", note:"The fourfold task of political science is a political tetralemma — four irreducible modes of political inquiry, each asking a different kind of question about constitutions. The same fourfold structure of inquiry that governs the Metaphysics (what is being? what are its kinds? what is the best? what does it exclude?) governs political science. The political inquiry is the practical instantiation of the four tetralemmic positions at the level of collective life"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Democracy and oligarchy: their kinds and varieties (IV.3–10)",
+        chapters: [
+          {
+            id:"pol4_4", label:"Pol. IV.4–6 — the kinds of democracy", greek:"εἴδη δημοκρατίας", accent:"#BA7517",
+            children:[
+              {label:"Five kinds of democracy", children:[
+                {label:"First democracy", note:"Based on equality — the poor have no more authority than the rich; neither dominates. The most moderate form"},
+                {label:"Second democracy", note:"Office-holding restricted by moderate property qualifications — most participate but the very poor do not hold office"},
+                {label:"Third democracy", note:"All citizens hold office but law governs — the assembly meets infrequently and for specific purposes"},
+                {label:"Fourth democracy", note:"All citizens hold all offices — the assembly meets often and handles most matters. Law still governs"},
+                {label:"Fifth democracy — extreme", note:"The decrees of the assembly override the law — the multitude governs, not the law. Demagogues replace law. This is the most extreme and the most unstable"},
+              ]},
+              {label:"The progression from moderate to extreme", note:"The five kinds form a progression from the moderate (law governs) to the extreme (decrees override law). The extreme democracy is the deviant form that corresponds to tyranny — the assembly acting as a collective tyrant"},
+              {label:"Democracy depends on the character of the demos", note:"The quality of a democracy depends on the character of its citizens — farmers make the best democratic citizens (they are too busy to attend the assembly constantly but can vote on major questions), the urban poor and artisans the worst (they are always available to be mobilised by demagogues)"},
+            ]
+          },
+          {
+            id:"pol4_8", label:"Pol. IV.7–10 — the kinds of oligarchy; aristocracy", greek:"εἴδη ὀλιγαρχίας", accent:"#BA7517",
+            children:[
+              {label:"Four kinds of oligarchy", note:"From moderate (high but accessible property qualifications, law governs) to extreme (offices hereditary, the ruling families govern by their own will rather than law). The progression mirrors democracy's spectrum from moderate to extreme"},
+              {label:"Aristocracy properly speaking", note:"True aristocracy is rare — it requires a city that combines virtue, wealth, and free birth in its ruling class, all oriented toward the common good. Most so-called aristocracies are really oligarchies with some admixture of virtue"},
+              {label:"The spectrum from best to worst", note:"The spectrum runs: absolute kingship (best, rarest) → aristocracy → polity → timocracy → oligarchy → democracy → tyranny (worst). This is not merely descriptive but normative — the constitutions that most fully instantiate the rule of law and the common good are higher"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Polity: the best attainable constitution for most cities (IV.11–13)",
+        chapters: [
+          {
+            id:"pol4_11", label:"Pol. IV.11 — polity: the mixed constitution as best for most", greek:"πολιτεία", accent:"#BA7517",
+            children:[
+              {label:"The middle class as the best base", note:"The best city has a strong middle class — people who are neither very rich nor very poor. The middle class is most likely to follow rational principles, least susceptible to faction and ambition"},
+              {label:"The middle class holds the city together", note:"Very rich and very poor cannot live together as equal citizens — the rich are arrogant, the poor are resentful. The middle class moderates both extremes and creates the conditions for stable self-government"},
+              {label:"Polity as the mixture of oligarchy and democracy", note:"Polity mixes the elements of oligarchy (some weight for property and virtue) and democracy (universal participation and law). The mixture is what makes it stable — neither extreme can dominate"},
+              {label:"The best constitution for most circumstances", note:"The ideal constitution (aristocracy or absolute kingship) requires exceptional circumstances and exceptional people. For most cities, most of the time, polity — the mixed constitution with a strong middle class — is the best attainable. The political is always about what is best given the actual conditions"},
+              {label:"Connection to your thesis", note:"Polity as the mixture that avoids extremes is the political expression of the doctrine of the mean from NE II.6. The best constitution, like the virtuous person, occupies the mean between the extremes of too much and too little — between oligarchic excess and democratic deficiency in civic participation. The political mean is structurally identical to the ethical mean: neither position alone captures the truth; the truth is the form that holds both in proper proportion"},
+            ]
+          },
+          {
+            id:"pol4_12", label:"Pol. IV.12–13 — how to construct a polity; the parts of the city", greek:"κατασκευὴ πολιτείας", accent:"#BA7517",
+            children:[
+              {label:"IV.12 — mixing the elements of oligarchy and democracy", note:"Three methods of mixing: (1) take elements from both (oligarchic qualifications for some offices, democratic for others); (2) take the mean between the two extremes; (3) take some elements from each and combine them. The best polity uses all three methods"},
+              {label:"The test of a good mixture", note:"A well-mixed polity is one that could be called either a democracy or an oligarchy without clear error — it is genuinely intermediate. If it clearly looks like one and not the other, the mixture has failed"},
+              {label:"IV.13 — the parts of the city", note:"Every city has deliberative, executive, and judicial functions. The organisation of these three functions in different ways produces different constitutions. The deliberative element — who decides general policy — is most important: whoever controls deliberation controls the constitution"},
+              {label:"Connection to the three branches", note:"Aristotle's identification of deliberative, executive, and judicial functions as the three essential parts of political organisation anticipates the modern doctrine of separation of powers — though in a very different form. The political analysis of the city's structure is the application of formal analysis (distinguishing kinds of function) to the political domain"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Topics Book VIII</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τοπικά Θ</h1>
+<p class="subtitle">Topics Book VIII — complete interactive reference · chapters 1–14</p>
+<p class="subtitle">Subject: the practice of dialectical exchange — how to question, how to respond, how to manage the argument</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book VIII is the practical culmination of the Topics — it moves from the theory of topoi to the conduct of live dialectical exchange. It treats the questioner's strategy, the respondent's strategy, how to handle induction, how to manage concessions, what counts as victory or defeat, and the proper aims of dialectical argument. The elenchus as practiced by Socrates is the subject throughout.</footer>
+
+<script>
+const cats = [
+  {
+    id:"t8_1", label:"Top. VIII.1 — the order of questioning", greek:"τάξις τῶν ἐρωτημάτων", accent:"#BA7517",
+    children:[
+      {label:"The questioner's strategic task", note:"The questioner must not reveal the conclusion too early — if the respondent sees where the argument is going they will deny the premises needed to reach it"},
+      {label:"Conceal the conclusion", note:"Ask questions that seem unrelated to the conclusion being sought — disguise the structure of the argument until the premises are secured"},
+      {label:"Ask for the most general premises first", note:"Secure the general principle before asking for the specific instance — the general is more likely to be granted, and the specific follows from it"},
+      {label:"Use induction to secure the universal", note:"Lead the respondent through particular cases before asking for the universal — having agreed to the cases, they are more likely to concede the general"},
+      {label:"Ask for premises that are reputable", note:"Begin with what is widely accepted — this makes refusal harder and builds momentum toward the conclusion"},
+      {label:"Connection to Socratic method", note:"The Socratic practice of leading through examples to a universal definition — elenctic questioning — is exactly this strategy. The Topics is the logic of the Socratic dialogue"},
+    ]
+  },
+  {
+    id:"t8_2", label:"Top. VIII.2 — how to handle induction in questioning", greek:"ἐπαγωγή", accent:"#BA7517",
+    children:[
+      {label:"Induction in dialectic", note:"Lead the respondent through particular cases, securing agreement at each step, then ask for the universal — the inductive move"},
+      {label:"The respondent's counter-move", note:"Deny the universal even after conceding all the particulars — 'yes, in each case, but not in general'"},
+      {label:"The questioner's reply", note:"Challenge the respondent to produce a counterexample — if they cannot, the universal is established by default"},
+      {label:"Induction and counterexample", note:"The dialectical induction is validated by the absence of counterexamples — the questioner secures the universal by exhausting the field"},
+      {label:"Connection to Prior Analytics II.23", note:"Induction as syllogism in the third figure — the dialectical practice here corresponds to the formal analysis there. The same logical structure governs both"},
+    ]
+  },
+  {
+    id:"t8_3", label:"Top. VIII.3 — how the respondent should answer", greek:"ἀποκρίνεσθαι", accent:"#BA7517",
+    children:[
+      {label:"The respondent's role", note:"To defend a thesis against the questioner's attempts to refute it — the respondent must concede what is true and reputable but resist what leads to contradiction"},
+      {label:"Concede what is reputable", note:"Do not deny what is generally accepted — this makes the respondent look unreasonable and weakens their position"},
+      {label:"Resist what leads to the questioner's conclusion", note:"Identify the premise that, if conceded, would yield the unwanted conclusion — deny this premise or qualify it"},
+      {label:"Distinguish senses", note:"When a question is ambiguous, ask for clarification before answering — do not concede a premise in one sense that the questioner will use in another"},
+      {label:"The respondent as philosophical practitioner", note:"The respondent's role is not to win at all costs but to test the thesis honestly — conceding what is true and resisting only what is genuinely questionable"},
+    ]
+  },
+  {
+    id:"t8_4", label:"Top. VIII.4 — when the respondent should object", greek:"ἔνστασις", accent:"#BA7517",
+    children:[
+      {label:"When to raise an objection", note:"When the questioner's premise is false or not reputable — not merely because it leads somewhere inconvenient"},
+      {label:"How to object", note:"State the objection clearly — give the reason why the premise is unacceptable, not just refuse it"},
+      {label:"Objection vs refusal", note:"A bare refusal is dialectically unacceptable — the respondent must say why they refuse. Otherwise they appear to be evading rather than arguing"},
+      {label:"Connection to Prior Analytics II.25", note:"The formal treatment of objection (ἔνστασις) — a premise opposed to a premise — is here put into practice. The respondent's objection is the practical deployment of the logical analysis"},
+    ]
+  },
+  {
+    id:"t8_5", label:"Top. VIII.5 — how to deal with fallacious arguments", greek:"παραλογισμοί", accent:"#BA7517",
+    children:[
+      {label:"Fallacious arguments in dialectic", note:"The questioner may deploy arguments that appear valid but are not — the respondent must be able to identify and expose them"},
+      {label:"Identifying the flaw", note:"Locate the premise that is false or ambiguous — the fallacy rests on it. Expose it explicitly rather than simply refusing to concede the conclusion"},
+      {label:"Distinguishing the fallacy from the argument", note:"Do not just say the argument is bad — identify which step is invalid and why. This is the most effective response to a fallacy"},
+      {label:"The respondent's obligation", note:"Even a fallacious argument must be met on its own terms — showing where it fails, not just asserting it does"},
+      {label:"Connection to Sophistical Refutations", note:"The full treatment of fallacious arguments is in the Sophistical Refutations — this chapter is the practical preview of that text's theoretical analysis"},
+    ]
+  },
+  {
+    id:"t8_6", label:"Top. VIII.6 — the questioner's use of ambiguity", greek:"ὁμωνυμία", accent:"#BA7517",
+    children:[
+      {label:"Deliberate ambiguity", note:"The questioner may exploit ambiguous terms — securing a premise in one sense and using it in another to reach the conclusion"},
+      {label:"The respondent's defence", note:"Distinguish the senses before answering — ask 'in which sense?' If the term is ambiguous, concede it only in the sense in which it is true"},
+      {label:"The questioner's obligation", note:"An honest questioner should not exploit ambiguity — dialectic aims at truth, not at verbal victory. Exploiting ambiguity is a sophistic move, not a dialectical one"},
+      {label:"Connection to Categories Ch. 1", note:"Homonymy is the first distinction of the Categories — the source of improper predication. Ambiguity in dialectical premises is the live version of the homonymy problem"},
+      {label:"Connection to De Int. Ch. 8 and De Int. Ch. 11", note:"Unity of the proposition requires one thing said of one thing — ambiguous premises fracture the proposition. The elenchus conditions require same subject, same predicate — ambiguity violates this"},
+    ]
+  },
+  {
+    id:"t8_7", label:"Top. VIII.7 — arguments that are harder or easier to attack", greek:"εὐεπιχείρητα", accent:"#BA7517",
+    children:[
+      {label:"Arguments easy to attack", note:"Those that rest on few premises — fewer premises means fewer things to grant, but also fewer steps to attack"},
+      {label:"Arguments hard to attack", note:"Those with many interlocking premises — the respondent must concede much before the conclusion appears, and by then it is hard to resist"},
+      {label:"The questioner's strategy", note:"Build the argument through many small steps, each individually hard to deny, so the respondent is committed before they see where it leads"},
+      {label:"Arguments that seem strong but are weak", note:"Those that rest on plausible but false premises — powerful in appearance, vulnerable on examination"},
+      {label:"The best arguments", note:"Those that rest on true and primary premises and are short — fewest assumptions, most direct. These correspond to demonstrative syllogisms"},
+    ]
+  },
+  {
+    id:"t8_8", label:"Top. VIII.8 — the difference between dialectical and didactic arguments", greek:"διδασκαλικοί", accent:"#BA7517",
+    children:[
+      {label:"Didactic arguments", note:"Arguments that proceed from the first principles of the science being taught — the teacher's premises are known to be true and primary"},
+      {label:"Dialectical arguments", note:"Arguments that proceed from reputable opinions — the premises are what the interlocutor accepts, not necessarily what is primary"},
+      {label:"Peirastic arguments", greek:"πειραστικοί", note:"Arguments that test whether the interlocutor has genuine knowledge — they proceed from what the interlocutor claims to know"},
+      {label:"Eristic arguments", greek:"ἐριστικοί", note:"Arguments that aim only at apparent victory — they use whatever premises are accepted without regard to truth"},
+      {label:"The four kinds of argument", note:"Demonstrative (from true primary premises) · dialectical (from reputable opinions) · peirastic (from the interlocutor's own knowledge claims) · eristic (from anything, aiming at victory)"},
+      {label:"Dialectic as distinct from eristic", note:"Dialectic uses reputable opinions but aims at truth — eristic uses anything and aims only at seeming to win. The distinction is in the aim, not the form"},
+    ]
+  },
+  {
+    id:"t8_9", label:"Top. VIII.9 — what is and is not a syllogism in dialectical exchange", greek:"τί συλλογισμός", accent:"#BA7517",
+    children:[
+      {label:"A genuine syllogism", note:"One in which the conclusion follows necessarily from the premises stated — the necessity is in the logical form"},
+      {label:"What looks like a syllogism but is not", note:"Arguments with suppressed premises, circular reasoning, or conclusions that do not follow from the premises as stated"},
+      {label:"The questioner's responsibility", note:"To produce genuine syllogisms — to make the necessity transparent. An argument that only seems to follow is not a dialectical success"},
+      {label:"The respondent's responsibility", note:"To concede genuine syllogisms and resist only what does not genuinely follow — not to resist out of stubbornness when the conclusion is logically necessary"},
+    ]
+  },
+  {
+    id:"t8_10", label:"Top. VIII.10 — what constitutes a dialectical victory", greek:"νίκη", accent:"#BA7517",
+    children:[
+      {label:"Victory for the questioner", note:"The respondent is reduced to a contradiction — their thesis and its contradictory are both derivable from premises they have conceded"},
+      {label:"Victory for the respondent", note:"The questioner fails to derive the desired conclusion from premises the respondent has conceded — the thesis stands unrefuted"},
+      {label:"The aim beyond victory", note:"Dialectical exchange is not purely competitive — the aim is examination of truth. A questioner who wins by sophistry has not really won; a respondent who survives by evasion has not really defended their thesis"},
+      {label:"The connection to the elenchus", note:"Socratic elenchus aims at genuine refutation — reducing the interlocutor to contradiction. This is dialectical victory in Aristotle's sense. The Topics describes what makes that victory genuine"},
+    ]
+  },
+  {
+    id:"t8_11", label:"Top. VIII.11 — the respondent's options when the argument goes badly", greek:"ἀπορία", accent:"#BA7517",
+    children:[
+      {label:"When the argument seems lost", note:"If the questioner appears to have derived a contradiction, the respondent must identify which premise to retract"},
+      {label:"Retract the weakest premise", note:"Identify the premise that is least certain or least reputable — retract this rather than conceding the contradiction"},
+      {label:"Attack the validity of the inference", note:"Show that the conclusion does not actually follow from the premises as conceded — the argument may be formally invalid"},
+      {label:"The last resort: accept the contradiction", note:"In some cases a paradoxical conclusion should be accepted rather than abandoned — if all the premises are clearly true and the argument is valid, the conclusion follows even if it seems absurd"},
+      {label:"Connection to the tetralemma", note:"Accepting a paradoxical conclusion rather than denying a sound argument is exactly the move made in tetralemmic reasoning — holding the superposition rather than forcing a false resolution"},
+    ]
+  },
+  {
+    id:"t8_12", label:"Top. VIII.12 — which premises to concede and which to resist", greek:"ποίας δοτέον", accent:"#BA7517",
+    children:[
+      {label:"Concede what is reputable and true", note:"The respondent should not resist premises merely because they are uncomfortable — only if they are genuinely false or lead necessarily to the contradiction"},
+      {label:"Resist what is false", note:"Even if a false premise seems innocuous, deny it — false premises are the root of all bad arguments and their concession weakens the respondent's position permanently"},
+      {label:"Resist what begs the question", note:"Premises that are equivalent to the thesis being defended should not be conceded — this would immediately yield the conclusion the questioner wants"},
+      {label:"The principle", note:"Concede generously on genuinely reputable claims; resist precisely on what is false or question-begging. The respondent's discipline is in this discrimination"},
+    ]
+  },
+  {
+    id:"t8_13", label:"Top. VIII.13 — the aims of the questioner and respondent", greek:"σκοπός", accent:"#BA7517",
+    children:[
+      {label:"The questioner's aims", children:[
+        {label:"Primary aim", note:"Establish the desired conclusion from reputable premises — genuine dialectical success"},
+        {label:"Secondary aim", note:"If the primary aim fails, expose a difficulty with the thesis — show that it leads to absurdity or that its defense requires problematic commitments"},
+        {label:"Tertiary aim", note:"At minimum, exercise the capacity for argument — even a failed argument trains the mind"},
+      ]},
+      {label:"The respondent's aim", note:"Defend the thesis without contradiction — maintain consistency under questioning"},
+      {label:"The deeper aim shared by both", note:"Examination of the truth — both parties should want the better argument to win, not merely their own side. This is what distinguishes dialectic from eristic"},
+    ]
+  },
+  {
+    id:"t8_14", label:"Top. VIII.14 — concluding remarks on the Topics", greek:"τελευταῖα", accent:"#BA7517",
+    children:[
+      {label:"Practice is essential", note:"The method of the Topics is not learned by reading alone — it requires practice in actual dialectical exchange. The method is a training, not just a theory"},
+      {label:"Learning from both sides", note:"The student should practice both questioning and responding — each role trains different capacities"},
+      {label:"The Topics and the philosophical tradition", note:"Dialectical training was the foundation of philosophical education — the Academy used it; the Topics systematizes it"},
+      {label:"Connection to the whole Organon", note:"The Topics sits between the formal logic of the Prior and Posterior Analytics and the concrete practice of philosophy. It is the bridge between the logical theory and the philosophical life"},
+      {label:"The unity of the Organon", note:"Categories (what is) → De Interpretatione (what is said) → Prior Analytics (how arguments are formed) → Posterior Analytics (what counts as knowledge) → Topics (how to argue from what is accepted) → Sophistical Refutations (how to detect invalid argument). One structure, one project"},
+      {label:"Connection to your thesis", note:"The elenchus as practiced in the Euthyphro and throughout Plato's dialogues is now fully grounded — it is the application of Topics Book VIII, using the instruments of Books I–VII, to problems that turn on improper predication. The catuṣkoṭi is the logical structure; the Topics is the practice"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — The questioner's strategy (1–2)", ids:["t8_1","t8_2"] },
+  { label:"II — The respondent's strategy (3–6)", ids:["t8_3","t8_4","t8_5","t8_6"] },
+  { label:"III — Argument strength, kinds of argument, validity (7–9)", ids:["t8_7","t8_8","t8_9"] },
+  { label:"IV — Victory, retreat, the aims of both parties, conclusion (10–14)", ids:["t8_10","t8_11","t8_12","t8_13","t8_14"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

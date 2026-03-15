@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Physics Book II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Φυσικὴ Ἀκρόασις Β</h1>
+<p class="subtitle">Physics Book II — complete interactive reference · chapters 1–9</p>
+<p class="subtitle">Subject: nature, the four causes, chance, necessity, and teleology — the complete causal structure of natural things</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Physics Book II is the causal heart of the Physics. It defines nature, distinguishes natural things from artifacts, establishes the four causes as the complete framework for natural explanation, analyses chance and spontaneity, and defends teleology against mechanism. It closes with the analysis of necessity in nature — hypothetical necessity as the mode appropriate to natural teleology. This book is the methodological foundation of all Aristotle's natural science.</footer>
+
+<script>
+const cats = [
+  {
+    id:"ph2_1", label:"Phys. II.1 — nature and natural things", greek:"φύσις", accent:"#BA7517",
+    children:[
+      {label:"Natural things defined", note:"Things that have in themselves a principle of motion and of rest — in respect of place, or growth and decay, or alteration. Animals, plants, the simple bodies (earth, water, fire, air) are natural things"},
+      {label:"Artifacts distinguished", note:"A bed or a coat has no intrinsic tendency to change as a bed or coat — its principle of motion is in the craftsman, not in itself. If a bed sprouted and grew it would be growing as wood, not as a bed"},
+      {label:"Nature as form and as matter", children:[
+        {label:"Nature as matter", note:"The primary underlying stuff of each natural thing — what it is made of. The Presocratic view: the nature of a thing is its material"},
+        {label:"Nature as form", note:"The shape and species stated in the account — what the thing is. More properly nature than the matter, because form is the end toward which the matter tends"},
+      ]},
+      {label:"Form is more properly nature", note:"The nature of a thing in the fullest sense is its form — the actuality toward which the matter naturally moves. A man is more properly his form (humanity) than his matter (flesh and bone)"},
+      {label:"Connection to Metaphysics Zeta.17", note:"Form as the cause of being — the Metaphysics' conclusion is the Physics' starting point. Physics II.1 applies the metaphysical result to the natural domain: nature is primarily form, secondarily matter"},
+    ]
+  },
+  {
+    id:"ph2_2", label:"Phys. II.2 — how the natural scientist studies form and matter", greek:"φυσικὸς θεωρεῖ", accent:"#BA7517",
+    children:[
+      {label:"The natural scientist studies both form and matter", note:"Unlike the mathematician who studies form abstracted from matter, the natural scientist studies form as it exists in matter — the form of flesh, not abstract form"},
+      {label:"But not all form", note:"The natural scientist studies form up to a point — up to the form that has no matter. What is entirely without matter (the Unmoved Mover) belongs to first philosophy, not physics"},
+      {label:"The physicist's form is always matter-involving", note:"Snub nose rather than concavity — the physical form always includes a reference to its matter. The natural scientist cannot study the soul without studying the body, nor heat without studying fire"},
+      {label:"The boundary of physics and first philosophy", note:"Physics studies form in matter. First philosophy studies form without matter. The boundary is the Unmoved Mover — where the Physics ends, the Metaphysics begins. This is why Lambda is both the culmination of the Physics and the summit of the Metaphysics"},
+    ]
+  },
+  {
+    id:"ph2_3", label:"Phys. II.3 — the four causes", greek:"τέτταρα αἴτια", accent:"#BA7517",
+    children:[
+      {label:"The four causes as the complete answer to 'why'", note:"To explain a natural thing fully we must state all four causes — to omit any one is to leave the explanation incomplete"},
+      {label:"Material cause", greek:"ὕλη", note:"The bronze of the statue, the silver of the bowl — what something is made of. What persists through the change as the substrate"},
+      {label:"Formal cause", greek:"εἶδος / τὸ τί ἦν εἶναι", note:"The form and pattern — the ratio of the octave, the shape of the statue. What something is — its essence and definition"},
+      {label:"Efficient cause", greek:"ἀρχὴ τῆς κινήσεως", note:"The primary source of change or rest — the father is the efficient cause of the child, the adviser of the action, the craftsman of the artifact"},
+      {label:"Final cause", greek:"τέλος", note:"The end — that for the sake of which something is done or comes to be. Health is the final cause of walking; the house is the final cause of building"},
+      {label:"One thing can be several causes", note:"The form and the final cause often coincide — the form of a man is also what man is for (to live as a rational animal). The efficient and final causes often coincide — what initiates the change is often aiming at the end"},
+      {label:"The four causes are exhaustive", note:"These four exhaust the ways in which one thing can explain another — there is no fifth kind of cause. Every genuine explanation of a natural thing invokes one or more of these four"},
+      {label:"Connection to Metaphysics Delta.2", note:"The four causes are stated there with full distinctions. Physics II.3 gives the natural scientific application — not as metaphysical analysis but as the practical framework for explaining natural phenomena"},
+      {label:"Connection to your thesis", note:"The four causes are a tetralemmic structure — four irreducible modes of explanation, each answering a different aspect of the question 'why'. The same fourfold structure runs from the predicables (definition, genus, property, accident) to the causes (formal, material, efficient, final). The catuṣkoṭi is the logical image of the causal structure of reality"},
+    ]
+  },
+  {
+    id:"ph2_4", label:"Phys. II.4 — chance and spontaneity", greek:"τύχη καὶ τὸ αὐτόματον", accent:"#BA7517",
+    children:[
+      {label:"The question", note:"Some things come about by nature, some by intellect, some by chance. What is chance? Is it a real cause or merely a name for our ignorance?"},
+      {label:"Apparent conflict", note:"Some say everything has a definite cause — chance is just a name for causes we do not know. Others say chance is a real principle — the source of genuine contingency in the world"},
+      {label:"Aristotle's position", note:"Chance is a real but accidental cause — not a primary cause in its own right but a genuine feature of the world. Some things are genuinely contingent — neither necessary nor usual"},
+      {label:"The domain of chance", note:"Chance operates in the domain of things that can be for a purpose — where there could have been a reason but there was not. A stone does not fall by chance; a man stumbles on a debtor by chance because that kind of meeting can be purposive"},
+      {label:"Connection to Post. An. I.30", note:"There is no demonstration of what happens by chance — demonstrative science requires necessary or usual connections. Chance events fall outside scientific knowledge because they have no stable cause to serve as a middle term"},
+    ]
+  },
+  {
+    id:"ph2_5", label:"Phys. II.5 — what chance is", greek:"τί ἡ τύχη", accent:"#BA7517",
+    children:[
+      {label:"Chance defined", note:"An accidental cause in the domain of things that are for a purpose and involve choice — when something occurs that could have been for a purpose but was not aimed at"},
+      {label:"Chance and purpose", note:"'He came to the market and met his debtor' — the meeting is a chance event because going to market can be purposive, but this particular result was not the purpose. Chance is parasitic on purposive action"},
+      {label:"Chance is indeterminate", note:"The causes of chance events are indefinitely many — there is no single stable cause. This is why chance events cannot be predicted or demonstrated"},
+      {label:"Spontaneity", greek:"τὸ αὐτόματον", note:"Spontaneity is wider than chance — it includes chance events in non-rational beings and inanimate things. A stone that happens to fall in a way that could have been used as a seat falls spontaneously, not by chance. Chance is spontaneity in the domain of rational choice"},
+    ]
+  },
+  {
+    id:"ph2_6", label:"Phys. II.6 — chance and spontaneity compared", greek:"σύγκρισις", accent:"#BA7517",
+    children:[
+      {label:"Chance is a species of spontaneity", note:"Spontaneity is the wider category — whatever occurs without being aimed at in the domain where purpose is possible. Chance is spontaneity specifically in the domain of human action and choice"},
+      {label:"Neither is a primary cause", note:"Both are accidental — they are real features of the world but they are always caused by other things that are primary. The accidental cause of the chance meeting is the man's real purpose in going to market"},
+      {label:"Spontaneity in nature", note:"Spontaneous generation — some animals arise without seed. This is spontaneity in nature — the material conditions are right for the form to arise without the usual efficient cause"},
+      {label:"The rarity of chance", note:"Chance and spontaneity are rarer than necessity and usual connection — most natural events are necessary or usual. The domain of genuine contingency is real but limited"},
+    ]
+  },
+  {
+    id:"ph2_7", label:"Phys. II.7 — which causes the natural scientist must know", greek:"ποῖα αἴτια", accent:"#BA7517",
+    children:[
+      {label:"All four causes must be known", note:"The natural scientist must be able to state all four causes — not just the material, which is what the pre-Socratics settled for"},
+      {label:"The formal and final cause often coincide", note:"In natural things the form is the end — what the thing is striving to become is also what it is when complete. The acorn's form (oak) is both what it is becoming and what it will be when it fully is"},
+      {label:"The efficient and formal cause often coincide", note:"In natural generation 'man generates man' — the efficient cause (the father) has the same form as the effect (the child). The formal and efficient causes are the same in kind"},
+      {label:"The three causes reducible to two", note:"In natural things the formal, efficient, and final causes often collapse into one — the form of the thing is simultaneously what it is (formal), what generates it (efficient, in the species), and what it is for (final). Only the material cause remains always distinct"},
+      {label:"Connection to Post. An. II.11", note:"The four causes as middle terms in demonstration — the formal cause is the primary demonstrative middle. Physics II.7 gives the natural scientific context in which the demonstrative analysis of Post. An. II.11 operates"},
+    ]
+  },
+  {
+    id:"ph2_8", label:"Phys. II.8 — teleology in nature: does nature act for a purpose?", greek:"ἕνεκά του ἐν φύσει", accent:"#BA7517",
+    children:[
+      {label:"The question", note:"Does nature act for a purpose, or does everything happen by necessity from material causes? The mechanist vs the teleologist"},
+      {label:"The mechanist position", note:"Teeth come in sharp in front and broad at the back by necessity — the front teeth are made of harder material, the back teeth of softer. The result is convenient for chewing, but it was not aimed at — it is a coincidence of material necessity"},
+      {label:"Aristotle's response: the argument from regularity", note:"What happens always or usually in a certain way is not chance — chance is what happens neither always nor usually. But the useful arrangement of teeth happens always or usually. Therefore it is not chance but for a purpose"},
+      {label:"Nature acts for a purpose", note:"Where there is a definite end and the prior stages are for the sake of that end, the process is teleological — art imitates nature in this. Just as the doctor acts for the sake of health, nature acts for the sake of the form"},
+      {label:"Teleology does not require conscious intention", note:"Nature does not deliberate — the swallow does not choose to build its nest. But the process is still teleological because it is regularly ordered toward an end. Teleology requires regular directedness toward an end, not conscious deliberation"},
+      {label:"The priority of form", note:"The form is the end — what the natural process is for. Form is prior in the order of explanation even if posterior in the order of generation. The mature organism is the cause of the developmental process even though it comes after"},
+      {label:"Connection to your thesis", note:"The teleological structure of nature is the physical counterpart of the logical structure of the catuṣkoṭi. The four causes are not merely a classification scheme — they describe the actual causal structure of natural processes. Teleology shows that reality is not mechanically determined but formally ordered — the end is real and causally operative. This is the natural philosophical ground of the claim that being is not merely factual but normatively structured"},
+    ]
+  },
+  {
+    id:"ph2_9", label:"Phys. II.9 — necessity in nature: hypothetical necessity", greek:"ἀνάγκη ἐξ ὑποθέσεως", accent:"#BA7517",
+    children:[
+      {label:"Two kinds of necessity", children:[
+        {label:"Simple or absolute necessity", note:"What cannot be otherwise — the eternal and mathematical. 2+2=4 necessarily, without qualification"},
+        {label:"Hypothetical necessity", greek:"ἐξ ὑποθέσεως", note:"What is necessary given a certain end — if a house is to be built, there must be bricks and mortar. The necessity runs from the end backward to the required conditions"},
+      ]},
+      {label:"Nature operates by hypothetical necessity", note:"In natural processes the necessity runs from the end (form) back to the matter — if there is to be a saw, there must be iron; wood will not do. The end necessitates the means"},
+      {label:"The direction is opposite to mechanism", note:"The mechanist thinks necessity runs forward — from matter to result. The teleologist thinks necessity runs backward — from end to required conditions. Both are right about necessity but differ on its direction"},
+      {label:"The analogy with art", note:"The builder does not work backward from the materials to whatever they happen to produce — the builder works backward from the house to what is required. Nature works the same way: from the end (form) to the required conditions (matter)"},
+      {label:"Necessity does not eliminate purpose", note:"Even granting material necessity, the teleological structure remains — the necessary conditions are necessary because the end requires them. Necessity serves purpose; it does not replace it"},
+      {label:"Connection to Post. An. I.6", note:"Demonstrative premises must be necessary. In natural science the necessity is hypothetical — if this kind of organism is to exist, these structures must be present. The demonstrative necessity of biology is hypothetical necessity, not simple necessity"},
+      {label:"Connection to your thesis", note:"Hypothetical necessity is the natural philosophical expression of the conditional structure of logical inference — if P then Q. The four causes, teleology, and hypothetical necessity together constitute the natural philosophical tetralemma: what a thing is made of (material), what it is (formal), what makes it (efficient), and what it is for (final). These four are neither reducible to one nor eliminable in favour of fewer. This is the physical catuṣkoṭi"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Nature, form, and matter; how the physicist studies them (1–2)", ids:["ph2_1","ph2_2"] },
+  { label:"II — The four causes (3)", ids:["ph2_3"] },
+  { label:"III — Chance and spontaneity (4–6)", ids:["ph2_4","ph2_5","ph2_6"] },
+  { label:"IV — The causal framework; teleology; hypothetical necessity (7–9)", ids:["ph2_7","ph2_8","ph2_9"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

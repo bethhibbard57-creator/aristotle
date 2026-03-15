@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — De Interpretatione</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Ἑρμηνείας</h1>
+<p class="subtitle">De Interpretatione — complete interactive reference · chapters 1–14</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter header to expand. Subcategories with children expand further.</footer>
+
+<script>
+const cats = [
+  {
+    id:"di1", label:"De Int. 1 — the semiotic chain", greek:"σημεῖα", accent:"#BA7517",
+    children:[
+      {label:"Things", greek:"πράγματα", note:"The world itself — same for all people"},
+      {label:"Mental states", greek:"παθήματα τῆς ψυχῆς", note:"Likenesses of things in the soul — same for all people"},
+      {label:"Spoken sounds", greek:"φωναί", note:"Symbols of mental states — differ by convention", eg:"Different languages, same things"},
+      {label:"Written marks", greek:"γράμματα", note:"Symbols of spoken sounds — differ by convention"},
+      {label:"Direction of the chain", note:"Things → mental states → spoken sounds → written marks"},
+      {label:"Truth and falsity", note:"Belong first to mental states; arise only through combination or division — not in a name alone"},
+      {label:"Goat-stag", greek:"τραγέλαφος", note:"A name can be spoken with nothing in reality corresponding — neither true nor false by itself"},
+    ]
+  },
+  {
+    id:"di2", label:"De Int. 2 — the name", greek:"ὄνομα", accent:"#185FA5",
+    children:[
+      {label:"Definition", note:"A spoken sound significant by convention, without time, no part of which is separately significant", eg:"'Whitfield' — 'field' means nothing on its own"},
+      {label:"By convention", greek:"κατὰ συνθήκην", note:"No name is natural — sounds become names by being made into signs"},
+      {label:"Without time", note:"Names do not signify when something is — that belongs to the verb"},
+      {label:"Simple vs. composite", children:[
+        {label:"Simple", note:"A single unanalysable sound used as a sign", eg:"'Man'"},
+        {label:"Composite", note:"Parts seem to mean something but contribute nothing to the whole", eg:"'Fairfield' — 'fair' adds nothing"},
+      ]},
+      {label:"Indefinite name", greek:"ὄνομα ἀόριστον", note:"'Not-man' — signifies no determinate thing; holds of everything and nothing equally", eg:"Applies to what is and what is not"},
+      {label:"Oblique cases", greek:"πτώσεις", note:"'Of Philo', 'to Philo' — inflections, not names proper; not true or false when combined with 'is'"},
+    ]
+  },
+  {
+    id:"di3", label:"De Int. 3 — the verb", greek:"ῥῆμα", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Signifies something said of something else, and always indicates present time", eg:"'Walks', 'is healthy'"},
+      {label:"Signifies time", note:"The verb adds a temporal dimension the name lacks — it locates the predicate in time"},
+      {label:"Always a sign of things said of a subject", note:"The verb never stands alone as a complete assertion — it requires a subject"},
+      {label:"'Is', 'was', 'will be'", greek:"ἔστι, ἦν, ἔσται", note:"Not yet a proposition alone — 'is' by itself signifies nothing unless something is added", eg:"'Is' co-signifies composition but is empty without subject and predicate"},
+      {label:"Indefinite verb", greek:"ῥῆμα ἀόριστον", note:"'Does not walk', 'is not healthy' — holds of anything indifferently, what is and what is not", eg:"Parallel to the indefinite name"},
+      {label:"Oblique forms", greek:"πτώσεις ῥήματος", note:"'Walked', 'will walk' — not verbs proper but inflections; differ in the time they co-signify"},
+      {label:"Key distinction from the name", note:"The verb co-signifies time; the name does not. Together they make a proposition possible"},
+    ]
+  },
+  {
+    id:"di4", label:"De Int. 4 — the sentence", greek:"λόγος", accent:"#993C1D",
+    children:[
+      {label:"Definition", note:"A significant spoken sound some part of which is significant in separation", eg:"'Man' in 'a man runs' signifies something on its own"},
+      {label:"Distinction from the name", note:"In a name no part is separately significant. In a sentence parts are significant — but the whole says something new"},
+      {label:"Not every sentence is a proposition", children:[
+        {label:"Prayer", greek:"εὐχή", note:"A sentence but neither true nor false", eg:"'May he win'"},
+        {label:"Command", note:"A sentence but neither true nor false"},
+        {label:"Question", note:"A sentence but neither true nor false"},
+        {label:"Apophantic sentence", greek:"λόγος ἀποφαντικός", note:"The only kind that is true or false — where something is affirmed or denied of something", eg:"'A man runs', 'Socrates is pale'"},
+      ]},
+      {label:"Simple vs. composite sentence", children:[
+        {label:"Simple", greek:"ἁπλοῦς", note:"Either an affirmation or a negation", eg:"'Socrates runs', 'Socrates does not run'"},
+        {label:"Composite", greek:"σύνθετος", note:"Several simple sentences joined together", eg:"'A man runs and a horse walks'"},
+      ]},
+    ]
+  },
+  {
+    id:"di5", label:"De Int. 5 — affirmation and negation", greek:"κατάφασις καὶ ἀπόφασις", accent:"#534AB7",
+    children:[
+      {label:"Affirmation", greek:"κατάφασις", note:"A proposition asserting something of something", eg:"'Socrates is pale', 'man walks'"},
+      {label:"Negation", greek:"ἀπόφασις", note:"A proposition denying something of something", eg:"'Socrates is not pale', 'man does not walk'"},
+      {label:"The simplest proposition", note:"One affirmation or one negation — a single name and a single verb", eg:"'Man walks' — irreducible unit of truth or falsity"},
+      {label:"Every affirmation has a negation", note:"For every affirmation there is exactly one corresponding negation — and vice versa"},
+      {label:"Contradictory pair", greek:"ἀντίφασις", note:"An affirmation and its negation — one must be true, the other false", eg:"'Socrates is pale' / 'Socrates is not pale'"},
+      {label:"Unity of the proposition", note:"Must assert one thing of one thing — not mere concatenation", eg:"'Man is a biped animal' is one because it signifies one thing"},
+      {label:"The verb 'is' as third element", greek:"τρίτον προσκατηγορεῖται", note:"When 'is' is added it is predicated as a third element, co-signifying the composition", eg:"'Socrates is pale' vs. 'Socrates pales'"},
+    ]
+  },
+  {
+    id:"di6", label:"De Int. 6 — contradiction and contrariety", greek:"ἀντίφασις καὶ ἐναντιότης", accent:"#3B6D11",
+    children:[
+      {label:"Contradiction", greek:"ἀντίφασις", note:"Affirmation directly opposed to negation — same subject, same predicate, nothing added", eg:"'Socrates is just' / 'Socrates is not just'"},
+      {label:"Contrariety", greek:"ἐναντιότης", note:"Two affirmations opposed to each other — both cannot be true, but both can be false", eg:"'Every man is just' / 'No man is just'"},
+      {label:"The key difference", children:[
+        {label:"Contradictories", note:"One must be true and the other false — no middle ground", eg:"'Socrates is pale' / 'Socrates is not pale'"},
+        {label:"Contraries", note:"Both can be false — a middle state is possible", eg:"'Every man is pale' / 'No man is pale'"},
+      ]},
+      {label:"Singular propositions", note:"Contradictories about individuals always have one true and one false", eg:"'Socrates is sitting' / 'Socrates is not sitting'"},
+      {label:"Indefinite propositions", note:"When the subject is taken without quantification both can be true at once", eg:"'Man is pale' / 'Man is not pale' — both hold of different men"},
+      {label:"The four-fold structure", children:[
+        {label:"Universal affirmative A", note:"Every man is just", eg:"All S is P"},
+        {label:"Universal negative E", note:"No man is just", eg:"No S is P"},
+        {label:"Particular affirmative I", note:"Some man is just", eg:"Some S is P"},
+        {label:"Particular negative O", note:"Some man is not just", eg:"Some S is not P"},
+      ]},
+      {label:"The pivot", note:"Confusing contraries with contradictories generates every apparent paradox of predication"},
+    ]
+  },
+  {
+    id:"di7", label:"De Int. 7 — universal and particular", greek:"καθόλου καὶ καθ᾽ ἕκαστον", accent:"#993556",
+    children:[
+      {label:"Universal", greek:"καθόλου", note:"That which is naturally predicated of many", eg:"Man, horse, pale"},
+      {label:"Particular", greek:"καθ᾽ ἕκαστον", note:"That which is predicated of one only", eg:"Socrates, Callias, this here"},
+      {label:"Propositions about universals", children:[
+        {label:"Taken universally", note:"Quantifier added — 'every', 'no', 'some'", eg:"'Every man is pale', 'No man is pale'"},
+        {label:"Not taken universally", note:"No quantifier — subject left indefinite", eg:"'Man is pale' — about the universal but not universally"},
+      ]},
+      {label:"The square of opposition", children:[
+        {label:"A and E are contraries", note:"Both can be false, cannot both be true"},
+        {label:"A and O are contradictories", note:"One must be true, one false"},
+        {label:"E and I are contradictories", note:"One must be true, one false"},
+        {label:"I and O are subcontraries", note:"Both can be true, cannot both be false"},
+        {label:"A entails I", note:"If every man is pale then some man is pale — not vice versa"},
+        {label:"E entails O", note:"If no man is pale then some man is not pale — not vice versa"},
+      ]},
+      {label:"Singular propositions stand apart", note:"About a determinate individual — always have a definite truth value"},
+    ]
+  },
+  {
+    id:"di8", label:"De Int. 8 — unity of the proposition", greek:"εἷς λόγος", accent:"#BA7517",
+    children:[
+      {label:"What makes a proposition one", note:"It must signify one thing — not merely be one utterance", eg:"'Man is pale' is one; 'Man is pale and walks' is two"},
+      {label:"A single name with multiple references", note:"If a name covers two things not made one, the proposition is not truly one", eg:"'A coat is pale' — if 'coat' means both man and horse, this is two propositions"},
+      {label:"The danger of equivocation", note:"Using one name for two things generates apparent contradictions — what seems like one proposition is actually two about different things"},
+      {label:"Homonymy revisited", note:"Connects directly to Categories 1 — homonymous terms make propositions multiply without warning", eg:"'Animal' said of a man and a painted figure"},
+      {label:"Unity requires determinacy", note:"A truly single proposition requires a subject with a single determinate definition of being — the condition of proper predication"},
+      {label:"The improper predication connection", note:"When a predicate is applied across a homonymous subject the proposition fractures — the apparent contradiction dissolves"},
+    ]
+  },
+  {
+    id:"di9", label:"De Int. 9 — the sea battle", greek:"ναυμαχία", accent:"#534AB7",
+    children:[
+      {label:"The problem", note:"If every proposition is now either true or false, then 'there will be a sea battle tomorrow' is already true or false — which seems to make everything necessary"},
+      {label:"The fatalist argument", children:[
+        {label:"Every affirmation or negation is true or false", note:"This has held for all propositions so far"},
+        {label:"Applied to future contingents", note:"'There will be a sea battle' / 'There will not' — one must be true now"},
+        {label:"If one is true now", note:"Then what it says is fixed — the event is either necessary or impossible"},
+        {label:"Conclusion", note:"Everything that happens is necessary — deliberation and contingency are illusions"},
+      ]},
+      {label:"Aristotle's response", children:[
+        {label:"The distinction", note:"What is past and present is determinate. What is future is indeterminate — it neither fully is nor fully is not yet"},
+        {label:"Bivalence holds for past and present", note:"'Socrates is sitting' has a definite truth value now"},
+        {label:"Bivalence does not hold without qualification for future contingents", note:"Neither disjunct is determinately true or false now"},
+        {label:"The disjunction is true", note:"'Either there will be a battle or there will not' is necessarily true — but neither disjunct is separately determined"},
+      ]},
+      {label:"Temporal identity is the key", note:"Truth and falsity of a proposition are indexed to time — the same subject receives contrary predicates at different times without contradiction"},
+      {label:"Connection to Categories 5", note:"Primary being receives contraries through time — the sea battle is the logical face of the same ontological point"},
+      {label:"The tetralemmic structure", children:[
+        {label:"It will be", note:"Affirmation — determinately true if necessary"},
+        {label:"It will not be", note:"Negation — determinately true if impossible"},
+        {label:"Neither determinately", note:"The future contingent — the fourth position"},
+        {label:"Both indeterminately", note:"The disjunction holds — one will obtain — but which is undetermined"},
+      ]},
+      {label:"The elenchus connection", note:"Chapter 9 is the full application of binary logic under temporal constraint — the catuṣkoṭi in elenchical form"},
+    ]
+  },
+  {
+    id:"di10", label:"De Int. 10 — affirmation, negation, and the indefinite name", greek:"ἀόριστον ὄνομα", accent:"#3B6D11",
+    children:[
+      {label:"The four proposition types with 'is'", children:[
+        {label:"S is P", note:"Simple affirmation", eg:"'Socrates is just'"},
+        {label:"S is not P", note:"Simple negation", eg:"'Socrates is not just'"},
+        {label:"S is not-P", note:"Affirmation with indefinite predicate", eg:"'Socrates is not-just' — a positive claim about an indefinite predicate"},
+        {label:"S is not not-P", note:"Negation with indefinite predicate", eg:"'Socrates is not not-just'"},
+      ]},
+      {label:"The indefinite name as predicate", note:"'Not-just' is an indefinite name in predicate position — it holds of what is and what is not just alike"},
+      {label:"The four form a complete system", note:"Two with a definite predicate, two with an indefinite — together they exhaust the logical space of simple predication"},
+      {label:"The epistemological point", note:"'S is not-P' and 'S is not P' are not the same — the first is an affirmation about an indefinite thing, the second a straightforward denial"},
+      {label:"The indefinite name is constitutive", note:"Without the indefinite name the system has gaps — it cannot represent the full range of what can be said and denied of a subject"},
+      {label:"Connection to the tetralemma", note:"The four proposition forms map directly onto the four corners — is, is not, is and is not, is neither — the indefinite name is what makes the third and fourth positions expressible"},
+    ]
+  },
+  {
+    id:"di11", label:"De Int. 11 — the elenchus", greek:"ἔλεγχος", accent:"#993C1D",
+    children:[
+      {label:"The problem of multiple predicates", note:"Can several predicates be joined into one affirmation? Only if they express one thing — otherwise the proposition fractures"},
+      {label:"'Man is good and a cobbler'", note:"Two predicates — unless 'good cobbler' is one thing this is two propositions not one"},
+      {label:"The elenchus defined", note:"A contradictory pair in which the same predicate is affirmed and denied of the same subject in the same respect at the same time", eg:"'Socrates is just' / 'Socrates is not just' — genuine elenchus"},
+      {label:"Conditions for a genuine contradictory pair", children:[
+        {label:"Same subject", note:"The name must refer to one determinate thing — not homonymously to two"},
+        {label:"Same predicate", note:"The predicate must be the same in both — not shifted by context"},
+        {label:"Same respect", note:"The predicate must be applied in the same relation — not one sense affirmed, another denied"},
+        {label:"Same time", note:"The predication must be at the same time — not one past, one present"},
+      ]},
+      {label:"The catuṣkoṭi connection", note:"This is Aristotle explicitly constructing the elenchus as the complete application of binary logic — the four conditions map onto the four corners of the tetralemma"},
+      {label:"Improper predication dissolves the elenchus", note:"If any condition fails — different subject, different respect, different time — the apparent contradiction is not a genuine elenchus but a failure of proper predication"},
+      {label:"The keystone of paper one", note:"Every logical paradox — Liar, Russell, Schrödinger, Sea Battle, Ship of Theseus — fails one of these four conditions. The contradiction was never real"},
+    ]
+  },
+  {
+    id:"di12", label:"De Int. 12 — modality", greek:"τὸ δυνατόν", accent:"#185FA5",
+    children:[
+      {label:"Modal propositions", note:"Propositions qualified by possibility, impossibility, necessity, contingency"},
+      {label:"Possible", greek:"δυνατόν", note:"It is possible that S is P — admits of being true", eg:"'It is possible that this man walks'"},
+      {label:"Impossible", greek:"ἀδύνατον", note:"It is impossible that S is P — cannot be true", eg:"'It is impossible that the diagonal is commensurate'"},
+      {label:"Necessary", greek:"ἀναγκαῖον", note:"It is necessary that S is P — cannot be otherwise", eg:"'It is necessary that three is odd'"},
+      {label:"Contingent", greek:"ἐνδεχόμενον", note:"It is contingent that S is P — possible but not necessary", eg:"'It is contingent that this man walks'"},
+      {label:"The negation of modal propositions", children:[
+        {label:"'It is possible that S is P' vs. 'It is possible that S is not P'", note:"Both can be true — possibility admits both"},
+        {label:"'It is necessary that S is P' vs. 'It is not necessary that S is P'", note:"Contradictories — one must be true"},
+      ]},
+      {label:"Possibility and its double", note:"What is possible to be is also possible not to be — possibility is inherently two-sided. This is not contradiction but the nature of the contingent"},
+    ]
+  },
+  {
+    id:"di13", label:"De Int. 13 — relations among modalities", greek:"ἀκολουθία", accent:"#534AB7",
+    children:[
+      {label:"The entailment relations", children:[
+        {label:"Necessary entails possible", note:"If it is necessary that P then it is possible that P — what must be can be"},
+        {label:"Possible does not entail necessary", note:"What can be need not be — possibility is weaker than necessity"},
+        {label:"Impossible entails not possible", note:"What cannot be is not possible"},
+        {label:"Not necessary does not entail impossible", note:"What need not be may still be possible"},
+      ]},
+      {label:"The square of modal opposition", note:"Mirrors the square of categorical opposition — necessary/impossible are contraries; necessary/not-necessary are contradictories"},
+      {label:"Contingency occupies the middle", note:"The contingent is what is possible but not necessary — it sits between necessity and impossibility, neither fully determined nor fully excluded"},
+      {label:"Connection to the sea battle", note:"Future contingents are possible in both directions — possible to be and possible not to be. Neither direction is yet necessary. This is not a failure of logic but its correct application to the indeterminate"},
+    ]
+  },
+  {
+    id:"di14", label:"De Int. 14 — contrary beliefs", greek:"ἐναντίαι δόξαι", accent:"#BA7517",
+    children:[
+      {label:"The question", note:"Is the belief that S is good contrary to the belief that S is not good, or to the belief that S is bad?"},
+      {label:"In speech", note:"'S is good' and 'S is not good' are contradictories — opposite in the strongest sense"},
+      {label:"In thought", note:"The belief that S is good and the belief that S is bad are contraries — both cannot be true, but both can be false"},
+      {label:"The distinction", note:"Contradictory beliefs in speech correspond to the logical pair. Contrary beliefs in thought are the psychological face of contrariety — they admit a middle"},
+      {label:"False beliefs", note:"The belief that S is good and the belief that S is bad are not contradictories — one can believe neither, or believe something in between"},
+      {label:"Closing the system", note:"Chapter 14 returns to the mental level from chapter 1 — the semiotic chain is complete. From things through mental states through speech and back to the structure of belief itself"},
+      {label:"The full arc", note:"De Interpretatione moves from the word, through the proposition, through opposition, through modality, to the structure of thought — every level governed by the same logic of affirmation and negation"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      <span class="greek">${c.greek}</span>
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = cats.map(renderCat).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

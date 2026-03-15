@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Physics Book III</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Φυσικὴ Ἀκρόασις Γ</h1>
+<p class="subtitle">Physics Book III — complete interactive reference · chapters 1–8</p>
+<p class="subtitle">Subject: motion defined; the infinite — its existence, its mode, and its limits</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Physics Book III contains two of Aristotle's most consequential analyses: the definition of motion as the actuality of the potential qua potential, and the account of the infinite as existing only potentially, never actually. The definition of motion is the hinge on which the entire Physics turns — everything before it (Books I–II) establishes the principles that make the definition possible; everything after (Books IV–VIII) applies and extends it. The account of the infinite resolves Zeno's paradoxes and establishes that actual infinity does not exist in nature.</footer>
+
+<script>
+const cats = [
+  {
+    id:"ph3_1", label:"Phys. III.1 — motion defined: the actuality of the potential qua potential", greek:"ἐνέργεια τοῦ δυνάμει ᾗ τοιοῦτον", accent:"#BA7517",
+    children:[
+      {label:"The need for a definition of motion", note:"Nature is a principle of motion and rest — but we have not yet said what motion is. Without this, we cannot properly understand nature, place, void, time, or any of what follows"},
+      {label:"The definition", note:"Motion is the actuality of what is potentially, insofar as it is such — ἡ τοῦ δυνάμει ὄντος ἐντελέχεια ᾗ τοιοῦτον. The most important phrase in the Physics"},
+      {label:"Unpacking the definition", children:[
+        {label:"Actuality of the potential", note:"Motion is an actuality — it is real, not merely possible. But it is the actuality of what is potential, not of what is already actual. Building is the actuality of the buildable as buildable"},
+        {label:"Qua potential", note:"The crucial qualification: insofar as it is potential, not insofar as it is actual. The bronze is potentially a statue — while it is being worked, it is in motion. Once it is a statue (actual), the motion has ceased"},
+        {label:"Incomplete actuality", note:"Motion is actuality in a special sense — incomplete actuality. It is the actualization-in-process of what has not yet been fully actualized. It is neither pure potentiality (the unworked bronze) nor pure actuality (the finished statue)"},
+      ]},
+      {label:"Examples", children:[
+        {label:"Building", note:"The buildable insofar as it is buildable — while being built. Once built, it is no longer in motion as buildable"},
+        {label:"Learning", note:"The learnable insofar as it is learnable — while being learned. Once learned, the motion ceases; the state remains"},
+        {label:"Healing", note:"The healable insofar as it is healable — while being healed. Once healthy, the motion has terminated"},
+      ]},
+      {label:"Why this definition is difficult", note:"Motion seems to be indefinite — neither purely actual nor purely potential. This indefiniteness is real: motion is the unstable intermediate between potentiality and actuality. It is real but transient"},
+      {label:"Connection to Metaphysics Theta.6", note:"Theta.6 distinguished complete actuality (ἐνέργεια) from process (κίνησις): complete activities have their end in themselves; processes have their end outside. Physics III.1 establishes the physical basis of that metaphysical distinction"},
+      {label:"Connection to your thesis", note:"Motion as incomplete actuality is the physical instantiation of the catuṣkoṭi's second position — what is becoming rather than what is or is not. The four positions of the tetralemma correspond to: pure potentiality (prime matter, position 4), motion/becoming (positions 2–3, the middle), actuality (position 1), and pure actuality without potentiality (the Unmoved Mover, beyond the four). The Physics III.1 definition makes this physical"},
+    ]
+  },
+  {
+    id:"ph3_2", label:"Phys. III.2 — the definition confirmed and clarified", greek:"βεβαίωσις", accent:"#BA7517",
+    children:[
+      {label:"The definition holds for all kinds of motion", note:"In every category where there is potential and actual: quality (alteration), quantity (growth and diminution), place (locomotion), being (generation and corruption). The definition covers all four"},
+      {label:"Motion is in the mobile, not the mover", note:"The actuality that is motion is in the thing being moved — the teaching is in the learner, the healing is in the patient. The mover is the cause; the motion is in the moved"},
+      {label:"The mover is also moved", note:"In physical interaction, when A moves B, B also acts back on A — GC I.10's reciprocity. The mover may also be in motion as a result of the interaction, though this is not the same motion"},
+      {label:"One actuality, two descriptions", note:"The actuality of the mover as mover and the actuality of the movable as movable are the same actuality — described differently depending on which participant we focus on. Teaching and learning are one actuality in the learner, described from two directions"},
+    ]
+  },
+  {
+    id:"ph3_3", label:"Phys. III.3 — the actuality of mover and moved is one", greek:"μία ἐνέργεια", accent:"#BA7517",
+    children:[
+      {label:"The apparent paradox", note:"The road from Athens to Thebes and from Thebes to Athens is the same road — but the journey is different depending on direction. Similarly, teaching and learning seem different but are the same actuality in the learner"},
+      {label:"Resolution", note:"The actuality of the mover as mover is the same as the actuality of the moved as moved — not two actualities but one, described from two perspectives. The motion is in the moved; the mover contributes the causal principle"},
+      {label:"The significance", note:"Motion is not a third thing between mover and moved — it is the single actuality of the moved insofar as the mover is acting on it. This prevents an infinite regress of motions between mover and moved"},
+      {label:"Connection to GC I.8–10", note:"Action and passion as a single actuality in the patient — the same analysis. GC I.8–10 and Physics III.3 give the same result from two angles: there is one actuality, described as action from the mover's side and passion from the moved's side"},
+    ]
+  },
+  {
+    id:"ph3_4", label:"Phys. III.4 — the infinite: previous views", greek:"ἄπειρον — δόξαι", accent:"#534AB7",
+    children:[
+      {label:"Why the infinite matters for physics", note:"The infinite bears on time (is time infinite?), on divisibility (are magnitudes infinitely divisible?), on place (is the universe infinite?), on number (are there infinitely many things?). A complete natural science must address it"},
+      {label:"Arguments for the existence of the infinite", children:[
+        {label:"Time seems infinite", note:"Time has no beginning or end — it stretches indefinitely in both directions"},
+        {label:"Magnitudes seem infinitely divisible", note:"Any magnitude can always be divided further — there seems to be no smallest part"},
+        {label:"Generation is continuous", note:"Things are always coming to be — if there were a finite supply of matter, it would be exhausted. Generation requires an inexhaustible source"},
+        {label:"The finite is always bounded by something", note:"Whatever is finite is bounded by something beyond it — suggesting an infinite beyond every finite thing"},
+      ]},
+      {label:"Previous views", note:"Anaximander: the apeiron (the unlimited) is the first principle. Pythagoreans: the infinite is present in sensible things and is itself even. Plato: the infinite is in Forms and sensibles both. All posit infinity as a real principle"},
+    ]
+  },
+  {
+    id:"ph3_5", label:"Phys. III.5 — the infinite does not exist as an actual body", greek:"οὐκ ἔστιν ἄπειρον σῶμα", accent:"#534AB7",
+    children:[
+      {label:"The argument from the elements", note:"If there were an infinite body it would have to be one of the elements or all of them. But the elements are contrary to each other — an infinite of one element would destroy all the others. Therefore there cannot be an infinite elemental body"},
+      {label:"The argument from natural place", note:"Every natural body has a natural place — fire upward, earth downward. An infinite body could have no natural place — there would be no up or down for it to tend toward. Therefore an infinite natural body is impossible"},
+      {label:"The argument from simple body", note:"A simple body must be homogeneous — the same throughout. An infinite homogeneous body would be infinite in every direction. But then there could be no other bodies — everything would be that one body. The existence of multiple bodies rules out an infinite simple body"},
+      {label:"The composite body argument", note:"A composite body is composed of its elements — if the composite were infinite, at least one element would be infinite. But an infinite element would destroy the others. Therefore no composite body is infinite"},
+      {label:"The conclusion", note:"There is no actually infinite body — neither simple nor composite. The actual infinite does not exist as a physical thing"},
+    ]
+  },
+  {
+    id:"ph3_6", label:"Phys. III.6 — the infinite exists but only potentially", greek:"δυνάμει ἄπειρον", accent:"#534AB7",
+    children:[
+      {label:"The infinite is real but potential, not actual", note:"The infinite exists — but only as a potential, never as a completed actuality. There is always more that can be added or divided, but there is never a completed infinite whole"},
+      {label:"The infinite by addition", note:"Number is infinite by addition — we can always add one more. But there is no number that is actually infinitely large. The infinity is the inexhaustibility of the process, not the existence of a completed infinite number"},
+      {label:"The infinite by division", note:"Magnitudes are infinitely divisible — we can always divide further. But there is no smallest part that is an actual infinitely small magnitude. The infinity is the inexhaustibility of the division, not the existence of a completed infinite series of parts"},
+      {label:"The key asymmetry", note:"Magnitudes are infinite by division but finite by addition — you can always divide a finite magnitude further but you cannot add infinitely to get an actually infinite magnitude. This asymmetry is fundamental"},
+      {label:"The infinite as process, not product", note:"The infinite is like a day or a contest — it exists in the being of something that is always coming into being but never wholly present at once. It is a process, not a thing"},
+      {label:"Connection to Metaphysics Theta.6", note:"Complete actuality has its end in itself — the infinite never reaches its end. The infinite is the permanent incompleteness of certain processes — infinite divisibility is the permanent availability of further division, never actualized as a whole"},
+    ]
+  },
+  {
+    id:"ph3_7", label:"Phys. III.7 — how the infinite is and what it is", greek:"πῶς ἔστι τὸ ἄπειρον", accent:"#534AB7",
+    children:[
+      {label:"The infinite is not a substance", note:"The infinite is not a thing alongside other things — it is a property of processes and magnitudes: their inexhaustibility. It exists as an attribute, not as a substance in its own right"},
+      {label:"The infinite is matter-like", note:"The infinite is like matter in that it is always available for further determination but never itself a completed whole. It is the permanent potentiality of extension and division"},
+      {label:"The whole is prior to the infinite", note:"What encloses is prior to what is enclosed — the finite whole contains the infinite division. The infinite parts are in the finite whole potentially; the whole is actual. This is the opposite of the Pythagorean view that the infinite surrounds the finite"},
+      {label:"Mathematical vs physical infinite", note:"In mathematics, infinite divisibility is unproblematic — mathematical objects are studied in abstraction from matter. In physics, infinite divisibility means there is always more material to divide, but the process never produces an actually infinite plurality of parts"},
+    ]
+  },
+  {
+    id:"ph3_8", label:"Phys. III.8 — resolving the arguments for actual infinity; Zeno", greek:"λύσεις", accent:"#534AB7",
+    children:[
+      {label:"Resolving the argument from time", note:"Time is infinite — but only potentially, not actually. There is no moment at which all of time is present. The infinity of time is the inexhaustibility of the process of temporal succession, not an actually infinite duration"},
+      {label:"Resolving the argument from divisibility", note:"Magnitudes are infinitely divisible — but division never produces an actually infinite plurality of parts. The potential infinity of division is compatible with the actual finitude of any given division"},
+      {label:"Resolving the argument from generation", note:"Generation does not require an actually infinite supply of matter — it requires that matter be inexhaustible in the sense that it recycles. The eternal cycle of generation (GC II.10) provides the necessary inexhaustibility without actual infinity"},
+      {label:"Zeno's paradoxes", children:[
+        {label:"Achilles and the tortoise", note:"Achilles must first reach where the tortoise was — but by then the tortoise has moved further. There are infinitely many such steps, so Achilles can never catch the tortoise"},
+        {label:"The dichotomy", note:"To cross a room one must first cross half, then half of what remains, and so on — infinitely many steps before reaching the other side"},
+        {label:"Aristotle's response", note:"Both paradoxes assume that an actually infinite series of steps cannot be completed in finite time. But the infinite series is only potentially infinite — in any finite distance there are infinitely many potential divisions but only finitely many actual ones. The infinite divisibility of space does not entail that infinitely many actual steps must be taken"},
+      ]},
+      {label:"The distinction between potential and actual infinity is the key", note:"Zeno's paradoxes rest on treating potential infinity as actual — as if the infinitely many possible divisions were infinitely many actual steps. Once the distinction is clear the paradoxes dissolve"},
+      {label:"Connection to your thesis", note:"Zeno's paradoxes are a specific form of the secundum quid fallacy — treating what is potentially infinite (divisibility) as if it were actually infinite (an infinite series of required steps). The dissolution is the same move as the dissolution of the Liar and Russell's paradoxes: restore the qualification (potential vs actual) and the apparent impossibility vanishes. Physics III.8 is the temporal/spatial application of Paper One's master argument"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Motion defined: actuality of the potential qua potential (1–3)", ids:["ph3_1","ph3_2","ph3_3"] },
+  { label:"II — The infinite: previous views; no actually infinite body (4–5)", ids:["ph3_4","ph3_5"] },
+  { label:"III — The infinite exists only potentially; Zeno dissolved (6–8)", ids:["ph3_6","ph3_7","ph3_8"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g =>
+    `<div class="group-label">${g.label}</div>` +
+    g.ids.map(id => renderCat(catMap[id])).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

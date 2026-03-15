@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Generation of Animals</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Ζῴων Γενέσεως</h1>
+<p class="subtitle">Generation of Animals Books I–V — complete interactive reference</p>
+<p class="subtitle">The causal analysis of how animals come to be — form transmitted through semen, matter provided by the female, the soul entering at stages, and the persistence of species through the individual's generation</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Generation of Animals is the causal complement to the History of Animals. Where the History describes what animals are and how they live, Generation of Animals analyses how they come to be — the four causes operating in reproduction. Its central claims: (1) the male contributes the formal-efficient cause (the semen carries the form); (2) the female contributes the material cause (the menstrual blood is the matter); (3) the soul enters in stages — nutritive first, then sensitive, then (in man) rational; (4) the species is eternal because man generates man — the form is perpetuated through the temporal cycle of individual generation and death. These claims are the biological ground of the metaphysical analysis of actuality and potentiality in Zeta-Eta and Lambda.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book I — Περὶ Ζῴων Γενέσεως Α · The sexes and the principles of generation",
+    groups: [
+      {
+        label: "Why there are sexes; the male and female principles (I.1–2)",
+        chapters: [
+          {
+            id:"ga1_1", label:"GA I.1–2 — why there are two sexes; the male and female principles", greek:"ἄρρεν καὶ θῆλυ", accent:"#BA7517",
+            children:[
+              {label:"The question", note:"Why do some animals reproduce sexually — through the union of male and female — while others reproduce asexually? And why is there a distinction between male and female at all?"},
+              {label:"The male-female distinction as form-matter", note:"The male contributes the formal and efficient cause to generation; the female contributes the material cause. This is not a contingent or conventional distinction but a fundamental metaphysical one grounded in the form-matter relation"},
+              {label:"The male as active, the female as passive", note:"The male principle is active — it imparts form and motion. The female principle is passive — it provides the matter that receives form. This is the most fundamental instance of the active/passive distinction from GC I.8–10 applied to biological generation"},
+              {label:"Why both are necessary", note:"Neither alone is sufficient for generation: the male provides form without matter; the female provides matter without form. Generation requires the compound — form actualising matter. The sexual distinction is the biological expression of the form-matter compound"},
+              {label:"Connection to GC I.2 and Physics I.6–9", note:"The three principles of natural change — matter, form, privation. In generation: the female blood is the matter (potentially a new organism), the semen carries the form (what the organism will be), and the absence of form in the matter is the privation from which generation proceeds. Generation of Animals I grounds GC I's analysis in the specific mechanism of sexual reproduction"},
+              {label:"Connection to your thesis", note:"The male-female distinction as form-matter is the biological instantiation of the most fundamental ontological distinction. The truth conditions for predications about generation are grounded in this distinction: 'transmits form' is per se true of the male; 'provides matter' is per se true of the female. These are not contingent truths about particular males and females but necessary truths about the male and female principles as such. The biological analysis grounds the ontological and logical analysis at the level of reproduction — the most fundamental biological process"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Semen: its nature and function as the carrier of form (I.3–23)",
+        chapters: [
+          {
+            id:"ga1_3", label:"GA I.3–6 — what semen is; how it carries the form", greek:"σπέρμα", accent:"#BA7517",
+            children:[
+              {label:"Semen is not a part that is contributed to the offspring", note:"The semen does not contribute material to the offspring — it is not incorporated into the embryo. Like a craftsman who shapes wood without the wood becoming part of the craftsman, the semen shapes the matter without becoming part of the result"},
+              {label:"Semen carries motion, not matter", note:"The semen carries the formal principle as motion — it imparts the pattern of development to the female blood without becoming part of the developing organism. The form is transmitted as a programme of motion, not as a material contribution"},
+              {label:"The craftsman analogy", note:"As the builder's tools impart the form of the house to the bricks without becoming part of the house, the semen imparts the form of the species to the female blood without being incorporated into the offspring. The efficient cause operates through contact and motion, not through material contribution"},
+              {label:"Semen as the vehicle of the soul", note:"More precisely: the semen carries pneuma — a special kind of air charged with the vital heat — which carries the capacity for the soul. The pneuma is the instrument through which the formal principle acts on the matter: it is the proximate efficient cause, and the soul-capacity is what it carries"},
+              {label:"Connection to Met. Zeta.7–9 — generation and form", note:"Met. Zeta.8: in natural generation the form is not itself generated — it is what the matter becomes. GA I confirms this: the form is not produced by the semen but carried by it as an already-determined principle. The semen is the instrument of the form's transmission, not the source of the form. The form is in the father; it is transmitted to the offspring through the semen; it is actualised in the female blood"},
+            ]
+          },
+          {
+            id:"ga1_17", label:"GA I.17–23 — the female contribution: menstrual blood as matter", greek:"καταμήνια", accent:"#BA7517",
+            children:[
+              {label:"The female blood as the material cause", note:"The female's menstrual blood (καταμήνια) is the matter of generation — it is the material that receives the form transmitted by the semen. It is analogous to the unworked earth awaiting the craftsman's form, or the bronze awaiting the sculptor's form"},
+              {label:"The female blood is potentially an organism", note:"The female blood is not any random matter — it is specifically prepared to receive the form of a new organism. It has already been worked up by the female's nutritive soul to the point where it can receive the formal principle and develop. It is potentially an organism — waiting for the formal actualisation"},
+              {label:"Why the female contributes matter only", note:"The female's blood has been prepared by the nutritive soul but has not yet received the formal principle that would make it an actual organism — it lacks the active principle. This is privation in the technical sense: the matter is present, the form is absent, and the generation is the process of form actualising the matter"},
+              {label:"Connection to Cat. Ch. 5 and Physics I.9", note:"Matter desires form as the female desires the male — Physics I.9. The female blood's readiness to receive the semen is the biological instantiation of matter's natural orientation toward form. The female blood is not passive in a pejorative sense but is specifically ordered toward the formal principle that will actualise it. This is hypothetical necessity in biological form: if there is to be an organism, there must be this kind of prepared matter"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Περὶ Ζῴων Γενέσεως Β · The development of the embryo; the soul enters in stages",
+    groups: [
+      {
+        label: "Embryonic development and the entry of the soul (II.1–6)",
+        chapters: [
+          {
+            id:"ga2_1", label:"GA II.1 — how generation begins; the semen activates the matter", greek:"ἡ ἀρχὴ τῆς γενέσεως", accent:"#BA7517",
+            children:[
+              {label:"The first contact", note:"When the semen contacts the female blood, the vital heat of the pneuma begins to organise the matter — drawing it into a structure, initiating the developmental sequence. The first change is the formation of the heart — the seat of the vital principle"},
+              {label:"The order of development", note:"Heart first — because the heart is the seat of the nutritive and sensitive soul. Then the blood vessels — extending the vital heat through the developing body. Then the other organs in order of their importance for the vital functions. The order of development mirrors the order of the soul's faculties: nutritive before sensitive before rational"},
+              {label:"The embryo is not yet an animal", note:"In the early stages the embryo has the nutritive soul but not yet the sensitive soul — it is alive (it grows and is nourished) but not yet an animal (it does not perceive). The stages of development are the stages of the soul's progressive actualisation in the developing matter"},
+              {label:"Connection to DA II.2–3", note:"The hierarchy of soul-faculties — nutritive, sensitive, rational — appears in the developmental sequence of GA II. The embryo passes through the stages in order: first purely nutritive (plant-like), then sensitive (animal-like), then (in man) rational. Development is the temporal expression of the logical hierarchy of the soul"},
+            ]
+          },
+          {
+            id:"ga2_3", label:"GA II.3 — the soul enters in stages: nutritive, sensitive, rational", greek:"ψυχὴ κατὰ μέρος εἰσέρχεται", accent:"#BA7517",
+            children:[
+              {label:"The nutritive soul first", note:"The embryo first has only the nutritive soul — it grows, is nourished, and develops. This is the soul of the plant. The embryo at this stage is alive in the most basic sense but not yet an animal"},
+              {label:"The sensitive soul next", note:"As development proceeds and the sense organs form, the sensitive soul emerges — the embryo begins to be capable of sensation. This is the soul of the animal. The embryo is now not merely alive but an animal in the making"},
+              {label:"The rational soul is not transmitted through the semen", note:"The rational soul — nous — cannot be transmitted through the semen because it has no bodily organ. The semen carries the capacity for the nutritive and sensitive souls (which require bodily organs) but not for nous. Nous enters from outside — θύραθεν"},
+              {label:"Nous enters from outside", greek:"θύραθεν", note:"The rational soul — nous — enters from outside (θύραθεν). It is not generated through the biological process; it is not derived from the parents through the semen. Nous is separable and comes from without — this is the biological confirmation of DA III.5's claim that nous is separable, unmixed, impassible"},
+              {label:"Connection to DA III.5", note:"The active nous of DA III.5 is separable, unmixed, impassible, immortal. GA II.3 gives the biological ground of this: nous does not enter through the generative mechanism that transmits nutritive and sensitive soul-capacities. It enters from outside — because it has no bodily organ and cannot be carried by the semen's pneuma. The biological analysis confirms the psychological analysis: nous is genuinely different in kind from the other soul-faculties"},
+              {label:"Connection to your thesis", note:"Nous enters from outside — it is not produced by the biological process that transmits form through matter. This means the truth conditions for predications involving nous are not determined by the biological classificatory system alone. The biological tree gives truth conditions for predications about the nutritive and sensitive faculties; nous is the faculty that transcends the biological classification — it is the faculty that grasps the classification itself. Nous is what enables the logical analysis of predication; the biological analysis cannot fully determine the truth conditions of nous's own operations. This is the biological expression of the apophatic limit of Lambda and DA III.5 — nous exceeds the system it enables"},
+            ]
+          },
+          {
+            id:"ga2_4", label:"GA II.4–6 — the role of pneuma; vital heat and the vehicle of the soul", greek:"πνεῦμα", accent:"#BA7517",
+            children:[
+              {label:"Pneuma defined", note:"Pneuma is a special kind of warm air charged with vital heat — the substance of which the semen is made. It is not ordinary air but something analogous to the aether of the heavenly bodies — a material that is naturally suited to carry the vital principle"},
+              {label:"Pneuma as the instrument of the soul", note:"The soul does not act on the body directly — it acts through the pneuma as its instrument. The pneuma is the physical vehicle that transmits the soul's influence throughout the body. In generation, the pneuma of the semen carries the pattern of the soul and imprints it on the female matter"},
+              {label:"The analogy with aether", note:"Aristotle explicitly compares the pneuma to aether — it is the terrestrial counterpart of the celestial element. Just as aether is the incorruptible medium of celestial motion, pneuma is the vital medium of biological generation. The cosmos has its hierarchy of media: aether (celestial) · pneuma (vital) · the four elements (sublunary)"},
+              {label:"Connection to On the Heavens and GC", note:"The cosmological hierarchy — aether · sublunary elements — has a biological counterpart in pneuma. The vital heat of the pneuma is the proximate effect of the sun's heat (which is itself an effect of the celestial motion driven by the Unmoved Mover). Biology is connected to cosmology through the causal chain: Unmoved Mover → celestial motion → solar heat → vital pneuma → biological generation. The vertical chain is complete"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The generation of different kinds of animals (II.7–8)",
+        chapters: [
+          {
+            id:"ga2_7", label:"GA II.7–8 — how viviparous and oviparous animals generate differently", greek:"ζῳοτόκα καὶ ᾠοτόκα", accent:"#534AB7",
+            children:[
+              {label:"Viviparous generation", note:"In viviparous animals the embryo develops within the mother — remaining in contact with the maternal blood supply. The formal principle (from the father) acts on the matter (from the mother) within the mother's body throughout development"},
+              {label:"Oviparous generation", note:"In oviparous animals the matter is separated from the mother in the egg — the formal principle must be contained within the egg itself, along with sufficient material for the development to be completed outside the mother"},
+              {label:"The egg as a self-contained system", note:"The egg is a remarkable structure — it contains its own developmental programme (the formal principle in the yolk) and its own nutritive matter (the white) in a sealed unit. It is a microcosm of the generation process: form and matter contained together"},
+              {label:"The gradation of perfection", note:"Viviparous → perfect egg → imperfect egg → larva → spontaneous generation. This gradation mirrors the hierarchy of souls — the more perfect the generative mode, the more fully formed the offspring at emergence. The gradation of generation reflects the gradation of being in the great chain"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book III — Περὶ Ζῴων Γενέσεως Γ · Generation of birds, fish, insects, and testaceans",
+    groups: [
+      {
+        label: "Generation across the animal kingdom: from birds to spontaneous generation (III.1–11)",
+        chapters: [
+          {
+            id:"ga3_1", label:"GA III.1–4 — generation of birds and fish", greek:"ὄρνιθες καὶ ἰχθύες", accent:"#534AB7",
+            children:[
+              {label:"Bird eggs", note:"Bird eggs are perfect — they contain all the matter needed for development and a complete formal programme. The yolk is the material for the developing embryo; the white is the nutritive material. Incubation provides the heat needed to drive the formal programme"},
+              {label:"Fish eggs", note:"Fish eggs are imperfect — they continue to develop in size after being laid. The formal programme is less complete at laying than in bird eggs. This reflects the lower position of fish in the hierarchy of blooded animals"},
+              {label:"The developmental sequence confirmed", note:"In both birds and fish, the heart is visible first — confirming GA II.1's account of the developmental sequence. The formal principle actualises the matter in the same order regardless of the generative mode: nutritive function (heart) before sensitive function (sense organs)"},
+            ]
+          },
+          {
+            id:"ga3_9", label:"GA III.9–11 — spontaneous generation and its mechanism", greek:"αὐτόματος γένεσις", accent:"#534AB7",
+            children:[
+              {label:"Spontaneous generation is real", note:"Some simple animals arise without parents — from mud, dew, rotting matter, sea foam. This is not a violation of the principles of generation but their limiting case: the formal principle is provided not by a parent organism but by the vital heat in the environment"},
+              {label:"The mechanism of spontaneous generation", note:"The sun's heat acting on moist earth, dung, or decaying matter provides the vital heat (the equivalent of pneuma) that can organise the available matter into the form of simple organisms. The efficient cause is external (the sun) rather than internal (a parent)"},
+              {label:"Spontaneous generation and the causal chain", note:"Spontaneous generation shows that the formal-efficient cause need not be contained in a parent organism — it can be provided by the environment when the material conditions are right. The Unmoved Mover → celestial motion → solar heat → spontaneous generation is the longest version of the causal chain: the formal principle operating without a biological intermediary"},
+              {label:"The lowest form of generation", note:"Spontaneous generation is the lowest mode — the form is most weakly transmitted and the organisms produced are simplest. This confirms the hierarchy: the more mediated and specific the transmission of form, the more perfect the organism produced"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IV — Περὶ Ζῴων Γενέσεως Δ · Sex determination; resemblance; monstrosities",
+    groups: [
+      {
+        label: "Sex determination and resemblance in offspring (IV.1–4)",
+        chapters: [
+          {
+            id:"ga4_1", label:"GA IV.1–3 — why offspring are male or female; resemblance to parents", greek:"διατί τὰ μὲν ἄρρενα τὰ δὲ θήλεα", accent:"#BA7517",
+            children:[
+              {label:"Sex determination as a contest of formal principles", note:"Whether an offspring is male or female depends on whether the formal principle of the father's semen succeeds in fully mastering the material principle of the mother's blood. If the formal principle fully prevails: male offspring. If the material principle partially resists: female offspring. If the material principle strongly resists: the offspring resembles the mother more than the father"},
+              {label:"The philosophical significance", note:"Sex determination is not random but the result of a formal-material contest — the degree to which form masters matter determines not only the sex but the degree of resemblance to each parent. This makes sex determination a continuous gradation, not a binary switch"},
+              {label:"Resemblance as degrees of formal mastery", note:"The offspring resembles the father insofar as the paternal form has mastered the maternal matter; it resembles the mother insofar as the maternal matter has resisted the paternal form. The degree of resemblance is the degree of formal actualisation — a continuous spectrum from pure paternal form to pure maternal matter"},
+              {label:"Connection to your thesis", note:"Resemblance as degrees of formal mastery is the biological instantiation of the gradation of actuality over potentiality. The truth value of 'this child resembles the father' is not binary but graded — it is true to a degree that corresponds to the degree of formal mastery. This is the biological expression of the principle that predication is not always all-or-nothing but can be graded according to the degree of formal actualisation. The biological analysis enriches the logical analysis of truth conditions by showing that truth can be a matter of degree in cases where form and matter are in contest"},
+            ]
+          },
+          {
+            id:"ga4_3", label:"GA IV.3–4 — monstrosities: when generation fails", greek:"τέρατα", accent:"#BA7517",
+            children:[
+              {label:"Monstrosities defined", note:"A monstrosity (τέρας) is an organism in which the formal principle has failed to fully master the matter — the developmental programme has been disrupted, producing an organism that departs from the species form. Monstrosities are not violations of nature but failures of nature's normal operation"},
+              {label:"The causes of monstrosities", note:"Too much material relative to the formal principle — the formal principle is overwhelmed and cannot organise all the matter. Too little vital heat — the formal programme cannot be fully executed. Abnormal combinations of matter — the matter is not of the right kind to receive the intended form"},
+              {label:"Monstrosities confirm the teleological analysis", note:"The existence of monstrosities does not refute teleology — it confirms it. Nature always aims at the species form; monstrosities are cases where the aim is not achieved. The norm (the species form) is prior to the deviation (the monster) — the deviation can only be understood as a deviation from the norm"},
+              {label:"Connection to Physics II.8 and your thesis", note:"Physics II.8: teleology is confirmed by the regularity of natural outcomes. Monstrosities are the exceptions that confirm the rule — they happen neither always nor usually, and they are understood as failures to achieve the intended form. The truth conditions for predications about organisms are set by the species form (the intended outcome), not by whatever the actual outcome happens to be. A monstrosity is an individual whose actual predicates deviate from its per se predicates — it is what it is accidentally rather than per se. This is the biological expression of the distinction between what is true of an individual per se and what is true of it accidentally"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book V — Περὶ Ζῴων Γενέσεως Ε · Inherited characteristics; eyes, hair, voice, teeth, old age",
+    groups: [
+      {
+        label: "The inheritance of characteristics and the persistence of species (V.1–8)",
+        chapters: [
+          {
+            id:"ga5_1", label:"GA V.1–4 — inherited characteristics: colour, hair, eyes, voice", greek:"κληρονομούμεναι ἰδιότητες", accent:"#534AB7",
+            children:[
+              {label:"The inheritance of characteristics", note:"Some characteristics are inherited regularly — blue eyes, hair colour, voice quality. Others are transmitted irregularly — skipping generations, appearing in unexpected combinations. The systematic analysis of inheritance is the biological analysis of how the formal principle is transmitted through the generative mechanism"},
+              {label:"The formal principle may be diluted", note:"The formal principle transmitted through the semen may be more or less strong — a weak transmission allows ancestral characteristics to reappear (atavism). The formal principle is not a simple binary but carries the accumulated history of the ancestral line, any element of which may emerge if the transmission is sufficiently diluted"},
+              {label:"The persistence of the species through individual transmission", note:"Despite all the variation in individual characteristics, the species form persists — 'man generates man'. The species form is transmitted reliably enough to perpetuate the species even when individual characteristics vary enormously. The species form is the stable core; individual characteristics are variations around it"},
+              {label:"Connection to Met. Lambda.7 and GC II.7", note:"'Man generates man' — Met. Lambda.7. The species is eternal; the individual is perishable — GC II.7. GA V confirms this: the individual's particular characteristics are contingent variations; the species form is what is reliably transmitted. The immortality of the species through generation is the biological expression of the eternity of form and the persistence of the species as a universal"},
+            ]
+          },
+          {
+            id:"ga5_5", label:"GA V.5–8 — teeth, old age, and the closing of the biological inquiry", greek:"ὀδόντες καὶ γῆρας", accent:"#534AB7",
+            children:[
+              {label:"Teeth as per se attributes with temporal qualification", note:"Milk teeth are per se attributes of the young organism; adult teeth are per se attributes of the mature organism. The same individual has different per se dental attributes at different life stages — the temporal qualification of per se predication is built into the developmental programme of the species"},
+              {label:"Old age as the failure of vital heat", note:"Old age is the progressive failure of the vital heat — the formal principle becomes less able to organise the matter as the vital heat diminishes. Death is the complete failure of the vital heat — the dissolution of the form-matter compound. The individual ceases to be what it was; the matter disperses; the form returns to the species"},
+              {label:"The closing of the biological inquiry", note:"Generation of Animals closes the biological corpus — it has given the causal analysis of how the form that the History of Animals describes comes to be in each individual. The History gives the what; Generation of Animals gives the why. Together they give the complete biological account: what animals are (HA), what they are made of (PA), and how they come to be (GA)"},
+              {label:"Connection to your thesis — the closing synthesis", note:"The complete biological corpus — Parts of Animals I (methodology) · History of Animals I–X (the classificatory structure) · Parts of Animals II–IV (the causal analysis of parts) · Generation of Animals I–V (the causal analysis of reproduction) · together with Movement of Animals and Progression of Animals (the causal analysis of motion) — constitutes the empirical grounding of the logical thesis. The categorical classification (genus, species, differentia) determines the truth conditions for per se predications. The temporal qualification (life stages, seasons, modes of generation) determines the truth conditions for temporally indexed predications. The form-matter analysis (formal cause transmitted through semen, material cause provided by female blood) grounds the actuality/potentiality analysis of the Metaphysics in the concrete biological mechanism. The persistence of species through individual generation grounds the claim that universals are real — 'man generates man' is not merely a generalization but an ontological claim about the eternity of form. The biological corpus is not supplementary to the logical thesis but its empirical foundation — the world that the logical apparatus is about"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

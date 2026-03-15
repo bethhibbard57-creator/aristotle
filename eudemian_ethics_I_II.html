@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Eudemian Ethics I–II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἠθικὰ Εὐδήμεια Α–Β</h1>
+<p class="subtitle">Eudemian Ethics Books I & II — complete interactive reference</p>
+<p class="subtitle">I: happiness and the good — the starting point · II: virtue defined; the voluntary and involuntary</p>
+<p class="subtitle" style="color:#888; font-style:italic;">The EE is an earlier and in some respects more direct treatment of the same territory as the NE. Its differences from the NE are philosophically significant — especially EE I's more explicit grounding of ethics in the divine, EE II's sharper account of the voluntary, and EE VIII's closing account of the divine standard of the good life. Cross-references to the NE are noted throughout.</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. The Eudemian Ethics covers much of the same ground as the Nicomachean Ethics but with different emphases and a distinctive framework. EE I is more explicitly theological — it grounds the account of happiness in the divine from the outset. EE II gives a sharper and more detailed account of voluntary action and choice. The shared books (EE IV–VI = NE V–VII) are noted. EE VIII's final chapter on the divine standard is the most important for the thesis — treated in full in the EE VII–VIII file.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book I — Ἠθικὰ Εὐδήμεια Α · Happiness, the good, and the method of inquiry",
+    groups: [
+      {
+        label: "The Delphic inscription; happiness and the good (I.1–2)",
+        chapters: [
+          {
+            id:"ee1_1", label:"EE I.1 — the Delphic inscription: the just, the healthy, the pleasant", greek:"ἐπίγραμμα", accent:"#BA7517",
+            children:[
+              {label:"The opening inscription", note:"At the entrance to the temple at Delos: 'Most just is what is finest; health is best; most pleasant is getting what one desires.' Aristotle disputes the implied ranking — he will argue that the finest, the best, and the most pleasant coincide in the happy life"},
+              {label:"The three goods", note:"Justice (the fine/noble) · health (the good for the body) · pleasure (what desire wants). The inscription treats them as separate and ranks them. Aristotle's ethics aims to show that in the virtuous life they are unified — the noble is good and pleasant for the person of good character"},
+              {label:"A different opening from the NE", note:"NE I.1 opened with 'every action aims at some good'. EE I.1 opens with a religious inscription — signalling that the EE grounds its ethics more explicitly in the divine from the outset. The theological orientation of EE is present from the first line"},
+              {label:"Connection to your thesis", note:"The Delphic inscription poses a tetralemmic problem: the just, the healthy, the pleasant, and their combination. Aristotle's ethics resolves this by showing the four are not four separate goods ranked linearly but four aspects of a single good — the happy life — that only appear separable when the soul is disordered. The unity is the fourth position: neither just-alone nor healthy-alone nor pleasant-alone nor their mere sum, but the single form of the flourishing life"},
+            ]
+          },
+          {
+            id:"ee1_2", label:"EE I.2 — what is the best good for human beings?", greek:"τί τἀνθρώπῳ ἄριστον", accent:"#BA7517",
+            children:[
+              {label:"The practical aim", note:"We should consider not only what is true but what is useful — since we are not doing theory but seeking to become good. Ethics has a practical aim that goes beyond theoretical truth"},
+              {label:"The best good requires both honourable and attainable", note:"The best good for human beings must be both the finest thing and actually achievable. A good that is too high for us to attain is not the best good for us — it cannot be the object of our practical inquiry"},
+              {label:"The three lives revisited", note:"Three lives compete for the title of best: the life of practical wisdom and virtue · the life of politics · the life of pleasure. Aristotle will examine all three"},
+              {label:"The divine standard stated early", note:"Unlike the NE, the EE states early that the divine is the standard — 'we should do whatever we do for the sake of god.' The divine standard pervades the EE from the beginning; in the NE it appears only at the end (NE X.7–8). This is the most important structural difference between the two works"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Happiness: its conditions and relation to virtue (I.3–8)",
+        chapters: [
+          {
+            id:"ee1_3", label:"EE I.3–4 — the method: from reputable opinions to first principles and back", greek:"μέθοδος", accent:"#BA7517",
+            children:[
+              {label:"The dialectical method in ethics", note:"We must begin with reputable opinions — what people and the wise say about the good life. We then seek the principles that explain them, and return to test those principles against the phenomena"},
+              {label:"The double direction", note:"Ethics proceeds both from and toward first principles — it is not a one-way deduction from axioms but a circular movement: from appearances to principles and back to appearances, now better understood. This is the dialectical method applied to ethics"},
+              {label:"Closer to Post. An. than NE I.3", note:"EE I.3–4 makes the methodological structure of ethical inquiry more explicit than NE I.3 — the movement from endoxa to principles to endoxa is stated as a deliberate method, connecting more directly to the Posterior Analytics' account of how inquiry works"},
+            ]
+          },
+          {
+            id:"ee1_5", label:"EE I.5 — the critique of the Platonic Form of the Good", greek:"ἰδέα τἀγαθοῦ", accent:"#BA7517",
+            children:[
+              {label:"More detailed than NE I.6", note:"The EE gives a more extended and technically precise critique of the Platonic Form of the Good than the NE. It examines more carefully the different senses in which 'good' is predicated across categories"},
+              {label:"Good is not a genus", note:"If good were a single genus there would be one science of all goods — but there are separate sciences for each domain of goods. Medicine studies health; politics studies the political good. The multiplicity of sciences reflects the multiplicity of goods"},
+              {label:"The good in each category", note:"As being is said in many ways across the categories, so good is said in many ways — the good in substance (god, nous) differs from the good in quality (virtue) which differs from the good in relation (the useful). No single Form covers all"},
+              {label:"Connection to Metaphysics Gamma.1", note:"Being qua being — said in many ways but always in relation to one. The EE's critique of the Form of the Good parallels this exactly: good is said in many ways but always in relation to some primary good. The ethics and the metaphysics share the same logical structure"},
+            ]
+          },
+          {
+            id:"ee1_6", label:"EE I.6–8 — what happiness is; the three goods", greek:"εὐδαιμονία", accent:"#BA7517",
+            children:[
+              {label:"I.6 — happiness as the highest good and the end of action", note:"Happiness is the best, finest, and most pleasant of human goods — and these three do not compete but coincide in the happy life. The Delphic inscription was wrong to separate them"},
+              {label:"I.7 — the three goods required for happiness", children:[
+                {label:"Goods of the soul", note:"Virtue, practical wisdom, theoretical wisdom — the primary goods. These are what happiness most consists in"},
+                {label:"Goods of the body", note:"Health, strength, beauty — necessary conditions but not the substance of happiness"},
+                {label:"External goods", note:"Wealth, friends, honour, good luck — also necessary conditions to a degree"},
+              ]},
+              {label:"I.8 — goods of the soul are most properly goods", note:"Among the goods, goods of the soul are most properly goods — they are intrinsically valuable, while bodily and external goods are valuable as conditions for the exercise of the soul's goods. This parallels NE I.8 but states the priority more sharply"},
+              {label:"Happiness requires a complete life", note:"Like the NE, the EE insists that happiness requires a complete life — it cannot be assessed in a moment or even a year. The temporal completeness condition is the same in both works"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Ἠθικὰ Εὐδήμεια Β · Virtue: its definition, the voluntary, and choice",
+    groups: [
+      {
+        label: "Virtue defined; the soul's parts (II.1–2)",
+        chapters: [
+          {
+            id:"ee2_1", label:"EE II.1 — what virtue is; the soul's parts revisited", greek:"ψυχή", accent:"#534AB7",
+            children:[
+              {label:"The same tripartite soul as NE", note:"The vegetative, desiderative, and rational parts of the soul appear here as in NE I.13 — but the EE integrates the psychological account more tightly with the definition of virtue from the outset"},
+              {label:"Virtue belongs to the part that has reason or participates in it", note:"Virtues of character belong to the desiderative part insofar as it participates in reason. Intellectual virtues belong to the rational part proper. The same division as NE — but stated with greater precision about the relation of desire to reason"},
+              {label:"The soul's irrational part can obey reason", note:"The desiderative part is not simply irrational — it can be made to obey reason. This is the condition for moral education: the irrational can be trained. Where there is no capacity for rational obedience there is no virtue but only natural disposition"},
+            ]
+          },
+          {
+            id:"ee2_2", label:"EE II.2 — virtue is a disposition; habituation", greek:"ἕξις ἐθιστή", accent:"#534AB7",
+            children:[
+              {label:"Virtue is a stable disposition", note:"Same conclusion as NE II.5 — virtue is a ἕξις, a stable settled state of character. Not a feeling and not a mere capacity"},
+              {label:"Virtues of character arise through habituation", note:"Same as NE II.1 — character is formed by repeated action. We become what we repeatedly do. The EE makes this connection more quickly and moves on to the more distinctive material"},
+              {label:"Virtue makes us choose and act correctly", note:"A disposition is virtue when it makes us choose, feel, and act correctly — when the whole person, rational and desiderative, is oriented toward the good. Virtue is not just a tendency to act correctly but the full integration of desire and reason"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The voluntary and involuntary: a sharper analysis (II.6–10)",
+        chapters: [
+          {
+            id:"ee2_6", label:"EE II.6–7 — the voluntary and involuntary: a more precise analysis than NE III.1", greek:"ἑκούσιον ἀκούσιον", accent:"#534AB7",
+            children:[
+              {label:"More careful than NE III.1", note:"The EE gives a more philosophically precise analysis of the voluntary than the NE. It examines more carefully what it means for the source of action to be in the agent — and what counts as acting through ignorance vs acting in ignorance"},
+              {label:"The source of action must be in the agent", note:"An action is voluntary when the agent is the source — when the motion originates from within rather than being imposed from outside. The key concept is the ἀρχή (principle/source) being in the agent"},
+              {label:"Ignorance more carefully analysed", note:"The EE distinguishes more carefully between: (1) ignorance of what one is doing, (2) ignorance of the circumstances, (3) ignorance of the end, (4) ignorance of the means, (5) ignorance of who is affected. Each has a different bearing on voluntariness"},
+              {label:"Acting through ignorance vs in ignorance", note:"Acting through ignorance: the ignorance is the cause — I push someone not knowing they are there. Acting in ignorance: the ignorance accompanies but does not cause — the drunk who acts badly. The EE's distinction is sharper than the NE's parallel treatment"},
+              {label:"Connection to your thesis", note:"The EE's more precise analysis of voluntariness specifies more exactly the conditions under which the predication of praise or blame is proper. The agent must be the source, must act knowingly, must not be under compulsion. These are the conditions of proper moral predication — the ethical expression of the four elenchus conditions. The EE makes the logical structure more transparent than the NE"},
+            ]
+          },
+          {
+            id:"ee2_8", label:"EE II.8 — choice: a more careful analysis than NE III.2", greek:"προαίρεσις", accent:"#534AB7",
+            children:[
+              {label:"Choice is not desire, wish, or opinion", note:"Same exclusions as NE III.2 — but the EE adds that choice is specifically not any of these taken alone"},
+              {label:"Choice involves deliberation essentially", note:"The EE emphasises more strongly that choice (προαίρεσις) is necessarily accompanied by deliberation — it is deliberate desire. Without prior deliberation there is no choice, only impulse or wish"},
+              {label:"Choice is of things in our power", note:"We choose only what is actually in our power — choice is not about the impossible or the necessary. Choice operates in the domain of the contingent, where our action can make a difference"},
+              {label:"Choice as the unity of reason and desire", note:"The EE makes more explicit that choice is the point where reason and desire are unified — where the deliberative conclusion (reason) becomes the object of desire (motivation). Choice is not the conclusion of deliberation added to desire but their integration in a single act of practical reason"},
+              {label:"Connection to DA III.10", note:"DA III.10: practical nous and desire jointly produce action. EE II.8 gives the ethical analysis of the same unity — choice is the conjunction of rational deliberation and desire oriented by deliberation. The psychological and ethical analyses converge precisely at choice"},
+            ]
+          },
+          {
+            id:"ee2_9", label:"EE II.9–10 — virtue and the mean; the definition of virtue", greek:"ὁρισμός ἀρετῆς", accent:"#534AB7",
+            children:[
+              {label:"The mean relative to us", note:"Same as NE II.6 — the mean is not arithmetic but relative to the agent and the situation. Determined by the logos of the practically wise person"},
+              {label:"A slightly different formulation", note:"EE's definition: virtue is a disposition that makes us good at choosing and at achieving the mean in feelings and actions. The explicit mention of choice is more prominent than in the NE — consistent with the EE's emphasis on choice throughout Book II"},
+              {label:"Virtue is a disposition toward the mean with respect to us", note:"Both EE and NE arrive at the same formal definition — but the EE's route through the analysis of choice makes the definition more clearly connected to the rational-desiderative structure of the soul"},
+              {label:"Transition", note:"Book II has established the definition of virtue and the analysis of voluntary action and choice. Books III–IV (= NE IV–V) catalogue the individual virtues. Books IV–VI (= NE V–VII) treat the shared books — justice, intellectual virtues, weakness of will. Book VII returns to distinctive EE material before Book VIII's culminating theological account"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

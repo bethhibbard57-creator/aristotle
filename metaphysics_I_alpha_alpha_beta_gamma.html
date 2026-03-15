@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Metaphysics I: Α α Β Γ</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τὰ Μετὰ τὰ Φυσικά · Tetralemmic Position I</h1>
+<p class="subtitle">Metaphysics Α (Alpha) · α (little Alpha) · Β (Beta) · Γ (Gamma)</p>
+<p class="subtitle">The question of being: the history of causes, the aporia, being qua being, and the principle of non-contradiction</p>
+<p class="subtitle" style="color:#888">The first tetralemmic position — the question posed. All four books together constitute the first move of the elenctic argument: what is being, and what must any answer presuppose?</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Position I establishes the ground of the inquiry. Alpha traces the history of causal thinking to show what any adequate account of being must include. Little Alpha defends the possibility of first philosophy against sceptical objection. Beta states the aporiai — the genuine difficulties any account must resolve. Gamma establishes being qua being as the subject and defends the principle of non-contradiction as the indemonstrable ground of all inquiry. These four books together are the elenctic opening: the question is posed in its full difficulty before any answer is attempted.</footer>
+
+<script>
+const books = [
+  {
+    book: "Α — Alpha (Book I) · The history of causes and wisdom",
+    groups: [
+      {
+        label: "All men desire to know; wisdom and its object (Α.1–2)",
+        chapters: [
+          {
+            id:"mA1", label:"Met. Α.1 — the desire to know; the hierarchy of knowledge", greek:"ἐπιστήμη καὶ ἐμπειρία", accent:"#BA7517",
+            children:[
+              {label:"The opening", note:"All human beings by nature desire to know — the famous first line. The desire for knowledge is not instrumental but constitutive of what we are"},
+              {label:"The hierarchy of cognitive states", children:[
+                {label:"Perception", greek:"αἴσθησις", note:"Immediate awareness of particulars — shared with other animals. The foundation but not knowledge"},
+                {label:"Memory", greek:"μνήμη", note:"Retention of perception — some animals have this too"},
+                {label:"Experience", greek:"ἐμπειρία", note:"The accumulation of memories into a unified grasp of a kind of thing — knowing that this remedy works for this kind of patient"},
+                {label:"Art / Craft", greek:"τέχνη", note:"Knowledge of the universal and the cause — knowing why the remedy works, not just that it does"},
+                {label:"Scientific knowledge", greek:"ἐπιστήμη", note:"Systematic knowledge through demonstration from first principles"},
+                {label:"Wisdom", greek:"σοφία", note:"Knowledge of the highest causes and principles — the object of first philosophy"},
+              ]},
+              {label:"Experience vs art", note:"The experienced person knows particulars; the artist knows universals. For action, experience is often more effective — the particular case matters. But for understanding, the universal is higher"},
+              {label:"Connection to Post. An. II.19", note:"The same epistemological ascent — perception → memory → experience → universal — closes the Posterior Analytics. The Metaphysics opens by picking up exactly where the Organon ends"},
+            ]
+          },
+          {
+            id:"mA2", label:"Met. Α.2 — what wisdom is; the characteristics of the wise person", greek:"σοφός", accent:"#BA7517",
+            children:[
+              {label:"Six marks of wisdom", children:[
+                {label:"Knows everything, though not in detail", note:"The wise person has universal knowledge — knows the general principles from which particulars follow"},
+                {label:"Knows what is difficult", note:"What is not obvious to all — what requires sustained inquiry and the capacity to hold difficulty"},
+                {label:"More exact knowledge", note:"Can give fuller explanations with greater precision — closer to causes"},
+                {label:"Teaches", note:"The wise person can transmit knowledge — understanding the causes enables explanation"},
+                {label:"Pursued for its own sake", note:"Wisdom is desired for understanding, not for usefulness — the most free of all sciences"},
+                {label:"Most authoritative", note:"Wisdom knows the end — what everything is for. It commands the other sciences rather than serving them"},
+              ]},
+              {label:"The object of wisdom", note:"The highest causes and principles — what all other sciences presuppose but none investigates. First philosophy investigates what every other science uses without examining"},
+              {label:"Wisdom is not productive", note:"The sciences of production (medicine, architecture) aim at an external product. Wisdom aims at truth — it is theoretical, not practical or productive"},
+              {label:"The theological character of wisdom", note:"The most knowable things are the first principles — and the first principles are divine in character. Wisdom is the most divine science, both because it is most properly knowledge and because it has the divine as its object"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The history of causal thinking (Α.3–7)",
+        chapters: [
+          {
+            id:"mA3", label:"Met. Α.3 — the material cause: the first philosophers", greek:"ὕλη", accent:"#BA7517",
+            children:[
+              {label:"The first inquirers", note:"The first philosophers sought the material cause — the stuff out of which all things are made and into which they ultimately dissolve"},
+              {label:"Thales: water", note:"All things are water — the first and last material principle. Everything comes from water and returns to water"},
+              {label:"Anaximenes: air", note:"Air is the first principle — the soul is air, the world is surrounded by air"},
+              {label:"Heraclitus: fire", note:"Fire is the primary substance — though Heraclitus is not straightforwardly a material monist; fire is also the rational principle (logos)"},
+              {label:"The limitation", note:"Material cause alone cannot explain why things change or why they are as they are — it explains what things are made of but not why the matter takes the forms it does"},
+            ]
+          },
+          {
+            id:"mA4", label:"Met. Α.4 — the need for an efficient cause; Empedocles and Anaxagoras", greek:"κινητικὴ αἰτία", accent:"#BA7517",
+            children:[
+              {label:"The problem with material monism", note:"If everything is one stuff, why is there change and differentiation? The material principle alone cannot explain motion and organisation — something must initiate the process"},
+              {label:"Hesiod and Love", note:"The first implicit recognition of an efficient principle — Love as what brings things together. A mythological predecessor of the causal analysis"},
+              {label:"Empedocles: Love and Strife", note:"Love unites the four roots; Strife separates them. Two efficient causes — one positive, one negative. The first explicit positing of a cause of motion distinct from matter"},
+              {label:"Anaxagoras: Nous", greek:"νοῦς", note:"Mind (Nous) is the cause of order and motion — pure, unmixed, and the initiator of the cosmic rotation. The first approach to a formal and final cause, though Anaxagoras used it only as a deus ex machina"},
+              {label:"Aristotle's critique of Anaxagoras", note:"Anaxagoras invokes Nous only when he cannot find a material explanation — he does not consistently develop it as a genuine causal principle. The insight is there but not systematically exploited"},
+            ]
+          },
+          {
+            id:"mA5", label:"Met. Α.5 — the Pythagoreans and the formal cause", greek:"Πυθαγόρειοι", accent:"#BA7517",
+            children:[
+              {label:"The Pythagorean innovation", note:"Numbers are the principles of all things — not as material substrate but as formal principles. Things imitate numbers or are numbers"},
+              {label:"The table of opposites", note:"The Pythagoreans posited ten pairs of contraries — limit/unlimited, odd/even, one/many, right/left, male/female, rest/motion, straight/curved, light/dark, good/evil, square/oblong"},
+              {label:"The significance", note:"The Pythagoreans are the first to treat formal structure — ratio, proportion, number — as causally explanatory. They approach the formal cause without naming it"},
+              {label:"Aristotle's critique", note:"Numbers cannot be material substrates — numbers do not have weight, are not perceptible, cannot explain why things move and change. And the imitation relation is unexplained"},
+              {label:"Connection to the tetraktys", note:"The Pythagorean tetraktys — 1+2+3+4=10 — is the background of the ten categories and the structure of the Categories itself. Aristotle inherits and transforms the Pythagorean formal insight"},
+            ]
+          },
+          {
+            id:"mA6", label:"Met. Α.6 — Plato: Forms and participation", greek:"εἴδη", accent:"#BA7517",
+            children:[
+              {label:"Plato's inheritance from Socrates and Heraclitus", note:"From Heraclitus: sensible things are always in flux — no stable knowledge of them. From Socrates: there are stable universal definitions. The Forms are what the definitions define — stable, non-sensible, objects of knowledge"},
+              {label:"The Forms", greek:"εἴδη", note:"Separate, eternal, unchanging universals — the objects of genuine knowledge. Sensible things participate in Forms and are named after them"},
+              {label:"Participation", greek:"μέθεξις", note:"The relation between sensible things and Forms — left unexplained by Plato. The Forms cause sensible things by being what they participate in, but how participation works is never made clear"},
+              {label:"The One and the Great-and-Small", note:"Plato's later unwritten doctrine — the Forms themselves are constituted by the One (formal principle) and the Great-and-Small (material principle). Numbers are between Forms and sensibles"},
+              {label:"Aristotle's objections preview", note:"The Forms as separate entities are otiose — they explain nothing that could not be explained by immanent universals. Participation is a metaphor. The Third Man regress. These are developed in Μ and Ν"},
+            ]
+          },
+          {
+            id:"mA7", label:"Met. Α.7 — the four causes: none of the predecessors found all four", greek:"τέτταρα αἴτια", accent:"#BA7517",
+            children:[
+              {label:"The four causes reviewed", children:[
+                {label:"Material cause", greek:"ὕλη", note:"What something is made of — the substrate that persists through change"},
+                {label:"Formal cause", greek:"εἶδος / τὸ τί ἦν εἶναι", note:"What something is — its essence, its definition, what it is to be that thing"},
+                {label:"Efficient cause", greek:"ἀρχὴ τῆς κινήσεως", note:"What initiates the change — the primary source of motion or rest"},
+                {label:"Final cause", greek:"τέλος / τὸ οὗ ἕνεκα", note:"What something is for — the end toward which it tends, what it is good for"},
+              ]},
+              {label:"The verdict on the predecessors", note:"Each predecessor found one or two causes — none found all four, and none deployed them systematically. The material monists found only the material cause. Anaxagoras added a sketch of the efficient. Plato approached formal and material. The final cause was barely glimpsed by anyone"},
+              {label:"The argument of Alpha", note:"By showing that all previous accounts are incomplete — each capturing one cause at most — Aristotle establishes that a complete account requires all four. The history of philosophy is the elenctic demonstration that less than four causes is not enough"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The critique of predecessors (Α.8–10)",
+        chapters: [
+          {
+            id:"mA8", label:"Met. Α.8 — detailed critique of the material monists and Plato", greek:"κριτική", accent:"#BA7517",
+            children:[
+              {label:"The material monists fail", note:"If everything is one material principle, change and differentiation are inexplicable — or they must be explained by an additional principle the monist has not acknowledged"},
+              {label:"Empedocles' Love and Strife are inadequate", note:"Love and Strife are not genuine efficient causes — they are themselves material in character (Empedocles treats them as a fifth and sixth element). True efficient causation requires something non-material"},
+              {label:"Plato's Forms are causally inert", note:"The Forms do not explain why sensible things change or come to be — they are not causes of motion. They also do not explain why sensible things are as they are, only why they are called what they are called"},
+              {label:"The Great-and-Small is not a material cause", note:"Plato's material principle (the Great-and-Small, the dyad) is not a genuine material cause — it is a logical-mathematical device, not a physical substrate"},
+            ]
+          },
+          {
+            id:"mA9", label:"Met. Α.9 — the Third Man and other objections to Forms", greek:"τρίτος ἄνθρωπος", accent:"#BA7517",
+            children:[
+              {label:"The Third Man argument", note:"If man and individual men are both called 'man' because they share something, there must be a third man — the Form of the Form. The regress is infinite. Plato's own relation of participation generates an infinite regress"},
+              {label:"Forms double the world without explaining it", note:"Positing a Form for every sensible thing doubles the number of entities — there are now Forms and sensibles — without explaining any of the original phenomena better than the sensibles alone would"},
+              {label:"Forms are useless for generation", note:"Even if the Forms exist, they contribute nothing to why sensible things come to be or pass away — the Forms are eternal and unchanging, but sensible things change. The Forms cannot be the causes of change"},
+              {label:"Forms are useless for knowledge", note:"If knowledge of the Forms is separate from knowledge of sensibles, knowing the Forms does not help us know sensibles — the two domains are disconnected"},
+              {label:"Significance for the elenctic argument", note:"Alpha.9 is the systematic refutation of Plato — the demonstration that the most developed alternative to Aristotle's four-cause framework fails on its own terms. This elenchus clears the ground for Aristotle's own account"},
+            ]
+          },
+          {
+            id:"mA10", label:"Met. Α.10 — summary of what the predecessors achieved", greek:"σύνοψις", accent:"#BA7517",
+            children:[
+              {label:"What the predecessors got right", note:"Each predecessor captured a genuine insight — material cause, efficient cause, something like formal cause. The history of philosophy is not mere error but progressive approximation"},
+              {label:"What they all missed", note:"None gave a complete and systematic account of all four causes — none recognised the final cause as irreducible, and none saw how the four causes work together"},
+              {label:"The programme of the Metaphysics", note:"Alpha ends by having established: (1) four causes are required; (2) all previous accounts are incomplete; (3) the complete account must be sought. The rest of the Metaphysics is the complete account"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "α — little Alpha (Book II) · The possibility of first philosophy",
+    groups: [
+      {
+        label: "The conditions of philosophical inquiry (α.1–3)",
+        chapters: [
+          {
+            id:"ma1", label:"Met. α.1 — truth is not hard and not easy", greek:"ἀλήθεια", accent:"#534AB7",
+            children:[
+              {label:"The opening paradox", note:"Truth is not as hard as some suppose — in that everyone contributes something. Truth is not as easy as some suppose — in that no one grasps the whole of it"},
+              {label:"The collective nature of truth", note:"Philosophy advances through the cumulative contributions of many thinkers — each adding a small piece. The history surveyed in Alpha is not failure but collective progress"},
+              {label:"The difficulty is in us, not in the things", note:"The objects of first philosophy — the most knowable things in themselves — are hardest for us to know, because they are furthest from the sensible particulars we start with. Our cognitive situation limits us, not the objects"},
+              {label:"The analogy with bats and daylight", note:"As bats cannot see in daylight not because daylight is dark but because their eyes are weak, we cannot grasp first principles easily not because they are obscure but because our intellects are too conditioned by the sensible"},
+            ]
+          },
+          {
+            id:"ma2", label:"Met. α.2 — there cannot be an infinite regress of causes", greek:"οὐκ ἄπειρον", accent:"#534AB7",
+            children:[
+              {label:"The argument", note:"If there is an infinite regress of causes — if every cause has a cause without end — then there is no first cause. But without a first cause there is no explanation at all — the regress gives no genuine understanding"},
+              {label:"For all four kinds of cause", note:"The regress argument applies to all four causes — material, formal, efficient, final. In each case an infinite series gives no explanatory foothold"},
+              {label:"The necessity of first principles", note:"Explanation must terminate — there must be things that are explanatory without themselves requiring explanation. These are the first principles of each science and ultimately of first philosophy"},
+              {label:"Connection to Post. An. I.3 and I.19–22", note:"The same argument in the Posterior Analytics — demonstration must terminate in immediate premises; predication chains are finite. Little Alpha applies this logical result to the causal structure of reality itself"},
+            ]
+          },
+          {
+            id:"ma3", label:"Met. α.3 — the method appropriate to each science", greek:"μέθοδος", accent:"#534AB7",
+            children:[
+              {label:"Not all precision is appropriate everywhere", note:"Demanding mathematical precision from a political philosopher or demanding merely probable argument from a mathematician — both are errors. Each science has its appropriate method"},
+              {label:"First philosophy has its own method", note:"The method of first philosophy is dialectical in the broad sense — it proceeds from what is reputable and examines the aporiai — but it aims at demonstration from first principles"},
+              {label:"The educated person", note:"The mark of the educated person is not to demand more precision than the subject admits — and not to accept less. This is the intellectual virtue of appropriateness of method"},
+              {label:"Connection to Topics I.1–2", note:"Dialectic as the critical examination of first principles — little Alpha.3 identifies the methodological role of dialectic that the Topics describes. The two texts are the theoretical and practical sides of the same methodological point"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Β — Beta (Book III) · The aporiai",
+    groups: [
+      {
+        label: "The fifteen aporiai of first philosophy (Β.1–6)",
+        chapters: [
+          {
+            id:"mB1", label:"Met. Β.1 — why aporiai must be surveyed first", greek:"ἀπορίαι", accent:"#0F6E56",
+            children:[
+              {label:"The role of aporia", note:"To make progress in philosophy one must first grasp the difficulties — those who skip the aporiai are like people who do not know where they want to go. The aporiai set the agenda"},
+              {label:"The method", note:"State both sides of each difficulty — the arguments for each position. The resolution must do justice to both sides; a resolution that ignores one side has not genuinely resolved the difficulty"},
+              {label:"The elenctic function of Beta", note:"Beta is the most explicitly elenctic book of the Metaphysics — it subjects the project of first philosophy itself to the four-condition elenchus. Every aporia is a genuine contradictory pair that the rest of the Metaphysics must resolve"},
+              {label:"Connection to your thesis", note:"Beta is the formal aporia book — the explicit posing of the tetralemmic structure of the inquiry. Each aporia is a position in the fourfold logical space. The progressive elenctic argument of the Metaphysics moves through Beta's aporiai systematically"},
+            ]
+          },
+          {
+            id:"mB2", label:"Met. Β.2 — aporiai 1–4: the scope and subject of wisdom", greek:"ἀπορίαι α–δ", accent:"#0F6E56",
+            children:[
+              {label:"Aporia 1: does one science study all causes?", note:"Does wisdom study all four causes, or does a separate science study each? If one science, it seems to do the work of many. If separate sciences, first philosophy cannot be the science of being qua being"},
+              {label:"Aporia 2: does first philosophy study first principles of demonstration?", note:"The principles of demonstration (LNC, PEM) are used by all sciences — does first philosophy study them, or do the individual sciences each claim them? If first philosophy, it seems to overstep; if each science, the principles are unexamined"},
+              {label:"Aporia 3: is there one science of all beings?", note:"Being is said in many ways — there are beings in every category. Is there one science of all of them or many sciences? One science seems impossible given the diversity; many sciences leave being qua being unstudied"},
+              {label:"Aporia 4: does first philosophy study only being or also becoming?", note:"Generation and corruption are processes — do they fall under the science of being? If so, first philosophy encompasses physics. If not, what studies the principles of change?"},
+            ]
+          },
+          {
+            id:"mB3", label:"Met. Β.3 — aporiai 5–7: genera, individuals, and principles", greek:"ἀπορίαι ε–ζ", accent:"#0F6E56",
+            children:[
+              {label:"Aporia 5: are genera or individuals the first principles?", note:"Genera seem most knowable — they are universal and stable. But individuals are most real — they are what actually exists. Which are the first principles of being?"},
+              {label:"Aporia 6: are there principles beyond the categories?", note:"Do the principles of being lie within the categories (being as being in some category) or beyond them (being qua being before any categorical determination)?"},
+              {label:"Aporia 7: are the principles universal or particular?", note:"Universal principles apply to everything but are not themselves existing things. Particular principles exist but apply only to their own case. Can first principles be both?"},
+            ]
+          },
+          {
+            id:"mB4", label:"Met. Β.4 — aporiai 8–11: matter, unity, and the one", greek:"ἀπορίαι η–ια", accent:"#0F6E56",
+            children:[
+              {label:"Aporia 8: is matter a principle?", note:"Matter is what underlies all change — it seems to be a fundamental principle. But pure matter (prime matter) has no form and no actuality — it barely exists. Can what barely exists be a principle?"},
+              {label:"Aporia 9: are there principles beyond being and the one?", note:"Being and the one seem to be the most universal — everything that is, is one. But if they are principles, they seem to be beyond the categories. Are there principles prior to all categorical determination?"},
+              {label:"Aporia 10: are numbers, solids, surfaces, and lines principles?", note:"Mathematical objects seem to be principles — they are more abstract than sensibles and seem to underlie physical things. But are they substances? Do they exist separately?"},
+              {label:"Aporia 11: are the Forms principles?", note:"Plato's Forms are separate, eternal, self-subsistent — they seem to be the highest principles. But the objections of Alpha.9 remain. Are there Forms, and if so what is their causal role?"},
+            ]
+          },
+          {
+            id:"mB5", label:"Met. Β.5 — aporiai 12–14: sameness, difference, and the good", greek:"ἀπορίαι ιβ–ιδ", accent:"#0F6E56",
+            children:[
+              {label:"Aporia 12: are the principles of perishables and imperishables the same?", note:"Perishable things change and corrupt; imperishable things do not. Can the same principles explain both? If yes, what prevents the principles from making everything imperishable?"},
+              {label:"Aporia 13: is being a genus?", note:"If being is a genus, it has species and differentiae. But differentiae must be — they must have being. Being cannot differentiate itself; its differentiae would already be beings. Can being be a genus?"},
+              {label:"Aporia 14: is the good a principle?", note:"The final cause — the good — seems to be a principle. But the good is always the good of something — it is relative, not absolute. Can what is relative be a first principle?"},
+            ]
+          },
+          {
+            id:"mB6", label:"Met. Β.6 — aporia 15: the one and mathematical objects", greek:"ἀπορία ιε", accent:"#0F6E56",
+            children:[
+              {label:"Aporia 15: are the one and being the same as the things they belong to?", note:"If the one just is Socrates, or just is this stone, the one is not a universal but a particular. But if the one is a universal distinct from the things that are one, it is a Platonic Form — and the objections of Alpha.9 apply"},
+              {label:"The completion of the aporiai", note:"Fifteen aporiai cover the complete field of difficulties for first philosophy — the scope of wisdom, the nature of principles, the status of universals, the role of matter and form, the good. Every subsequent book of the Metaphysics resolves one or more of these"},
+              {label:"Beta as the elenctic core", note:"Beta is the formal structure of the elenctic argument — the complete set of genuine contradictory pairs that the Metaphysics must resolve. Without resolving the aporiai, no account of being is complete"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Γ — Gamma (Book IV) · Being qua being and the principle of non-contradiction",
+    groups: [
+      {
+        label: "Being qua being; the science of first principles (Γ.1–2)",
+        chapters: [
+          {
+            id:"mG1", label:"Met. Γ.1 — there is a science of being qua being", greek:"ὄν ᾗ ὄν", accent:"#993C1D",
+            children:[
+              {label:"The central claim", note:"There is a science that investigates being qua being and the attributes that belong to it in virtue of its own nature — this is first philosophy"},
+              {label:"Being qua being vs being as this or that", note:"Every other science carves off a part of being and investigates it — mathematics investigates being as quantity, physics as moving. First philosophy investigates being without restriction — what it is to be at all"},
+              {label:"The subject is not a genus", note:"Being is not a genus — it cannot be differentiated the way genera are (aporia 13). Yet first philosophy investigates it as a subject. How? By investigating all the things that are called beings — all the ways being is said"},
+              {label:"Focal meaning", greek:"πρὸς ἕν", note:"Being is said in many ways but always in relation to one — to being as being, to primary being (οὐσία). As 'healthy' is said of many things (food, complexion, exercise) but always in relation to health, so being is said of many things but always in relation to primary being"},
+              {label:"Connection to Topics I.17", note:"The analogy topos — similarities across genera. Focal meaning (πρὸς ἕν equivocity) is the metaphysical counterpart of the Topics' treatment of analogy. One word, many senses, one governing sense"},
+            ]
+          },
+          {
+            id:"mG2", label:"Met. Γ.2 — the unity of first philosophy; being and the one", greek:"ἓν καὶ ὄν", accent:"#993C1D",
+            children:[
+              {label:"Being and the one convert", note:"Whatever is, is one — and whatever is one, is. Being and unity are co-extensive, always going together though not synonymous"},
+              {label:"First philosophy studies being, the one, sameness, difference, and contrariety", note:"These follow being convertibly — they are the most general attributes of being qua being and fall to first philosophy to investigate"},
+              {label:"The axioms belong to first philosophy", note:"The principles of demonstration — LNC and PEM — are principles of being itself, not merely of language or thought. First philosophy studies them as truths about being"},
+              {label:"Resolution of aporia 2", note:"The first philosophy studies the principles of demonstration (aporia 2) because those principles are truths about being qua being — not merely logical rules but ontological constraints"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The defence of the principle of non-contradiction (Γ.3–8)",
+        chapters: [
+          {
+            id:"mG3", label:"Met. Γ.3 — the principle of non-contradiction stated and its status", greek:"ἀρχὴ τοῦ μὴ ἀντιφάσκειν", accent:"#993C1D",
+            children:[
+              {label:"The principle stated", note:"It is impossible for the same attribute to belong and not belong to the same subject in the same respect at the same time — the firmest of all principles"},
+              {label:"Why it cannot be demonstrated", note:"Demonstration proceeds from premises — but LNC is presupposed by every premise. To demonstrate it would require premises, which would already assume it. It is indemonstrable but not groundless"},
+              {label:"The four conditions", note:"Same attribute · same subject · same respect · same time — these are the four conditions of a genuine contradiction. Note: these are exactly the four elenchus conditions of De Interpretatione Ch. 11"},
+              {label:"Connection to De Int. Ch. 11", note:"The elenchus conditions and the conditions of LNC are the same four conditions. This is not coincidence — the elenchus is the dialogical form of LNC. The Metaphysics here makes explicit what De Interpretatione implies"},
+              {label:"Connection to your thesis", note:"The four conditions of LNC are identical to the four elenchus conditions — same subject, same predicate, same respect, same time. Your thesis that every logical paradox violates one of these conditions is grounded here. The Metaphysics is the ontological foundation of Paper One"},
+            ]
+          },
+          {
+            id:"mG4", label:"Met. Γ.4 — the elenctic proof of LNC", greek:"ἐλεγκτικὴ ἀπόδειξις", accent:"#993C1D",
+            children:[
+              {label:"The method: elenctic demonstration", note:"LNC cannot be demonstrated directly — but it can be demonstrated elenctically. If anyone says anything meaningful, they have already committed to LNC. The commitment is extracted by argument"},
+              {label:"The condition: saying something significant", note:"If a word means something, it means one thing — not everything and not nothing. To use a word meaningfully is to distinguish what it applies to from what it does not. This is already a commitment to LNC"},
+              {label:"The argument", note:"Suppose A means both B and not-B. Then 'A' and 'not-A' mean the same thing. Then everything is the same as everything else. But then nothing is said — all distinction collapses. Meaningful speech requires LNC"},
+              {label:"The Heraclitean objector", note:"Heraclitus (as interpreted) held that contraries are identical — that the way up and the way down are the same. Aristotle's response: Heraclitus did not actually believe this in practice; he distinguished things in action even if he denied distinction in speech"},
+              {label:"The Protagorean objector", note:"Protagoras: man is the measure of all things — whatever appears to anyone is true for them. Aristotle's response: if everything that appears is true, then the appearance that Protagoras is wrong is also true — the position is self-refuting"},
+              {label:"Connection to Soph. Ref.", note:"The elenctic proof of LNC is the highest application of the method of the Sophistical Refutations — it turns the elenctic method on the most fundamental principle itself, showing that denying LNC is self-defeating"},
+            ]
+          },
+          {
+            id:"mG5", label:"Met. Γ.5 — against Protagoras; the relativity of perception", greek:"Πρωταγόρας", accent:"#993C1D",
+            children:[
+              {label:"The Protagorean position restated", note:"If all appearances are equally true, then contradictory appearances are both true — the same thing is both F and not-F for different perceivers. This seems to follow from taking perception as the measure of truth"},
+              {label:"The confusion of perception and knowledge", note:"Protagoras confuses the relativity of perception (what appears varies with the perceiver) with the relativity of truth (what is true varies with the perceiver). The first is real; the second is self-refuting"},
+              {label:"Perception is reliable of its proper object", note:"Each sense is reliable about its proper object in the present moment — sight reliably reports colours, hearing reliably reports sounds. But what things are is not the same as how they appear"},
+              {label:"The Heraclitean inheritance", note:"Protagoras's position inherits from Heraclitean flux — if everything is always changing, there is no stable truth to be had. Aristotle's response: not everything is always changing in every respect; LNC applies in the same respect and at the same time"},
+            ]
+          },
+          {
+            id:"mG6", label:"Met. Γ.6 — the principle of excluded middle", greek:"τὸ μέσον", accent:"#993C1D",
+            children:[
+              {label:"PEM stated", note:"Of any contradictory pair one must be true and the other false — there is no middle term between contradictories"},
+              {label:"The argument for PEM", note:"If neither A nor not-A were true, then saying either would be saying nothing — there would be no way to distinguish true from false at all. PEM is the condition of the possibility of assertion"},
+              {label:"PEM and LNC together", note:"LNC: not both A and not-A. PEM: either A or not-A. Together they constitute the full logical structure of the contradictory pair — the pair is exclusive and exhaustive"},
+              {label:"The limit of PEM", note:"PEM applies to genuine contradictory pairs — same subject, same predicate, same respect, same time. It does not apply to vague predicates, future contingents (sea battle), or predicates of universals whose temporal identity is unresolved"},
+              {label:"Connection to De Int. Ch. 9", note:"The sea battle — PEM applies to the disjunction but not to the individual disjuncts for future contingents. Gamma.6 establishes PEM universally for the present and past; De Interpretatione Ch. 9 qualifies it for the future"},
+              {label:"Connection to your thesis", note:"LNC and PEM apply only to individuals with resolved temporal identity — not to universals, not to future contingents. This is your central thesis about the scope of the classical laws. Gamma.6 is the textual ground for that claim"},
+            ]
+          },
+          {
+            id:"mG7", label:"Met. Γ.7 — against those who say all appearances are true", greek:"πάντα ἀληθῆ", accent:"#993C1D",
+            children:[
+              {label:"The self-refutation argument completed", note:"If all appearances are true then the appearance that not all appearances are true is also true — the position destroys itself. Protagoras cannot consistently hold his own view"},
+              {label:"The infinite regress of appearances", note:"If truth is relative to the perceiver, whose perception is the measure? Each perceiver's perception? But then they must perceive their perception, and so on — an infinite regress"},
+              {label:"The difference between seeming and being", note:"There is a difference between how things seem and how they are — this difference is what makes error possible. Protagoras's position cannot account for error, and therefore cannot account for the very phenomenon of appearance vs reality that it claims to explain"},
+            ]
+          },
+          {
+            id:"mG8", label:"Met. Γ.8 — against those who say all appearances are false", greek:"πάντα ψευδῆ", accent:"#993C1D",
+            children:[
+              {label:"The other extreme", note:"Some thinkers, reacting against Protagoras, said that all sensible things are in flux and therefore no sensible statement is ever true — everything we say is false"},
+              {label:"The self-refutation of universal falsity", note:"If all appearances are false, the appearance that all appearances are false is also false — the position again destroys itself"},
+              {label:"The moderate position", note:"Neither all appearances are true nor all appearances are false — some are true and some are false. This is the common-sense position that the elenctic argument has been defending throughout Gamma"},
+              {label:"The completion of Gamma", note:"Gamma closes by having established: (1) there is a science of being qua being; (2) it studies being, the one, and the axioms; (3) LNC and PEM are indemonstrable but elenctically established truths about being itself; (4) both extreme relativism and extreme scepticism are self-refuting. The ground is cleared for the positive account in Delta through Lambda"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

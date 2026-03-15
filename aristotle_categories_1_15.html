@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Categories 1–15</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Κατηγορίαι</h1>
+<p class="subtitle">Categories 1–15 — interactive hierarchical reference · "substance" rendered as "being" (οὐσία)</p>
+
+<div id="tree"></div>
+
+<footer>Click any category header to expand. Subcategories with children expand further.</footer>
+
+<script>
+const cats = [
+  {
+    id:"c1", label:"Categories 1 — names", greek:"ὀνόματα", accent:"#BA7517",
+    children:[
+      {label:"Homonymous", greek:"ὁμώνυμα", note:"Same name, different definition of being", eg:"'animal' of a man and a painted figure"},
+      {label:"Synonymous", greek:"συνώνυμα", note:"Same name, same definition of being", eg:"'animal' of a man and an ox"},
+      {label:"Paronymous", greek:"παρώνυμα", note:"Name derived from another, differing in ending", eg:"'grammarian' from 'grammar'"},
+    ]
+  },
+  {
+    id:"c2", label:"Categories 2 — things", greek:"τὰ ὄντα", accent:"#185FA5",
+    children:[
+      {label:"Primary being", greek:"πρώτη οὐσία", note:"Not said of, not in a subject — most fully being", eg:"This man, this horse"},
+      {label:"Secondary being", greek:"δευτέρα οὐσία", note:"Said of, not in a subject", eg:"Man, animal"},
+      {label:"Universal accident", greek:"καθόλου συμβεβηκός", note:"Said of and in a subject", eg:"Knowledge (said of grammar)"},
+      {label:"Individual accident", greek:"καθ᾽ ἕκαστον", note:"Not said of, but in a subject", eg:"This particular white"},
+    ]
+  },
+  {
+    id:"c3", label:"Categories 3 — said-of relation", greek:"καθ᾽ ὑποκειμένου", accent:"#0F6E56",
+    children:[
+      {label:"Transitivity", note:"If A said of B, and B said of C, then A said of C"},
+      {label:"Inheritance of name", note:"Name of predicate passes to subject"},
+      {label:"Inheritance of definition", note:"Definition of predicate passes to subject"},
+    ]
+  },
+  {
+    id:"c4", label:"Categories 4 — the ten categories", greek:"δέκα κατηγορίαι", accent:"#993C1D",
+    children:[
+      {label:"Being", greek:"οὐσία", eg:"man, horse"},
+      {label:"Quantity", greek:"ποσόν", eg:"four-foot, five-foot"},
+      {label:"Quality", greek:"ποιόν", eg:"white, grammatical"},
+      {label:"Relation", greek:"πρός τι", eg:"double, half"},
+      {label:"Where", greek:"ποῦ", eg:"in the Lyceum"},
+      {label:"When", greek:"ποτέ", eg:"yesterday, last year"},
+      {label:"Position", greek:"κεῖσθαι", eg:"is-lying, is-sitting"},
+      {label:"Having", greek:"ἔχειν", eg:"is-shod, is-armed"},
+      {label:"Doing", greek:"ποιεῖν", eg:"cutting, burning"},
+      {label:"Being affected", greek:"πάσχειν", eg:"being-cut, being-burned"},
+    ]
+  },
+  {
+    id:"c5", label:"Categories 5 — being", greek:"οὐσία", accent:"#534AB7",
+    children:[
+      {label:"Primary being", greek:"πρώτη", note:"Most fully being; ground of all else", eg:"This man, this horse"},
+      {label:"Secondary — species", greek:"εἶδος", note:"Nearer to primary; more properly being than genus", eg:"Man"},
+      {label:"Secondary — genus", greek:"γένος", note:"Most general; least revealing of what a thing is", eg:"Animal"},
+      {label:"No contrary", note:"Nothing is contrary to a primary being"},
+      {label:"Does not admit more or less", note:"One being is not more being than another"},
+      {label:"Receives contraries through time", note:"Same being can be pale then dark — by changing", eg:"Temporal identity"},
+    ]
+  },
+  {
+    id:"c6", label:"Categories 6 — quantity", greek:"ποσόν", accent:"#3B6D11",
+    children:[
+      {label:"Discrete", note:"Parts share no common boundary", children:[
+        {label:"Number", note:"No positional parts", eg:"Five, ten"},
+        {label:"Speech", note:"No positional parts", eg:"A syllable, a word"},
+      ]},
+      {label:"Continuous", note:"Parts share a common boundary", children:[
+        {label:"Line", note:"Has positional parts", eg:"A drawn line"},
+        {label:"Surface", note:"Has positional parts", eg:"A plane"},
+        {label:"Body", note:"Has positional parts", eg:"A solid"},
+        {label:"Time", note:"No positional parts — parts succeed, not coexist", eg:"An hour, a day"},
+        {label:"Place", note:"Has positional parts", eg:"A location"},
+      ]},
+      {label:"No contrary", note:"Nothing contrary to four-foot or five-foot"},
+      {label:"Does not admit more or less", note:"Five is not more five than another five"},
+      {label:"Equal / unequal", note:"The proper predicate of quantity"},
+    ]
+  },
+  {
+    id:"c7", label:"Categories 7 — relation", greek:"πρός τι", accent:"#993556",
+    children:[
+      {label:"Definition", note:"Things are what they are in relation to something else", eg:"Double, half, greater, slave, knowledge"},
+      {label:"Correlatives", note:"Each relative has a reciprocal correlative", eg:"Double ↔ half; master ↔ slave"},
+      {label:"Simultaneous by nature", note:"Correlatives come into being together and perish together"},
+      {label:"Knowledge and its object", note:"Knowledge is of something knowable; the knowable is prior to knowledge"},
+      {label:"Distinctive mark", note:"Relatives are said to be what they are of or than something else"},
+      {label:"No contrary", note:"Most relatives have no contrary — though great/small may"},
+      {label:"Admit more or less", note:"One thing can be more or less similar than another"},
+    ]
+  },
+  {
+    id:"c8", label:"Categories 8 — quality", greek:"ποιόν", accent:"#185FA5",
+    children:[
+      {label:"Habits and dispositions", note:"Stable or unstable states of the subject", children:[
+        {label:"Habit", note:"More stable and lasting", eg:"Knowledge, virtue"},
+        {label:"Disposition", note:"More easily changed", eg:"Health, warmth"},
+      ]},
+      {label:"Natural capacities / incapacities", note:"Innate powers or lacks", eg:"Boxer by nature, runner by nature"},
+      {label:"Affective qualities", note:"Produce affection in the senses", eg:"Sweetness, bitterness, pallor, heat"},
+      {label:"Shape / form", note:"Perceptible configuration", eg:"Triangular, straight, curved"},
+      {label:"Distinctive mark", note:"Things are called qualified in virtue of quality"},
+      {label:"Admit contraries", note:"Justice and injustice, whiteness and blackness are contrary"},
+      {label:"Admit more or less", note:"More or less pale, more or less just"},
+      {label:"Similar / dissimilar", note:"The proper predicate of quality"},
+    ]
+  },
+  {
+    id:"c9", label:"Categories 9 — doing and being affected", greek:"ποιεῖν καὶ πάσχειν", accent:"#0F6E56",
+    children:[
+      {label:"Doing", greek:"ποιεῖν", note:"Active: the subject acts on something else", eg:"Cutting, burning, teaching"},
+      {label:"Being affected", greek:"πάσχειν", note:"Passive: the subject is acted upon", eg:"Being cut, being burned, learning"},
+      {label:"Admit contraries", note:"Heating is contrary to cooling"},
+      {label:"Admit more or less", note:"More or less vigorously heating"},
+    ]
+  },
+  {
+    id:"c10", label:"Categories 10 — opposites", greek:"ἀντικείμενα", accent:"#BA7517",
+    children:[
+      {label:"Correlatives", greek:"πρός τι", note:"As double to half — simultaneous, mutually dependent", eg:"Master / slave"},
+      {label:"Contraries", greek:"ἐναντία", note:"Admit intermediates or not; greatest difference in same genus", eg:"Good / bad, white / black"},
+      {label:"Privation and possession", greek:"στέρησις / ἕξις", note:"Lack of a natural possession", eg:"Blindness / sight"},
+      {label:"Affirmation and negation", greek:"κατάφασις / ἀπόφασις", note:"Only these are always true or false", eg:"Socrates is sitting / is not sitting"},
+      {label:"Contraries — key rule", note:"Of contraries one need not be true or false of a subject, but of affirmation/negation one always must be"},
+    ]
+  },
+  {
+    id:"c11", label:"Categories 11 — contrary properties", greek:"ἐναντία", accent:"#534AB7",
+    children:[
+      {label:"No intermediate", note:"One or the other must hold", eg:"Odd / even — of number one must hold"},
+      {label:"With intermediate", note:"Neither need hold", eg:"White / black — a thing may be neither"},
+      {label:"Change only through intermediate", note:"From one extreme to the other only by passing through the middle"},
+      {label:"Good and bad", note:"Are they contrary to each other? Good has no single contrary but may be contrary to bad"},
+    ]
+  },
+  {
+    id:"c12", label:"Categories 12 — prior", greek:"πρότερον", accent:"#993C1D",
+    children:[
+      {label:"Prior in time", note:"The older or earlier in origin"},
+      {label:"Prior in being", note:"A can exist without B but not B without A", eg:"One is prior to two"},
+      {label:"Prior in order", note:"In sequences with a starting point", eg:"First in grammar, first in a procession"},
+      {label:"Prior as better / more honourable", note:"The more valued thing is loosely called prior"},
+      {label:"Reciprocal implication with priority", note:"The cause is prior: if man exists, the proposition 'man exists' is true — but the proposition does not cause the man"},
+    ]
+  },
+  {
+    id:"c13", label:"Categories 13 — simultaneous", greek:"ἅμα", accent:"#3B6D11",
+    children:[
+      {label:"Simultaneous in time", note:"Come into being at the same time — neither prior nor posterior"},
+      {label:"Simultaneous in being", note:"Reciprocally imply each other's existence without either being cause of the other", eg:"Double and half"},
+      {label:"Coordinate species", note:"Species of the same genus, divided by the same differentia", eg:"Bird and fish under animal"},
+    ]
+  },
+  {
+    id:"c14", label:"Categories 14 — motion", greek:"κίνησις", accent:"#185FA5",
+    children:[
+      {label:"Generation", greek:"γένεσις", note:"Coming into being"},
+      {label:"Destruction", greek:"φθορά", note:"Passing out of being"},
+      {label:"Increase", greek:"αὔξησις", note:"Growth in magnitude"},
+      {label:"Diminution", greek:"μείωσις", note:"Reduction in magnitude"},
+      {label:"Alteration", greek:"ἀλλοίωσις", note:"Change in quality"},
+      {label:"Change of place", greek:"κατὰ τόπον", note:"Locomotion — change in where"},
+    ]
+  },
+  {
+    id:"c15", label:"Categories 15 — having", greek:"ἔχειν", accent:"#993556",
+    children:[
+      {label:"Having a state or condition", note:"Having knowledge, having virtue"},
+      {label:"Having a quantity", note:"Having a fever, having a length"},
+      {label:"Having a part on the body", note:"Having a hand, having a head"},
+      {label:"Having as containing", note:"A vessel has its contents; a whole has its parts"},
+      {label:"Having as possession", note:"A man has a house, has a coat"},
+      {label:"Having as husband/wife", note:"As one has a spouse"},
+      {label:"Note", note:"The senses are related but distinct — the category captures the most basic: wearing or bearing on oneself"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      <span class="greek">${c.greek}</span>
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = cats.map(renderCat).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Topics Books VI & VII</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τοπικά Ζ–Η</h1>
+<p class="subtitle">Topics Books VI & VII — complete interactive reference · VI: 14 chapters · VII: 5 chapters</p>
+<p class="subtitle">Subject: definition — topoi for refuting and establishing definitions; the relation between definition, sameness, and essence</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Books VI–VII are the heart of the Topics — the fullest treatment of definition as a predicable. Book VI catalogues every way a definition can fail. Book VII treats sameness and how to establish definitions. Together they provide the complete dialectical method for testing definitions — the practice that Socratic elenchus embodies.</footer>
+
+<script>
+const book6 = [
+  {
+    id:"t6_1", label:"Top. VI.1 — introduction: what a definition must do", greek:"τί δεῖ τὸν ὁρισμόν", accent:"#BA7517",
+    children:[
+      {label:"The double task of definition", note:"A definition must state the genus and the differentiae — the genus says what kind of thing the subject is; the differentiae say which thing of that kind it is"},
+      {label:"The definition must be unique to the definiendum", note:"What is defined must be the only thing the definition fits — definition converts with its subject just as property does, but additionally states the essence"},
+      {label:"The definition must be more knowable", note:"A definition that uses terms harder to understand than the definiendum is a failed definition — it should illuminate, not obscure"},
+      {label:"The definition must state the essence", note:"It must say what the thing is, not merely what it is like or what always belongs to it — the what-it-is, not an accident or property"},
+      {label:"General strategy of Book VI", note:"Every failure of definition falls into one of several types — wrong genus, wrong differentia, not unique, circular, obscure, redundant, incorrect order. This book catalogues them all"},
+    ]
+  },
+  {
+    id:"t6_2", label:"Top. VI.2 — the definition must use the genus", greek:"γένος", accent:"#BA7517",
+    children:[
+      {label:"Must place the definiendum in its genus", note:"A definition that fails to state the genus leaves out the most fundamental part — what kind of thing the subject is"},
+      {label:"Topos: the definition omits the genus", note:"If the definition states only differentiae without placing them under a genus, it is incomplete — differentiae without a genus are logically adrift"},
+      {label:"Topos: the definition uses the wrong genus", note:"If the genus stated does not apply to the definiendum at all, or applies to something wider or narrower, the definition is wrong from its first term"},
+      {label:"Topos: the differentia is placed as genus", note:"If what is really a differentia is stated as if it were the genus — 'man is a rational thing' rather than 'man is a rational animal' — the definition is malformed"},
+      {label:"Why the genus comes first", note:"The genus is logically prior to the differentiae — the differentiae divide the genus and are only meaningful relative to it. A definition must proceed from genus to differentia, not the reverse"},
+    ]
+  },
+  {
+    id:"t6_3", label:"Top. VI.3 — the definition must not use obscure terms", greek:"ἀσάφεια", accent:"#BA7517",
+    children:[
+      {label:"The clarity condition", note:"A definition must be clearer than the definiendum — if it uses terms that are harder to understand, it fails its purpose"},
+      {label:"Topos: the definition uses a metaphor", note:"Metaphors are not definitions — 'the soul is a self-moving number' uses a metaphor. Metaphors may illuminate but they do not define"},
+      {label:"Topos: the definition uses ambiguous terms", note:"If any term in the definition is ambiguous, the definition is ambiguous — it fails to uniquely pick out the definiendum"},
+      {label:"Topos: the definition is longer and harder than the definiendum", note:"If understanding the definition requires more work than understanding the thing itself, it is a failure — definitions should shorten and clarify, not lengthen and obscure"},
+      {label:"Connection to I.15", note:"Distinguishing ambiguities is the second instrument of argument (Top. I.13) — this chapter applies that instrument specifically to the testing of definitions"},
+    ]
+  },
+  {
+    id:"t6_4", label:"Top. VI.4 — the definition must not be circular", greek:"κύκλος", accent:"#BA7517",
+    children:[
+      {label:"Circular definition", note:"Using the definiendum in its own definition — either directly or through a chain of definitions that returns to the starting point"},
+      {label:"Direct circularity", note:"Defining justice as 'the just disposition' uses just — a form of the definiendum — in the definition itself"},
+      {label:"Indirect circularity", note:"Defining A by B and B by A — a two-step circle. Or longer chains. The circle need not be one step to be vicious"},
+      {label:"Topos: trace the chain of definitions", note:"Follow every term in the proposed definition to its own definition — if the chain leads back to the definiendum, the definition is circular"},
+      {label:"Connection to Post. An. I.3", note:"Circular demonstration is rejected there for the same reason — it establishes nothing. Circular definition is the definitional analogue"},
+    ]
+  },
+  {
+    id:"t6_5", label:"Top. VI.5 — the definition must not be redundant", greek:"περιττόν", accent:"#BA7517",
+    children:[
+      {label:"Redundancy in definition", note:"Including in the definition something that is already implied by what else is stated — adding 'mortal' to 'rational animal' if being a rational animal already implies mortality"},
+      {label:"Topos: remove a part and test", note:"Remove each part of the definition in turn and check whether the remainder still picks out the definiendum uniquely — if it does, the removed part was redundant"},
+      {label:"Redundancy of the genus when implied by differentia", note:"If the differentia already implies the genus, stating the genus is redundant", eg:"'Odd number' — if 'odd' already implies number, stating 'number' adds nothing"},
+      {label:"The precision standard", note:"A definition should be exactly as long as necessary to pick out the definiendum — no more, no less. Redundancy is a logical fault, not merely an aesthetic one"},
+    ]
+  },
+  {
+    id:"t6_6", label:"Top. VI.6 — the definition must be correctly ordered", greek:"τάξις", accent:"#BA7517",
+    children:[
+      {label:"The order condition", note:"The genus must come before the differentiae — the definition must proceed from the more general to the more specific"},
+      {label:"Topos: the differentia precedes the genus", note:"If the definition states a differentia before placing the subject in its genus, it is malformed — the differentia has no logical standing without the genus"},
+      {label:"Topos: the differentiae are in the wrong order", note:"When there are multiple differentiae, they must be ordered from most general to most specific — each successive differentia must divide the result of the previous one"},
+      {label:"Connection to Post. An. II.13", note:"The correct method of division — from genus through successive differentiae — determines the correct order of a definition. This chapter enforces that order dialectically"},
+      {label:"Connection to the Porphyrian tree", note:"The tree represents the correct ordering of genus and differentiae — a definition in the correct order is a path through the tree from top to bottom"},
+    ]
+  },
+  {
+    id:"t6_7", label:"Top. VI.7 — the definition must apply to the definiendum alone", greek:"μόνον", accent:"#BA7517",
+    children:[
+      {label:"The uniqueness condition for definition", note:"The definition must fit one and only one thing — if it applies to anything other than the definiendum, it is not a proper definition"},
+      {label:"Topos: find another thing the definition fits", note:"Show that the proposed definition applies to something other than the definiendum — the definition is then too wide"},
+      {label:"Topos: find a member of the definiendum the definition does not fit", note:"Show that the proposed definition fails to apply to something that is the definiendum — the definition is then too narrow"},
+      {label:"The convertibility requirement", note:"A definition must convert with its definiendum — 'all S is P' and 'all P is S'. This is the logical hallmark that distinguishes definition from genus and property"},
+    ]
+  },
+  {
+    id:"t6_8", label:"Top. VI.8 — topoi against definitions of relatives", greek:"πρός τι", accent:"#BA7517",
+    children:[
+      {label:"Definitions of relatives", note:"Things in the relation category are defined by their correlatives — double is defined by half, knowledge by its object"},
+      {label:"Topos: the definition fails to mention the correlative", note:"A definition of a relative that does not mention what it is relative to is incomplete — the correlative is essential to the definition of any relative"},
+      {label:"Topos: the definition mentions the wrong correlative", note:"If the definition states the wrong correlative — defining knowledge as 'grasp of reality' when it should be 'grasp of what can be known' — it is incorrect"},
+      {label:"Connection to Categories Ch. 7", note:"The relation category — correlatives are simultaneous by nature. The definition of a relative must respect the simultaneity and mutual dependence of correlatives"},
+    ]
+  },
+  {
+    id:"t6_9", label:"Top. VI.9 — topoi against definitions that use contrary or privative terms", greek:"ἐναντίον καὶ στέρησις", accent:"#BA7517",
+    children:[
+      {label:"Using the contrary in a definition", note:"If a definition of X uses the contrary of X, it defines X only by reference to what X is not — this may be acceptable for privations but is problematic for positive things"},
+      {label:"Topos: the definition is purely negative", note:"A definition that consists entirely of negations does not state what the thing is — it only says what it is not. This fails the what-it-is condition"},
+      {label:"Privative definitions", note:"Privations may legitimately be defined by their positive counterpart — blindness is the privation of sight in what naturally has sight. But positive things should not be defined by their privations"},
+      {label:"Connection to Categories Ch. 10", note:"Privation and possession are a pair of opposites — blindness and sight. Defining a positive thing by its privation inverts the natural order of definition"},
+    ]
+  },
+  {
+    id:"t6_10", label:"Top. VI.10 — topoi from the more and less applied to definitions", greek:"μᾶλλον καὶ ἧττον", accent:"#BA7517",
+    children:[
+      {label:"The comparative test for definitions", note:"If two things are equally X, their definitions should be equally applicable — if one definition fits one case better than the other, it is not the right definition for both"},
+      {label:"Topos: the definition fits better elsewhere", note:"If the proposed definition fits some other thing better than the definiendum, it is more likely the definition of that other thing"},
+      {label:"Degrees of fit", note:"A definition either fits or does not — but in dialectical practice the comparative test reveals when a definition is aimed at the wrong target"},
+      {label:"Connection to II.4", note:"The more/less topoi run throughout the Topics — here applied specifically to the fit between a definition and its definiendum"},
+    ]
+  },
+  {
+    id:"t6_11", label:"Top. VI.11 — topoi from the definition failing to capture what is distinctive", greek:"τὸ ἴδιον τοῦ ὁρισμοῦ", accent:"#BA7517",
+    children:[
+      {label:"The distinctive content condition", note:"A definition must capture what is unique and essential to the definiendum — if it captures only what is shared with other things, it is a definition of the genus, not the species"},
+      {label:"Topos: the definition fits the genus but not the species", note:"Show that the proposed definition applies to the genus as a whole — it then defines the genus, not the species. It lacks the differentia"},
+      {label:"Topos: the definition fits a coordinate species", note:"Show that the definition applies equally to a coordinate species under the same genus — then neither is more defined than the other, and the definition fails to differentiate"},
+      {label:"The differentia as the essential distinguishing mark", note:"The differentia is precisely what the definition must capture — what distinguishes this species from all other species under the same genus. Without it the definition is the genus, not the species"},
+    ]
+  },
+  {
+    id:"t6_12", label:"Top. VI.12 — whether the definition is given of the thing or only of its name", greek:"ὀνόματος ἢ πράγματος", accent:"#BA7517",
+    children:[
+      {label:"Nominal vs real definition", note:"A nominal definition states what a word means — it may be true without the thing existing. A real definition states what the thing is — it requires the thing to exist"},
+      {label:"Topos: the definition is only nominal", note:"If the proposed definition merely explains the use of the word without committing to the existence or nature of the thing, it is a nominal definition — not a real one"},
+      {label:"The requirement of real definition", note:"Scientific and philosophical definitions must be real — they must state the essence of something that exists. Nominal definitions are useful as starting points but cannot substitute for real ones"},
+      {label:"Connection to Post. An. II.7", note:"Definition states the meaning of a name vs the real definition — the same distinction, here applied dialectically to test whether a proposed definition is real or merely nominal"},
+    ]
+  },
+  {
+    id:"t6_13", label:"Top. VI.13 — topoi for establishing definitions", greek:"κατασκευή", accent:"#BA7517",
+    children:[
+      {label:"Establishing by convertibility", note:"Show that the proposed definition converts with the definiendum — everything that is S is defined by D, and everything defined by D is S"},
+      {label:"Establishing by derivation from genus and differentia", note:"Show that the definition correctly places the subject in its genus and distinguishes it from all coordinate species by the differentia"},
+      {label:"Establishing by induction", note:"Show that the definition fits every case of the definiendum — using particular cases to support the universal claim"},
+      {label:"Establishing by refuting alternatives", note:"Show that no other definition works — eliminate all competitors and the remaining definition is established by elimination"},
+      {label:"The strongest establishment", note:"Show that the definition follows from the nature of the thing — that the genus and differentia are necessary features of the subject, not accidental or contingent ones"},
+    ]
+  },
+  {
+    id:"t6_14", label:"Top. VI.14 — the completeness of Book VI and summary", greek:"σύνοψις", accent:"#BA7517",
+    children:[
+      {label:"The complete battery of tests", note:"Wrong genus · wrong differentia · obscurity · circularity · redundancy · wrong order · fails uniqueness · wrong correlative (for relatives) · purely negative · wrong fit · lacks distinctive content · only nominal"},
+      {label:"Any one failure is sufficient to refute", note:"A definition that fails even one of these tests is not a correct definition — each test is independently necessary"},
+      {label:"All must pass for establishment", note:"A definition is established only when it survives all these tests — the complete positive case requires satisfying every condition simultaneously"},
+      {label:"Connection to the Socratic elenchus", note:"Socratic questioning in the dialogues systematically applies these tests — the elenchus in action is Book VI in practice. Every failed definition in Plato fails by one of these criteria"},
+    ]
+  },
+];
+
+const book7 = [
+  {
+    id:"t7_1", label:"Top. VII.1 — the question of sameness and definition", greek:"ταὐτότης", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"If two things are the same, do they have the same definition? And if they have the same definition, are they the same thing?"},
+      {label:"Numerical sameness and definition", note:"Numerically the same thing — one individual — has one definition. If two proposed definitions are given for the same thing, one must be wrong or they must be equivalent"},
+      {label:"Topos: show the definitions differ", note:"If you can show that two proposed definitions of the 'same' thing actually pick out different things, the identity claim is refuted — the things are not the same"},
+      {label:"Topos: show the definitions are equivalent", note:"If the definitions are paraphrases of each other — picking out the same thing by different routes — sameness is supported"},
+      {label:"Connection to Top. I.7", note:"The three senses of sameness — numerical, specific, generic — are here applied to definition. The sameness of a definition must be numerical sameness, not merely generic"},
+    ]
+  },
+  {
+    id:"t7_2", label:"Top. VII.2 — topoi for sameness from predicates", greek:"ἐκ τῶν κατηγορουμένων", accent:"#534AB7",
+    children:[
+      {label:"The predicative test for sameness", note:"If A and B are the same, whatever is predicated of A is predicated of B and vice versa — identical things share all their predicates"},
+      {label:"Leibniz's law avant la lettre", note:"Indiscernibility of identicals: if A = B then for every predicate P, P(A) iff P(B). This is Aristotle's operational test for numerical sameness"},
+      {label:"Topos: find a predicate that applies to one but not the other", note:"If any predicate belongs to A but not to B, A and B are not the same — one counterexample suffices to defeat an identity claim"},
+      {label:"The limits of the test", note:"Accidental predicates must be handled carefully — two things may be accidentally different while being the same in essence. The test applies to essential predicates for definitional sameness"},
+      {label:"Connection to the Ship of Theseus", note:"The Ship problem asks whether the original ship and the repaired ship are the same — the predicative test is exactly what is at stake. Their predicates have diverged over time"},
+    ]
+  },
+  {
+    id:"t7_3", label:"Top. VII.3 — topoi from definition applied to sameness", greek:"ἐκ τοῦ ὁρισμοῦ", accent:"#534AB7",
+    children:[
+      {label:"The definitional test for sameness", note:"Two things are the same if and only if they have the same definition — the definition is the ultimate test of identity"},
+      {label:"Topos: the proposed identicals have different definitions", note:"If two things claimed to be the same have different definitions, they are not the same thing — their essences differ"},
+      {label:"Topos: one thing has a definition and the other does not", note:"If one of the alleged identicals can be defined and the other cannot — if one has an essence and the other is only a name — they cannot be the same"},
+      {label:"The role of definition in metaphysics", note:"This chapter connects the logical treatment of definition in Topics VI–VII to the metaphysical treatment in Metaphysics Z–H — the identity of a thing just is its definition, its essence, its what-it-is-to-be-that-thing"},
+    ]
+  },
+  {
+    id:"t7_4", label:"Top. VII.4 — whether it is harder to define or to establish a property", greek:"χαλεπώτερον", accent:"#534AB7",
+    children:[
+      {label:"The comparative question", note:"Definition requires establishing both the genus and the differentia and their correct relation — property requires only uniqueness, universality, and permanence. Which is harder?"},
+      {label:"Definition is harder", note:"It must satisfy all the conditions of property and additionally state the essence — it is more demanding in every dimension"},
+      {label:"But property is harder to refute", note:"A property can be refuted by a single counterexample to uniqueness, universality, or permanence — but definition requires a structural analysis of the genus and differentia to attack"},
+      {label:"The asymmetry of attack and defence", note:"Definition is harder to establish but harder to refute; property is easier to establish but easier to refute — the logical structure of the two predicables differs in this important way"},
+    ]
+  },
+  {
+    id:"t7_5", label:"Top. VII.5 — closing remarks on definition and the Topics as a whole", greek:"πέρας", accent:"#534AB7",
+    children:[
+      {label:"The method is complete for definition", note:"Books VI–VII have given a complete battery of tests for definition — exhausting the ways a definition can fail and the ways it can be established"},
+      {label:"The Topics as a unified method", note:"Books I–VIII together constitute a complete method for dialectical argument across all four predicables — accident (II–III), genus (IV), property (V), definition (VI–VII), practice (VIII)"},
+      {label:"Definition as the culmination", note:"Definition is the most demanding predicable — it requires the most conditions and carries the most philosophical weight. The Topics ends its treatment of predicables here before turning to practice"},
+      {label:"The philosophical stakes", note:"Definition is where dialectic and demonstration meet — a correct definition can serve as the major premise of a demonstration. Getting definitions right is the foundation of scientific knowledge"},
+      {label:"Connection to Socratic practice", note:"The entire Socratic enterprise — asking 'what is piety?', 'what is courage?', 'what is justice?' — is the application of the Topics' method for testing definitions. The Topics is the logic of the Socratic dialogue"},
+    ]
+  },
+];
+
+const allCats = [...book6, ...book7];
+const open = {};
+allCats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { book:"Book VI — Τοπικά Ζ", label:"I — What a definition must do; genus and clarity conditions (1–3)", ids:["t6_1","t6_2","t6_3"] },
+  { book:null, label:"II — Circularity, redundancy, order, uniqueness (4–7)", ids:["t6_4","t6_5","t6_6","t6_7"] },
+  { book:null, label:"III — Special cases: relatives, contraries, degree, distinctive content, nominal vs real (8–12)", ids:["t6_8","t6_9","t6_10","t6_11","t6_12"] },
+  { book:null, label:"IV — Establishing definitions; summary (13–14)", ids:["t6_13","t6_14"] },
+  { book:"Book VII — Τοπικά Η", label:"V — Sameness and definition (1–3)", ids:["t7_1","t7_2","t7_3"] },
+  { book:null, label:"VI — Definition vs property; closing remarks (4–5)", ids:["t7_4","t7_5"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  allCats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return (g.book ? `<div class="book-label">${g.book}</div>` : '') +
+      `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

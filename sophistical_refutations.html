@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Sophistical Refutations</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Σοφιστικῶν Ἐλέγχων</h1>
+<p class="subtitle">Sophistical Refutations — complete interactive reference · chapters 1–34</p>
+<p class="subtitle">The analysis of fallacious argument: thirteen modes of sophistic refutation, their sources, their detection, and their dissolution</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. The Sophistical Refutations is the concluding work of the Organon and the logical companion to the Topics. It systematically analyses every form of apparently valid but actually invalid argument — the thirteen fallacies — showing in each case where the appearance of validity comes from and how it is dissolved. Aristotle explicitly closes by noting this text completes the entire logical project.</footer>
+
+<script>
+const cats = [
+
+  // GROUP A: INTRODUCTION
+  {
+    id:"se1", label:"Soph. Ref. 1 — the subject and its importance", greek:"πρόθεσις", accent:"#BA7517",
+    children:[
+      {label:"The subject", note:"Sophistic refutations — arguments that appear to be refutations but are not. The appearance of validity without the reality"},
+      {label:"Why this matters", note:"Sophists traded on the appearance of knowledge and argument — they produced what seemed like demonstrations and refutations while knowing nothing. Understanding their methods dissolves their power"},
+      {label:"Relation to dialectic", note:"A genuine refutation is a dialectical syllogism whose conclusion is the contradictory of the thesis. A sophistic refutation merely appears to be this — it fails in the premises, the inference, or the conception of what counts as contradiction"},
+      {label:"The complete classification promised", note:"Aristotle promises a complete classification of all the ways arguments can appear valid without being so — thirteen in total, divided into those dependent on language and those independent of language"},
+    ]
+  },
+  {
+    id:"se2", label:"Soph. Ref. 2 — the goals of the sophist", greek:"σκοποί", accent:"#BA7517",
+    children:[
+      {label:"Five goals of sophistic argument", children:[
+        {label:"Refutation", note:"Appearing to refute when one does not"},
+        {label:"Paradox", note:"Leading the opponent to say something that appears paradoxical or absurd"},
+        {label:"Solecism", note:"Making the opponent speak incorrectly — violating grammar or usage"},
+        {label:"Babbling", note:"Making the opponent repeat themselves or say the same thing many times over"},
+        {label:"Winning", note:"Appearing to win the argument regardless of truth"},
+      ]},
+      {label:"The sophist's fundamental aim", note:"Reputation without knowledge — to seem wise without being wise. The Sophist's method is appearance management, not truth-seeking"},
+      {label:"Why dialecticians and sophists use the same forms", note:"The same argument forms that are valid in genuine dialectic can be deployed sophistically — the difference is in the aim and in whether the premises are genuinely accepted or only apparently so"},
+    ]
+  },
+  {
+    id:"se3", label:"Soph. Ref. 3 — the two main classes of fallacy", greek:"δύο γένη", accent:"#BA7517",
+    children:[
+      {label:"Fallacies dependent on language", greek:"παρὰ τὴν λέξιν", note:"Those that arise from features of the words used — ambiguity, accent, form of expression. They exploit the gap between language and reality"},
+      {label:"Fallacies independent of language", greek:"ἔξω τῆς λέξεως", note:"Those that arise from features of the reasoning itself — false premises, wrong inference, confusion of absolute and qualified predication. They do not depend on verbal tricks"},
+      {label:"Six linguistic fallacies", note:"Equivocation · amphiboly · combination · division · accent · form of expression"},
+      {label:"Seven non-linguistic fallacies", note:"Accident · secundum quid · ignoratio elenchi · begging the question · false cause · consequent · many questions"},
+      {label:"The significance of this division", note:"Linguistic fallacies dissolve when the ambiguity is resolved — they have no force once the language is precise. Non-linguistic fallacies require substantive correction of the reasoning itself"},
+    ]
+  },
+
+  // GROUP B: THE SIX LINGUISTIC FALLACIES
+  {
+    id:"se4", label:"Soph. Ref. 4 — equivocation", greek:"ὁμωνυμία", accent:"#534AB7",
+    children:[
+      {label:"Definition", note:"Using a word in two different senses in the same argument — the ambiguity of a single word"},
+      {label:"Structure", note:"A premise is true under one sense of the word; the conclusion requires the other sense. The argument appears valid because the word looks the same throughout"},
+      {label:"Example", greek:"ἦθος", note:"'All that you assert is true of you. You assert that you are bad. Therefore you are truly bad' — 'you assert' shifts from claiming to being-called"},
+      {label:"The source", note:"The gap between a word and its meaning — one word can mean many things. The fallacy exploits this gap"},
+      {label:"The dissolution", note:"Identify the two senses and show the argument requires both — in one sense the premise is true; in the other the conclusion follows, but not from the true premise"},
+      {label:"Connection to Cat. Ch. 1", note:"Homonymy is the very first distinction in the Categories — the theoretical analysis that grounds this entire class of fallacy. Equivocation is homonymy deployed deceptively"},
+      {label:"Connection to your thesis", note:"Every logical paradox that involves a predicate term — the Liar, Russell's paradox — involves equivocation or homonymy at the level of predication. The fallacy is improper predication in its most basic form"},
+    ]
+  },
+  {
+    id:"se5", label:"Soph. Ref. 5 — amphiboly", greek:"ἀμφιβολία", accent:"#534AB7",
+    children:[
+      {label:"Definition", note:"Ambiguity of a whole phrase or sentence rather than a single word — the grammatical structure of the sentence admits two readings"},
+      {label:"Structure", note:"The sentence as a whole can mean two different things; the argument trades on one reading while appearing to establish the other"},
+      {label:"Example", note:"'I wish you the enemy to capture' — does the speaker wish the enemy to capture you, or wish to capture the enemy for you? The phrase is amphibolous"},
+      {label:"Ancient oracle examples", note:"The Delphic oracle's famous amphibolies — 'if Croesus crosses the Halys he will destroy a great empire' — which empire is left ambiguous"},
+      {label:"The dissolution", note:"Resolve the syntactic ambiguity — state explicitly which reading is meant. In each reading, evaluate the premise and conclusion separately"},
+      {label:"Distinction from equivocation", note:"Equivocation is in a single word; amphiboly is in the grammatical structure of a phrase. Both exploit the gap between linguistic form and logical content"},
+    ]
+  },
+  {
+    id:"se6", label:"Soph. Ref. 6 — combination and division", greek:"σύνθεσις καὶ διαίρεσις", accent:"#534AB7",
+    children:[
+      {label:"Combination", greek:"σύνθεσις", note:"Reading words together that should be read separately — combining what should be divided", eg:"'Five is two and three' — combining makes it sound like 5 = 2+3 in all senses"},
+      {label:"Division", greek:"διαίρεσις", note:"Reading words separately that should be read together — dividing what should be combined", eg:"'Homer says that Achilles left a hundred men fifty' — dividing 'a hundred and fifty' changes the meaning"},
+      {label:"The source", note:"Written language in Aristotle's time had no spaces or punctuation — the same string of letters could be divided differently. Even in speech, stress and pause determine combination and division"},
+      {label:"The dissolution", note:"Read the words in the correct grouping — show that the reading that supports the argument is not the correct one"},
+      {label:"Connection to De Int. Ch. 1", note:"Truth and falsity arise from combination and division of terms — this fallacy exploits the ambiguity of how terms are combined or divided in a proposition"},
+    ]
+  },
+  {
+    id:"se7", label:"Soph. Ref. 7 — accent", greek:"προσῳδία", accent:"#534AB7",
+    children:[
+      {label:"Definition", note:"The fallacy of accent — changing the meaning of a word by changing its accent or stress. More significant in ancient Greek where accent was phonemically distinctive"},
+      {label:"Greek examples", note:"In Greek, different accent patterns on the same letters could produce different words with different meanings — the written text did not distinguish them"},
+      {label:"In modern application", note:"Stress and emphasis in speech can shift meaning significantly — 'I didn't say he stole the money' has different implications depending on which word is stressed"},
+      {label:"The dissolution", note:"Specify the correct accentuation or stress — show that the meaning required for the argument is not the meaning the correctly accented word carries"},
+      {label:"The narrowest of the linguistic fallacies", note:"Accent depends heavily on the specific language — it has the least general philosophical significance of the six linguistic fallacies, though it illustrates the general principle that linguistic form and logical content can come apart"},
+    ]
+  },
+  {
+    id:"se8", label:"Soph. Ref. 8 — form of expression", greek:"σχῆμα λέξεως", accent:"#534AB7",
+    children:[
+      {label:"Definition", note:"Treating what is grammatically expressed in one form as if it belonged to a different logical category — the mismatch between grammatical form and logical content"},
+      {label:"The core error", note:"Grammatical form does not track logical category — the same grammatical form (e.g. noun) can express things in different categories. Form of expression exploits this gap"},
+      {label:"Example: action expressed as state", note:"'He is cutting' and 'he has cut' share a grammatical subject but differ logically — the present continuous does not imply the perfective and vice versa"},
+      {label:"Example: quality expressed as being", note:"'Being healthy' expressed as 'health is' — the grammatical substantive 'health' suggests a thing in the being category when it is really in the quality category"},
+      {label:"The most philosophically significant linguistic fallacy", note:"This is where grammar most profoundly misleads metaphysics — Aristotle is already aware of what later philosophy calls the grammar/ontology problem. Form of expression is the linguistic source of category mistakes"},
+      {label:"Connection to the categories", note:"The ten categories are precisely the correction to this fallacy at the theoretical level — they map the actual logical categories that grammatical form obscures. This fallacy is homonymy at the level of category"},
+      {label:"Connection to your thesis", note:"Russell's elimination of the individual/universal distinction collapses categories — this is the form-of-expression fallacy operating at the level of logical notation. The notation of predicate logic treats 'Socrates is mortal' and 'All men are mortal' in the same form, obscuring the categorical difference"},
+    ]
+  },
+
+  // GROUP C: THE SEVEN NON-LINGUISTIC FALLACIES
+  {
+    id:"se9", label:"Soph. Ref. 9 — accident", greek:"συμβεβηκός", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Applying to the subject what holds only of an accident of the subject — or applying to an accident what holds only of the subject itself"},
+      {label:"Structure", note:"If X has accident A, and A has property P, it does not follow that X has property P — predicates of accidents do not transfer to subjects through the accident"},
+      {label:"Example", note:"Coriscus is different from Socrates. Socrates is a man. Therefore Coriscus is different from man — but Coriscus is a man. The fallacy confuses the individual Socrates with the kind man"},
+      {label:"The source", note:"The accident relation does not support transitivity of predication — the predication chain breaks at the accident"},
+      {label:"The dissolution", note:"Identify the accident through which the predication is being transferred — show that the predicate holds of the accident under a specific description that does not transfer to the subject"},
+      {label:"Connection to Cat. Ch. 2", note:"The four-fold grid — what is in a subject vs said of a subject. Accidents are in the subject; their predicates do not automatically transfer upward. This fallacy violates the directionality of the grid"},
+      {label:"Connection to your thesis", note:"The fallacy of accident is the formal version of improper predication — predicating of the subject what holds only of its accident, or vice versa. This is the logical core of Paper One"},
+    ]
+  },
+  {
+    id:"se10", label:"Soph. Ref. 10 — secundum quid (the qualified and the unqualified)", greek:"ἁπλῶς καὶ πῇ", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Moving illegitimately between a qualified predication and an unqualified one — treating 'P in some respect' as if it were 'P absolutely', or vice versa"},
+      {label:"Structure", note:"What holds of X in a certain respect, at a certain time, or relative to something is treated as holding of X absolutely and without qualification"},
+      {label:"Example", note:"'The Ethiopian is white in respect of his teeth. Therefore the Ethiopian is white' — moves from qualified whiteness to unqualified whiteness"},
+      {label:"Example 2", note:"'Non-being is thought about. Therefore non-being is' — moves from 'is thought about' (a qualified mode of being) to 'is' absolutely"},
+      {label:"The source", note:"The gap between relative and absolute predication — the same word can be used with implicit qualification or without. The fallacy suppresses the qualification"},
+      {label:"The dissolution", note:"Restore the qualification — show that the predication is true only under the qualification and that removing the qualification changes the truth value"},
+      {label:"Connection to De Int. Ch. 11", note:"The elenchus conditions — same respect (κατὰ τὸ αὐτό). The secundum quid fallacy violates this condition — the predication shifts in respect between premise and conclusion"},
+      {label:"Connection to your thesis", note:"This is the fallacy underlying most of the classical paradoxes — the Liar predicate 'is false' applies to the sentence in a certain respect (when used self-referentially) but is treated as applying absolutely. Russell's paradox similarly drops the qualification on set-membership. Restoring the qualification dissolves both"},
+    ]
+  },
+  {
+    id:"se11", label:"Soph. Ref. 11 — ignoratio elenchi (irrelevant conclusion)", greek:"τὸ ἔλεγχον ἀγνοεῖν", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Offering a refutation of something other than what was actually claimed — missing the thesis and proving something adjacent to it"},
+      {label:"The elenchus conditions restated", note:"A genuine refutation must have the same subject (not homonymous), the same predicate, the same respect, the same time, and be the contradictory of the thesis — ignoratio elenchi fails to meet these conditions"},
+      {label:"How it works", note:"The sophist proves something true and relevant-seeming but not the contradictory of the actual thesis — the respondent is embarrassed but not genuinely refuted"},
+      {label:"Example", note:"The thesis is 'pleasure is not good'. The sophist proves 'some pleasure is good' — this contradicts an unqualified denial but the thesis may have been more specific"},
+      {label:"The most general fallacy", note:"All other fallacies are specific kinds of ignoratio elenchi — they all fail to produce a genuine contradictory of the thesis. This is the master fallacy of which the others are species"},
+      {label:"Connection to De Int. Ch. 11", note:"The four elenchus conditions of De Interpretatione Ch. 11 — same subject, same predicate, same respect, same time — are exactly the conditions that ignoratio elenchi violates. The Topics and Sophistical Refutations are the applied logic of De Interpretatione"},
+      {label:"Connection to your thesis", note:"Paper One's central claim: every classical logical paradox fails one of the elenchus conditions — it commits ignoratio elenchi. The Liar is not a genuine self-contradiction because the predicate 'is false' applies in a different respect when applied to the sentence itself than when applied to other sentences"},
+    ]
+  },
+  {
+    id:"se12", label:"Soph. Ref. 12 — begging the question", greek:"τὸ ἐν ἀρχῇ αἰτεῖσθαι", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Assuming as a premise what is supposed to be proved — the conclusion appears in disguised form among the premises"},
+      {label:"Five forms of question-begging", children:[
+        {label:"Direct", note:"Asking for the very proposition to be proved"},
+        {label:"Universal for particular", note:"Asking for the universal when only the particular is at issue — from the universal the particular immediately follows"},
+        {label:"Particular for universal", note:"Asking for several particulars from which the universal is to be established — using what you need to prove as your evidence"},
+        {label:"Coordinate species", note:"Asking for coordinate species when you need the genus — each species individually implies the genus"},
+        {label:"Consequence", note:"Asking for what follows from the conclusion — if the conclusion is true the consequence is true, so granting the consequence makes the conclusion seem established"},
+      ]},
+      {label:"The source", note:"The logical dependence between the premise and conclusion runs in the wrong direction — the premise is not epistemically prior to the conclusion"},
+      {label:"Connection to Post. An. I.2 and Top. II.16", note:"Both texts identify begging the question as a fundamental logical fault — the premise must be prior to and better known than the conclusion. Petitio principii inverts this order"},
+    ]
+  },
+  {
+    id:"se13", label:"Soph. Ref. 13 — false cause", greek:"τὸ μὴ αἴτιον ὡς αἴτιον", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"In a reductio proof: introducing an additional premise that is not actually responsible for the contradiction — blaming the wrong assumption"},
+      {label:"Structure", note:"A reductio proceeds by showing that the denial of the conclusion leads to contradiction. The false cause fallacy attributes the contradiction to a true premise rather than to the denial of the conclusion"},
+      {label:"The result", note:"The reductio appears to establish the conclusion but actually establishes nothing — the contradiction would have arisen regardless of whether the conclusion were denied"},
+      {label:"The dissolution", note:"Identify which assumption is actually responsible for the contradiction — show that removing the denial of the conclusion would dissolve the contradiction, not removing the other premise"},
+      {label:"Connection to Prior Analytics II.17", note:"The same fallacy is identified and analysed there — the Sophistical Refutations applies that analysis to the dialectical context of live argument"},
+    ]
+  },
+  {
+    id:"se14", label:"Soph. Ref. 14 — the consequent", greek:"τὸ ἑπόμενον", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Inferring from the consequent to the antecedent — affirming the consequent in modern terms. If P then Q is true, but Q being true does not make P true"},
+      {label:"Structure", note:"'If it has rained the ground is wet. The ground is wet. Therefore it has rained' — invalid because the ground may be wet for another reason"},
+      {label:"The source", note:"Confusion between 'A follows from B' (B → A) and 'A and B always go together' (A ↔ B) — the non-convertible conditional is treated as convertible"},
+      {label:"In rhetoric and everyday reasoning", note:"The consequent fallacy is ubiquitous — we frequently infer causes from effects as if the inference were reversible. It underlies much motivated reasoning"},
+      {label:"Connection to Prior Analytics I.2", note:"Conversion of propositions — A converts to I, E converts to E, I converts to I, O does not convert. The consequent fallacy treats A as if it converted simply — as if 'all A is B' implied 'all B is A'"},
+      {label:"The dissolution", note:"Show that the consequent can hold without the antecedent — produce an alternative cause or explanation for the consequent. The inference is invalid because the consequent is not unique to the antecedent"},
+    ]
+  },
+  {
+    id:"se15", label:"Soph. Ref. 15 — many questions as one", greek:"τὸ τὰ πολλὰ ἐρωτήματα ἓν ποιεῖν", accent:"#0F6E56",
+    children:[
+      {label:"Definition", note:"Presenting several questions as if they were one — forcing a single yes-or-no answer to what is really a multiple question"},
+      {label:"The trap", note:"If you answer yes or no, you commit yourself to the answer for all the individual questions — but the correct answer may differ for each"},
+      {label:"Classic example", note:"'Are your father and your dog animals?' — a single yes commits you to both; but it may be that one of them is not an animal, or that the predication differs in each case"},
+      {label:"The dissolution", note:"Identify the plurality of questions and answer them separately — refuse to treat several questions as one"},
+      {label:"Connection to De Int. Ch. 8", note:"Unity of the proposition requires one thing said of one thing — a question that conflates several subjects or predicates is not a single question. Answering it as one violates the unity condition"},
+      {label:"Connection to your thesis", note:"Russell's paradox can be seen as a many-questions-as-one fallacy — 'does the set of all sets that do not contain themselves contain itself?' conflates two different predication contexts. Separating them dissolves the paradox"},
+    ]
+  },
+
+  // GROUP D: DETECTION AND DISSOLUTION
+  {
+    id:"se16", label:"Soph. Ref. 16 — detecting fallacies dependent on language", greek:"λύσις", accent:"#993C1D",
+    children:[
+      {label:"The general method", note:"Identify which of the six linguistic fallacies is being deployed — then show that the word or phrase is being used in two different senses, or combined and divided differently, or accented differently"},
+      {label:"The test", note:"Ask: would the argument remain valid if we replaced the ambiguous term with two distinct unambiguous terms? If not, the argument exploits ambiguity"},
+      {label:"Priority of disambiguation", note:"Before evaluating any argument, check all key terms for ambiguity — this is the first instrument of argument from Topics I.13 applied defensively"},
+      {label:"The practical skill", note:"Detecting linguistic fallacies requires sensitivity to language — awareness of how words function in different contexts and how grammatical form can mislead"},
+    ]
+  },
+  {
+    id:"se17", label:"Soph. Ref. 17 — how to answer fallacious arguments", greek:"ἀπαντᾶν", accent:"#993C1D",
+    children:[
+      {label:"The respondent's task", note:"Not merely to survive the fallacy but to dissolve it — to show where it goes wrong, not just to refuse the conclusion"},
+      {label:"Answering equivocation", note:"Distinguish the senses — grant the premise in the sense in which it is true and deny the conclusion in the sense in which it would follow"},
+      {label:"Answering form of expression", note:"Correct the category — show that the grammatical form suggests a category that does not apply to the subject"},
+      {label:"The difference between dissolving and blocking", note:"Blocking an argument is refusing a premise. Dissolving an argument is showing why the apparent validity is illusory — the dissolution is more philosophically satisfying and more instructive"},
+    ]
+  },
+  {
+    id:"se18", label:"Soph. Ref. 18 — how to answer arguments from equivocation specifically", greek:"ὁμωνυμία", accent:"#993C1D",
+    children:[
+      {label:"The specific procedure", note:"When equivocation is suspected — state both senses of the ambiguous term explicitly and show that the argument requires both senses to be the same while they are not"},
+      {label:"The force of the distinction", note:"Once the two senses are named and distinguished, the argument collapses — it cannot support itself once the ambiguity is resolved"},
+      {label:"When the ambiguity is subtle", note:"Some equivocations are very difficult to detect — the two senses of a word may be very close and hard to articulate. Aristotle acknowledges that sometimes only a careful investigation of the word's uses will reveal the ambiguity"},
+      {label:"Connection to Topics I.15", note:"The full method for detecting ambiguity — by contrary, by genus, by definition — is given there. This chapter applies it to the specific context of sophistic refutation"},
+    ]
+  },
+  {
+    id:"se19", label:"Soph. Ref. 19 — answering arguments from combination and division", greek:"σύνθεσις", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Identify how the words are being combined or divided — read them in the correct grouping and show that under the correct reading the argument fails"},
+      {label:"Written vs spoken", note:"In written texts the grouping is fixed by convention; in speech it is determined by pause and stress. Identify the conventional or natural grouping and insist on it"},
+      {label:"Example", note:"'Learning what you know' — combined: you learn what you (already) know; divided: what you learn, you know (afterwards). The argument may require the combined reading but only the divided reading is true"},
+    ]
+  },
+  {
+    id:"se20", label:"Soph. Ref. 20 — answering arguments from accent", greek:"προσῳδία", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Identify the correct accentuation and show that the meaning required by the argument belongs only to the incorrect accentuation"},
+      {label:"The limited scope", note:"Accent fallacies are harder to deploy in writing than in speech — the dissolution is correspondingly more straightforward in written argument"},
+    ]
+  },
+  {
+    id:"se21", label:"Soph. Ref. 21 — answering arguments from form of expression", greek:"σχῆμα λέξεως", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Identify the category to which the subject actually belongs — show that the grammatical form suggests a different category and that the argument only works if the wrong category is assumed"},
+      {label:"The deepest dissolution", note:"Form of expression fallacies are often the deepest — they involve genuine confusion between grammatical and logical structure. The dissolution requires not just pointing to the ambiguity but explaining why the grammatical form is misleading"},
+      {label:"Connection to the categories as corrective", note:"The ten categories are the cure for form-of-expression fallacies at the theoretical level — they give the correct logical categories that grammar obscures. Knowing the categories is the ultimate defence against this fallacy"},
+    ]
+  },
+  {
+    id:"se22", label:"Soph. Ref. 22 — answering arguments from accident", greek:"συμβεβηκός", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Identify the accident through which the predication is being transferred — show that the predicate holds of the accident under a specific description that does not carry over to the subject"},
+      {label:"The non-transitivity of accident", note:"Predication through accident is not transitive — what is true of the accident is not automatically true of the subject. The dissolution makes this explicit"},
+      {label:"Example", note:"Socrates is musical. The musical is an attribute. Therefore Socrates is an attribute — dissolve by noting that 'musical' is predicated of Socrates accidentally, not essentially, and 'attribute' is predicated of musical as its category, not Socrates's"},
+    ]
+  },
+  {
+    id:"se23", label:"Soph. Ref. 23 — answering arguments from secundum quid", greek:"πῇ καὶ ἁπλῶς", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Restore the suppressed qualification — show that the predication is true only in a qualified sense and that the argument requires the unqualified version"},
+      {label:"The scope of the fallacy", note:"Secundum quid is the most pervasive of the non-linguistic fallacies — it underlies an enormous range of bad arguments in ethics, metaphysics, and science, wherever qualified predications are treated as absolute"},
+      {label:"Key examples in philosophy", children:[
+        {label:"Non-being", note:"'Non-being is thought about, therefore non-being is' — 'is thought about' is a qualified mode of being, not being absolutely"},
+        {label:"The Liar", note:"'This sentence is false' — 'is false' applies to the sentence in a specific respect (self-referentially). Treating it as applying absolutely generates the paradox"},
+        {label:"The Heap", note:"'One grain is not a heap. Adding one grain to a non-heap does not make a heap. Therefore no number of grains is a heap' — 'is not a heap' applies in qualified contexts (small numbers) but the argument drops the qualification"},
+      ]},
+      {label:"Connection to your thesis", note:"The dissolution of the Liar and all related paradoxes turns on the secundum quid fallacy — the predicate applies under a qualification that the paradox suppresses. This is Paper One's master argument"},
+    ]
+  },
+  {
+    id:"se24", label:"Soph. Ref. 24 — answering ignoratio elenchi", greek:"ἔλεγχος", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Identify which of the four elenchus conditions is violated — same subject, same predicate, same respect, same time — and show that the proposed refutation fails to meet it"},
+      {label:"The master dissolution", note:"Since ignoratio elenchi is the most general fallacy, its dissolution is the most general — pointing to any failure of the elenchus conditions is sufficient to dissolve any of the thirteen fallacies"},
+      {label:"The elenchus conditions as the complete standard", note:"De Interpretatione Ch. 11 gives the four conditions; this chapter applies them as the universal test for genuine refutation. The two texts are a single analysis"},
+      {label:"Connection to your thesis", note:"This chapter is the logical centre of Paper One — every logical paradox, when examined against the elenchus conditions, fails at least one. The dissolution of each paradox is a specific application of the test given here"},
+    ]
+  },
+  {
+    id:"se25", label:"Soph. Ref. 25 — answering begging the question", greek:"αἴτημα", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Show that the premise assumed is equivalent to, or immediately implies, the conclusion — the premise is not epistemically prior"},
+      {label:"The difficulty", note:"Begging the question is often hard to detect — the circular dependence may be hidden by rephrasing or by the complexity of the argument"},
+      {label:"The criterion", note:"Ask: could we know this premise to be true without already knowing the conclusion? If not, the premise begs the question"},
+    ]
+  },
+  {
+    id:"se26", label:"Soph. Ref. 26 — answering false cause", greek:"αἴτιον", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"In a reductio: identify which assumption is actually responsible for the contradiction — show it is not the denial of the desired conclusion but some other premise"},
+      {label:"The test", note:"Remove the denial of the conclusion and ask whether the contradiction remains — if it does, the conclusion was not the cause of the contradiction and the reductio fails"},
+      {label:"The corrected reductio", note:"The genuine reductio produces a contradiction only when the denial of the conclusion is added — without it, the premises are consistent. This is the mark of a genuine reductio"},
+    ]
+  },
+  {
+    id:"se27", label:"Soph. Ref. 27 — answering the consequent fallacy", greek:"ἑπόμενον", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Show that the consequent holds even without the antecedent — produce an alternative explanation for the consequent that does not involve the antecedent"},
+      {label:"The test", note:"Ask: is the consequent unique to this antecedent? If not — if anything else could equally explain the consequent — the inference from consequent to antecedent is invalid"},
+      {label:"The underlying principle", note:"Valid inference runs from cause to effect, not from effect to cause — from antecedent to consequent, not conversely. The fallacy of the consequent reverses the direction of valid inference"},
+    ]
+  },
+  {
+    id:"se28", label:"Soph. Ref. 28 — answering many questions as one", greek:"πολλὰ ἐρωτήματα", accent:"#993C1D",
+    children:[
+      {label:"The procedure", note:"Identify the plurality of questions and refuse to answer them as one — ask which specific question is being put"},
+      {label:"The right to separate questions", note:"The respondent is always entitled to ask for questions to be put separately — the questioner cannot compel a single answer to a compound question"},
+      {label:"Why this matters for the elenchus", note:"A genuine refutation must address the specific thesis — a compound question cannot produce a genuine refutation because the answer may be correct for one component and incorrect for another"},
+    ]
+  },
+
+  // GROUP E: BROADER TREATMENT AND CLOSING
+  {
+    id:"se29", label:"Soph. Ref. 29 — how to produce the appearance of refutation", greek:"φαίνεσθαι", accent:"#185FA5",
+    children:[
+      {label:"The questioner's perspective", note:"Chapters 29–33 shift to describing how the sophist produces the appearance of success — the other side of the analytical coin"},
+      {label:"Exploiting speed", note:"Rapid questioning prevents the respondent from noticing what is happening — the appearance of refutation is strengthened when the target has no time to think"},
+      {label:"Exploiting length", note:"Very long arguments obscure the fallacy — the respondent cannot hold the whole argument in mind and loses track of which premise is problematic"},
+      {label:"Exploiting familiarity", note:"Using familiar examples and analogies makes the argument seem more credible — the appearance of validity is stronger when the examples are recognisable"},
+    ]
+  },
+  {
+    id:"se30", label:"Soph. Ref. 30 — the sources of the appearance of valid refutation", greek:"φαινομένου ἐλέγχου πηγαί", accent:"#185FA5",
+    children:[
+      {label:"Why sophistic arguments are persuasive", note:"They exploit genuine features of language and reasoning — the gap between appearance and reality in argument is real and deep"},
+      {label:"The inexperience of the audience", note:"Those unfamiliar with argument cannot distinguish valid from invalid — sophistical arguments work best on the untrained"},
+      {label:"The naturalness of the fallacies", note:"Many of the thirteen fallacies correspond to natural habits of thought — we naturally move from qualified to unqualified, from consequent to antecedent. The fallacies are cognitively tempting"},
+      {label:"The implication", note:"Logical training is not a luxury — it is the defence against a genuine cognitive vulnerability. The Organon is the training"},
+    ]
+  },
+  {
+    id:"se31", label:"Soph. Ref. 31 — how to deal with those who make false claims", greek:"ψευδόμενοι", accent:"#185FA5",
+    children:[
+      {label:"Interlocutors who simply assert falsehoods", note:"Not every bad argument is a fallacy in the technical sense — sometimes the opponent simply states what is false"},
+      {label:"The respondent's task", note:"Identify which assertion is false and give the reason — bare denial is insufficient. The respondent must be able to articulate why the claim is false"},
+      {label:"Distinguishing falsehood from fallacy", note:"A fallacy has a valid-seeming form with a bad step — a false assertion is not invalid in form but false in content. They require different responses"},
+    ]
+  },
+  {
+    id:"se32", label:"Soph. Ref. 32 — objections to the method of dissolution", greek:"ἐνστάσεις", accent:"#185FA5",
+    children:[
+      {label:"The objection", note:"Sometimes the dissolution of a fallacy seems to grant more than it should — pointing out that a term is ambiguous seems to concede something to the sophist"},
+      {label:"The reply", note:"The dissolution does not grant validity to the argument — it shows precisely where and why the appearance of validity arises. This is more complete than mere refusal"},
+      {label:"The value of dissolution over blocking", note:"Blocking prevents the conclusion; dissolution explains the illusion. Philosophy aims at dissolution — understanding why something appears to be what it is not, not merely preventing its acceptance"},
+    ]
+  },
+  {
+    id:"se33", label:"Soph. Ref. 33 — additional notes on the thirteen fallacies", greek:"προσθήκαι", accent:"#185FA5",
+    children:[
+      {label:"Further examples of equivocation", note:"Additional cases of words used in multiple senses — showing the breadth of the fallacy across different types of discourse"},
+      {label:"Further examples of accident", note:"Cases where the accident relation generates apparent contradictions — showing how the fallacy connects to the deepest questions of predication and identity"},
+      {label:"The connection between linguistic and non-linguistic fallacies", note:"Though divided into two classes, the fallacies are not unrelated — the linguistic fallacies exploit superficial features of language; the non-linguistic ones exploit deeper features of reasoning. Both ultimately concern the relation between language and reality"},
+      {label:"The fallacies and the categories", note:"Many fallacies arise from predication across categories — the categories are the theoretical map of the logical space within which the fallacies operate"},
+    ]
+  },
+  {
+    id:"se34", label:"Soph. Ref. 34 — conclusion: the completion of the logical project", greek:"πέρας", accent:"#185FA5",
+    children:[
+      {label:"The explicit statement of completion", note:"Aristotle explicitly states that this work completes the treatment of arguments — in conjunction with the Topics, it provides a comprehensive account of dialectical and sophistical argument"},
+      {label:"The contrast with rhetoric", note:"Rhetoric had predecessors who taught it piecemeal — the Topics and Sophistical Refutations are the first comprehensive systematic treatment of their subject"},
+      {label:"The three parts of the logical project", children:[
+        {label:"Demonstrative argument", note:"Treated in the Prior and Posterior Analytics — what makes an argument genuinely scientific"},
+        {label:"Dialectical argument", note:"Treated in the Topics — what makes an argument genuinely persuasive from reputable premises"},
+        {label:"Sophistical argument", note:"Treated in the Sophistical Refutations — what makes an argument only apparently valid"},
+      ]},
+      {label:"The unity of the Organon", note:"Categories → De Interpretatione → Prior Analytics → Posterior Analytics → Topics → Sophistical Refutations. One project: what is, what is said, how arguments are formed, what counts as knowledge, how to argue, how to detect invalid argument. The six texts are one structure"},
+      {label:"Connection to your thesis", note:"The Sophistical Refutations closes by articulating exactly what your thesis claims: the entire logical corpus is a unified tetralemmic structure, each work addressing a specific dimension of the question of how predication works and when it goes wrong. The fallacies are the systematic inventory of improper predication. Paper One is the application of Soph. Ref. 34's closing insight to the classical paradoxes"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Introduction: the subject, the sophist's aims, the two classes of fallacy (1–3)", ids:["se1","se2","se3"] },
+  { label:"II — The six linguistic fallacies (4–8)", ids:["se4","se5","se6","se7","se8"] },
+  { label:"III — The seven non-linguistic fallacies (9–15)", ids:["se9","se10","se11","se12","se13","se14","se15"] },
+  { label:"IV — Detection and dissolution: linguistic fallacies (16–21)", ids:["se16","se17","se18","se19","se20","se21"] },
+  { label:"V — Detection and dissolution: non-linguistic fallacies (22–28)", ids:["se22","se23","se24","se25","se26","se27","se28"] },
+  { label:"VI — The sophist's techniques; additional notes; conclusion (29–34)", ids:["se29","se30","se31","se32","se33","se34"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

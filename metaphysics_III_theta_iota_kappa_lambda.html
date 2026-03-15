@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Metaphysics III: Θ Ι Κ Λ</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τὰ Μετὰ τὰ Φυσικά · Tetralemmic Position III</h1>
+<p class="subtitle">Metaphysics Θ (Theta) · Ι (Iota) · Κ (Kappa) · Λ (Lambda)</p>
+<p class="subtitle">Being as actuality: potentiality and actuality, unity and its relatives, the compendium, the Unmoved Mover</p>
+<p class="subtitle" style="color:#888">The third tetralemmic position — the answer given. Theta analyses the actuality/potentiality distinction that Eta showed to be fundamental. Iota investigates unity and the one. Kappa recapitulates and bridges to natural philosophy. Lambda is the culmination: the Unmoved Mover as pure actuality, the ground of all being and motion, structurally identical to Buddhist unconditioned and the unnameable Tao.</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Position III is the positive answer to the question posed in Position I and determined in Position II. Theta shows that being is fundamentally actuality — the realisation of potentiality. Iota analyses unity as the measure of being. Kappa consolidates the results. Lambda brings the entire inquiry to its limit: pure actuality, self-thinking thought, the Unmoved Mover — what being most fully is.</footer>
+
+<script>
+const books = [
+  {
+    book: "Θ — Theta (Book IX) · Potentiality and actuality",
+    groups: [
+      {
+        label: "Potentiality: its kinds and conditions (Θ.1–5)",
+        chapters: [
+          {
+            id:"mTh1", label:"Met. Θ.1 — potentiality in the primary sense", greek:"δύναμις κυρίως", accent:"#BA7517",
+            children:[
+              {label:"The primary sense", note:"The source of change in another thing or in the same thing qua other — the capacity to produce or undergo motion. This is the sense most central to the analysis of actuality"},
+              {label:"Rational vs non-rational potentialities", children:[
+                {label:"Non-rational", note:"One capacity for one effect — fire can only heat, not cool. The capacity is single and determinate"},
+                {label:"Rational", note:"One capacity for contrary effects — medicine can both heal and harm. Rational capacities include their own contrary because they involve knowledge of the principle"},
+              ]},
+              {label:"The significance", note:"The distinction between rational and non-rational potentiality is the distinction between capacities that require deliberate choice for their actualization and those that do not — a crucial distinction for ethics and action theory"},
+              {label:"Connection to Delta.12", note:"Delta gave five senses of potentiality — Theta now focuses on the primary sense and develops it fully. The lexical work of Delta is presupposed throughout"},
+            ]
+          },
+          {
+            id:"mTh2", label:"Met. Θ.2 — rational potentialities require choice", greek:"μετὰ λόγου", accent:"#BA7517",
+            children:[
+              {label:"Rational capacities are for opposites", note:"The doctor knows both how to heal and how to harm — the same knowledge covers both. But the doctor acts only one way at a time — choice determines which potentiality is actualized"},
+              {label:"Desire and choice as the actualizing principle", note:"For rational capacities, what determines which contrary is actualized is desire combined with rational choice — not the capacity itself"},
+              {label:"The appetitive principle", note:"Desire alone is not sufficient — desire can be for either contrary. Rational desire (deliberate choice, βούλησις) selects one and actualizes it"},
+              {label:"Connection to the Ethics", note:"This is the logical foundation of the Nicomachean Ethics' account of choice (προαίρεσις) — deliberate rational desire as the principle of human action. The Metaphysics grounds the Ethics"},
+            ]
+          },
+          {
+            id:"mTh3", label:"Met. Θ.3 — against the Megarians: potentiality is real", greek:"Μεγαρικοί", accent:"#BA7517",
+            children:[
+              {label:"The Megarian position", note:"A thing has a capacity only when it is actually exercising it — when the builder is not building, they have no capacity to build. There is no real potentiality distinct from actuality"},
+              {label:"Aristotle's refutation", note:"If the builder has no capacity when not building, they acquire a capacity when they begin — but acquiring a capacity requires prior capacity. The Megarian position generates an infinite regress"},
+              {label:"The absurd consequences", note:"On the Megarian view: a thing cannot be cold or hot except when being cooled or heated. The stone's hardness exists only while it is being pressed. All dispositional properties vanish between their actualizations"},
+              {label:"Potentiality is a real feature of things", note:"A sleeping builder is still a builder — the capacity persists through non-exercise. The distinction between having a capacity and exercising it is real and irreducible"},
+              {label:"Connection to your thesis", note:"The Megarian denial of potentiality is structurally the same error as denying the third and fourth tetralemmic positions — denying that there is a real logical space between is and is-not. Potentiality is the ontological ground of the catuṣkoṭi's middle positions"},
+            ]
+          },
+          {
+            id:"mTh4", label:"Met. Θ.4 — what is possible and what is not", greek:"δυνατόν καὶ ἀδύνατον", accent:"#BA7517",
+            children:[
+              {label:"The possible", note:"What does not involve impossibility when supposed to be actualized — the diagonal is not commensurable with the side, but this is not impossible in the sense that its supposition generates no contradiction"},
+              {label:"The impossible", note:"What does involve impossibility when supposed — the diagonal being commensurable would require the same number to be both odd and even"},
+              {label:"Possible vs actual", note:"What is possible may never be actualized — the possible is wider than the actual. But what is actual is always possible — actuality implies possibility"},
+              {label:"Connection to Prior Analytics I.13", note:"The definition of the possible — what is neither necessary nor impossible. Theta.4 grounds the modal analysis of the Prior Analytics in the metaphysics of potentiality and actuality"},
+            ]
+          },
+          {
+            id:"mTh5", label:"Met. Θ.5 — conditions for the actualization of potentiality", greek:"ὅροι ἐνεργείας", accent:"#BA7517",
+            children:[
+              {label:"External conditions required", note:"A capacity may exist but not be actualized because the external conditions are not met — the builder cannot build without materials, without space, without commission"},
+              {label:"Nothing prevents actualization", note:"When a capacity is present and all external conditions are met and nothing prevents actualization, the thing is actualized — necessarily"},
+              {label:"The patient must be ready", note:"For a capacity to be actualized the patient must be in the appropriate condition — matter must be receptive to the form. Not every matter can receive every form"},
+              {label:"The temporal dimension", note:"Actualization takes time — some capacities are actualized instantaneously, others progressively. The distinction between complete and incomplete activities (Theta.6) is related to this"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Actuality: its priority over potentiality (Θ.6–9)",
+        chapters: [
+          {
+            id:"mTh6", label:"Met. Θ.6 — what actuality is; activity vs process", greek:"ἐνέργεια", accent:"#BA7517",
+            children:[
+              {label:"Actuality defined by analogy", note:"Actuality is to potentiality as the builder is to the buildable, the waking to the sleeping, the seeing to what has eyes but is closed — we grasp it by analogy, not by definition, because it is primary"},
+              {label:"Two kinds of actualization", children:[
+                {label:"Process / motion", greek:"κίνησις", note:"Incomplete actuality — building is toward an end not yet achieved. The building is not complete while building is going on. Process has its end outside itself"},
+                {label:"Activity / actuality", greek:"ἐνέργεια / πρᾶξις", note:"Complete actuality — seeing, understanding, living well. The end is present in the activity itself. 'I am seeing and have seen; I am understanding and have understood' — both tenses hold simultaneously"},
+              ]},
+              {label:"The grammatical test", note:"For complete activities both present and perfect tense hold simultaneously — 'I see and have seen', 'I live well and have lived well'. For processes they do not — 'I am building' does not imply 'I have built'"},
+              {label:"Connection to your thesis", note:"The distinction between complete actuality (ἐνέργεια) and process (κίνησις) maps onto the distinction between being and becoming. The Unmoved Mover is pure ἐνέργεια — complete actuality with no process, no incompleteness, no becoming. This is the ontological ground of the Buddhist unconditioned (asaṅkhata)"},
+            ]
+          },
+          {
+            id:"mTh7", label:"Met. Θ.7 — when something is potentially and when actually", greek:"πότε δυνάμει", accent:"#BA7517",
+            children:[
+              {label:"The question", note:"At what point does matter become potentially a thing — when does bronze become potentially a statue rather than just bronze?"},
+              {label:"Proximate vs remote potentiality", note:"Bronze is potentially a statue in a proximate sense — it needs only the craftsman's work. Earth is potentially a statue only remotely — it must first become bronze. Potentiality is graded by proximity to actualization"},
+              {label:"The appropriate matter", note:"Only the appropriate matter is potentially the thing — wax is potentially a seal, not a saw. The form constrains which matter can be its potentiality"},
+              {label:"The living body", note:"The body with organs is potentially alive — it is the proximate matter for the soul. A corpse retains the organs' shape but has lost the capacity — it is no longer potentially alive in the proper sense"},
+            ]
+          },
+          {
+            id:"mTh8", label:"Met. Θ.8 — actuality is prior to potentiality", greek:"πρότερον ἐνέργεια", accent:"#BA7517",
+            children:[
+              {label:"Three senses of priority", children:[
+                {label:"Priority in account", note:"To define the potential we must refer to the actual — 'capable of building' means 'capable of actualizing the form of a house'. The actual appears in the account of the potential"},
+                {label:"Priority in time", note:"In the individual the potential is prior to the actual — the child before the adult, the seed before the tree. But in the species the actual is prior — an actual man generates the potential man (the child). The actual is always prior in the causal order"},
+                {label:"Priority in being and substance", note:"The actual is more fully being than the potential — what is actually F is more F than what is only potentially F. Pure actuality is more fully being than what is partly potential"},
+              ]},
+              {label:"Eternal things are purely actual", note:"What exists eternally cannot be potentially something it is not — if it had unfulfilled potentiality it might fail to be actualized. Eternal beings are pure actuality — no unrealized potentiality"},
+              {label:"The connection to Lambda", note:"Lambda's Unmoved Mover is pure actuality — no potentiality, no unrealized capacity, no matter. Theta.8 establishes the principle that Lambda instantiates at its limit"},
+            ]
+          },
+          {
+            id:"mTh9", label:"Met. Θ.9 — actuality is better than potentiality for good things", greek:"βέλτιον ἐνέργεια", accent:"#BA7517",
+            children:[
+              {label:"For good things", note:"Actual good is better than potential good — actually seeing is better than being able to see. The actualization of a good capacity is itself good"},
+              {label:"For bad things", note:"Actual bad is worse than potential bad — being actually blind is worse than being able to become blind. The asymmetry holds in both directions"},
+              {label:"The implication for the highest being", note:"The best being cannot have any unrealized potentiality for the good — it must be purely and completely actual. No capacity for anything better remains unfulfilled. The Unmoved Mover is the perfect good precisely because it is pure actuality"},
+            ]
+          },
+          {
+            id:"mTh10", label:"Met. Θ.10 — truth and falsity; being as true for simples", greek:"ἀληθὲς καὶ ψεῦδος", accent:"#BA7517",
+            children:[
+              {label:"Truth for composites", note:"For composite things — subject + predicate — truth is a matter of combination matching or failing to match reality. 'Socrates is pale' is true if and only if paleness is actually combined with Socrates"},
+              {label:"Truth for simples", note:"For simple, incomposite things — essences, forms — truth is a matter of contact and grasping, not combination. You either grasp the simple or you do not; there is no false grasp of a simple, only ignorance"},
+              {label:"Being as truth for incomposites", note:"'Socrates is' — existence claims for primary beings — are true if the being exists, false if it does not. No middle term; no combination required; existence is prior to predication"},
+              {label:"Connection to Epsilon.4", note:"Epsilon.4 excluded being-as-true from the proper subject of metaphysics. Theta.10 returns to it to show that for incomposite things being-as-true reduces to direct intellectual contact — nous grasping essence. This closes the circle back to Post. An. II.19"},
+              {label:"Connection to your thesis", note:"Simple essences — the incomposite — are grasped by nous without combination or division. They are neither true nor false in the predicative sense. This is the ontological ground for the claim that the Unmoved Mover is beyond predication — grasped directly or not at all"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Ι — Iota (Book X) · Unity, identity, difference, contrariety",
+    groups: [
+      {
+        label: "The one as measure; unity and being (Ι.1–2)",
+        chapters: [
+          {
+            id:"mI1", label:"Met. Ι.1 — the one as measure", greek:"τὸ ἓν μέτρον", accent:"#534AB7",
+            children:[
+              {label:"The one defined as measure", note:"The one is the measure of each thing — what we use to know the plurality. The unit is the measure of number; the foot is the measure of length; the note is the measure of melody"},
+              {label:"The measure is indivisible", note:"The measure must be indivisible in the relevant respect — the unit is indivisible in number, the foot indivisible in length. Indivisibility in the relevant dimension is what makes something a measure"},
+              {label:"The one is not a substance", note:"The one is not itself a thing alongside other things — it is the principle by which things are counted and measured. It is not a being but the standard of being's unity"},
+              {label:"Connection to aporia 9", note:"Beta asked whether being and the one are beyond the categories. Iota resolves this: the one is the measure of being — it is convertible with being but is a principle of measurement, not a separate substance"},
+            ]
+          },
+          {
+            id:"mI2", label:"Met. Ι.2 — one in number, species, genus, analogy", greek:"ἓν ἀριθμῷ εἴδει γένει ἀναλογίᾳ", accent:"#534AB7",
+            children:[
+              {label:"Four kinds of unity", children:[
+                {label:"One in number", note:"Numerically one individual — this man, this stone. The tightest unity"},
+                {label:"One in species", note:"Two things of the same species — this man and that man. Same form, different matter"},
+                {label:"One in genus", note:"Two things of the same genus but different species — man and horse are both animals"},
+                {label:"One by analogy", note:"As sight is to the eye so reason is to the soul — the same structural relation in different genera"},
+              ]},
+              {label:"The hierarchy", note:"Each kind of unity is looser than the one above — analogy is the loosest, numerical identity the tightest. The investigation of unity maps the full range of sameness"},
+              {label:"Connection to Topics I.7", note:"The three senses of sameness in the Topics (numerical, specific, generic) correspond to the first three senses here. Iota adds analogical unity — the metaphysical extension of the Topics' analysis"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Contrariety, difference, otherness, privation (Ι.3–10)",
+        chapters: [
+          {
+            id:"mI3", label:"Met. Ι.3 — contrariety is the greatest difference", greek:"μεγίστη διαφορά", accent:"#534AB7",
+            children:[
+              {label:"Contrariety defined", note:"Contraries are things that differ most — the greatest possible difference within a genus. Hot and cold are contraries within the genus of tangible quality; good and bad within the genus of value"},
+              {label:"Contrariety requires a common genus", note:"Only things within the same genus can be contrary — fire and justice are not contraries because they share no genus within which to differ maximally"},
+              {label:"Contrariety and the complete difference", note:"The complete difference within a genus is contrariety — there is no greater difference possible while remaining within the genus. This is why contraries cannot both belong to the same subject in the same respect at the same time — LNC"},
+              {label:"Connection to Gamma.3", note:"LNC is grounded in contrariety — the same attribute cannot belong and not belong because belonging and not belonging are contraries in the genus of predication. Iota.3 makes this explicit"},
+            ]
+          },
+          {
+            id:"mI4", label:"Met. Ι.4 — one contrary as privation of the other", greek:"στέρησις", accent:"#534AB7",
+            children:[
+              {label:"The asymmetry of contraries", note:"Contraries are not symmetric — one is the positive determination, the other is the privation of that determination. Cold is not merely the absence of heat but a positive quality — yet it is the privation of heat in the sense that heat is the positive, determining principle"},
+              {label:"Form and privation as the first pair of contraries", note:"The deepest contrariety is between form and privation — form is the positive actuality; privation is the absence of form in what naturally has it. All other contraries are grounded in this fundamental pair"},
+              {label:"Connection to GC I.4", note:"Generation is always from a contrary — from privation to form. The three principles of natural change (matter, form, privation) are grounded in the metaphysical analysis of contrariety in Iota.4"},
+            ]
+          },
+          {
+            id:"mI5", label:"Met. Ι.5 — same, other, like, unlike, equal, unequal", greek:"ταὐτόν ἕτερον ὅμοιον", accent:"#534AB7",
+            children:[
+              {label:"Same and other are the primary divisions", note:"Everything is either the same as something or other than it — sameness and otherness divide the entire field of being. They are convertible with being and one"},
+              {label:"Like and unlike", note:"Like: same in quality. Unlike: different in quality — the same quality in different degrees, or different qualities altogether"},
+              {label:"Equal and unequal", note:"Equal: same in quantity. Unequal: different in quantity — more or less"},
+              {label:"The one as the measure of all", note:"Sameness, likeness, and equality are all modes of the one — to be the same is to be one in number, to be like is to be one in quality, to be equal is to be one in quantity. The one underlies all these"},
+            ]
+          },
+          {
+            id:"mI6", label:"Met. Ι.6 — the one and the many are contraries", greek:"ἓν καὶ πολλά", accent:"#534AB7",
+            children:[
+              {label:"The one and the many as opposed", note:"The many is the plurality opposed to the one — not as contrary (they are not in the same genus as hot and cold) but as relative opposites or as the indivisible opposed to the divisible"},
+              {label:"The one is not a contrary of the many", note:"The one is not destroyed by the many as hot is destroyed by cold — the one persists through all plurality as their measure. The opposition is asymmetric"},
+              {label:"The one as indivisible opposed to the divisible", note:"The primary opposition: the indivisible (the one as measure) opposed to the divisible (the many as measured). This is not contrariety but the opposition of principle to what it measures"},
+            ]
+          },
+          {
+            id:"mI7", label:"Met. Ι.7 — intermediates between contraries", greek:"μεταξύ", accent:"#534AB7",
+            children:[
+              {label:"Not all contraries have intermediates", note:"Some contraries are immediate — odd and even, with no number in between. Others have intermediates — black and white, with grey between them"},
+              {label:"Intermediates are composed of contraries", note:"Grey is composed of black and white — it contains both in some proportion. Intermediates are not a third kind distinct from the contraries but mixtures of them"},
+              {label:"Change passes through intermediates", note:"Things that change between contraries pass through the intermediates — from black to white through grey. Change that skips intermediates is instantaneous, not continuous"},
+              {label:"Connection to Cat. Ch. 11", note:"Contraries with and without intermediates — Cat. Ch. 11's analysis. Iota.7 gives the metaphysical ground: intermediates exist because the contrary qualities can be mixed in varying proportions"},
+            ]
+          },
+          {
+            id:"mI8", label:"Met. Ι.8 — sameness of species vs difference in species", greek:"εἴδει ταὐτόν", accent:"#534AB7",
+            children:[
+              {label:"What makes two things the same in species?", note:"Two things are the same in species when they are divisible and have no difference in their division — man and man, horse and horse"},
+              {label:"Difference in species requires being in the same genus", note:"Things that differ in species must be in the same genus — they must share a genus within which they differ by opposed differentiae"},
+              {label:"The criterion", note:"Things whose last differentia is different are different in species. Things whose last differentia is the same are the same in species"},
+            ]
+          },
+          {
+            id:"mI9", label:"Met. Ι.9 — perishable and imperishable differ in genus", greek:"φθαρτόν καὶ ἄφθαρτον", accent:"#534AB7",
+            children:[
+              {label:"A significant result", note:"Perishable and imperishable things differ not merely in species but in genus — the difference between perishability and imperishability is not a specific difference within a shared genus but a generic difference"},
+              {label:"Why", note:"Perishable things have matter — and matter is the principle of perishability. Imperishable things have no matter — they are pure form, pure actuality. Since they differ in the most fundamental way (with vs without matter), they cannot be in the same genus"},
+              {label:"Connection to Lambda", note:"The Unmoved Mover is imperishable — not merely very long-lived but having no matter and therefore no principle of corruption. The genus-difference between perishable and imperishable things is the metaphysical gap that only pure actuality bridges"},
+            ]
+          },
+          {
+            id:"mI10", label:"Met. Ι.10 — male and female are not differences in species", greek:"ἄρρεν καὶ θῆλυ", accent:"#534AB7",
+            children:[
+              {label:"The case", note:"Male and female belong to the same species — man is man whether male or female. Yet male and female differ in their matter — the generative capacity is distributed differently"},
+              {label:"The principle", note:"Differences grounded in matter do not constitute specific differences — they do not change what a thing is in its form. Male and female are the same in form (both are human) but different in matter (the generative principle is differently instantiated)"},
+              {label:"Significance", note:"This illustrates the matter/form distinction in a concrete case — matter-based differences do not generate new species. Only formal differences — differences in the last differentia — constitute specific difference"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Κ — Kappa (Book XI) · The compendium and bridge to natural philosophy",
+    groups: [
+      {
+        label: "Recapitulation of Gamma, Delta, Epsilon (Κ.1–8)",
+        chapters: [
+          {
+            id:"mK1", label:"Met. Κ.1–8 — recapitulation of the Metaphysics to this point", greek:"ἐπανάληψις", accent:"#993C1D",
+            children:[
+              {label:"Kappa.1–2: first philosophy and the aporiai", note:"Recapitulates the argument of Gamma.1–2 — that there is a science of being qua being — and the aporiai of Beta. The recapitulation is not identical to the original but presents the same conclusions more concisely"},
+              {label:"Kappa.3–6: being qua being; the axioms", note:"Recapitulates Gamma.3–8 — the defence of LNC and PEM. The elenctic proof is abbreviated but structurally complete"},
+              {label:"Kappa.7: the accidental and the sciences", note:"Recapitulates Epsilon.2–3 — excluding accidental being from science. Brief and direct"},
+              {label:"Kappa.8: being as truth", note:"Recapitulates Epsilon.4 — being-as-true as a mental affair. Points back to Theta.10"},
+              {label:"The status of Kappa", note:"Kappa is widely regarded by scholars as either a set of lecture notes, an early draft of parts of Gamma and Epsilon, or a bridge text. Its value is not originality but consolidation — it makes the connections between the Metaphysics and the Physics explicit"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Bridge to the Physics: motion, infinity, place, time (Κ.9–12)",
+        chapters: [
+          {
+            id:"mK9", label:"Met. Κ.9–12 — motion, infinity, place, and time", greek:"κίνησις, ἄπειρον, τόπος, χρόνος", accent:"#993C1D",
+            children:[
+              {label:"Kappa.9: motion and change", note:"Recapitulates Physics III.1–3 — the definition of motion as the actuality of the potential qua potential. Motion is neither purely actual nor purely potential but the actualization-in-progress of what is potential"},
+              {label:"Kappa.10: the infinite", note:"Recapitulates Physics III.4–8 — the infinite exists only potentially, not actually. There is no actually infinite body, number, or magnitude. The infinite is what can always be further divided or extended — a potential, never an actuality"},
+              {label:"Kappa.11: place", note:"Recapitulates Physics IV.1–5 — place as the innermost unmoved boundary of the container. Place is not matter or form of the contained thing but its limit from outside"},
+              {label:"Kappa.12: time", note:"Recapitulates Physics IV.10–14 — time as the number of motion with respect to before and after. Time requires a soul to count — without a counting mind there is change but not numbered time"},
+              {label:"The bridge function", note:"Kappa.9–12 establish that the concepts of natural philosophy (motion, infinity, place, time) are grounded in the metaphysical distinctions of actuality and potentiality. The Physics is the application of the Metaphysics to the natural world"},
+              {label:"Connection to your thesis", note:"Time as the number of motion — requiring a counting mind — connects to the temporal identity condition of LNC (same time). Time is not given independently of the being that measures it. The four conditions of LNC (Gamma.3) are grounded in the metaphysics of time and actuality"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Λ — Lambda (Book XII) · The Unmoved Mover; pure actuality",
+    groups: [
+      {
+        label: "The three kinds of substance (Λ.1–5)",
+        chapters: [
+          {
+            id:"mL1", label:"Met. Λ.1 — the three kinds of substance", greek:"τρία γένη οὐσίας", accent:"#185FA5",
+            children:[
+              {label:"The subject of Lambda", note:"Substance — because the principles of substance are the principles of all things. The investigation of being qua being arrives at substance; the investigation of substance arrives at its highest form"},
+              {label:"Three kinds of substance", children:[
+                {label:"Sensible perishable", note:"Animals, plants — have matter, form, and privation. Come to be and pass away. The concern of natural philosophy"},
+                {label:"Sensible eternal", note:"The heavenly bodies — have matter (of a special kind: aether) and form. Move eternally in circles but do not come to be or pass away"},
+                {label:"Immovable", note:"The Unmoved Mover — no matter, pure form, pure actuality. Does not move, does not change, has no potentiality. The highest substance"},
+              ]},
+              {label:"Why there must be an immovable substance", note:"If all substances were perishable, everything would eventually perish — including motion itself. But motion is eternal (as shown in GC II.6 and Physics VIII). Therefore there must be an eternal, immovable substance that sustains eternal motion"},
+            ]
+          },
+          {
+            id:"mL2", label:"Met. Λ.2–3 — matter, form, privation in sensible substances", greek:"ὕλη εἶδος στέρησις", accent:"#185FA5",
+            children:[
+              {label:"Λ.2 — the three principles", note:"All sensible substances have matter (what underlies), form (what the matter is made to be), and privation (what the matter was before). These three are the principles of all natural change"},
+              {label:"Form is shared, matter is individual", note:"'Man generates man' — the form of man is numerically the same in kind but the matter is different. The form is universal and shared; the matter individuates"},
+              {label:"Λ.3 — the formal cause is prior", note:"Though all three principles are necessary, the formal cause is prior — it is what the process is for, what the matter is being made into. The formal cause is the final cause of the generation"},
+            ]
+          },
+          {
+            id:"mL4", label:"Met. Λ.4 — the causes are the same in kind across all things", greek:"αἴτια τὰ αὐτά", accent:"#185FA5",
+            children:[
+              {label:"The same four causes everywhere", note:"Form, privation, matter — and the mover — are the principles of all things. But they differ in each case by being analogous, not numerically identical"},
+              {label:"Analogy across the kinds of substance", note:"As soul is to body, so form is to matter in any compound being — the same structural relation at every level. The four causes are the same by analogy throughout the hierarchy of being"},
+              {label:"The unity of first philosophy", note:"Because the same causes apply analogically throughout all of being, first philosophy can study all of being through a single set of principles — without having to study each kind separately"},
+            ]
+          },
+          {
+            id:"mL5", label:"Met. Λ.5 — the causes of different things differ", greek:"ἄλλων ἄλλα", accent:"#185FA5",
+            children:[
+              {label:"The causes differ by content", note:"The causes of flesh and the causes of a syllable are different causes — different form, different matter, different mover. The causal structure is the same but the content differs"},
+              {label:"Ultimate and proximate causes", note:"Proximate causes are specific to each kind of thing. Ultimately all chains of causes lead back to the same first principle — the eternal unmoved cause. The multiplicity of proximate causes is unified by the ultimate cause"},
+              {label:"Preview of the Unmoved Mover", note:"Lambda.5 sets up Lambda.6–10 — by showing that all causal chains, however various in their proximate links, converge on a single ultimate source"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The Unmoved Mover: pure actuality (Λ.6–10)",
+        chapters: [
+          {
+            id:"mL6", label:"Met. Λ.6 — there must be an eternal unmoved substance", greek:"ἀΐδιος ἀκίνητος οὐσία", accent:"#185FA5",
+            children:[
+              {label:"The argument from eternal motion", note:"Motion is eternal — there has always been motion and there always will be. An eternal motion requires an eternal cause. A potential cause might fail to actualize — only an actual, eternal cause can sustain eternal motion"},
+              {label:"The eternal cause must be actuality without potentiality", note:"If the eternal cause had any potentiality it might fail to actualize — and then motion would cease. But motion is eternal. Therefore the eternal cause has no potentiality — it is pure actuality"},
+              {label:"The first principle is necessary", note:"The first principle exists necessarily — it cannot be otherwise. Necessary existence is pure actuality — nothing is held back, nothing unrealized"},
+              {label:"Connection to Post. An. I.6", note:"Demonstrative premises must be necessary. The Unmoved Mover is the ground of necessity in nature — what sustains the eternal regularities that demonstration presupposes"},
+            ]
+          },
+          {
+            id:"mL7", label:"Met. Λ.7 — how the Unmoved Mover moves; self-thinking thought", greek:"νοῦς νοῦ νόησις", accent:"#185FA5",
+            children:[
+              {label:"The Unmoved Mover moves as the object of desire and thought", note:"The first heaven moves eternally in a circle because it desires and loves the Unmoved Mover — as the beautiful and the good move without being moved. The Unmoved Mover is the final cause of the eternal circular motion"},
+              {label:"The Unmoved Mover is pure thought", note:"What is it to be the Unmoved Mover? It thinks — and what it thinks is the best thing, which is itself. The Unmoved Mover is thought thinking itself — νόησις νοήσεως"},
+              {label:"Self-thinking thought", note:"The Unmoved Mover's activity is thinking. It cannot think of anything lesser than the best — and the best is itself. Therefore it thinks itself. Its being is its thinking; its thinking is its being — no gap between what it is and what it does"},
+              {label:"Life as the activity of thought", note:"Life is the activity of nous — and the Unmoved Mover lives the best life continuously and eternally. We experience this life briefly and with effort; the Unmoved Mover is this life completely and permanently"},
+              {label:"Connection to Post. An. II.19", note:"Nous grasps first principles immediately — the epistemological ascent of Post. An. II.19 terminates in nous. The Unmoved Mover is nous at its limit: pure intellectual intuition with no dependence on anything else. The Organon's epistemology and the Metaphysics' ontology meet here"},
+              {label:"Connection to Buddhist unconditioned", note:"The Unmoved Mover is structurally identical to the Buddhist unconditioned (asaṅkhata) — not by analogy but by structural identity. The unconditioned is what is not produced by conditions, not subject to arising and passing away, complete in itself. The Unmoved Mover is not produced, not subject to change, complete in its self-thinking. Both are described apophatically — by what they are not — because both exceed the categories of conditioned predication"},
+              {label:"Connection to the Tao", note:"The unnameable Tao of the Tao Te Ching — 'the Tao that can be named is not the eternal Tao' — is structurally the same. The Unmoved Mover cannot be predicated of in the ordinary sense because it exceeds the subject-predicate structure. It is known only by direct intellectual contact — nous touching nous"},
+              {label:"Connection to your thesis", note:"The Unmoved Mover is the tetralemma resolved — not is, not is-not, not both, not neither, but the condition of the possibility of all four positions. It is the nondual ground that Aristotle, like the Buddha and Nagarjuna, approaches and then falls silent before. This is paper three's central claim"},
+            ]
+          },
+          {
+            id:"mL8", label:"Met. Λ.8 — the plurality of unmoved movers; the heavenly spheres", greek:"πλήθος ἀκινήτων", accent:"#185FA5",
+            children:[
+              {label:"The astronomical context", note:"Each heavenly sphere requires its own unmoved mover — the complexity of celestial motion (following Eudoxus and Callippus: 47 or 55 spheres) requires a corresponding plurality of movers"},
+              {label:"The first unmoved mover is one", note:"The outermost sphere has one mover — the first and primary Unmoved Mover. The others are subordinate movers, each the actuality of its sphere"},
+              {label:"All unmoved movers are eternal actualities", note:"Each sphere's mover is pure actuality — eternal, immovable, thinking. But only the first is absolutely first; the others depend on it in the order of being"},
+              {label:"The tension", note:"Lambda.8 introduces a plurality that sits uneasily with the unity of the first principle — a tension Aristotle does not fully resolve and that Mu-Nu will not need to resolve since they focus on the Platonic alternative"},
+            ]
+          },
+          {
+            id:"mL9", label:"Met. Λ.9 — what the divine intellect thinks", greek:"τί νοεῖ", accent:"#185FA5",
+            children:[
+              {label:"The problem", note:"Thought requires an object — what does the Unmoved Mover think? If it thinks something external, it depends on that external object — it is not self-sufficient. If it thinks nothing, it is not thinking at all"},
+              {label:"The solution", note:"The Unmoved Mover thinks itself — its object is its own activity of thinking. But this is not empty self-reference: the Unmoved Mover is the best thing, and thinking the best thing is the best activity"},
+              {label:"Thought and its object are identical in the Unmoved Mover", note:"In ordinary thought, the thinker and the thought are distinct — the doctor thinks health. In the Unmoved Mover, the thinker and the thought are the same — thinking thinking itself. The duality of knower and known is dissolved"},
+              {label:"The apophatic character", note:"This identification of thinker and thought exceeds ordinary predication — it cannot be stated in subject-predicate form without distortion. The Unmoved Mover is the limit of what the subject-predicate structure can capture"},
+              {label:"Connection to the Euthyphro", note:"The Euthyphro's question — what is piety? — is never answered. The dialogue terminates not in ignorance but in the recognition that the question cannot be answered within the terms in which it is posed. Lambda.9 is the metaphysical ground of that apophatic termination — the highest being exceeds definition"},
+            ]
+          },
+          {
+            id:"mL10", label:"Met. Λ.10 — how the good is present in the universe", greek:"τἀγαθόν", accent:"#185FA5",
+            children:[
+              {label:"The question", note:"Is the good in the universe like a general in an army — a separate principle alongside the things — or like the order of the army — immanent in the arrangement of the things themselves?"},
+              {label:"The answer: both", note:"The good of the universe is both separate (the Unmoved Mover as the final cause) and immanent (the order and arrangement of the whole). The general is both a part of the army and the principle of its order"},
+              {label:"The unity of the universe", note:"All things are ordered toward the one good — not as subjects to a tyrant but as parts of a household ordered by the same principle. The diversity of the universe is unified by its orientation toward the first principle"},
+              {label:"The closing image", note:"'The things are not independent of each other — they all contribute to the whole' — the universe is an ordered whole, like a good household, each part in its proper place. This is the final vision of Lambda — and of the entire first three positions of the Metaphysics"},
+              {label:"Connection to your thesis", note:"Lambda.10 is the synthesis of the entire elenctic argument. The question posed in Alpha — what is being? — is answered: being is the ordered whole oriented toward pure actuality. The tetralemmic structure of the Metaphysics is complete. Position IV (Mu-Nu) will now perform the elenchus on the remaining competitor — and leave Lambda standing"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Eudemian Ethics VII–VIII</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .shared-note { background: #f8f4e8; border: 0.5px solid #d4c87a; border-radius: 8px; padding: 0.9rem 1.1rem; margin: 1rem 0 1.5rem; font-size: 12.5px; color: #5a4a00; line-height: 1.6; }
+  .divine-flag { font-size: 10px; color: #993C1D; font-style: italic; margin-left: 8px; font-weight: 600; letter-spacing: 0.04em; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-header-div { background: #faf0ec; border-left: 4px solid #993C1D !important; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .div-group-label { font-size: 10px; color: #993C1D; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἠθικὰ Εὐδήμεια Η–Θ</h1>
+<p class="subtitle">Eudemian Ethics Books VII & VIII — complete interactive reference</p>
+<p class="subtitle">VII: friendship · VIII: the divine standard — the culminating theological account of the good life</p>
+<p class="subtitle" style="color:#993C1D; font-weight:600;">EE VIII.3 on the divine standard is the most important chapter in the EE for the thesis — the explicit identification of god as the measure and end of the good life</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. EE VII treats friendship in ways that largely parallel NE VIII–IX but with some differences noted below. EE VIII is the culmination of the entire Eudemian Ethics — its final chapter (VIII.3) gives the most explicit statement in the entire corpus of the divine as the standard of the good life. This chapter has no direct parallel in the NE and is indispensable for the thesis.</footer>
+
+<script>
+const sharedNote = `
+<div class="shared-note">
+  <strong>Note on the shared books:</strong> EE Books III–VI correspond to NE Books IV–VII. 
+  EE III ≈ NE IV (the individual virtues of character). 
+  EE IV ≈ NE V (justice). 
+  EE V ≈ NE VI (intellectual virtues, practical wisdom, nous). 
+  EE VI ≈ NE VII (weakness of will, pleasure). 
+  These four books are substantially the same text — with minor variations — and are fully covered in the Nicomachean Ethics reference files. 
+  Consult <em>nicomachean_ethics_III_IV.html</em>, <em>nicomachean_ethics_V_VI.html</em>, and <em>nicomachean_ethics_VII_VIII.html</em> for those books. 
+  The present file covers EE VII (friendship — distinctive emphases noted) and EE VIII (the divine standard — unique to the EE and primary for the thesis).
+</div>
+`;
+
+const books = [
+  {
+    book: "Book VII — Ἠθικὰ Εὐδήμεια Η · Friendship: distinctive emphases",
+    groups: [
+      {
+        label: "Friendship in the EE: what differs from NE VIII–IX (VII.1–12)",
+        chapters: [
+          {
+            id:"ee7_1", label:"EE VII.1–2 — friendship defined; the three kinds", greek:"φιλία", accent:"#BA7517",
+            children:[
+              {label:"Same three kinds as NE", note:"Utility, pleasure, and virtue friendships — the same structure as NE VIII.2–3. The EE's treatment is more compressed but covers the same ground"},
+              {label:"A more explicit connection to love of the good", note:"The EE makes more explicit that friendship is grounded in love of what is genuinely good — not merely of what appears good to the lover. The objective good-for-the-friend is the standard, not the subjective pleasure of the loving"},
+              {label:"The friend as another self", note:"The EE states the 'another self' formula more prominently than the NE — the friend is what the self most wishes to be. This grounds the account of friendship in the good person's relation to their own best self"},
+            ]
+          },
+          {
+            id:"ee7_2", label:"EE VII.3–6 — the conditions and reciprocity of friendship", greek:"ἀντιφίλησις", accent:"#BA7517",
+            children:[
+              {label:"Reciprocity required", note:"Same as NE VIII.5 — friendship requires mutual awareness and mutual goodwill. Goodwill alone is not friendship"},
+              {label:"The EE's emphasis on equality", note:"The EE treats more carefully the tensions in friendships between unequals — between benefactor and beneficiary, parent and child. The proportionate reciprocal is the standard: each receives what is appropriate to their position"},
+              {label:"Self-love and friendship", note:"The EE develops more explicitly the connection between proper self-love and friendship — the person who loves themselves rightly (loving the best in themselves) is the best kind of friend. Proper self-love is the condition of proper other-love"},
+            ]
+          },
+          {
+            id:"ee7_9", label:"EE VII.9–12 — political friendship; the good person as self-sufficient", greek:"πολιτικὴ φιλία", accent:"#BA7517",
+            children:[
+              {label:"Political friendship and the community", note:"The EE treats more carefully the form of friendship appropriate to political communities — a civic goodwill that falls short of virtue friendship but is essential for the life of the city"},
+              {label:"The self-sufficient person and friendship", note:"The EE raises more sharply the puzzle about whether the self-sufficient person needs friends — and gives a more direct answer: the good person needs friends not as supplements to their self-sufficiency but as the natural expression of it. The overflow of their goodness finds its natural object in friends"},
+              {label:"The divine is self-sufficient without friends", note:"God does not need friends — the divine is completely self-sufficient and self-contemplating. The human need for friendship marks the difference between the human and the divine. This is the first anticipation of EE VIII.3's divine standard"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book VIII — Ἠθικὰ Εὐδήμεια Θ · The divine standard: the culmination",
+    groups: [
+      {
+        label: "Moral luck and the good person's constitution (VIII.1–2)",
+        chapters: [
+          {
+            id:"ee8_1", label:"EE VIII.1 — moral luck: how fortune affects virtue and happiness", greek:"εὐτυχία", accent:"#BA7517",
+            children:[
+              {label:"The puzzle of moral luck", note:"Some people seem to succeed without practical wisdom — they are fortunate beyond what their deliberation could explain. Does luck play a genuine role in the good life, or is all fortune reducible to virtue and skill?"},
+              {label:"Two kinds of good fortune", children:[
+                {label:"Fortune that tracks rational choice", note:"Success that follows from correct deliberation — this is the fruit of virtue and practical wisdom, not luck. It may appear fortunate but is actually the natural outcome of good character"},
+                {label:"Fortune independent of rational choice", note:"Success that occurs without deliberation — where the lucky person is driven by impulse or desire to the right outcome without knowing why. This is genuine luck — divine or natural good fortune"},
+              ]},
+              {label:"The divinely fortunate", note:"Some people succeed beyond what their reason could explain — they seem to be guided by something divine, a kind of god-given instinct. These are the truly fortunate — not merely skilful. This introduces the divine as a factor in human success"},
+              {label:"Connection to your thesis", note:"Moral luck is the ethical version of the secundum quid problem applied to agency. When we predicate success of a person, we must ask: was this success properly predicated of them as their own achievement, or was it due to fortune? The qualification (per se vs per accidens) is exactly the distinction that dissolves the apparent paradox of the lucky person who succeeds without virtue. Success is predicated properly of the virtuous; it is predicated accidentally of the merely lucky"},
+            ]
+          },
+          {
+            id:"ee8_2", label:"EE VIII.2 — the constitution of the good person", greek:"κατασκευή", accent:"#BA7517",
+            children:[
+              {label:"The good person has a unified constitution", note:"The good person's soul is unified — reason and desire agree, the rational and irrational parts work together. This unity is their constitution — the stable ordering of the soul that makes virtue possible"},
+              {label:"The bad person is divided", note:"The bad person is divided against themselves — their desires pull one way and their reason another, or their reason is corrupted and endorses bad desires. Division is the mark of moral failure"},
+              {label:"The naturally fortunate person", note:"The naturally fortunate person has a kind of natural unity — their impulses and desires tend toward the good without deliberation. They are, in a sense, naturally virtuous — but this is a gift of nature or the divine, not an achievement of practical wisdom"},
+              {label:"The question for EE VIII.3", note:"What is the ultimate ground of this unity? What makes the good person's constitution good? The answer EE VIII.3 will give: the divine. The ultimate standard by which souls are ordered well or badly is the divine good — the Unmoved Mover as final cause"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "⬦ THE DIVINE STANDARD — EE VIII.3: the culmination of the EE and the thesis",
+        chapters: [
+          {
+            id:"ee8_3", label:"EE VIII.3 — the divine standard: god as the measure and end of the good life", greek:"ὁ θεὸς κανών", accent:"#993C1D",
+            divine: true,
+            children:[
+              {label:"The question EE VIII.3 answers", note:"What should be the standard of choice and the criterion of natural goods — wealth, body, friends, honour? The question is: how do we determine what goods to pursue and in what measure?"},
+              {label:"The answer: whatever most promotes the service and contemplation of god", note:"The standard is this: whatever choice and possession of natural goods — health, wealth, friends — most promotes the service and contemplation of god is best. This is the criterion by which all choices should be measured"},
+              {label:"The full statement", note:"'Whatever choice and possession of natural goods — health and strength of body, wealth and friends and the other goods — will most produce the contemplation of god, that is best. Whatever, whether from deficiency or excess, prevents the service and contemplation of god is bad.' This is the explicit formulation — unique in the Aristotelian corpus"},
+              {label:"God as the final cause of the good life", note:"The divine is not merely one good alongside others — it is the ultimate final cause by reference to which all other goods are measured. The good life is the life ordered toward god. This is EE I.2's 'we should do everything for the sake of god' brought to its full development"},
+              {label:"The contemplation of god", note:"The contemplation of god (θεωρία τοῦ θεοῦ) is the highest human activity — the same as NE X.7's contemplative life, but stated more explicitly in theological terms. The EE names what the NE implies: the object of the highest contemplation is god"},
+              {label:"The standard is relational not quantitative", note:"The criterion is not 'how much of each good' but 'which combination of goods most enables the contemplation of god.' The divine standard transforms all goods from ends-in-themselves into conditions for a higher end. This is a profound reorientation of value"},
+              {label:"Connection to Metaphysics Lambda.7 and Lambda.10", note:"Lambda.7: the Unmoved Mover lives the best life eternally in the activity of nous. Lambda.10: all things are ordered toward the one good — the divine is both separate (as the Unmoved Mover) and immanent (as the ordering principle of all things). EE VIII.3 gives the ethical expression of Lambda.10: the good life is the life ordered toward the divine, the life in which the human good participates in the divine good"},
+              {label:"Connection to NE X.7–8", note:"NE X.7: nous is what we most are; we must immortalise ourselves as much as possible. NE X.8: the contemplative life is divine. EE VIII.3: the divine is the explicit standard. The NE approaches the divine obliquely and at the end; the EE names it directly. Together they give the complete picture: the highest human life is participation in the divine actuality that is the ground of all being"},
+              {label:"Connection to DA III.5", note:"The active nous — separable, unmixed, impassible, immortal — is the divine element within us. EE VIII.3's 'contemplation of god' is the exercise of this element. When the active nous grasps the highest things, the human soul participates in the divine self-thinking that is the Unmoved Mover's eternal life"},
+              {label:"Connection to Buddhist kalyāṇamittā and the unconditioned", note:"The Buddhist instruction to take the Buddha, Dhamma, and Saṅgha as one's kalyāṇamittā (good friend, spiritual companion) — to orient one's life toward the unconditioned as the standard — is structurally parallel to EE VIII.3. In both traditions the highest human life is defined by its orientation toward what transcends it: the unconditioned (asaṅkhata) in Buddhism, the divine (θεός) in Aristotle. Both are arrived at by the same logical structure: the highest human good is participation in what exceeds human determination"},
+              {label:"Connection to your thesis — the central note for the EE", note:"EE VIII.3 is where Aristotle states most explicitly what the entire corpus implies: the good life is measured by the divine. The divine is the Unmoved Mover — pure actuality, self-thinking thought, the limit and ground of all being. The good life is the life ordered toward this ground — the life that participates most fully in pure actuality. This is the ethical expression of the catuṣkoṭi's fourth position: the ground that makes all four positions possible, itself beyond any of them. The EE names it directly; the NE approaches it from below; the Metaphysics analyses it; the Physics demonstrates it; De Anima shows its presence within us. One structure, one argument, one corpus"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  const isDiv = c.divine;
+  return `<div class="cat-block">
+    <div class="header-row toggle ${isDiv ? 'cat-header-div' : 'cat-header'}" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+      ${isDiv ? `<span class="divine-flag">◆ DIVINE STANDARD</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML =
+    sharedNote +
+    books.map(b =>
+      `<div class="book-label">${b.book}</div>` +
+      b.groups.map(g => {
+        const isDiv = g.label.includes('DIVINE');
+        return `<div class="${isDiv ? 'div-group-label' : 'group-label'}">${g.label}</div>` +
+          g.chapters.map(c => renderCat(c)).join('');
+      }).join('')
+    ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

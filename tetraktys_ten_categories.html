@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetraktys — The Ten Categories</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
+
+  h1 { font-size: 1.1rem; font-weight: 500; text-align: center; margin-bottom: 0.2rem; }
+  .subtitle { font-size: 0.8rem; color: #999; font-style: italic; text-align: center; margin-bottom: 2rem; }
+
+  .tk-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .tk-row { display: flex; justify-content: center; gap: 12px; margin-bottom: 8px; }
+  .tk-node {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 110px; height: 88px;
+    border-radius: 50%;
+    padding: 8px;
+  }
+  .tk-main { font-size: 12px; font-weight: 600; text-align: center; line-height: 1.3; }
+  .tk-greek { font-size: 11px; font-style: italic; text-align: center; margin-top: 3px; }
+  .tk-desc { font-size: 11px; color: #999; font-style: italic; text-align: center; margin-bottom: 10px; }
+
+  .r1 .tk-node { border: 0.5px solid #BA7517; background: #FAEEDA; }
+  .r1 .tk-main { color: #633806; }
+  .r1 .tk-greek { color: #854F0B; }
+
+  .r2 .tk-node { border: 0.5px solid #534AB7; background: #EEEDFE; }
+  .r2 .tk-main { color: #26215C; }
+  .r2 .tk-greek { color: #3C3489; }
+
+  .r3 .tk-node { border: 0.5px solid #0F6E56; background: #E1F5EE; }
+  .r3 .tk-main { color: #04342C; }
+  .r3 .tk-greek { color: #085041; }
+
+  .r4 .tk-node { border: 0.5px solid #993C1D; background: #FAECE7; }
+  .r4 .tk-main { color: #4A1B0C; }
+  .r4 .tk-greek { color: #712B13; }
+
+  .legend { display: flex; gap: 16px; margin-top: 1.5rem; flex-wrap: wrap; justify-content: center; }
+  .leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #888; font-style: italic; }
+  .leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .total { margin-top: 1.2rem; font-size: 11px; color: #bbb; font-style: italic; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Κατηγορίαι</h1>
+<p class="subtitle">The ten categories as Pythagorean tetraktys</p>
+
+<div class="tk-wrap">
+
+  <div class="r1">
+    <div class="tk-row">
+      <div class="tk-node">
+        <div class="tk-main">Being</div>
+        <div class="tk-greek">οὐσία</div>
+      </div>
+    </div>
+    <div class="tk-desc">the ground — primary, self-sufficient</div>
+  </div>
+
+  <div class="r2">
+    <div class="tk-row">
+      <div class="tk-node">
+        <div class="tk-main">Quantity</div>
+        <div class="tk-greek">ποσόν</div>
+      </div>
+      <div class="tk-node">
+        <div class="tk-main">Quality</div>
+        <div class="tk-greek">ποιόν</div>
+      </div>
+    </div>
+    <div class="tk-desc">intrinsic modifications of being</div>
+  </div>
+
+  <div class="r3">
+    <div class="tk-row">
+      <div class="tk-node">
+        <div class="tk-main">Relation</div>
+        <div class="tk-greek">πρός τι</div>
+      </div>
+      <div class="tk-node">
+        <div class="tk-main">Where</div>
+        <div class="tk-greek">ποῦ</div>
+      </div>
+      <div class="tk-node">
+        <div class="tk-main">When</div>
+        <div class="tk-greek">ποτέ</div>
+      </div>
+    </div>
+    <div class="tk-desc">being as situated — in reference, space, time</div>
+  </div>
+
+  <div class="r4">
+    <div class="tk-row">
+      <div class="tk-node">
+        <div class="tk-main">Position</div>
+        <div class="tk-greek">κεῖσθαι</div>
+      </div>
+      <div class="tk-node">
+        <div class="tk-main">Having</div>
+        <div class="tk-greek">ἔχειν</div>
+      </div>
+      <div class="tk-node">
+        <div class="tk-main">Doing</div>
+        <div class="tk-greek">ποιεῖν</div>
+      </div>
+      <div class="tk-node">
+        <div class="tk-main">Being affected</div>
+        <div class="tk-greek">πάσχειν</div>
+      </div>
+    </div>
+    <div class="tk-desc">being in action and interaction — most determined, most relational</div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div>1 — being itself</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#534AB7"></div>2 — intrinsic</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#0F6E56"></div>3 — situational</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#993C1D"></div>4 — dynamic</div>
+  </div>
+
+  <div class="total">1 + 2 + 3 + 4 = 10 &nbsp;·&nbsp; the Pythagorean tetraktys</div>
+
+</div>
+</body>
+</html>

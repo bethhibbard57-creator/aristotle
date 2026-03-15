@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — History of Animals</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .method-note { background: #f0f4f8; border: 0.5px solid #b0c4d8; border-radius: 8px; padding: 0.9rem 1.1rem; margin: 1rem 0 1.5rem; font-size: 12.5px; color: #1a3a5a; line-height: 1.6; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Τὰ Ζῷα Ἱστορίαι</h1>
+<p class="subtitle">History of Animals Books I–X — complete interactive reference</p>
+<p class="subtitle">The Porphyrian tree made flesh — the genus-species-differentia classification of the animal kingdom as the empirical grounding of the logical apparatus</p>
+
+<div id="tree"></div>
+
+<footer>Click any book to expand. The History of Animals is the largest work in the biological corpus — the systematic empirical implementation of the classificatory method defended in Parts of Animals I. It builds the Porphyrian tree of the animal kingdom from the top down: establishing the primary genera, identifying their differentiae, and descending to the species. The focus here is on the classificatory and structural logic rather than the empirical detail — on how the genus-species apparatus generates the truth conditions for predications about animals.</footer>
+
+<script>
+const methodNote = `
+<div class="method-note">
+  <strong>How to read this file:</strong> The History of Animals contains enormous empirical detail — observations about hundreds of species across ten books. This reference focuses on the <em>classificatory and logical structure</em> of that detail rather than reproducing it. For each book the key questions are: (1) What genus is being treated? (2) What differentiae divide it? (3) What attributes are per se true of the genus? (4) What is the structure of the Porphyrian tree being built? The empirical content is the matter; the classificatory structure is the form. The form is what grounds the truth values of predications.
+</div>
+`;
+
+const books = [
+  {
+    book: "Book I — Ἱστορία Ζῴων Α · The primary differentiae; the major genera introduced",
+    groups: [
+      {
+        label: "The primary differentiae of animals (I.1–6)",
+        chapters: [
+          {
+            id:"ha1_1", label:"HA I.1 — the subject and the primary differentiae", greek:"διαφοραί", accent:"#BA7517",
+            children:[
+              {label:"The subject", note:"Animals differ from one another in their ways of life, their activities, their characters, and their parts. The History of Animals surveys all these differences systematically — beginning with the parts"},
+              {label:"The primary differentia: blooded vs bloodless", note:"The most fundamental division in the animal kingdom: animals with blood (ἔναιμα) and animals without blood (ἄναιμα). This is the primary differentia at the highest level of the tree — the first branch below the genus 'animal'"},
+              {label:"Blooded animals", note:"Man · viviparous quadrupeds · oviparous quadrupeds · birds · fish · cetaceans. These form the major genera of blooded animals — each is a natural group defined by further specific differentiae"},
+              {label:"Bloodless animals", note:"Soft animals (cephalopods — octopus, squid) · soft-shelled animals (crustaceans) · hard-shelled animals (shellfish, sea urchins) · insects. These form the major genera of bloodless animals"},
+              {label:"The Porphyrian tree of animals", children:[
+                {label:"Animal", note:"The supreme genus — the highest node of the biological tree"},
+                {label:"Blooded (ἔναιμα)", note:"First major branch — further divided by mode of reproduction and locomotive organs"},
+                {label:"Bloodless (ἄναιμα)", note:"Second major branch — further divided by external covering and locomotive organs"},
+              ]},
+              {label:"Connection to your thesis", note:"The primary differentia (blooded/bloodless) is the most fundamental truth-condition maker in the animal kingdom. It determines which further predicates are per se true of which animals. No predicate that presupposes blood (warm-bodied, lung-breathing in the primary sense) can be per se true of a bloodless animal. The primary differentia is the ontological ground of the first level of biological truth conditions — the most general determination of what kind of thing an animal is"},
+            ]
+          },
+          {
+            id:"ha1_2", label:"HA I.2–6 — the parts of animals: uniform and non-uniform", greek:"ὁμοιομερῆ καὶ ἀνομοιομερῆ", accent:"#BA7517",
+            children:[
+              {label:"Two kinds of parts", children:[
+                {label:"Homoeomerous (uniform) parts", greek:"ὁμοιομερῆ", note:"Parts of which any portion has the same character as the whole — flesh, bone, blood, fat, marrow. These are the simple stuffs of which the body is made"},
+                {label:"Non-homoeomerous (non-uniform) parts", greek:"ἀνομοιομερῆ", note:"Parts that cannot be further divided into parts of the same kind — the hand, the face, the heart. These are the organs — composite structures made of homoeomerous parts"},
+              ]},
+              {label:"The hierarchy of parts", note:"Non-uniform parts are made of uniform parts. The hand is made of flesh and bone and sinew. The uniform parts are the matter; the non-uniform parts are the form — the organised composite that performs a specific function"},
+              {label:"Connection to GC II.5", note:"Homoeomerous stuffs — flesh, bone — arise from specific ratios of the elements. HA I continues this analysis into the organised body: the homoeomerous parts are the proximate matter; the non-uniform parts (organs) are the forms that this matter instantiates"},
+              {label:"I.6 — the differentiae of parts across genera", note:"The same parts appear across different genera but with differences — the hand of man corresponds to the claw of the crab, the wing of the bird, the fin of the fish. These are analogous parts — performing the same function in different genera through structurally different material forms. Analogy connects parts across the tree where strict identity cannot"},
+              {label:"Connection to Topics I.17", note:"Finding similarities — analogy as the most powerful similarity relation across genera. The biological analogy of parts across genera is the empirical instantiation of the logical analogy relation: as A is to B, so C is to D. The same formal function (locomotion, feeding, protection) is realised in different genera through analogous material structures"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Ἱστορία Ζῴων Β · Man and the viviparous quadrupeds",
+    groups: [
+      {
+        label: "The parts of man; the viviparous quadrupeds (II.1–17)",
+        chapters: [
+          {
+            id:"ha2_1", label:"HA II.1 — man as the starting point; the upright posture", greek:"ἄνθρωπος", accent:"#534AB7",
+            children:[
+              {label:"Man as the known", note:"The inquiry begins from what is best known to us — man. We understand all other animals by comparison with what we know of our own bodies. This is the epistemological structure of the History of Animals: from the known (man) toward the less known (the other animals)"},
+              {label:"The upright posture as man's differentia", note:"Man alone among animals is fully upright — this is his distinctive differentia at the level of posture. The upright posture is both a physical differentia and a formal one: it corresponds to man's rational nature, which looks upward toward the divine"},
+              {label:"The head as the seat of the rational soul", note:"Man's head is proportionally larger and more developed than other animals — this corresponds to the greater development of the rational faculty. Form determines structure: the soul's capacities shape the body's organisation"},
+              {label:"The hand as man's most distinctive part", note:"The hand is man's most characteristic part — it is the instrument of instruments (ὄργανον ὀργάνων). As nous can think anything, the hand can do anything. The hand is the material counterpart of nous: universal in application, specific in each particular use"},
+              {label:"Connection to DA III.4 — nous as the place of forms", note:"Nous is potentially all intelligible forms — DA III.4. The hand is potentially all physical operations. Both are defined by unlimited receptivity — the capacity to take on any form without having a fixed form of their own. The biological parallel to the psychological is not metaphor but structural identity"},
+            ]
+          },
+          {
+            id:"ha2_2", label:"HA II.2–17 — viviparous quadrupeds: their differentiae and per se attributes", greek:"ζῳοτόκα τετράποδα", accent:"#534AB7",
+            children:[
+              {label:"The genus: viviparous quadrupeds", note:"Animals that give birth to live young and have four legs — horse, cattle, sheep, pig, dog, cat, lion, elephant, and many others. This genus is defined by two differentiae: viviparous reproduction and quadruped locomotion"},
+              {label:"Per se attributes of the genus", note:"Having four limbs · having a spine · having lungs · being warm-blooded · nursing young. These predicates are per se true of all viviparous quadrupeds — they belong to every member of the genus in virtue of the genus itself, not accidentally"},
+              {label:"Specific differentiae within the genus", note:"Cloven-hoofed vs solid-hoofed (horse vs cow) · horned vs hornless · domesticated vs wild · carnivore vs herbivore vs omnivore. Each differentia further divides the genus into species with their own per se attributes"},
+              {label:"The truth-condition structure in practice", note:"Consider 'horses have solid hoofs'. This is per se true of horses — it belongs to them in virtue of their species-form. It is not per se true of viviparous quadrupeds in general (cattle have cloven hoofs). The truth condition is the species, not the genus. The History of Animals maps these truth conditions systematically — identifying at which level of the tree each predicate is per se true"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book III — Ἱστορία Ζῴων Γ · The internal parts of blooded animals",
+    groups: [
+      {
+        label: "Blood, brain, heart, lungs, and the internal organs (III.1–22)",
+        chapters: [
+          {
+            id:"ha3_1", label:"HA III.1–4 — blood and the vascular system", greek:"αἷμα καὶ φλέβες", accent:"#BA7517",
+            children:[
+              {label:"Blood as the constitutive fluid of blooded animals", note:"Blood is the uniform part that is the mark of the blooded genus. All blooded animals have it; no bloodless animal has it (what they have is analogous — but not blood). Blood is the primary per se attribute of the blooded genus — the differentia made manifest as matter"},
+              {label:"The vascular system", note:"The heart is the centre of the vascular system — blood flows from and returns to the heart. The structure of the vascular system is per se true of all blooded animals — the specific layout varies by species but the centred structure is universal to the genus"},
+              {label:"Blood as the material cause of sensation", note:"Blood is the material basis of sensation in blooded animals — the sensory capacities are distributed through the body via the blood. This connects the biological analysis to DA II.5: sensation requires the right material basis"},
+            ]
+          },
+          {
+            id:"ha3_5", label:"HA III.5–22 — brain, heart, lungs, and the hierarchy of organs", greek:"ἐγκέφαλος καὶ καρδία", accent:"#BA7517",
+            children:[
+              {label:"The heart as the primary organ", note:"The heart is the first organ to develop and the last to die — it is the seat of the vital principle (the soul's nutritive and sensitive functions in blooded animals). The primacy of the heart is both temporal (first formed) and formal (first in the order of vital function)"},
+              {label:"The brain as the cooling organ", note:"The brain does not initiate sensation — the heart does. The brain's function is to cool the vital heat of the heart. This is Aristotle's controversial position — he subordinates the brain to the heart in the functional hierarchy of the body"},
+              {label:"The lungs as the breathing organ", note:"Lungs are the instrument of breathing — taking in air to cool the vital heat. All animals with lungs are per se capable of breathing air; animals without lungs breathe in other ways (gills for fish)"},
+              {label:"The hierarchy of organs", note:"Primary: heart (vital heat) · Secondary: lungs (cooling) · Tertiary: brain (additional cooling and sense-mediation) · Quaternary: the remaining organs (liver, spleen, kidneys — supporting functions). The hierarchy of organs mirrors the hierarchy of vital functions in the soul"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IV — Ἱστορία Ζῴων Δ · The bloodless animals; the sense organs",
+    groups: [
+      {
+        label: "Bloodless animals: their genera and differentiae (IV.1–7)",
+        chapters: [
+          {
+            id:"ha4_1", label:"HA IV.1–7 — the four genera of bloodless animals", greek:"ἄναιμα", accent:"#BA7517",
+            children:[
+              {label:"Soft animals (cephalopods)", note:"Octopus, squid, cuttlefish — distinguished by their soft external body and internal shell analogue (the cuttlebone). Per se attributes: having tentacles, being able to change colour, having a siphon for locomotion"},
+              {label:"Soft-shelled animals (crustaceans)", note:"Crab, lobster, crayfish, shrimp — distinguished by their external jointed shell. Per se attributes: having a hard external skeleton, jointed limbs, bilateral symmetry, gills"},
+              {label:"Hard-shelled animals (testaceans)", note:"Oyster, snail, sea urchin, starfish — distinguished by their non-jointed hard shell. Per se attributes: having a shell that is part of the organism (not a separate structure), sessile or slow-moving lifestyle, filter feeding or scavenging"},
+              {label:"Insects", note:"Bees, ants, flies, beetles, spiders — distinguished by their segmented body and three pairs of legs (for hexapods) or other arrangements. Per se attributes: having a chitinous external skeleton, undergoing metamorphosis (in many cases), having compound eyes"},
+              {label:"The analogy principle across the divide", note:"Each bloodless genus has analogues to the organs of blooded animals — not the same organs but functionally equivalent ones. The crab's gill is analogous to the fish's gill; the insect's tracheal system is analogous to the lung. The function is per se true at the level of the kingdom (all animals require gas exchange); the specific organ varies by genus"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The sense organs across genera (IV.8–11)",
+        chapters: [
+          {
+            id:"ha4_8", label:"HA IV.8–11 — the senses across the animal kingdom", greek:"αἰσθήσεις", accent:"#BA7517",
+            children:[
+              {label:"Touch is universal", note:"All animals have touch — as established in DA III.12. The History of Animals confirms this empirically: even the simplest animals (sponges, sea anemones) respond to contact. Touch is the per se attribute of the genus 'animal' with respect to sensation"},
+              {label:"The hierarchy of senses", note:"Touch → taste → smell → hearing → sight. The more complex the animal, the more senses it typically has. Man has all five; the simplest animals have only touch. The hierarchy of senses mirrors the hierarchy of animals in the great chain of being"},
+              {label:"Sense organs vary but functions are constant", note:"The specific organ varies by genus — compound eye in insects, simple eye in vertebrates — but the function (detecting light and shape) is per se true at the level where the genus has the capacity. The per se predicate is the function; the specific organ is the per se subject at the species level"},
+              {label:"Connection to DA II.5–11", note:"DA II.5–11 analysed the senses theoretically — each sense as the reception of sensible form without matter. The History of Animals confirms this analysis empirically: every sense organ across every genus instantiates the same principle of formal reception through an appropriate material medium"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book V — Ἱστορία Ζῴων Ε · Reproduction: the primary differentia cutting across genera",
+    groups: [
+      {
+        label: "The modes of reproduction as a cross-cutting differentia (V.1–33)",
+        chapters: [
+          {
+            id:"ha5_1", label:"HA V.1–4 — the modes of reproduction across the animal kingdom", greek:"γένεσις ζῴων", accent:"#534AB7",
+            children:[
+              {label:"Reproduction as a primary differentia", note:"Mode of reproduction is one of the most important differentiae in the animal kingdom — it cuts across the blooded/bloodless divide and organises animals into groups that cross the primary division"},
+              {label:"The five modes", children:[
+                {label:"Viviparous", note:"Giving birth to live young — characteristic of man and most quadrupeds. The most complete form — the young are most fully developed at birth"},
+                {label:"Oviparous with perfect eggs", note:"Laying eggs that are fully formed — birds and most reptiles. The egg contains everything needed for development"},
+                {label:"Oviparous with imperfect eggs", note:"Laying eggs that develop further outside — fish. The eggs are smaller and simpler"},
+                {label:"Larviparous", note:"Producing larvae that then develop — some fish and insects. Intermediate between egg-laying and live birth"},
+                {label:"Spontaneous generation", note:"Some simple animals arise without parents from rotting matter, mud, or dew — the lowest forms. This is the limiting case: generation without a formal efficient cause in another organism of the same kind"},
+              ]},
+              {label:"The hierarchy of modes mirrors the hierarchy of souls", note:"Viviparous animals have the most fully developed nutritive soul at birth; spontaneously generated animals have the least. The mode of reproduction tracks the degree of formal development at birth — the closer to full actualisation at emergence, the higher the mode of reproduction"},
+              {label:"Connection to GC I.3", note:"Generation requires matter, form, and privation — Physics I.6. The modes of reproduction differ in how much of the form is present at the moment of emergence from the parent. Viviparous animals emerge with most form; spontaneously generated ones emerge with least. Reproduction is the temporal process of form actualising itself in new matter"},
+            ]
+          },
+          {
+            id:"ha5_5", label:"HA V.5–33 — insects and their reproduction; the honeybee", greek:"μελίττης γένεσις", accent:"#534AB7",
+            children:[
+              {label:"Insect reproduction as the most varied", note:"Insects show the greatest variety of reproductive modes — some lay eggs, some produce larvae, some appear to arise spontaneously. The variety of modes within a single genus (insects) shows that mode of reproduction is not simply correlated with the genus level"},
+              {label:"The honeybee as a special case", note:"Aristotle devotes extensive attention to bees — their social organisation, their reproduction, their production of honey. The bee hive is a community with a kind of political organisation — it has a ruler (the queen), workers, and drones. The political structure of the hive is the natural political in its most basic form"},
+              {label:"The bee as a model of natural community", note:"The bee hive illustrates the principle of Politics I.2: communal life is natural for certain animals. The bee's natural community is not a deliberate choice but the expression of the bee's form — bees are by nature social. The political animal principle has its biological foundation here"},
+              {label:"Connection to Politics I.2", note:"Man is by nature a political animal — more so than bees. The bee's natural community is the biological baseline from which the human political community is distinguished by the addition of speech and reason. The History of Animals provides the empirical grounding of the Politics' claim about natural community"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book VI — Ἱστορία Ζῴων Ζ · Reproduction of birds, fish, and other blooded animals",
+    groups: [
+      {
+        label: "The reproduction of blooded animals: birds, fish, reptiles (VI.1–37)",
+        chapters: [
+          {
+            id:"ha6_1", label:"HA VI.1–6 — birds: their eggs, incubation, and development", greek:"ὄρνιθες", accent:"#534AB7",
+            children:[
+              {label:"The egg as a formal-material composite", note:"The bird's egg contains both the matter (the white and yolk — material for the developing chick) and the formal principle (the generative principle carried in the male's contribution). The egg is a miniature instantiation of the matter-form relation: the matter awaiting the formal determination that will make it a chick"},
+              {label:"Incubation as the process of formal actualization", note:"Incubation is the process by which the generative principle (form) gradually actualises the matter of the egg into a fully formed chick. The sequence of development — heart first, then blood vessels, then organs — mirrors the sequence of soul-faculties: nutritive first, then sensitive"},
+              {label:"The development sequence confirms the soul hierarchy", note:"In bird development: the heart is visible first (nutritive function), then the blood vessels (sensitive function begins), then the sense organs, then the locomotive organs. This empirically confirms DA's theoretical hierarchy — the nutritive soul is the foundation on which the sensitive and then the rational (in man) are built"},
+            ]
+          },
+          {
+            id:"ha6_7", label:"HA VI.7–37 — fish, reptiles, and their reproductive differentiae", greek:"ἰχθύες καὶ ἑρπετά", accent:"#534AB7",
+            children:[
+              {label:"Fish as the most varied blooded genus for reproduction", note:"Fish show enormous variety in their reproductive behaviour — some guard their eggs, some release them freely, some are viviparous. This variety within a single genus (fish) shows the independence of reproductive mode from gross anatomical type"},
+              {label:"The sea as the environment of greatest diversity", note:"The sea contains more species than the land and more variety in reproductive mode. The sea is the original environment of life — the most fertile medium for the actualisation of biological form in matter"},
+              {label:"Reptiles: the intermediate position", note:"Reptiles are intermediate between birds and fish — they lay eggs like birds but their eggs develop in different ways. The intermediate position in the classificatory tree is reflected in intermediate attributes — this is a general principle of the biological taxonomy: intermediate genera have intermediate characteristics"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book VII — Ἱστορία Ζῴων Η · Human reproduction and development",
+    groups: [
+      {
+        label: "Human generation and the life cycle (VII.1–12)",
+        chapters: [
+          {
+            id:"ha7_1", label:"HA VII.1–12 — human generation, development, and the life cycle", greek:"ἀνθρώπου γένεσις", accent:"#534AB7",
+            children:[
+              {label:"Human reproduction as the highest mode", note:"Man is viviparous — the highest mode of reproduction. The human foetus develops within the mother until fully formed, receiving nourishment through the placenta. This mode produces the most developed offspring at birth"},
+              {label:"The stages of human development", note:"Conception → embryonic development → birth → infancy → childhood → adolescence → maturity → old age → death. Each stage is a different actualisation of the human form in the matter of the body over time. The life cycle is the temporal expression of the human soul progressively actualising and then declining"},
+              {label:"Puberty as the emergence of the generative capacity", note:"Puberty marks the emergence of the reproductive capacity — the point at which the nutritive soul has developed sufficiently to support reproduction. The specific physical changes of puberty are the per se attributes of the human species at this stage of development"},
+              {label:"The temporal structure of the life cycle", note:"The human life cycle has a tetralemmic structure: (1) development toward full form (infancy to maturity), (2) full actualisation (prime of life), (3) decline of form in matter (aging), (4) dissolution of the compound (death) — after which the form persists only in the species through offspring. The individual instantiates the form and then releases it back to the species"},
+              {label:"Connection to Physics V.4 and Cat. Ch. 5", note:"Unity of motion — Physics V.4. Primary being receives contraries through time — Cat. Ch. 5. The human life cycle is the longest-scale temporal identity problem: the same individual subject receives the contraries (young/old, developing/declining) through time. The truth conditions for predications about a person change across the life cycle — what is per se true of a child is not per se true of the same individual in old age. This is the empirical foundation of the temporal identity condition"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book VIII — Ἱστορία Ζῴων Θ · Character, intelligence, and the ways of life of animals",
+    groups: [
+      {
+        label: "The characters and ways of life of animals (VIII.1–29)",
+        chapters: [
+          {
+            id:"ha8_1", label:"HA VIII.1–2 — animal character and intelligence", greek:"ἦθος καὶ φρόνησις ζῴων", accent:"#534AB7",
+            children:[
+              {label:"Animals have character", note:"Animals have characters — they are tame or wild, gentle or fierce, intelligent or dull, courageous or cowardly. These are per se attributes of the species, not mere accidents. The lion is courageous by nature; the hare is timid by nature"},
+              {label:"Character is species-specific", note:"Each species has a characteristic disposition — a ἦθος that is per se true of it. The character of the lion is not the same as the character of the dog. These species-specific characters are the biological ground of the ethical analysis of character in the NE — human character builds on the animal character that is our biological inheritance"},
+              {label:"Some animals show what looks like intelligence", note:"Bees show foresight, swallows show skill in construction, elephants show something like practical wisdom. These are not genuine practical wisdom (which requires logos) but natural functional analogues. They are to genuine phronesis as natural virtue (NE) is to full virtue — the material precondition, not the thing itself"},
+              {label:"The continuity of nature in character", note:"Nature passes continuously from simple to complex in cognitive capacities as in anatomical structure. The rudimentary capacities of the simplest animals are the precursors of the higher capacities of man. The great chain of being applies to character and intelligence as well as to anatomy"},
+            ]
+          },
+          {
+            id:"ha8_3", label:"HA VIII.3–29 — the ways of life of animals: food, habitat, migration", greek:"βίοι ζῴων", accent:"#534AB7",
+            children:[
+              {label:"Way of life as a per se attribute of the species", note:"Each species has a characteristic way of life — diet, habitat, social organisation, seasonal behaviour. These are not accidental features but per se attributes of the species, flowing from its form and adapted to its natural environment"},
+              {label:"Food as the primary determinant of way of life", note:"The kind of food an animal eats determines much of its way of life — where it lives, how it moves, how it relates to other species. Carnivores, herbivores, and omnivores have systematically different ways of life flowing from this primary differentia"},
+              {label:"Seasonal behaviour as temporal per se attribute", note:"Many animals show seasonal behaviour — migration, hibernation, breeding cycles. These are per se attributes of the species at specific times of year — the temporal analogue of the life-cycle analysis of HA VII. The species has different per se attributes at different seasons, just as the individual has different per se attributes at different life stages"},
+              {label:"Connection to the temporal identity condition", note:"The seasonal and life-cycle analysis of HA VIII and VII together constitute the most detailed empirical treatment in the corpus of the temporal qualification of per se predication. A predicate is per se true of a species at a particular time (breeding season, winter, old age) that is not per se true at other times. The History of Animals gives the empirical content of the temporal identity condition: the truth value of biological predications is indexed to the temporal stage of the individual and the season of the species"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IX — Ἱστορία Ζῴων Ι · Social animals; the intelligence of animals continued",
+    groups: [
+      {
+        label: "Social organisation and intelligence in animals (IX.1–48)",
+        chapters: [
+          {
+            id:"ha9_1", label:"HA IX.1–6 — social animals: community as a natural form", greek:"κοινωνικὰ ζῷα", accent:"#534AB7",
+            children:[
+              {label:"Social animals form natural communities", note:"Some animals are social by nature — they live in organised communities with division of labour and common defence. Bees, ants, wasps, and cranes are examples. Their social organisation is as per se an attribute of their species as their anatomical structure"},
+              {label:"The division of labour in animal communities", note:"Bee hives have queens, workers, and drones — each with a specific function. Ant colonies have soldiers, workers, and reproductives. The division of labour in animal communities is the biological prototype of the political division of functions in the human city"},
+              {label:"The male-female division as the primary social differentiation", note:"The most fundamental social differentiation in all animals is between male and female — different functions in reproduction, often different roles in care of young. This is the biological foundation of the household differentiation that Politics I analyses"},
+              {label:"Connection to Politics I.2 and NE VIII", note:"The social animals demonstrate empirically that community is natural — not a convention but an expression of the species-form. Man's political community is the highest form of what is already present in the animal kingdom. The History of Animals provides the empirical grounding of the Politics' claim and the Ethics' account of friendship as natural"},
+            ]
+          },
+          {
+            id:"ha9_7", label:"HA IX.7–48 — the intelligence and skill of specific animals", greek:"φρόνησις ζῴων", accent:"#534AB7",
+            children:[
+              {label:"The elephant's intelligence", note:"Aristotle gives extensive attention to the elephant — its memory, its capacity to be trained, its apparent understanding of commands, its emotional responses. The elephant approaches the boundary between instinct and genuine intelligence"},
+              {label:"The dolphin's intelligence", note:"Dolphins show exceptional capacities — their social behaviour, their apparent communication, their relations with humans. Aristotle notes that dolphins seem to have something more than pure instinct"},
+              {label:"The general principle", note:"Every species shows intelligence appropriate to its form — the intelligence of the bee is different from the intelligence of the elephant, which is different from the intelligence of man. Intelligence is not a single capacity distributed in varying amounts but a family of capacities each specific to its genus and species"},
+              {label:"Connection to DA III and the great chain of being", note:"The biological spectrum of intelligence — from simple tropism in plants through instinct in insects through something approaching phronesis in elephants — is the empirical confirmation of DA's theoretical hierarchy of soul capacities. The History of Animals shows the great chain of being in its cognitive dimension"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book X — Ἱστορία Ζῴων Κ · Generation; doubtful and spurious material",
+    groups: [
+      {
+        label: "On generation and fertility (X.1–9)",
+        chapters: [
+          {
+            id:"ha10_1", label:"HA X.1–9 — generation, fertility, and infertility", greek:"γένεσις καὶ ἀγονία", accent:"#534AB7",
+            children:[
+              {label:"The authenticity question", note:"Book X is widely regarded by scholars as either not by Aristotle or as a much later addition. Its material — on the causes of fertility and infertility in humans — is more medical than philosophical in character. It is noted here for completeness but carries less philosophical weight than Books I–IX"},
+              {label:"The content", note:"Book X treats the causes of male and female fertility and infertility — the physical conditions required for successful reproduction. The analysis connects to the Generation of Animals' more systematic treatment of the same questions"},
+              {label:"The place in the corpus", note:"Whether authentic or not, Book X's position at the end of the History of Animals marks the transition to the Generation of Animals — from the descriptive survey of what animals are and how they live to the causal analysis of how they come to be"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "The classificatory structure of the History of Animals — summary",
+    groups: [
+      {
+        label: "The Porphyrian tree of the animal kingdom as built by the History of Animals",
+        chapters: [
+          {
+            id:"ha_tree", label:"The complete biological Porphyrian tree and its truth-condition function", greek:"δένδρον Πορφυρίου ζῴων", accent:"#993C1D",
+            children:[
+              {label:"The supreme genus", note:"Animal (ζῷον) — the highest node. Per se attributes: living, capable of sensation, requiring nutrition, capable of reproduction. These are true of every animal without exception"},
+              {label:"First division: blooded vs bloodless", note:"Blooded (ἔναιμα) and bloodless (ἄναιμα). The per se attributes specific to each branch — having blood vs having a blood analogue — determine further truth conditions for all lower nodes"},
+              {label:"Second division within blooded", note:"Viviparous quadrupeds · oviparous quadrupeds · birds · fish · cetaceans · man. Each genus has its own per se attributes derivable from its position in the tree"},
+              {label:"Second division within bloodless", note:"Soft animals (cephalopods) · soft-shelled (crustaceans) · hard-shelled (testaceans) · insects. Same structure"},
+              {label:"The truth-condition principle", note:"At every node of the tree, the per se attributes are those that belong to every member of that genus in virtue of the genus itself. As you descend the tree, the per se attributes become more specific. At the species level, the per se attributes are those that belong to every member of the species in virtue of the species-form — the most specific truth conditions"},
+              {label:"Per se predication is indexed to the node", note:"The truth value of a predication depends on which node is the proper subject. 'Has blood' is per se true at the genus level (blooded animals). 'Has feathers' is per se true at the genus level (birds). 'Has a hooked beak' is per se true at a lower level (raptors). 'Has a hooked beak of specifically eagle-proportions' is per se true only at the species level (eagle). The History of Animals maps all these truth conditions empirically"},
+              {label:"The History of Animals as the empirical Organon", note:"If the Organon is the logical instrument for understanding predication, the History of Animals is the empirical instrument — the actual mapping of which predicates belong per se to which subjects at which level of the natural hierarchy. Together they constitute the complete account of what makes predications true: the Organon gives the logical structure; the History of Animals gives the empirical content"},
+              {label:"Connection to your thesis", note:"Your claim that categorical classification gives truth values for the actual is demonstrated in its fullest form by the History of Animals. Every paradox that involves a subject whose categorical placement is ambiguous or unresolved has undetermined truth conditions — the Liar sentence predicates 'is false' of itself without having a determinate species-level placement in the logical taxonomy; Russell's set predicates membership of itself without a determinate level in the set-theoretic hierarchy. The biological tree shows what it looks like when the categorical placement is determinate and the truth conditions are grounded: the per se attributes are fixed, the accidental attributes are recognisable as accidental, and the conditions under which LNC applies are fully specified. The biological corpus is the empirical proof of the logical thesis"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML =
+    methodNote +
+    books.map(b =>
+      `<div class="book-label">${b.book}</div>` +
+      b.groups.map(g =>
+        `<div class="group-label">${g.label}</div>` +
+        g.chapters.map(c => renderCat(c)).join('')
+      ).join('')
+    ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

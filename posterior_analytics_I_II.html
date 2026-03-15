@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Posterior Analytics I & II</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἀναλυτικὰ Ὕστερα</h1>
+<p class="subtitle">Posterior Analytics Books I & II — complete interactive reference · 34 + 19 chapters</p>
+<p class="subtitle">Book I: the nature and conditions of demonstrative knowledge · Book II: definition, cause, and the acquisition of first principles</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. The Posterior Analytics is the culmination of the Organon — it answers the question: what is it to know something scientifically? Book I establishes the conditions; Book II shows how definitions and causes provide the middle terms that make demonstration possible, closing with the account of nous as the immediate grasp of first principles.</footer>
+
+<script>
+const book1 = [
+  {
+    id:"po1", label:"Post. An. I.1 — all learning presupposes prior knowledge", greek:"προγνώσεις", accent:"#BA7517",
+    children:[
+      {label:"The opening claim", note:"All teaching and all intellectual learning come about from already existing knowledge — there is no learning from absolute ignorance"},
+      {label:"Two kinds of prior knowledge", children:[
+        {label:"Knowledge that something is the case", note:"The fact — that the thing exists or that the predication holds", eg:"Knowing that every triangle has angles equal to two right angles"},
+        {label:"Knowledge of what the terms mean", note:"The meaning of the terms used — what 'triangle' means, what 'unit' means"},
+      ]},
+      {label:"The Meno paradox dissolved", note:"How can we learn what we do not know? We have prior knowledge of the universal; the particular case is recognized as falling under it"},
+      {label:"Induction and syllogism", note:"Both presuppose prior knowledge — induction presupposes knowledge of the particular cases, syllogism presupposes knowledge of the premises"},
+    ]
+  },
+  {
+    id:"po2", label:"Post. An. I.2 — what demonstration is", greek:"ἀπόδειξις", accent:"#BA7517",
+    children:[
+      {label:"Demonstration defined", note:"A scientific syllogism — a syllogism that produces knowledge (ἐπιστήμη)"},
+      {label:"Conditions on demonstrative premises", children:[
+        {label:"True", note:"The premises must be true — false premises cannot produce knowledge of what is"},
+        {label:"Primary", greek:"πρῶτα", note:"Not derived from anything more basic — ultimate in the explanatory order"},
+        {label:"Immediate", greek:"ἄμεσα", note:"No middle term between subject and predicate — the connection is direct"},
+        {label:"Better known than the conclusion", greek:"γνωριμώτερα", note:"Prior in the order of knowledge — the conclusion is known through them"},
+        {label:"Prior to the conclusion", greek:"πρότερα", note:"Prior in the order of being — the premises explain the conclusion, not vice versa"},
+        {label:"Causes of the conclusion", greek:"αἴτια", note:"The premises state why the conclusion is true — they give the cause, not merely the fact"},
+      ]},
+      {label:"Demonstration vs dialectical syllogism", note:"Dialectic starts from reputable opinions; demonstration starts from what is true and primary. The form is the same; the epistemic status of premises differs"},
+    ]
+  },
+  {
+    id:"po3", label:"Post. An. I.3 — demonstrative knowledge is not circular", greek:"οὐ κύκλῳ", accent:"#BA7517",
+    children:[
+      {label:"The sceptical worry", note:"If everything requires demonstration, then the premises themselves require demonstration — leading to infinite regress or circularity"},
+      {label:"Circular demonstration is impossible", note:"As shown in Prior Analytics II.5 — circular proof requires coextensive terms and yields no explanatory gain"},
+      {label:"Infinite regress is impossible", note:"There must be immediate premises — propositions with no middle term, known directly rather than through demonstration"},
+      {label:"The solution", note:"There are indemonstrable first principles — known by nous (intellectual intuition), not by demonstration. Demonstration rests on them but does not prove them"},
+      {label:"Nous vs demonstration", note:"Nous grasps first principles immediately and with certainty. Demonstration proceeds from them. Together they constitute scientific knowledge"},
+    ]
+  },
+  {
+    id:"po4", label:"Post. An. I.4 — what must be true of demonstrative premises", greek:"ἀναγκαῖα", accent:"#BA7517",
+    children:[
+      {label:"Necessary truth", note:"Demonstrative conclusions must be necessary — what cannot be otherwise. Science is of what is necessarily the case"},
+      {label:"Predicated of all", greek:"κατὰ παντός", note:"The predicate holds of every instance of the subject — no exceptions"},
+      {label:"Predicated per se", greek:"καθ᾽ αὑτό", children:[
+        {label:"First sense", note:"The predicate belongs to the subject as part of its definition — what a triangle is includes having angles", eg:"Triangle has three angles — angles are in the definition of triangle"},
+        {label:"Second sense", note:"The subject belongs to the predicate as part of its definition — the subject is in the definition of the predicate", eg:"The odd belongs to number — number is in the definition of odd"},
+        {label:"Third sense", note:"The thing exists in virtue of itself — not through another", eg:"Being slaughtered is per se why the animal dies"},
+      ]},
+      {label:"Predicated universally", greek:"καθόλου", note:"Predicated of the thing as such, of every instance, and primarily — not of something wider that happens to include it"},
+      {label:"Predicated of it as itself", note:"The predicate must hold of the subject in virtue of what the subject essentially is — not accidentally or in virtue of something wider"},
+    ]
+  },
+  {
+    id:"po5", label:"Post. An. I.5 — the error of demonstrating too broadly or too narrowly", greek:"ἁμαρτήματα", accent:"#BA7517",
+    children:[
+      {label:"Demonstrating of a wider class than necessary", note:"Proving something of all figures when it belongs specifically to triangles — the demonstration is valid but not of the right subject"},
+      {label:"The proper subject", note:"Demonstration must be of the primary subject to which the attribute belongs — the most specific class for which the attribute holds universally and per se"},
+      {label:"Example", note:"That angles sum to two right angles belongs primarily to triangle, not to figure in general. Proving it of figure is too broad; proving it of equilateral triangle is too narrow"},
+      {label:"Why precision matters", note:"The middle term of the demonstration must be the essence of the proper subject — only then does the demonstration reveal the cause, not just the fact"},
+    ]
+  },
+  {
+    id:"po6", label:"Post. An. I.6 — demonstrative premises must be necessary", greek:"ἀναγκαῖαι", accent:"#BA7517",
+    children:[
+      {label:"The argument", note:"If the premises are contingent the conclusion may fail to hold in some cases — but scientific knowledge is of what always holds"},
+      {label:"Accidental predication excluded", note:"A demonstration cannot proceed from premises that state only what happens to be the case — it must proceed from what holds per se and necessarily"},
+      {label:"The connection to per se predication", note:"Per se predicates (I.4) are necessary — they hold in virtue of the essence, not contingently. Demonstrative premises are always per se"},
+      {label:"Modal syllogisms", note:"The treatment of necessary modality in Prior Analytics I.8–11 is presupposed here — demonstrative syllogisms are a special case of necessary syllogisms"},
+    ]
+  },
+  {
+    id:"po7", label:"Post. An. I.7 — each science has its own genus", greek:"γένος", accent:"#BA7517",
+    children:[
+      {label:"Sciences do not cross genera", note:"You cannot prove something about geometry using arithmetic premises — each science operates within its own genus"},
+      {label:"The genus of a science", note:"The collection of things the science is about — its subject matter. Geometry is about spatial magnitudes; arithmetic about numbers"},
+      {label:"Subalternate sciences", note:"Some sciences are subalternate — optics borrows from geometry, harmonics from arithmetic. The higher science provides the demonstrations, the lower applies them to a specific subject matter"},
+      {label:"Connection to the categories", note:"Each category defines a distinct mode of being — sciences are distinguished by which category their genus falls under"},
+    ]
+  },
+  {
+    id:"po8", label:"Post. An. I.8 — demonstration is of what is eternal", greek:"ἀΐδιον", accent:"#BA7517",
+    children:[
+      {label:"The claim", note:"Demonstration and knowledge are of what is eternal — what cannot be otherwise and what does not come to be and pass away"},
+      {label:"Why", note:"Demonstration is of necessary truths (I.6) — necessary truths hold always, not sometimes. What holds only sometimes cannot be the subject of demonstration"},
+      {label:"Perishable things", note:"Individual perishable things cannot strictly be the subject of demonstration — they exist only contingently. Demonstrations are of kinds and their essential attributes"},
+      {label:"Connection to primary being", note:"Cat. 5's account of primary being — which receives contraries through time — is not the subject of demonstration. Secondary being (the species) is. This connects the Categories to the Posterior Analytics"},
+    ]
+  },
+  {
+    id:"po9", label:"Post. An. I.9 — demonstration must be from proper principles", greek:"οἰκεῖαι ἀρχαί", accent:"#BA7517",
+    children:[
+      {label:"Proper principles", note:"The first principles specific to each science — the definitions and existence assumptions that are peculiar to that subject matter"},
+      {label:"Common principles", note:"Principles shared across sciences — the axioms of logic (LNC, PEM) and mathematical axioms like 'equals subtracted from equals leave equals'"},
+      {label:"The distinction", note:"Common principles alone cannot generate scientific conclusions — they must be applied to the proper genus through proper principles"},
+      {label:"Why proper principles matter", note:"A demonstration from improper principles would prove something true only accidentally — not through the nature of the thing itself"},
+    ]
+  },
+  {
+    id:"po10", label:"Post. An. I.10 — the types of first principles", greek:"ἀρχαί", accent:"#BA7517",
+    children:[
+      {label:"Axioms", greek:"ἀξιώματα", note:"Common to all sciences — principles that anyone who learns anything must know", eg:"LNC, PEM, equals taken from equals leave equals"},
+      {label:"Theses", greek:"θέσεις", note:"Specific to individual sciences — not derivable from more general principles", children:[
+        {label:"Definitions", greek:"ὁρισμοί", note:"State what a term means — do not assert existence", eg:"A unit is that in virtue of which each thing is called one"},
+        {label:"Hypotheses", greek:"ὑποθέσεις", note:"Assert that something exists — taken as given for the science", eg:"Arithmetic assumes that units exist; geometry that points and lines exist"},
+      ]},
+      {label:"The structure of a science", note:"Every science rests on axioms + definitions + existence hypotheses. These are the indemonstrable foundations from which demonstration proceeds"},
+      {label:"Connection to I.3", note:"These are the immediate premises whose existence dissolves the regress problem — they are known by nous, not by demonstration"},
+    ]
+  },
+  {
+    id:"po11", label:"Post. An. I.11 — the role of common principles in demonstration", greek:"κοιναὶ ἀρχαί", accent:"#BA7517",
+    children:[
+      {label:"Do demonstrations use LNC?", note:"Yes — implicitly. Every demonstration assumes that contradictory propositions cannot both be true"},
+      {label:"Do demonstrations use PEM?", note:"Yes — reductio proofs assume the excluded middle. If not-P leads to absurdity, P must be true"},
+      {label:"The common principles are not premises", note:"They are not stated as premises in demonstrations — they are presupposed. Aristotle distinguishes between what a demonstration uses and what it states"},
+      {label:"Connection to the elenchus", note:"LNC and PEM as conditions of the elenchus (De Int. Ch. 11) — the same principles that govern the contradictory pair govern demonstrative science"},
+    ]
+  },
+  {
+    id:"po12", label:"Post. An. I.12 — the form of scientific questions and answers", greek:"ἐρωτήματα", accent:"#BA7517",
+    children:[
+      {label:"Scientific questions", note:"Ask whether the predicate belongs to the subject — they are answered by the demonstration"},
+      {label:"Dialectical questions", note:"Ask for a yes or no from the interlocutor — any reputable premise can be requested"},
+      {label:"The difference", note:"Scientific questioning is not open — the premises of a demonstration are determined by the nature of the subject, not by what the interlocutor will grant"},
+      {label:"Asking for a premise in demonstration", note:"Is legitimate only if the premise is a genuine first principle of the science or demonstrably follows from one"},
+    ]
+  },
+  {
+    id:"po13", label:"Post. An. I.13 — knowing the fact vs knowing the reasoned fact", greek:"τὸ ὅτι καὶ τὸ διότι", accent:"#BA7517",
+    children:[
+      {label:"The fact", greek:"τὸ ὅτι", note:"That something is the case — empirical knowledge of the phenomenon"},
+      {label:"The reasoned fact", greek:"τὸ διότι", note:"Why it is the case — scientific knowledge through the cause"},
+      {label:"Same science, different syllogisms", note:"In the same science both can be known — but by different demonstrations using different middle terms"},
+      {label:"Different sciences", note:"The mathematical science gives the reasoned fact; the empirical science (optics, astronomy) gives only the fact. Subalternate sciences get the fact; the higher science gets the reason"},
+      {label:"Example", note:"That planets do not twinkle is an empirical fact. Why — because they are near — is the reasoned fact. Nearness is the middle term that explains non-twinkling"},
+      {label:"The key point", note:"The order of the middle term in the syllogism determines whether we have the fact or the reasoned fact — the same logical form, different epistemological status"},
+    ]
+  },
+  {
+    id:"po14", label:"Post. An. I.14 — the first figure is most suited to demonstration", greek:"πρῶτον σχῆμα", accent:"#BA7517",
+    children:[
+      {label:"Confirmation of Prior Analytics II.19", note:"The first figure is the most scientific — it alone proves universal affirmatives directly"},
+      {label:"The universal affirmative is the demonstrative form", note:"'All S is P' — states what the subject essentially is, through a middle term that gives the cause. This is what demonstration aims at"},
+      {label:"Other figures", note:"Second figure proves only negatives; third figure only particulars. Both are less suited to demonstration of the primary form"},
+    ]
+  },
+  {
+    id:"po15", label:"Post. An. I.15 — immediate negative propositions", greek:"ἄμεσαι ἀποφατικαί", accent:"#BA7517",
+    children:[
+      {label:"Immediate affirmative", note:"A is B with no middle term — the connection is direct and indemonstrable"},
+      {label:"Immediate negative", note:"A is not B with no middle term — the disconnection is equally direct and indemonstrable"},
+      {label:"Examples", note:"'Unit is not two' and 'two is not three' are immediate negative propositions — known directly, not through demonstration"},
+      {label:"Significance", note:"Not all first principles are affirmative — some sciences have immediate negatives as foundational. The structure of a science includes both what its genus is and what it is not"},
+    ]
+  },
+  {
+    id:"po16", label:"Post. An. I.16 — ignorance through false inference", greek:"ἀγνοία", accent:"#BA7517",
+    children:[
+      {label:"Error from false premises in demonstration", note:"If a demonstrative syllogism has a false premise the conclusion is false — but the form of the reasoning may still be valid"},
+      {label:"The disposition of error", note:"Error has a structure parallel to knowledge — false belief through a middle term that falsely connects subject and predicate"},
+      {label:"Connection to Prior Analytics II.21", note:"The analysis of error in knowledge continues here — false demonstrations have syllogistic structure just as true ones do"},
+    ]
+  },
+  {
+    id:"po17", label:"Post. An. I.17 — how false conclusions arise from the same premises in different figures", greek:"ψευδὴς συλλογισμός", accent:"#BA7517",
+    children:[
+      {label:"The analytical question", note:"When a false conclusion is drawn from premises, which figure is responsible?"},
+      {label:"Tracing the error", note:"By identifying the figure and the middle term, we can locate exactly where the false inference occurs"},
+      {label:"Practical significance", note:"The analysis of error by figure is a diagnostic tool — for identifying exactly where a chain of reasoning went wrong"},
+    ]
+  },
+  {
+    id:"po18", label:"Post. An. I.18 — induction is necessary for knowledge of first principles", greek:"ἐπαγωγή", accent:"#BA7517",
+    children:[
+      {label:"The route to first principles", note:"First principles are not demonstrated — they are reached through induction from perceptual experience"},
+      {label:"Perception → memory → experience → induction → universal", note:"The epistemological ascent: individual perceptions accumulate as memories; memories form experience; induction from experience yields the universal; the universal is grasped by nous"},
+      {label:"Induction and nous are complementary", note:"Induction is the temporal process; nous is the resultant state — the immediate intellectual grasp of the universal principle"},
+      {label:"Connection to Post. An. II.19", note:"The full account of this ascent is given in the final chapter — this is the preview"},
+    ]
+  },
+  {
+    id:"po19", label:"Post. An. I.19 — are there infinitely many middle terms?", greek:"ἄπειρα μέσα", accent:"#BA7517",
+    children:[
+      {label:"The question", note:"Can the chain of demonstration go on infinitely — either upward to the premises or downward to the conclusions?"},
+      {label:"The answer", note:"No — demonstration must terminate in both directions. There are immediate first principles above, and ultimate subjects below"},
+      {label:"Upward termination", note:"The chain of predicates cannot ascend infinitely — there is a highest genus for each science beyond which no further predication is possible"},
+      {label:"Downward termination", note:"The chain of subjects cannot descend infinitely — there are infimae species (lowest species) below which there are only individuals, which are not subjects of scientific predication"},
+    ]
+  },
+  {
+    id:"po20", label:"Post. An. I.20 — middle terms are finite", greek:"πεπερασμένα", accent:"#BA7517",
+    children:[
+      {label:"Confirmation of I.19", note:"Because predication terminates in both directions the middle terms between any two extreme terms are finite in number"},
+      {label:"Significance", note:"Every chain of demonstration has a determinate length — science is not an infinite regress but a finite structured whole"},
+      {label:"Connection to the Organon", note:"This is the logical guarantee that the method of finding middle terms (Prior Analytics I.27–29) will always terminate — there is a fact of the matter about which middle terms connect any two given terms"},
+    ]
+  },
+  {
+    id:"po21", label:"Post. An. I.21 — in negative demonstration middle terms are also finite", greek:"ἀποφατικαί", accent:"#BA7517",
+    children:[
+      {label:"Extension to negative demonstration", note:"Not only affirmative chains but negative chains of demonstration also terminate finitely"},
+      {label:"The argument", note:"Negative demonstrations use the same terms as affirmative ones — just arranged differently. Since affirmative predication chains are finite, so are negative ones"},
+    ]
+  },
+  {
+    id:"po22", label:"Post. An. I.22 — not all predication is infinite", greek:"οὐκ ἄπειρα", accent:"#BA7517",
+    children:[
+      {label:"The main argument against infinite predication", note:"If predicates ascend infinitely there would be no first principle — but first principles exist (I.3). So predication is finite"},
+      {label:"The argument from the categories", note:"Each predicate belongs to a category — and the categories are finite in number. A predicate in one category cannot become a predicate in another. So the chain of predication within each category is bounded"},
+      {label:"Essential vs accidental predication", note:"Essential predication (per se) is finite — it tracks the definition. Accidental predication is not demonstrative and need not be finite, but it is also not scientific"},
+      {label:"The connection to the categories", note:"The ten categories function here as logical barriers — they bound the chains of predication and thereby guarantee that demonstration has a finite structure"},
+    ]
+  },
+  {
+    id:"po23", label:"Post. An. I.23 — universal demonstration is superior to particular", greek:"καθόλου κρεῖττον", accent:"#BA7517",
+    children:[
+      {label:"The claim", note:"A demonstration of the universal is better than a demonstration of the particular"},
+      {label:"Why", children:[
+        {label:"The universal states the cause", note:"Demonstrating universally shows why the attribute belongs to the kind as such — the cause is universal"},
+        {label:"More knowable", note:"The universal is more intelligible than the particular — it is grasped by reason rather than perception"},
+        {label:"More informative", note:"If we know the universal we also know the particular — but not vice versa"},
+      ]},
+      {label:"Connection to I.4", note:"Per se and universal predication (I.4) is what demonstrative science requires — this chapter defends the priority of universal demonstration"},
+    ]
+  },
+  {
+    id:"po24", label:"Post. An. I.24 — affirmative demonstration is superior to negative", greek:"κατηγορική κρεῖττον", accent:"#BA7517",
+    children:[
+      {label:"The claim", note:"Affirmative demonstration is better than negative — demonstration through absence is inferior to demonstration through presence"},
+      {label:"Why", children:[
+        {label:"Affirmative uses fewer premises", note:"Negative demonstrations require more steps — the negation must be established through additional moves"},
+        {label:"Affirmative is more knowable", note:"We understand what something is more directly than what it is not"},
+        {label:"Negative presupposes affirmative", note:"To show that nothing P is Q we must first establish positive facts about P — the affirmative is logically prior"},
+      ]},
+    ]
+  },
+  {
+    id:"po25", label:"Post. An. I.25 — direct demonstration is superior to reductio", greek:"ὀστενσικὸν κρεῖττον", accent:"#BA7517",
+    children:[
+      {label:"The claim", note:"Ostensive (direct) demonstration is better than reductio ad impossibile"},
+      {label:"Why", note:"Reductio shows only that the conclusion cannot be false — it does not show positively why it is true. Direct demonstration shows the cause. Reductio gives necessity without explanation"},
+      {label:"Both are valid", note:"The logical point: both are formally valid. The epistemological point: direct demonstration is more scientific because it reveals the cause"},
+      {label:"Connection to Prior Analytics II.11", note:"The same distinction made here was already noted there — this chapter is its full epistemological development"},
+    ]
+  },
+  {
+    id:"po26", label:"Post. An. I.26 — refutation is not a species of demonstration", greek:"ἔλεγχος", accent:"#BA7517",
+    children:[
+      {label:"Refutation vs demonstration", note:"Refutation (ἔλεγχος) is the contradiction of a false thesis — demonstration is the establishment of a true one. They are distinct logical operations"},
+      {label:"Refutation as syllogism", note:"A refutation is a syllogism whose conclusion is the contradictory of the thesis — valid in form, like demonstration, but aimed at destroying rather than establishing"},
+      {label:"Connection to De Interpretatione Ch. 11", note:"The elenchus is the four-condition contradictory pair — refutation is its application as a mode of argument. The logical analysis of Ch. 11 is what makes scientific refutation possible"},
+    ]
+  },
+  {
+    id:"po27", label:"Post. An. I.27 — the more exact science", greek:"ἀκριβεστέρα", accent:"#BA7517",
+    children:[
+      {label:"More exact science defined", note:"One that both states the fact and gives the reason, rather than the fact alone"},
+      {label:"Ranking of sciences", children:[
+        {label:"Most exact", note:"Abstract science — arithmetic is more exact than geometry because it abstracts from spatial magnitude"},
+        {label:"Less exact", note:"Sciences that add matter or motion — physics is less exact than mathematics because it deals with changing things"},
+        {label:"Least exact", note:"Empirical sciences that only report the fact without giving the cause"},
+      ]},
+      {label:"The criterion", note:"Exactness is measured by proximity to the immediate — fewer assumptions, more universal, closer to the first principles"},
+    ]
+  },
+  {
+    id:"po28", label:"Post. An. I.28 — one science vs many sciences", greek:"μία ἐπιστήμη", accent:"#BA7517",
+    children:[
+      {label:"What makes a science one", note:"A science is one if it is of one genus — one subject matter unified by shared first principles"},
+      {label:"Many sciences", note:"When the first principles are not the same and the genus is different — even if there is some overlap — the sciences are distinct"},
+      {label:"Unity of a science", note:"Arithmetic is one science because all its theorems derive from the same principles about number. Geometry is one science because all its theorems derive from the same principles about spatial magnitude"},
+    ]
+  },
+  {
+    id:"po29", label:"Post. An. I.29 — several demonstrations of the same conclusion", greek:"πλείους ἀποδείξεις", accent:"#BA7517",
+    children:[
+      {label:"Is there one demonstration per conclusion?", note:"No — the same conclusion can be demonstrated through different middle terms"},
+      {label:"Different middles give different explanations", note:"Each middle term picks out a different cause or aspect of the subject — multiple demonstrations reveal multiple aspects of the same truth"},
+      {label:"Which demonstration is best", note:"The one whose middle term is most immediate and most essential — closest to the definition of the subject"},
+    ]
+  },
+  {
+    id:"po30", label:"Post. An. I.30 — there is no demonstration of what happens by chance", greek:"τύχη", accent:"#BA7517",
+    children:[
+      {label:"Chance events", greek:"τύχη", note:"What happens neither always nor for the most part — the genuinely accidental"},
+      {label:"Why no demonstration", note:"Demonstration is of necessary or usual truths — what holds always or for the most part. Chance events are by definition neither"},
+      {label:"Connection to the sea battle", note:"The future contingent of De Int. Ch. 9 is not demonstrable — it is genuinely open. This connects the modal analysis of Ch. 9 to the epistemology of the Posterior Analytics"},
+    ]
+  },
+  {
+    id:"po31", label:"Post. An. I.31 — there is no demonstration through perception", greek:"αἴσθησις", accent:"#BA7517",
+    children:[
+      {label:"The argument", note:"Even if we could perceive that angles equal two right angles we would not have demonstrated it — perception gives the fact but not the reason"},
+      {label:"Perception is of particulars", note:"Demonstration is of universals. A perception is of this triangle here — demonstration is of triangle as such"},
+      {label:"Perception is not knowledge", note:"In Aristotle's strict sense — ἐπιστήμη requires demonstration from universal principles. Perception provides the starting points but is not itself scientific knowledge"},
+      {label:"Connection to I.18", note:"Perception is the necessary starting point for induction which yields the universal — but the universal, not the perception, is the object of knowledge"},
+    ]
+  },
+  {
+    id:"po32", label:"Post. An. I.32 — all syllogisms cannot have the same first principles", greek:"αἱ αὐταὶ ἀρχαί", accent:"#BA7517",
+    children:[
+      {label:"The claim", note:"There are not universal first principles from which all conclusions in all sciences can be derived"},
+      {label:"Why", note:"Sciences differ in genus — each has its own proper principles. Common principles (axioms) apply to all but only in conjunction with proper principles"},
+      {label:"Against a universal science", note:"Aristotle explicitly rejects the idea of a single master science from which all knowledge flows — this is a direct critique of Platonic dialectic as the universal science"},
+      {label:"What first philosophy is", note:"Not a universal science from which all others derive — but a science of being as being, investigating what all beings share without deriving the particular sciences from it"},
+    ]
+  },
+  {
+    id:"po33", label:"Post. An. I.33 — scientific knowledge vs opinion", greek:"ἐπιστήμη καὶ δόξα", accent:"#BA7517",
+    children:[
+      {label:"Scientific knowledge", greek:"ἐπιστήμη", note:"Of what is necessarily the case — its object cannot be otherwise"},
+      {label:"Opinion", greek:"δόξα", note:"Of what can be otherwise — its object is contingent"},
+      {label:"Can the same thing be both known and opined?", note:"Not in the same sense — what is known necessarily cannot be merely opined. But a person may have opinion about something that is in fact necessary, through ignorance of the necessity"},
+      {label:"The same object, different epistemic relations", note:"The difference is not in the object but in how it is held — through demonstration (knowledge) or mere acceptance (opinion)"},
+    ]
+  },
+  {
+    id:"po34", label:"Post. An. I.34 — quick wit", greek:"ἀγχίνοια", accent:"#BA7517",
+    children:[
+      {label:"Quick wit defined", greek:"ἀγχίνοια", note:"The capacity to hit upon the middle term in a short time — to see immediately what connects subject and predicate"},
+      {label:"The example", note:"Seeing that the moon's bright side always faces the sun — and immediately grasping that this is because the moon shines by reflected light — is quick wit"},
+      {label:"Quick wit and nous", note:"Quick wit is the natural gift that enables rapid induction to first principles and rapid identification of middle terms — the practical expression of intellectual capacity"},
+      {label:"Significance", note:"This brief closing chapter of Book I connects the formal theory of demonstration to the natural capacity of the inquiring mind — the human side of the logical structure"},
+    ]
+  },
+];
+
+const book2 = [
+  {
+    id:"po2_1", label:"Post. An. II.1 — the four questions of inquiry", greek:"τέτταρα ζητήματα", accent:"#534AB7",
+    children:[
+      {label:"The four questions", children:[
+        {label:"The that", greek:"τὸ ὅτι", note:"Does the attribute belong to the subject? Is there an eclipse? Do planets wander?"},
+        {label:"The why", greek:"τὸ διότι", note:"Why does the attribute belong? Why is there an eclipse? Why do planets wander?"},
+        {label:"The whether it is", greek:"εἰ ἔστι", note:"Does the subject exist? Is there a centaur? Is there a god?"},
+        {label:"The what it is", greek:"τί ἐστι", note:"What is the subject? What is man? What is fire?"},
+      ]},
+      {label:"The key insight", note:"All four questions reduce to a search for the middle term — the that becomes the why when we find the middle; the whether becomes the what when we find the middle"},
+      {label:"All inquiry is search for the middle", note:"The middle term is the cause — finding it answers both why questions and what questions. This is the pivot of Book II"},
+    ]
+  },
+  {
+    id:"po2_2", label:"Post. An. II.2 — all inquiry seeks the middle term", greek:"τὸ μέσον", accent:"#534AB7",
+    children:[
+      {label:"The that and the why are one inquiry", note:"When we know that the eclipse is happening we want to know why — the why is the middle term"},
+      {label:"The whether and the what are one inquiry", note:"When we know that man exists we want to know what man is — the what is the middle term (the essence)"},
+      {label:"The unification of the four questions", note:"There are not four separate kinds of inquiry but one — the search for the middle term that connects subject to attribute or establishes the subject's essence"},
+      {label:"Significance", note:"This is the deepest claim of Book II: definition (what it is) and demonstration (why it is) converge in the middle term. The cause and the essence are the same thing seen from different angles"},
+    ]
+  },
+  {
+    id:"po2_3", label:"Post. An. II.3 — whether definition and demonstration are the same", greek:"ταὐτόν", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"Is defining the same as demonstrating? Can a definition be demonstrated?"},
+      {label:"First position: they are the same", note:"A definition seems to state the same as a demonstration — it gives the essential nature"},
+      {label:"First objection", note:"A definition is a single statement; a demonstration is an inference. They have different logical forms"},
+      {label:"Second objection", note:"You cannot demonstrate a definition without assuming what you are trying to define — circular"},
+      {label:"The opening of the problem", note:"This chapter opens the central problem of Book II — resolved in chapters 8–10. Definition and demonstration are neither identical nor wholly separate"},
+    ]
+  },
+  {
+    id:"po2_4", label:"Post. An. II.4 — definition cannot be demonstrated by division", greek:"διαίρεσις", accent:"#534AB7",
+    children:[
+      {label:"The Platonic method of division", note:"Dividing a genus by successive differentiae to reach the definition — man as rational mortal animal"},
+      {label:"Why this fails as demonstration", note:"Division assumes that the subject falls under each differentia rather than proving it — as argued in Prior Analytics I.31"},
+      {label:"Division is not syllogistic", note:"No middle term connects the subject to the differentiae — the connection is assumed, not derived"},
+      {label:"What division can do", note:"Give an ordered inventory of the predicate structure — useful for finding definitions, but not for proving them"},
+    ]
+  },
+  {
+    id:"po2_5", label:"Post. An. II.5 — definition cannot be established by hypothesis", greek:"ὑπόθεσις", accent:"#534AB7",
+    children:[
+      {label:"The hypothetical route", note:"Assuming the definition and showing consequences follow — but this only proves the consequences, not the definition itself"},
+      {label:"The problem", note:"Whatever is established hypothetically is only as certain as the hypothesis — a definition established this way is merely assumed, not known"},
+      {label:"The negative result", note:"Chapters 3–7 systematically close off the wrong routes to definition — it cannot be demonstrated directly, by division, or by hypothesis"},
+    ]
+  },
+  {
+    id:"po2_6", label:"Post. An. II.6 — definition is not demonstrated by division either way", greek:"οὐδ᾽ οὕτως", accent:"#534AB7",
+    children:[
+      {label:"A further attempt via division", note:"Even if we accept division, the conclusion only says what the predicate is, not that it belongs to the subject essentially"},
+      {label:"The persistent problem", note:"Division states the parts of the definition but cannot establish why they belong together — why rational and mortal and animal together constitute man"},
+      {label:"The unity of definition problem", note:"What makes a definition one? This becomes the explicit question — resolved in Metaphysics Z.12 and H.6"},
+    ]
+  },
+  {
+    id:"po2_7", label:"Post. An. II.7 — what definition states vs what demonstration proves", greek:"τί σημαίνει", accent:"#534AB7",
+    children:[
+      {label:"Definition states the meaning of a name", note:"What 'thunder' means — a noise in the clouds. This is a nominal definition: it does not prove that thunder exists or why"},
+      {label:"Demonstration proves why the attribute belongs", note:"That thunder is a noise in the clouds because of the quenching of fire — the cause is the middle term"},
+      {label:"The two are distinct in form", note:"Definition: A is B (what A is). Demonstration: all M is P · all S is M → all S is P (why S is P). They have different logical structures"},
+      {label:"Preview of the resolution", note:"But they converge in the middle term — the cause that is stated in the demonstration is what the real definition expresses"},
+    ]
+  },
+  {
+    id:"po2_8", label:"Post. An. II.8 — how definition and demonstration are related", greek:"πῶς συνδέονται", accent:"#534AB7",
+    children:[
+      {label:"The resolution begins", note:"Definition and demonstration are not identical but they are not wholly independent either — the middle term of the demonstration is the essence stated in the definition"},
+      {label:"The example of thunder", note:"Thunder = noise in clouds. Demonstration: fire is quenched in clouds; quenching of fire makes noise; thunder is quenching of fire in clouds. The cause (quenching) is what thunder essentially is"},
+      {label:"Real definition", note:"A real definition does not just state what the name means — it states the cause of the attribute's belonging to the subject. The cause is the middle term of the demonstration"},
+      {label:"The convergence", note:"Definition states the essence; demonstration proves through the essence. They meet in the middle term — the cause which is the essence"},
+    ]
+  },
+  {
+    id:"po2_9", label:"Post. An. II.9 — what things have definitions", greek:"τίνων ἔστιν ὁρισμός", accent:"#534AB7",
+    children:[
+      {label:"Not everything has a real definition", note:"Only things with an essence have a real definition — substances and what belongs to them per se"},
+      {label:"Accidental combinations do not", note:"'The pale man' has no definition in the strict sense — it is not a natural kind with an essence"},
+      {label:"Immediate essences", note:"Some essences are immediate — they have no middle term and cannot be demonstrated. They are grasped directly by nous"},
+      {label:"Mediate essences", note:"Some essences are complex — their unity can be exhibited by demonstration. These admit of the kind of definition-through-demonstration described in II.8"},
+    ]
+  },
+  {
+    id:"po2_10", label:"Post. An. II.10 — the kinds of definition", greek:"εἴδη ὁρισμοῦ", accent:"#534AB7",
+    children:[
+      {label:"Four kinds distinguished", children:[
+        {label:"Nominal definition", note:"States what a name means — indemonstrable, gives no cause", eg:"Thunder means a noise in the clouds"},
+        {label:"Real definition of an immediate essence", note:"States the essence of something with no middle term — grasped by nous, not demonstrated", eg:"A unit is that in virtue of which each thing is called one"},
+        {label:"Real definition as compressed demonstration", note:"Expresses in statement form what a demonstration proves — the middle term is the cause and the essence", eg:"Thunder = the quenching of fire in the clouds"},
+        {label:"Demonstrative definition", note:"The conclusion of a demonstration — gives the fact with the cause embedded in the middle term"},
+      ]},
+      {label:"The unity of the account", note:"All four kinds relate to the same thing seen from different angles — the essence as grasped immediately, stated nominally, expressed causally, or demonstrated discursively"},
+    ]
+  },
+  {
+    id:"po2_11", label:"Post. An. II.11 — the four causes as middle terms", greek:"τέτταρα αἴτια", accent:"#534AB7",
+    children:[
+      {label:"The four causes can each serve as middle terms", children:[
+        {label:"Formal cause", greek:"τὸ εἶδος", note:"The essence — what a thing is. This is the primary middle term in demonstration", eg:"Why does the angle in a semicircle equal a right angle? Because of what a right angle is"},
+        {label:"Material cause", greek:"ἡ ὕλη", note:"What a thing is made of — the substrate", eg:"Why does ice form? Because water is such-and-such a material"},
+        {label:"Efficient cause", greek:"ἡ ἀρχὴ τῆς κινήσεως", note:"What initiates the change", eg:"Why did the war start? Because of the raid on the ships"},
+        {label:"Final cause", greek:"τὸ τέλος", note:"What something is for — the end", eg:"Why is he walking? In order to be healthy"},
+      ]},
+      {label:"All four are middle terms", note:"Each can serve as the middle term in a demonstration — Aristotle integrates the causal analysis of the Physics with the logical analysis of the Posterior Analytics"},
+      {label:"Which cause is primary", note:"The formal cause — the essence — is the most properly demonstrative middle term. It gives the deepest why"},
+    ]
+  },
+  {
+    id:"po2_12", label:"Post. An. II.12 — the cause of past and future events", greek:"παρελθόντα καὶ μέλλοντα", accent:"#534AB7",
+    children:[
+      {label:"Can past events be demonstrated?", note:"Only if the cause is also past — the middle term must be temporally appropriate to the conclusion"},
+      {label:"Can future events be demonstrated?", note:"Only if the cause is present or future — the same temporal alignment is required"},
+      {label:"The temporal dimension of causation", note:"Causes and effects must be in the right temporal relation — efficient causes precede their effects; the formal cause is simultaneous with what it causes"},
+      {label:"Connection to De Interpretatione Ch. 9", note:"The sea battle — future contingents have no demonstrative middle term because the cause is not yet determined. This connects the epistemology of the Posterior Analytics to the temporal ontology of De Interpretatione"},
+    ]
+  },
+  {
+    id:"po2_13", label:"Post. An. II.13 — how to find definitions by the method of division", greek:"διαίρεσις ὀρθή", accent:"#534AB7",
+    children:[
+      {label:"Division rehabilitated", note:"Though division is not demonstration (II.4), it is useful for finding definitions systematically — it ensures no essential predicate is omitted"},
+      {label:"The correct method", children:[
+        {label:"Step 1", note:"Take the genus — the widest predicate that belongs per se to the kind"},
+        {label:"Step 2", note:"Divide by the first differentia — the most immediate distinction within the genus"},
+        {label:"Step 3", note:"Continue dividing until you reach a predicate that applies to the individual species and nothing wider"},
+        {label:"Step 4", note:"The definition is the conjunction of genus and all differentiae — ordered from most general to most specific"},
+      ]},
+      {label:"The order matters", note:"Differentiae must be arranged in the correct order — from genus down through successive specifications. Reversing the order gives a formally correct but uninformative definition"},
+      {label:"Connection to the Porphyrian tree", note:"The correct method of division generates the Porphyrian tree — the ordered hierarchy from supreme genus to infima species"},
+    ]
+  },
+  {
+    id:"po2_14", label:"Post. An. II.14 — collecting the problems of each science", greek:"συναγωγή", accent:"#534AB7",
+    children:[
+      {label:"The practical task", note:"For any science, collect all the attributes that belong per se to its genus — these are the problems the science must explain"},
+      {label:"Comparing with other sciences", note:"Identify which attributes are shared between sciences and which are specific — this reveals the logical relations between sciences"},
+      {label:"The inventory of predications", note:"This connects to the method of Prior Analytics I.27–28 — the systematic collection of predicates that identifies potential middle terms"},
+    ]
+  },
+  {
+    id:"po2_15", label:"Post. An. II.15 — problems sharing the same middle term", greek:"τὸ αὐτὸ μέσον", accent:"#534AB7",
+    children:[
+      {label:"The observation", note:"Different problems in a science may share the same middle term — the same cause explains multiple effects"},
+      {label:"Significance", note:"When one middle term explains many attributes, that middle term is especially fundamental — it is a deep causal principle of the science"},
+      {label:"Unity through a common cause", note:"A science is unified not only by its genus but by the network of causal connections among its problems — shared middle terms reveal the deep structure"},
+    ]
+  },
+  {
+    id:"po2_16", label:"Post. An. II.16 — does the cause always coincide with the effect?", greek:"ἅμα", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"If A is the cause of B, does A always accompany B — is the causal middle term always present when and only when the effect is present?"},
+      {label:"The answer", note:"Not always — some causes are more general than their effects. A cause may be present without the effect if other conditions are not met"},
+      {label:"The precision of the middle term", note:"The proper middle term for a demonstration must be coextensive with the effect — neither too broad nor too narrow. The most precise cause is the one with the same range as the effect"},
+      {label:"Connection to I.5", note:"This continues the discussion of demonstrating of the proper subject — the right middle term has the same extension as the conclusion"},
+    ]
+  },
+  {
+    id:"po2_17", label:"Post. An. II.17 — can the same attribute have different causes in different subjects?", greek:"ἄλλο αἴτιον", accent:"#534AB7",
+    children:[
+      {label:"The question", note:"Can the same attribute B belong to different subjects S1 and S2 through different middle terms M1 and M2?"},
+      {label:"The answer", note:"Yes — the same attribute can have different causes in different subjects. Longevity in birds may have a different cause than longevity in quadrupeds"},
+      {label:"Significance", note:"There is not always one universal cause for one attribute — the causal structure depends on the nature of the subject. This keeps demonstration anchored to specific sciences rather than becoming over-general"},
+    ]
+  },
+  {
+    id:"po2_18", label:"Post. An. II.18 — which middle term is the cause when there are several", greek:"ποῖον τὸ αἴτιον", accent:"#534AB7",
+    children:[
+      {label:"The problem", note:"When several middle terms are available for the same demonstration, which is the true cause?"},
+      {label:"The criterion", note:"The most immediate middle term is the true cause — the one closest to the conclusion with no further middle between it and the conclusion"},
+      {label:"Mediate vs immediate causes", note:"A mediate cause is a cause of the cause — it is a real factor but not the proximate explanation. The immediate cause is the proper middle term of the demonstration"},
+      {label:"Connection to I.29", note:"When several demonstrations of the same conclusion are possible, the best is the one with the most immediate middle — this gives the proximate cause"},
+    ]
+  },
+  {
+    id:"po2_19", label:"Post. An. II.19 — how we come to know first principles", greek:"νοῦς", accent:"#534AB7",
+    children:[
+      {label:"The problem", note:"If first principles are indemonstrable, how do we come to know them? They cannot be innate (Meno problem) — but they also cannot come from nothing"},
+      {label:"The answer: the epistemological ascent", children:[
+        {label:"Perception", greek:"αἴσθησις", note:"Individual perceptions of particular things — the starting point"},
+        {label:"Memory", greek:"μνήμη", note:"Retention of the perception after the object is gone"},
+        {label:"Experience", greek:"ἐμπειρία", note:"The accumulation of many memories of the same kind — the recognition of a pattern"},
+        {label:"Universal", greek:"τὸ καθόλου", note:"The universal emerges from experience through induction — the one over the many"},
+        {label:"Nous", greek:"νοῦς", note:"The immediate intellectual grasp of the universal as a first principle — not derived but seen directly"},
+      ]},
+      {label:"Nous as the state that grasps first principles", note:"Nous is not a process but a state — the stable intellectual condition in which the universal principle is held immediately and with certainty"},
+      {label:"Nous is more accurate than demonstration", note:"Demonstration proceeds from first principles — nous grasps them. Since nous grasps what demonstration starts from, nous is epistemically prior"},
+      {label:"The closing of the Organon", note:"The Posterior Analytics ends where the Metaphysics begins — with nous as the immediate grasp of what is. The logical analysis of the Organon terminates in the ontological account of intellectual intuition"},
+      {label:"Connection to the Unmoved Mover", note:"Noēsis noēseōs — the Unmoved Mover's self-thinking thought — is nous at its limit: pure intellectual intuition without any dependence on perception or induction. Lambda is the completion of the epistemological ascent of Post. An. II.19"},
+    ]
+  },
+];
+
+const allCats = [...book1, ...book2];
+const open = {};
+allCats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { book:"Book I — Ἀναλυτικὰ Ὕστερα Α", label:"I — What demonstration is: conditions and definitions (1–11)", ids:["po1","po2","po3","po4","po5","po6","po7","po8","po9","po10","po11"] },
+  { book:null, label:"II — The structure of sciences and predication (12–22)", ids:["po12","po13","po14","po15","po16","po17","po18","po19","po20","po21","po22"] },
+  { book:null, label:"III — The priority of demonstration and its limits (23–34)", ids:["po23","po24","po25","po26","po27","po28","po29","po30","po31","po32","po33","po34"] },
+  { book:"Book II — Ἀναλυτικὰ Ὕστερα Β", label:"IV — The four questions and the search for the middle term (1–12)", ids:["po2_1","po2_2","po2_3","po2_4","po2_5","po2_6","po2_7","po2_8","po2_9","po2_10","po2_11","po2_12"] },
+  { book:null, label:"V — Definition, cause, and first principles (13–19)", ids:["po2_13","po2_14","po2_15","po2_16","po2_17","po2_18","po2_19"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  allCats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return (g.book ? `<div class="book-label">${g.book}</div>` : '') +
+      `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

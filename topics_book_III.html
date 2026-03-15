@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Topics Book III</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τοπικά Γ</h1>
+<p class="subtitle">Topics Book III — complete interactive reference · chapters 1–6</p>
+<p class="subtitle">Subject: comparative accident — which of two things is more choiceworthy, better, or more desirable</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book III completes the treatment of accident by focusing on comparative problems — which of two things is preferable, better, or more. It is the shortest book of the Topics but contains some of Aristotle's sharpest practical reasoning. Book IV moves to genus.</footer>
+
+<script>
+const cats = [
+  {
+    id:"t3_1", label:"Top. III.1 — the comparative problem and topoi for the more choiceworthy", greek:"αἱρετώτερον", accent:"#BA7517",
+    children:[
+      {label:"The comparative problem defined", note:"Not whether something is good, but whether it is better than another thing — the problem of comparative evaluation"},
+      {label:"What is choiceworthy in itself vs instrumentally", children:[
+        {label:"Intrinsic choiceworthiness", note:"What is desirable for its own sake — pleasure, knowledge, virtue. These are to be preferred over what is merely useful"},
+        {label:"Instrumental choiceworthiness", note:"What is desirable as a means — money, medicine. Preferred only when the end is also preferred"},
+      ]},
+      {label:"First topoi: what is an end vs what is a means", note:"An end is more choiceworthy than a means — happiness more than money, health more than medicine"},
+      {label:"What is choiceworthy per se vs incidentally", note:"Per se: being virtuous. Incidentally: seeming virtuous. The per se is always more choiceworthy than the incidental"},
+      {label:"The more self-sufficient", note:"What can be chosen independently of other things is more choiceworthy than what requires accompaniment"},
+      {label:"What the wise or good person would choose", note:"The judgement of the excellent person is a criterion — what the σπουδαῖος chooses is more choiceworthy. This connects to the Ethics"},
+    ]
+  },
+  {
+    id:"t3_2", label:"Top. III.2 — more topoi for comparative evaluation", greek:"τόποι συγκριτικοί", accent:"#BA7517",
+    children:[
+      {label:"The longer-lasting is more choiceworthy", note:"What endures longer provides more of the good — a lasting friendship is better than a brief pleasure"},
+      {label:"What the better person chooses", note:"If a more virtuous person prefers A to B, A is more choiceworthy — the excellence of the chooser calibrates the preference"},
+      {label:"What is harder to obtain", note:"All else equal, what requires more effort is not necessarily better — but if equally good, what is more readily available is to be preferred"},
+      {label:"What is more precise", note:"The more exact good is preferable — knowledge is better than right opinion because it is more precise and more stable"},
+      {label:"Combination topoi", children:[
+        {label:"A good + a good vs one alone", note:"Two goods together are better than either alone — unless the combination undermines one of them"},
+        {label:"More of the same good", note:"More of what is good is better than less — unless more brings diminishing returns or side effects"},
+      ]},
+      {label:"The companion topos", note:"What accompanies the better thing is itself better — the pleasure that accompanies virtue is better than the pleasure that accompanies vice"},
+    ]
+  },
+  {
+    id:"t3_3", label:"Top. III.3 — topoi from the consequences of each alternative", greek:"ἐκ τῶν ἑπομένων", accent:"#BA7517",
+    children:[
+      {label:"The topos from consequences", note:"If the consequences of A are better than the consequences of B, then A is more choiceworthy — evaluate the alternatives by their downstream effects"},
+      {label:"What leads to the better end", note:"The option that leads to a more desirable end is more choiceworthy, even if it is less pleasant in the moment"},
+      {label:"What avoids the worse consequence", note:"The option whose rejection leads to worse consequences is more choiceworthy — evaluate by what is lost if rejected"},
+      {label:"The asymmetry of loss and gain", note:"Avoiding a great evil may be more important than achieving a moderate good — the comparative topos must weigh both sides"},
+      {label:"Connection to practical reasoning", note:"This chapter is the logical skeleton of practical deliberation — the syllogism of action uses exactly these comparative topoi to reach a decision"},
+    ]
+  },
+  {
+    id:"t3_4", label:"Top. III.4 — topoi from the more and less again: refinements", greek:"μᾶλλον καὶ ἧττον", accent:"#BA7517",
+    children:[
+      {label:"What is praised more", note:"The more praised of two goods is more choiceworthy — praise tracks genuine excellence"},
+      {label:"What is blamed more", note:"The more blameworthy of two evils is worse — blame tracks genuine deficiency"},
+      {label:"The precision of the more/less topos", note:"The comparative must be between things of the same genus — comparing across genera generates confusion. A better colour is not better than a moderate pleasure"},
+      {label:"Refining the comparison", note:"When the comparison seems to yield no clear result, look for a further differentiating feature — something that tips the balance one way"},
+      {label:"Connection to II.4", note:"The more/less topoi of Book II are here applied to comparative evaluation specifically — the same logical structure but in the practical domain of choice"},
+    ]
+  },
+  {
+    id:"t3_5", label:"Top. III.5 — topoi from destruction, loss, and privation", greek:"φθορά καὶ στέρησις", accent:"#BA7517",
+    children:[
+      {label:"The topos from destruction", note:"What is harder to destroy is more choiceworthy — what endures is more valuable than what is fragile"},
+      {label:"The topos from loss", note:"What is worse to lose is more valuable — losing sight is worse than losing a tooth, so sight is more valuable"},
+      {label:"Privation as indicator of value", note:"The privation of a greater good is a greater evil — blindness is worse than deafness because sight is more valuable than hearing"},
+      {label:"Connection to Categories Ch. 10", note:"Privation and possession (Cat. Ch. 10) — the comparative evaluation of privations exploits the categorical analysis of the privation-possession pair"},
+      {label:"Connection to practical reasoning", note:"Practical deliberation must weigh losses as well as gains — this topos provides the logical structure for that weighing"},
+    ]
+  },
+  {
+    id:"t3_6", label:"Top. III.6 — summary and transition to genus", greek:"μετάβασις", accent:"#BA7517",
+    children:[
+      {label:"Summary of Book III", note:"The comparative topoi fall into four families: from intrinsic vs instrumental value, from consequences, from more/less, from loss and privation"},
+      {label:"The generality of these topoi", note:"The comparative topoi apply not only to ethical problems but to any comparative judgment — which explanation is better, which definition more accurate, which claim more certain"},
+      {label:"Transition", note:"Books II–III have treated accident — what may or may not belong. Book IV turns to genus — what must belong in the what-it-is. The genus is a stronger predicative relation than the accident"},
+      {label:"The logical progression of the Topics", note:"Accident (II–III) → Genus (IV) → Property (V) → Definition (VI–VII) → Practice (VIII). Each predicable is more necessary and more closely tied to essence than the last"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Intrinsic vs instrumental choiceworthiness (1–2)", ids:["t3_1","t3_2"] },
+  { label:"II — Topoi from consequences and degree (3–4)", ids:["t3_3","t3_4"] },
+  { label:"III — Topoi from loss, privation, and transition to genus (5–6)", ids:["t3_5","t3_6"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Metaphysics II: Δ Ε Ζ Η</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τὰ Μετὰ τὰ Φυσικά · Tetralemmic Position II</h1>
+<p class="subtitle">Metaphysics Δ (Delta) · Ε (Epsilon) · Ζ (Zeta) · Η (Eta)</p>
+<p class="subtitle">The determination of being: the philosophical lexicon, the kinds of being, being as substance, matter and form</p>
+<p class="subtitle" style="color:#888">The second tetralemmic position — the terms determined. These four books establish the conceptual vocabulary and the positive account of what being is. Delta clears the ground by distinguishing senses of key terms. Epsilon maps the field. Zeta and Eta are the sustained analysis of being as substance, culminating in the identification of being with actuality.</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Position II is the conceptual heart of the Metaphysics. Delta (30 chapters) is the philosophical dictionary of the Metaphysics — every key term distinguished in its multiple senses. Epsilon identifies which kind of being is primary. Zeta (the longest and densest book) investigates what being is — working through matter, essence, universal, genus, and substrate to arrive at form as the answer. Eta draws out the consequences: being is form, form is actuality, and the unity of a defined thing is explained by the relation of actuality to potentiality.</footer>
+
+<script>
+const books = [
+  {
+    book: "Δ — Delta (Book V) · The philosophical lexicon",
+    groups: [
+      {
+        label: "Principles, causes, elements, and nature (Δ.1–4)",
+        chapters: [
+          {
+            id:"mD1", label:"Met. Δ.1 — principle", greek:"ἀρχή", accent:"#BA7517",
+            children:[
+              {label:"Six senses of principle", note:"(1) The starting point of motion — the part from which movement begins, e.g. the keel of a ship. (2) The best starting point for learning. (3) The immanent starting point of generation — the seed. (4) The external efficient cause — the father, the counsellor. (5) What something is made to be by its own choice — the starting point of rational action. (6) The premise of a demonstration"},
+              {label:"The common thread", note:"All senses share: a principle is a primary source from which something is, comes to be, or is known. Being first — in existence, in generation, or in knowledge — is what makes something a principle"},
+            ]
+          },
+          {
+            id:"mD2", label:"Met. Δ.2 — cause", greek:"αἴτιον", accent:"#BA7517",
+            children:[
+              {label:"The four causes restated with full distinctions", children:[
+                {label:"Material cause", note:"What something is made of — the bronze of a statue, the silver of a bowl"},
+                {label:"Formal cause", note:"The form and pattern — the ratio of the octave, the definition of the thing"},
+                {label:"Efficient cause", note:"The primary source of the change — the craftsman, the adviser, the father"},
+                {label:"Final cause", note:"The end and the good — that for the sake of which, the best outcome"},
+              ]},
+              {label:"Causes are multiple and reciprocal", note:"The same thing can be a cause in several ways simultaneously — exercise is both an efficient cause and a final cause of health. Causes of contrary effects are the same cause — what causes health can cause disease in excess"},
+              {label:"Accidental causes", note:"Polyclitus made the statue — Polyclitus is an accidental cause, the sculptor is the proper cause. Accidental causes are indefinite; proper causes are definite"},
+            ]
+          },
+          {
+            id:"mD3", label:"Met. Δ.3 — element", greek:"στοιχεῖον", accent:"#BA7517",
+            children:[
+              {label:"Element defined", note:"A primary immanent component out of which something is composed and which is not further divisible into different kinds — the letters of speech are elements; earth, water, fire, air are elements of bodies"},
+              {label:"Extended senses", note:"The smallest parts of any proof — the propositions on which many proofs depend. The primary predicates of each subject. The primary genus — being and the one have been called elements by some"},
+              {label:"The common thread", note:"An element is what is primary, immanent, and not further reducible within its kind — the logical atoms of a domain"},
+            ]
+          },
+          {
+            id:"mD4", label:"Met. Δ.4 — nature", greek:"φύσις", accent:"#BA7517",
+            children:[
+              {label:"Five senses of nature", note:"(1) Generation of growing things. (2) The immanent primary matter from which growth proceeds. (3) The source of primary motion in natural things. (4) The matter of artificial things — bronze is the nature of the statue. (5) The essence — what a thing is in its fullest actuality"},
+              {label:"Nature as form and essence", note:"The most proper sense: nature is the form and essence of natural things — what it is to be a natural thing of that kind. The other senses are derivative from this"},
+              {label:"Nature vs art", note:"Natural things have their principle of motion in themselves; artifacts have it in another — the craftsman. This is the distinction between physics and the productive sciences"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Necessity, unity, being, and substance (Δ.5–8)",
+        chapters: [
+          {
+            id:"mD5", label:"Met. Δ.5 — necessary", greek:"ἀναγκαῖον", accent:"#BA7517",
+            children:[
+              {label:"Four senses", note:"(1) Without which something cannot live or be good — the necessary condition. (2) What compels — force. (3) What cannot be otherwise — the logically and metaphysically necessary. (4) Demonstrations from necessary premises yield necessary conclusions"},
+              {label:"The primary sense", note:"What cannot be otherwise — the logically necessary. All other senses are derivative: a necessary condition is what cannot be absent without failure; force is what cannot be resisted"},
+            ]
+          },
+          {
+            id:"mD6", label:"Met. Δ.6 — one", greek:"ἕν", accent:"#BA7517",
+            children:[
+              {label:"Accidental unity vs per se unity", note:"Coriscus and the musical — accidentally one (they happen to be the same person). Man and animal — per se one (animal is in the definition of man)"},
+              {label:"Four kinds of per se unity", children:[
+                {label:"Continuity", note:"What is continuous is one — a bundle tied together, a bent line. More unified when the motion is indivisible"},
+                {label:"Indivisibility", note:"What cannot be divided — the point, the unit"},
+                {label:"Universal", note:"What makes many things one — the genus or species"},
+                {label:"What it is to be something", note:"The most proper sense: what makes a thing one is its essence — the formal unity of the thing"},
+              ]},
+              {label:"The primary sense of one", note:"The indivisible in form — what has one logos, one account. The unity of a thing is its formal unity — its being one kind of thing"},
+              {label:"Connection to aporia 9", note:"Beta aporia 9 asked whether being and the one are beyond the categories. Gamma established they convert. Delta distinguishes their senses. The aporiai are being progressively resolved"},
+            ]
+          },
+          {
+            id:"mD7", label:"Met. Δ.7 — being", greek:"ὄν", accent:"#BA7517",
+            children:[
+              {label:"Being said in many ways", note:"Being is not a single unified predicate — it has several irreducibly different senses corresponding to the categories"},
+              {label:"Being according to the categories", note:"Being as being (substance) · being as quality · being as quantity · being as relation · and the rest. Each category is a mode of being"},
+              {label:"Being as truth", note:"To say something is, in the sense of it being true — 'Socrates is musical' means it is true that Socrates is musical. Being as truth is different from being as substance"},
+              {label:"Being as potentiality and actuality", note:"What is potentially, is — in a qualified sense. What is actually, is — in the primary sense. The distinction of potentiality and actuality cuts across all the categories"},
+              {label:"Being as accidental", note:"The accidental connection of subject and predicate — Coriscus is musical. This is the weakest sense of being — being that is not per se"},
+              {label:"The primary sense", note:"Being as substance — what a thing is in its own right, in virtue of itself. This is the being that the rest of the Metaphysics investigates"},
+            ]
+          },
+          {
+            id:"mD8", label:"Met. Δ.8 — being as substance", greek:"οὐσία", accent:"#BA7517",
+            children:[
+              {label:"Four senses of being (οὐσία)", children:[
+                {label:"The bodies", note:"Simple bodies (earth, water, fire, air) and their compounds — animals, plants, parts. These are called beings in the primary sense because they are subjects of all other predications"},
+                {label:"The immanent cause of being", note:"The essence, the form — what makes a thing the kind of thing it is. The soul is the being of the living body"},
+                {label:"The parts immanent in things", note:"The parts that define and limit a thing — that whose destruction destroys the whole. These are beings in a secondary sense"},
+                {label:"The essence", note:"The what-it-is-to-be for each thing — the τὸ τί ἦν εἶναι. This is the most primary sense: what a thing is in the fullest sense"},
+              ]},
+              {label:"The translation question", note:"οὐσία rendered as 'substance' is a Latin imposition — substantia. The Greek means being, what is, the being of the thing. To translate it as 'substance' is to import a Scholastic framework that distorts the analysis"},
+              {label:"Connection to Categories Ch. 5", note:"Primary being (individual) and secondary being (species, genus) from the Categories are here deepened — the Metaphysics shows that the being of the individual is its form, its essence, its τὸ τί ἦν εἶναι"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Sameness, difference, prior, potentiality, quantity, quality, relation (Δ.9–15)",
+        chapters: [
+          {
+            id:"mD9", label:"Met. Δ.9–15 — sameness through relation", greek:"ταὐτόν ἕως πρός τι", accent:"#BA7517",
+            children:[
+              {label:"Δ.9 — sameness, likeness, otherness", note:"Sameness: numerical, specific, generic. Likeness: same quality. Otherness: differs in at least one respect. Contrariety: the greatest difference within a genus"},
+              {label:"Δ.10 — opposites", note:"Four types of opposites: relative, contrary, privation/possession, affirmation/negation — the full treatment from Cat. Ch. 10 restated in the Metaphysics with greater precision"},
+              {label:"Δ.11 — prior and posterior", note:"Prior in time, in being (cause is prior to effect), in order of knowing (the universal is prior in knowledge, the particular in perception), in value. The multiple senses must be distinguished in each argument"},
+              {label:"Δ.12 — potentiality", note:"Five senses: (1) principle of motion in another, (2) principle of motion in the thing itself, (3) capacity for being changed, (4) states not being changed for the worse, (5) in geometry: what can be as required. Primary sense: the source of change"},
+              {label:"Δ.13 — quantity", note:"Discrete (number, speech) vs continuous (line, surface, solid, time, place). Per se vs accidental quantity. Equal/unequal as the proper predicate of quantity"},
+              {label:"Δ.14 — quality", note:"Differentia of being (rational, mortal) · affective qualities (sweet, hot) · habits and dispositions · shape and form. Proper predicate: similar/dissimilar"},
+              {label:"Δ.15 — relative", note:"As number (double/half) · as knowledge to its object · as measurable to its measure. Relatives are simultaneous by nature — if one exists the other does"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Complete, limit, that in virtue of which, disposition, having, affection, privation, having (Δ.16–23)",
+        chapters: [
+          {
+            id:"mD16", label:"Met. Δ.16–23 — complete through having", greek:"τέλειον ἕως ἔχειν", accent:"#BA7517",
+            children:[
+              {label:"Δ.16 — complete", note:"What has all its parts · what is not exceeded · what has achieved its end. Primary sense: what has reached its telos and is good. Completeness is teleological — it is being what one fully is"},
+              {label:"Δ.17 — limit", note:"The end of each thing · the form of magnitude · the end toward which motion tends · the essence and being of each thing. Form is the limit of matter — what determines the indeterminate"},
+              {label:"Δ.18 — that in virtue of which", note:"The form in virtue of which something is what it is · the primary being of a thing · the cause of being what it is. Three senses, all pointing to the formal cause as the ground of predication"},
+              {label:"Δ.19 — disposition", note:"The arrangement of what has parts — either in place, or in potentiality, or in form. Disposition is always relative to something"},
+              {label:"Δ.20 — having", note:"As a hexis (stable state) · as an activity of the haver and what is had · as the containing relation. The multiple senses from Cat. Ch. 15 deepened"},
+              {label:"Δ.21 — affection", note:"A quality by which alteration occurs · the actualisations of alterations · harmful changes and motions · large-scale changes and movements"},
+              {label:"Δ.22 — privation", note:"Not having what one naturally has · not having it when one naturally would · not having it in the natural way. Privation is always relative to a nature — the blind stone is not deprived of sight"},
+              {label:"Δ.23 — having (ἔχειν)", note:"To hold something · to hold against resistance · to contain · to possess · to be in a certain state. The category of having as a relation between subject and what is held"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "To come from, part, whole, truncated, genus, false (Δ.24–30)",
+        chapters: [
+          {
+            id:"mD24", label:"Met. Δ.24–30 — to come from through false", greek:"ἐκ τίνος ἕως ψεῦδος", accent:"#BA7517",
+            children:[
+              {label:"Δ.24 — to come from", note:"As from matter · as from the first mover · as from parts of the form · as from a part. The 'from' relation tracks the causal structure — from what material, from what efficient cause, from what formal components"},
+              {label:"Δ.25 — part", note:"Into which a quantity is divided · the elements of a definition · the elements of an argument. Parts of the form vs parts of the matter — essential parts vs material components"},
+              {label:"Δ.26 — whole", note:"What has all its parts such that their being together is something · what contains what it contains such that they are one. Totality vs all — the whole is more than the sum of its parts because the form gives them unity"},
+              {label:"Δ.27 — truncated", note:"Only quantities can be truncated · only wholes · only those with a non-uniform arrangement. Truncation requires a natural limit from which the deficiency is measured"},
+              {label:"Δ.28 — genus", note:"Continuous generation of the same form · the first mover of the same form · the subject of differences. Genus as the what-it-is of many — from which the differentiae divide off the species"},
+              {label:"Δ.29 — false", note:"The false thing: what is put together inappropriately (circle made of triangles) or what does not exist but seems to (paintings, dreams). The false account: of what is not, or of what is but not as it is. False man: who chooses and produces false accounts. The three senses track the three bearers of truth: things, accounts, persons"},
+              {label:"Δ.30 — accident", note:"What belongs to something and is truly said of it but is neither necessary nor usual · what happens to be so but could be otherwise. The accidental is indefinite — there is no science of what happens by chance"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Ε — Epsilon (Book VI) · The kinds of being; being as truth",
+    groups: [
+      {
+        label: "The division of theoretical sciences; being as truth (Ε.1–4)",
+        chapters: [
+          {
+            id:"mE1", label:"Met. Ε.1 — the division of theoretical sciences", greek:"θεωρητικαί", accent:"#534AB7",
+            children:[
+              {label:"Three theoretical sciences", children:[
+                {label:"Physics", note:"Studies being as moving and having matter — separable in existence but not in account. Investigates the kind of being that is movable"},
+                {label:"Mathematics", note:"Studies being as non-moving and having matter only in account — separable in account but not in existence. Investigates quantity as such"},
+                {label:"First philosophy / theology", note:"Studies being that is separable and non-moving — form without matter, actuality without potentiality. Investigates the most honourable kind of being"},
+              ]},
+              {label:"Why first philosophy is theology", note:"The most honourable science studies the most honourable things — and the most honourable being is the divine, the unmoved, the purely actual. First philosophy studies being qua being by studying what being most fully is"},
+              {label:"Resolution of aporia 3", note:"One science of all beings (aporia 3) — yes, but only through focal meaning. First philosophy studies all beings insofar as they are beings, by studying what being most fully is. It does not replace physics or mathematics but grounds them"},
+            ]
+          },
+          {
+            id:"mE2", label:"Met. Ε.2 — being per se, accidental being, and being as true", greek:"καθ᾽ αὑτό, κατὰ συμβεβηκός, ὡς ἀληθές", accent:"#534AB7",
+            children:[
+              {label:"The four senses of being from Delta.7 revisited", note:"Being according to categories · being accidentally · being as true/false · being as potentiality/actuality. Only the first and last are the proper subjects of science"},
+              {label:"Accidental being excluded from science", note:"There is no science of accident — the accidental is indefinite, has no determinate cause. Post. An. I.30: no demonstration of what happens by chance"},
+              {label:"Being as true/false distinguished", note:"Being as true (it is true that S is P) is a mental affair — it is a property of thought and speech, not of things in the world. It belongs to a different inquiry"},
+            ]
+          },
+          {
+            id:"mE3", label:"Met. Ε.3 — accidental being has no cause that is not itself accidental", greek:"τὸ συμβεβηκός", accent:"#534AB7",
+            children:[
+              {label:"The indefiniteness of accident", note:"Every accidental event has a cause — but that cause is itself accidental, and so on indefinitely. There is no termination in a necessary cause"},
+              {label:"The analogy with the Sophists", note:"The sophist treats all predication as equally valid — this is the logical analogue of treating accident as primary. The Sophistical Refutations shows why this leads to the destruction of all distinction"},
+              {label:"Connection to Post. An. I.30", note:"No demonstration of chance events — the demonstrative syllogism requires necessary premises. Accidental being is excluded from scientific knowledge by the same principle that excludes future contingents from demonstration"},
+            ]
+          },
+          {
+            id:"mE4", label:"Met. Ε.4 — being as true is in the mind, not in things", greek:"ὡς ἀληθές", accent:"#534AB7",
+            children:[
+              {label:"Truth and falsity as mental", note:"Being-true and being-false are not features of things in the world — they are features of combinations and divisions in thought. A stone is not true or false; the statement about it is"},
+              {label:"Simple terms and truth", note:"Simple, uncombined things — essences — cannot be true or false. They are either grasped or not grasped. Truth and falsity require combination — the attribution of a predicate to a subject"},
+              {label:"The proper subject of Zeta", note:"Having excluded accidental being and being-as-true, Epsilon clears the field for Zeta's investigation of being proper — being according to the categories, primarily being as substance"},
+              {label:"Connection to De Int. Ch. 1", note:"Truth and falsity arise from combination and division — the semiotic chain of De Interpretatione Ch. 1. Epsilon.4 grounds that logical analysis ontologically: combination and division are mental operations on what exists independently of mind"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Ζ — Zeta (Book VII) · Being as substance; what is substance?",
+    groups: [
+      {
+        label: "The priority of substance; substance as subject (Ζ.1–3)",
+        chapters: [
+          {
+            id:"mZ1", label:"Met. Ζ.1 — being is said in many ways; substance is primary", greek:"πολλαχῶς", accent:"#0F6E56",
+            children:[
+              {label:"The opening of Zeta", note:"Being is said in many ways — but all ways relate back to one primary sense: being as substance (οὐσία). The focal meaning established in Gamma.1 is now the starting point for investigation"},
+              {label:"Why substance is primary", children:[
+                {label:"Priority in account", note:"In defining anything, we must mention what kind of thing it is — substance appears in every account"},
+                {label:"Priority in knowledge", note:"We know a thing best when we know what it is — when we know its substance. To know that it is pale or how large it is is less complete than knowing what it is"},
+                {label:"Priority in time", note:"Of the other categories, some can exist only if there is a substance — qualities and quantities depend on substances"},
+              ]},
+              {label:"The question", note:"What is being? = What is substance? The investigation of being qua being converges on the investigation of substance — the two questions are one"},
+            ]
+          },
+          {
+            id:"mZ2", label:"Met. Ζ.2 — the candidates for substance", greek:"ποῖα οὐσία", accent:"#0F6E56",
+            children:[
+              {label:"What everyone agrees are substances", note:"Bodies — animals, plants, the heavenly bodies, the simple elements. These are the clearest cases"},
+              {label:"Disputed candidates", children:[
+                {label:"The limits of bodies", note:"Surfaces, lines, points, numbers — are these substances or not? They seem to be parts or boundaries of bodies"},
+                {label:"The Forms", note:"Plato's separate Forms — are they substances? The investigation of Zeta will determine this"},
+                {label:"Mathematical objects", note:"Numbers, geometrical figures — are they substances? Intermediate between Forms and sensibles?"},
+              ]},
+              {label:"The agenda of Zeta", note:"To determine which of these candidates are genuinely substances and why — by investigating what substance is. The answer will determine which candidates qualify"},
+            ]
+          },
+          {
+            id:"mZ3", label:"Met. Ζ.3 — substance as subject, essence, universal, genus", greek:"ὑποκείμενον", accent:"#0F6E56",
+            children:[
+              {label:"Four candidates for what substance is", children:[
+                {label:"The subject", greek:"τὸ ὑποκείμενον", note:"What everything else is predicated of and is not itself predicated of anything else — the ultimate subject of predication"},
+                {label:"The essence", greek:"τὸ τί ἦν εἶναι", note:"The what-it-is-to-be for each thing — its formal definition"},
+                {label:"The genus", greek:"τὸ γένος", note:"The widest per se predicate — what the thing most fundamentally is"},
+                {label:"The universal", greek:"τὸ καθόλου", note:"What is predicated of many — the universal kind"},
+              ]},
+              {label:"The subject approach and its limit", note:"If substance is the ultimate subject, then prime matter is most fully substance — pure substrate with no form. But prime matter is unknowable and indeterminate — it barely exists. The subject approach leads to the wrong answer"},
+              {label:"The agenda", note:"Zeta will investigate essence, universal, and genus in turn — showing that essence (the formal principle) is what substance most properly is. The subject analysis is necessary but insufficient"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Essence and definition (Ζ.4–12)",
+        chapters: [
+          {
+            id:"mZ4", label:"Met. Ζ.4 — what essence is; essence and definition", greek:"τὸ τί ἦν εἶναι", accent:"#0F6E56",
+            children:[
+              {label:"Essence defined", note:"The what-it-is-to-be for each thing — τὸ τί ἦν εἶναι. What something is in virtue of itself, by its own nature, not accidentally"},
+              {label:"Only substances have essences in the primary sense", note:"The pale man has no essence in the strict sense — paleness and man are accidentally combined. Only things defined per se have essences — only natural kinds and their formal principles"},
+              {label:"The essence is what the definition states", note:"The definition states the essence — it says what the thing is in virtue of itself. Essence and definition are correlative: the essence is what the definition expresses"},
+              {label:"Connection to Topics VI", note:"The whole of Topics Book VI is the dialectical testing of definitions — which is the testing of essence claims. Zeta.4 is the metaphysical ground of that logical practice"},
+            ]
+          },
+          {
+            id:"mZ5", label:"Met. Ζ.5 — essence of combinations", greek:"συνόλων", accent:"#0F6E56",
+            children:[
+              {label:"Do compounds have essences?", note:"'The pale man' — does this combination have an essence? Only if the combination is per se — if the elements necessarily go together"},
+              {label:"Per se compounds vs accidental compounds", note:"'Snub' (concave nose) is a per se combination — the concavity is inherently in the nose. 'Pale man' is an accidental combination — paleness is not inherently in man"},
+              {label:"Snub vs concave", note:"'Snub' contains its matter in its definition — it is concavity-in-a-nose. 'Concave' is purely formal. This distinction is crucial: some definitions are of forms alone, some include matter"},
+              {label:"Connection to Post. An. II.10", note:"The kinds of definition — nominal, real, demonstrative. Zeta.5 shows why some definitions include matter (snub, man as rational animal) and some do not (concave, triangle)"},
+            ]
+          },
+          {
+            id:"mZ6", label:"Met. Ζ.6 — each thing and its essence are the same", greek:"ταὐτόν", accent:"#0F6E56",
+            children:[
+              {label:"The identity thesis", note:"Each primary being is identical with its essence — Socrates just is what it is to be Socrates. There is no gap between the individual and its essence at the level of primary being"},
+              {label:"Why this holds for primary being", note:"Primary beings are not composed of a subject and an essence as if these were two separate things — the being of the individual is its form. The individual is its essence"},
+              {label:"Does not hold for accidental compounds", note:"The pale man is not identical to the essence of pale man — there is no such essence. The identity holds only for things that have genuine per se essences"},
+              {label:"Philosophical significance", note:"This identity thesis is Aristotle's response to the Third Man — if each primary being is identical to its essence, there is no need for a separate Form. The essence is immanent in the individual, not a separate entity"},
+            ]
+          },
+          {
+            id:"mZ7", label:"Met. Ζ.7–9 — generation: natural, artificial, spontaneous", greek:"γένεσις", accent:"#0F6E56",
+            children:[
+              {label:"Ζ.7 — the three kinds of generation", note:"Natural (from nature — man generates man), artificial (from art — the builder builds the house), spontaneous (from chance — the wound heals itself)"},
+              {label:"Form is not generated", note:"In every generation what comes to be is the compound (matter + form) — not the form itself. The form is not generated; it is what the matter becomes. Forms are not born or made; they impose themselves on matter"},
+              {label:"Ζ.8 — why there is no Form of man separate from men", note:"If a Form of man were generated, it would itself require a generator and a form — infinite regress. The form of man is not separate from men; it is what each man is. Plato's separate Forms are the error"},
+              {label:"Ζ.9 — spontaneous generation", note:"In spontaneous generation the efficient cause is internal — the matter itself has the power to produce the form without an external agent. The form is in the matter potentially; spontaneous generation is the actualization of that potentiality"},
+            ]
+          },
+          {
+            id:"mZ10", label:"Met. Ζ.10–11 — definition and its parts", greek:"μέρη ὁρισμοῦ", accent:"#0F6E56",
+            children:[
+              {label:"Are parts of the thing parts of the definition?", note:"The syllable BA — is A a part of the definition of BA? Or is BA prior to A as a whole to its part? The relation of whole to parts is not simple"},
+              {label:"Form-parts vs matter-parts", note:"Parts of the form are parts of the definition — the circle is part of the definition of semicircle. Parts of the matter may not be — the bronze is part of the bronze statue but not part of the definition of statue"},
+              {label:"The definition states the form, not the compound", note:"The proper definition of a natural thing states its form — what it is to be that kind of thing. The material parts are not in the definition unless the definition is of a per se compound (like snub)"},
+              {label:"Ζ.11 — which parts are prior?", note:"Form-parts are prior to the whole in account. Matter-parts may be posterior to the whole. The same object (e.g., the finger) can be a part of a living body or a severed finger — the same matter, but the form makes it what it is"},
+            ]
+          },
+          {
+            id:"mZ12", label:"Met. Ζ.12 — the unity of definition", greek:"ἑνότης ὁρισμοῦ", accent:"#0F6E56",
+            children:[
+              {label:"The problem", note:"A definition states genus + differentiae — why is this one thing and not many? 'Two-footed animal' — why are 'two-footed' and 'animal' one, not two?"},
+              {label:"The solution", note:"The later differentia already contains the earlier — 'two-footed' already implies 'animal' (since feet are parts of animals). The differentiae are not additive but progressive — each successive differentia subsumes the previous"},
+              {label:"Division must be by opposites", note:"Each differentia divides by genuine opposition — footed/footless, two-footed/many-footed. The differentiae form a continuous chain of progressive determination"},
+              {label:"Connection to Post. An. II.13", note:"The correct method of division gives the correct order of differentiae — the unity of definition is guaranteed by correct division. Zeta.12 is the metaphysical ground of the logical procedure of Post. An. II.13"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Universal, genus, substrate — the negative results (Ζ.13–16)",
+        chapters: [
+          {
+            id:"mZ13", label:"Met. Ζ.13 — the universal is not substance", greek:"τὸ καθόλου οὐκ οὐσία", accent:"#0F6E56",
+            children:[
+              {label:"The argument", note:"Substance is what belongs to one thing alone — it is the being of that individual. But a universal belongs to many. Therefore no universal is a substance"},
+              {label:"The Platonic position refuted", note:"Plato made universals (Forms) into the primary substances — the most real things. But if substance belongs to one thing, and universals belong to many, universals cannot be substances"},
+              {label:"The positive implication", note:"Substance is individual — primary being is the individual (as the Categories stated). The universal is real — it is the essence that the individual instantiates — but it is not itself a substance. It exists only in individuals"},
+              {label:"Connection to Cat. Ch. 5", note:"Primary being (individual) vs secondary being (species, genus). Zeta.13 is the Metaphysics' deepening of the Categories' analysis — the individual is primary not merely descriptively but metaphysically"},
+            ]
+          },
+          {
+            id:"mZ14", label:"Met. Ζ.14 — the consequences for Platonic Forms", greek:"εἴδη Πλατωνικά", accent:"#0F6E56",
+            children:[
+              {label:"If Forms are universals and universals are not substances", note:"Then Forms are not substances — the Platonic programme collapses. The most fundamental Platonic claim is defeated by the argument of Zeta.13"},
+              {label:"The Third Man revisited", note:"If the Form of Man is itself a man (participates in Manhood), then there must be a third man — the Form of Form-of-Man. The regress Aristotle identified in Alpha.9 is here seen as a consequence of making universals substances"},
+              {label:"Forms as particulars", note:"If Forms are particulars (to avoid being universals), they cannot do the explanatory work Plato needs — they cannot explain why many things share a nature if the Form is just one more particular"},
+            ]
+          },
+          {
+            id:"mZ15", label:"Met. Ζ.15 — no definition of particulars; no Form of perishables", greek:"οὐκ ἔστιν ὁρισμός", accent:"#0F6E56",
+            children:[
+              {label:"No definition of a particular as such", note:"Socrates as Socrates — this individual — cannot be defined. Definition is of what is universal and formal. The individual is known by perception, not by definition"},
+              {label:"No Form of perishable things", note:"A Form is eternal and unchanging. But perishable things exist only at certain times. There cannot be a Form of Socrates — Socrates perishes. The Form would outlast what it is supposed to explain"},
+              {label:"The consequence", note:"Forms cannot explain perishable individuals — the gap between eternal Form and perishable particular is unbridgeable. The explanatory project of Platonism fails for the most common cases"},
+            ]
+          },
+          {
+            id:"mZ16", label:"Met. Ζ.16 — the parts of sensible substances", greek:"μέρη αἰσθητῶν", accent:"#0F6E56",
+            children:[
+              {label:"Are parts of sensible substances substances?", note:"Are the hand, the eye, the heart substances? Or only the whole living being?"},
+              {label:"Parts as potential", note:"The severed hand is a hand only in name — it cannot perform the function of a hand. Parts are substances only as parts of a functioning whole — only potentially"},
+              {label:"The form gives being to the parts", note:"It is the form of the whole organism that makes its parts what they are — the heart is a heart because of its role in the living organism. The form is prior to the parts in being"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Substance as form and actuality (Ζ.17)",
+        chapters: [
+          {
+            id:"mZ17", label:"Met. Ζ.17 — substance is form; form is cause of being", greek:"εἶδος αἴτιον τοῦ εἶναι", accent:"#0F6E56",
+            children:[
+              {label:"The fresh start", note:"Zeta.17 begins again from a different angle — asking what substance is as a cause. What makes this matter be a house? The form — the arrangement of bricks and mortar that constitutes a house"},
+              {label:"Substance as what causes matter to be something", note:"Form is the cause of the matter being what it is — the soul is what causes the body to be a living body. Form is substance because it is the cause of being"},
+              {label:"The syllogistic model", note:"Why is man an animal? Because man just is a two-footed animal — the definition states the cause. The middle term of the demonstration is the essence — the formal cause"},
+              {label:"The conclusion of Zeta", note:"Substance is form — the formal cause, the essence, the what-it-is-to-be for each thing. Not matter, not the compound, not the universal, not the genus — but form as the active principle that makes something be what it is"},
+              {label:"Connection to your thesis", note:"Form is the operator — as Being is the operator in the Categories. The formal cause is not a passive entity but the active principle of determination. This is the Metaphysics' deepening of the Categories' account of secondary being"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Η — Eta (Book VIII) · Matter, form, and actuality in sensible substances",
+    groups: [
+      {
+        label: "Matter and form in sensible substances (Η.1–4)",
+        chapters: [
+          {
+            id:"mH1", label:"Met. Η.1 — the conclusions of Zeta; the kinds of substance", greek:"σύνοψις", accent:"#993C1D",
+            children:[
+              {label:"Summary of Zeta", note:"Substance is form — not matter, not the compound. The sensible substances acknowledged by all (animals, plants, elements) are compounds of matter and form"},
+              {label:"Matter as potentiality", note:"Matter is what is potentially something — it is the substrate that receives form. Without form it barely exists; with form it is something definite"},
+              {label:"Form as actuality", note:"Form is what the matter actually is — the actuality of the potentiality. The soul is the form and actuality of the living body; the form of the statue is the actuality of the bronze"},
+              {label:"The hierarchy of matter", note:"Different levels of matter — prime matter, elemental matter, homoeomerous matter, organic matter. At each level a new form actualizes what was potential at the level below"},
+            ]
+          },
+          {
+            id:"mH2", label:"Met. Η.2 — the differentiating principle of substance", greek:"διαφορά", accent:"#993C1D",
+            children:[
+              {label:"What differentiates one substance from another?", note:"The form — the specific differentia that distinguishes this kind from all others. Ice, water, and air are the same matter (water) under different forms (solid, liquid, vapour)"},
+              {label:"The differentiating principles", children:[
+                {label:"By blending", note:"Wine and water blend in different proportions — honey-water vs wine-water"},
+                {label:"By position", note:"Threshold vs lintel — the same material, differently positioned"},
+                {label:"By time", note:"What comes before vs after in a sequence — defined by temporal position"},
+                {label:"By form", note:"The essential differentia — what kind of thing it is"},
+              ]},
+              {label:"All reducible to actuality/potentiality", note:"All differentiating principles are ultimately expressions of form (actuality) imposed on matter (potentiality) — the distinction of actuality and potentiality is the deepest differentiating principle"},
+            ]
+          },
+          {
+            id:"mH3", label:"Met. Η.3 — why there is no Form of house, circle, or other artifacts", greek:"οἶκος", accent:"#993C1D",
+            children:[
+              {label:"The form of an artifact", note:"The form of a house is the arrangement of bricks and mortar that makes them a house — it is not a separate Platonic entity but a principle immanent in the matter"},
+              {label:"No need for separate Forms", note:"Everything the Form is supposed to do — explain why matter is a house rather than a heap — is done by the immanent form. The separate Form is otiose"},
+              {label:"The difficulty of forms", note:"Forms are hard to grasp not because they are separate and transcendent but because they are the least material aspect of things — they are what things most properly are, but they exist only in things"},
+            ]
+          },
+          {
+            id:"mH4", label:"Met. Η.4 — matter and the cause of being a thing", greek:"ὕλη αἴτιον", accent:"#993C1D",
+            children:[
+              {label:"Matter as cause of differences", note:"Different matters produce different things even with the same form — bronze produces a bronze statue, stone produces a stone statue. Matter contributes to the individuation of the thing"},
+              {label:"The appropriate matter", note:"Each form requires an appropriate matter — not any matter can receive any form. The soul requires a body with organs; the form of a saw requires iron, not wood"},
+              {label:"Matter as the principle of individuation", note:"Why is this man different from that man? Because their matter is different — numerically distinct portions of the same form. Matter individuates; form universalizes"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The unity of definition; actuality and potentiality (Η.5–6)",
+        chapters: [
+          {
+            id:"mH5", label:"Met. Η.5 — why definitions do not need a bond", greek:"σύνδεσμος", accent:"#993C1D",
+            children:[
+              {label:"The problem", note:"A definition has multiple parts — genus and differentia. Why are they one? What holds the definition together? Is there a third thing that bonds them?"},
+              {label:"The answer", note:"No additional bond is needed — the unity of the definition is explained by the relation of potentiality and actuality. The genus is the matter (what is potentially the differentiated thing); the differentia is the form (what the genus actually is when differentiated)"},
+              {label:"Animal and two-footed", note:"'Animal' is the genus — the potential. 'Two-footed' is the differentia — the actuality of that specific kind of animal. They are not two separate things joined by a bond; the differentia is the actuality of the genus"},
+              {label:"Potentiality/actuality as the deepest unity", note:"The unity of any compound — whether a physical object or a definition — is explained by potentiality/actuality. This is the deepest metaphysical principle: what makes many into one is always the relation of matter to form, potentiality to actuality"},
+            ]
+          },
+          {
+            id:"mH6", label:"Met. Η.6 — the unity of definition completed; conclusion of Zeta-Eta", greek:"πέρας", accent:"#993C1D",
+            children:[
+              {label:"The problem of the last differentia", note:"The last differentia in a definition is coextensive with the whole definition — 'two-footed animal' is just 'man'. Why repeat the genus at all?"},
+              {label:"The resolution", note:"The last differentia contains all previous differentiae — it is the complete actualization. The genus is preserved in the last differentia as what has been progressively actualized. The definition as a whole states the form in its complete determination"},
+              {label:"The conclusion of Zeta-Eta together", note:"Being is substance; substance is form; form is actuality; actuality explains unity. The investigation of being qua being has arrived at actuality as the fundamental concept — what it is to be is to be actually something"},
+              {label:"Preview of Theta", note:"The full analysis of actuality and potentiality is deferred to Theta — Eta has shown that these concepts do the explanatory work but has not yet analysed them in depth. Theta is the necessary complement to Zeta-Eta"},
+              {label:"Connection to your thesis", note:"The progressive tetralemmic structure of the Metaphysics is now fully visible. Position II (Δ–Η) determines the terms and establishes the positive claim: being is form, form is actuality. Position III (Θ–Λ) will complete the analysis by showing what actuality is at its highest — the Unmoved Mover of Lambda"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

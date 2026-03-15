@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Politics VII–VIII</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Πολιτικά Η–Θ</h1>
+<p class="subtitle">Politics Books VII & VIII — complete interactive reference</p>
+<p class="subtitle">VII: the best constitution — the good life, population, territory, and the ordering of the city · VIII: education in the best city</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Books VII–VIII are the constructive culmination of the Politics. Book VII defines the best constitution by beginning from the best life — the life identified in NE X as the contemplative — and working outward to the external conditions that make it possible. Book VIII analyses education as the primary instrument for forming the citizens of the best city. Together they complete the arc from NE I's opening question (what is the good for human beings?) through the Ethics' analysis of virtue to the Politics' account of the social conditions for the good life's realisation.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book VII — Πολιτικά Η · The best constitution: the good life and its conditions",
+    groups: [
+      {
+        label: "The best life as the foundation of the best constitution (VII.1–3)",
+        chapters: [
+          {
+            id:"pol7_1", label:"Pol. VII.1–2 — the best life is the basis of the best constitution", greek:"ἄριστος βίος", accent:"#BA7517",
+            children:[
+              {label:"The inquiry begins from the good life", note:"To determine the best constitution we must first determine what the best life is — the Politics here explicitly picks up where the Ethics left off. The political inquiry is continuous with the ethical"},
+              {label:"External goods, goods of the body, goods of the soul", note:"The same three kinds of goods as NE I.8 — external goods (wealth, friends, reputation), goods of the body (health, strength), goods of the soul (virtue, wisdom). Goods of the soul are primary; the others are conditions"},
+              {label:"The happy person needs virtue and some external goods", note:"The good life requires sufficient external goods to exercise virtue — but not excess. Excess of external goods corrupts rather than helps. The city must provide enough for the good life without producing the corrupting excess"},
+              {label:"VII.2 — the happy city parallels the happy person", note:"As the individual is happy in proportion to their virtue, so the city is happy in proportion to its virtue. The city cannot be happy while its citizens are miserable; the city's happiness is constituted by the citizens' happiness. The political and the ethical are structurally identical at different scales"},
+              {label:"Connection to your thesis", note:"The best constitution is grounded in the best life — the ethical analysis is the formal cause of the political analysis. The Politics applies the four-cause framework at the level of collective life: the good life is the final cause (telos) of the constitution; virtue is the formal cause; external goods are the material cause; education and law are the efficient cause. The political is the formal structure of the ethical instantiated in collective form"},
+            ]
+          },
+          {
+            id:"pol7_3", label:"Pol. VII.3 — the active vs contemplative life; the best city is not necessarily warlike", greek:"πρακτικὸς βίος καὶ θεωρητικός", accent:"#BA7517",
+            children:[
+              {label:"The debate between active and contemplative", note:"Which is better — the active political life or the contemplative philosophical life? NE X.7–8 gave the answer: the contemplative is higher. Pol. VII.3 takes this up at the political level"},
+              {label:"The city need not aim at military power", note:"Many think the best city is the one that conquers others — that political excellence is military excellence. Aristotle rejects this: the city that optimises for war (like Sparta) fails at peace. The best city aims at the good life, not at domination"},
+              {label:"Activity does not require interaction with others", note:"The most active and energetic life need not be political in the external sense — the person of theoretical contemplation acts most vigorously within themselves. The contemplative life is intensely active; it is not passive. Activity (ἐνέργεια) is first and foremost the exercise of one's best capacities, not outward domination"},
+              {label:"The best city enables both active and contemplative lives", note:"The best city provides the conditions for both the practical life (good governance, justice, friendship) and the contemplative life (leisure, education, philosophy). Neither is excluded; the contemplative is higher but the practical is the condition of its possibility for most people"},
+              {label:"Connection to NE X.7–8", note:"Pol. VII.3 is the political expression of the NE X distinction between the contemplative and practical lives. The best city is not defined by its military power but by its capacity to sustain the highest human lives — both the contemplative (for those capable) and the practically excellent (for all citizens)"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The external conditions of the best city: population, territory, location (VII.4–7)",
+        chapters: [
+          {
+            id:"pol7_4", label:"Pol. VII.4–7 — the material conditions of the best city", greek:"ὕλη τῆς ἄριστης πόλεως", accent:"#BA7517",
+            children:[
+              {label:"VII.4 — the right population size", note:"The best city must have enough citizens for self-sufficiency but not so many that they cannot know each other and be governed by law. The city must be surveyable — like the plot of a tragedy, it must be takeable in at once. The criterion of good magnitude is the same for the city as for the beautiful object in aesthetics"},
+              {label:"VII.5 — the right territory", note:"The territory must be sufficient for self-sufficiency and defensibility but not so large as to encourage luxury or require an empire. The territory should enable a moderate prosperity, not excessive wealth"},
+              {label:"VII.6 — access to the sea", note:"Access to the sea is useful for trade and military defence — but a large merchant fleet and a large naval population introduce democratic elements that may destabilise the best constitution. The best city has access to the sea but does not depend on maritime commerce"},
+              {label:"VII.7 — the character of the citizens", note:"The best citizens combine the spirited character of northern peoples (energetic, freedom-loving, inclined to self-governance) with the intelligence and skill of eastern peoples (technically capable, capable of sustained political organisation). Neither alone is sufficient; the best is the combination"},
+              {label:"Connection to four causes", note:"These four chapters give the material causes of the best constitution — the matter within which the formal cause (virtue, justice, law) must operate. Just as a saw requires iron not wood (Physics II.9), the best constitution requires certain conditions of population, territory, location, and character. The hypothetical necessity of the best constitution runs from its end (the good life) back to the required material conditions"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The parts and offices of the best city; its ordering (VII.8–12)",
+        chapters: [
+          {
+            id:"pol7_8", label:"Pol. VII.8–10 — the necessary parts of the city; the division of functions", greek:"μέρη πόλεως", accent:"#BA7517",
+            children:[
+              {label:"Six necessary conditions for the city", children:[
+                {label:"Food", note:"The city requires a food supply — a farming class"},
+                {label:"Crafts", note:"The city requires artisans — those who make the necessary tools and goods"},
+                {label:"Arms", note:"The city requires a military force — for internal order and external defence"},
+                {label:"Revenue", note:"The city requires property and public funds — for sacred and public expenses"},
+                {label:"Religion", note:"The city requires priests — for the sacred functions that every city needs"},
+                {label:"Justice", note:"The city requires those who determine what is just and expedient — the deliberative and judicial functions"},
+              ]},
+              {label:"Who should perform these functions", note:"In the best city, the citizens should perform the military, deliberative, judicial, and priestly functions. The farming and artisan functions should be performed by slaves and resident aliens — those who are not full citizens. The citizens of the best city are freed from mere subsistence labour for political and contemplative life"},
+              {label:"The rotation of offices", note:"Citizens should serve in the military when young, hold deliberative and judicial offices in their prime, and hold priestly offices in old age. The same person serves different functions at different stages of life — the political analogue of the temporal stages of the soul's development"},
+            ]
+          },
+          {
+            id:"pol7_11", label:"Pol. VII.11–12 — the physical layout of the city", greek:"τοπογραφία", accent:"#BA7517",
+            children:[
+              {label:"The site of the city", note:"The city should be on high ground for health and defence — with good air circulation and defensible position. The physical site is part of the material cause of the constitution's excellence"},
+              {label:"The agora", note:"The city needs a free agora — an open space reserved for the activities of free citizens, not for commerce. Commerce should have its own separate market. The spatial separation of civic and commercial life reflects the normative separation of political and economic concerns"},
+              {label:"The walls", note:"Cities should have walls — the argument that walls show weakness is mistaken. Walls are a prudent use of all available means of defence. The bravery of citizens is not reduced by good walls; it is supplemented by them"},
+            ]
+          },
+          {
+            id:"pol7_13", label:"Pol. VII.13–15 — the good life requires virtue; virtue requires habituation; the city must educate", greek:"παιδεία", accent:"#BA7517",
+            children:[
+              {label:"The best city must aim at the good life", note:"The best constitution is not merely the one that keeps the peace or maintains order — it is the one that aims at the good life for all citizens. The constitution's purpose defines its excellence"},
+              {label:"Virtue is required for the good life", note:"The good life requires virtue — the NE's central argument. Therefore the city that aims at the good life must produce virtuous citizens. Political institutions must be designed with the formation of virtue as their primary aim"},
+              {label:"Virtue requires habituation", note:"NE II.1: virtues arise through habit. Therefore the city must habituate its citizens to virtue — from the earliest age. Education is not supplementary to the constitution but constitutive of it"},
+              {label:"Nature, habit, and reason", note:"Three factors produce virtue: nature, habit, and reason. The city can directly influence habit and reason (through education and law); it can influence nature only indirectly (through the regulation of marriage and childbirth). The best city attends to all three"},
+              {label:"Connection to your thesis", note:"The city as the condition of virtue is the political expression of the ontological principle that form requires appropriate matter. The virtuous citizen is the form; the habituation and education are the process of actualisation; the political community is the material context within which that actualisation occurs. The best city is the political analogue of the complete actuality of the good person — the form fully actualised in the appropriate matter. This closes the loop from NE I.7 (function argument) through NE X (contemplative life) to Politics VII (the city as the condition of the best life's realisation)"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book VIII — Πολιτικά Θ · Education in the best city",
+    groups: [
+      {
+        label: "Education must be public and common (VIII.1–2)",
+        chapters: [
+          {
+            id:"pol8_1", label:"Pol. VIII.1–2 — education must be public; it forms the constitution's citizens", greek:"παιδεία κοινή", accent:"#BA7517",
+            children:[
+              {label:"Education must be public and common", note:"Education is too important to be left to private individuals — what citizens learn shapes what kind of citizens they become, and therefore what kind of constitution they can sustain. Public education is the constitution forming its own citizens"},
+              {label:"Education for the constitution", note:"Different constitutions require different kinds of citizens — and therefore different kinds of education. Democratic citizens need different formation from aristocratic citizens. Education is always relative to the constitution — but the best education is relative to the best constitution"},
+              {label:"The legislator's primary task", note:"The legislator must above all attend to the education of the young — NE X.9 made this transition to the Politics. Pol. VIII.1 fulfils it: legislation about education is the most important legislation"},
+              {label:"Connection to NE II.1", note:"Virtues of character arise through habituation — NE II.1. The city's public education is the institutional form of habituation. The political and the ethical are one continuous system: the Ethics describes what virtue is; the Politics describes how the city forms it"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "What should be taught; the role of music (VIII.3–7)",
+        chapters: [
+          {
+            id:"pol8_3", label:"Pol. VIII.3 — what subjects should be taught", greek:"μαθήματα", accent:"#BA7517",
+            children:[
+              {label:"Four traditional subjects", children:[
+                {label:"Reading and writing", note:"Necessary for many practical purposes — the foundation of all further education"},
+                {label:"Gymnastics", note:"For the body — develops physical courage and health. But must not be excessive: over-training produces brutishness, not courage"},
+                {label:"Music", note:"For the soul — discussed extensively in the following chapters as the central concern of education in the best city"},
+                {label:"Drawing", note:"Useful for understanding the beauty of natural and artificial forms — practical and aesthetic"},
+              ]},
+              {label:"The question: education for leisure or for necessity?", note:"Education in the best city aims at leisure — the free use of time for the best activities. Education for mere necessity (reading to do business, gymnastics to be a soldier) is training for means, not for ends. The best education forms the capacity for excellent leisure — for philosophy, music, and the life of the mind"},
+              {label:"Leisure as the end of education", note:"The best city has leisure as its end — time free from necessity for the exercise of the best faculties. Education must prepare citizens for this leisure, not merely for work. This parallels the contemplative life of NE X: leisure (σχολή) is not rest from work but the free exercise of the highest capacities"},
+            ]
+          },
+          {
+            id:"pol8_5", label:"Pol. VIII.5–7 — music: its role in education and the soul", greek:"μουσική", accent:"#534AB7",
+            children:[
+              {label:"Why music matters", note:"Music is the most contested subject in education — some say it is for entertainment only; others that it forms character. Aristotle argues it does both and more: music forms the character of those who practice it from childhood, and it is also the highest form of noble leisure"},
+              {label:"Music directly affects character", note:"Rhythms and melodies contain imitations of anger, gentleness, courage, temperance — and the other qualities of character. The person who listens to music that imitates anger gradually comes to feel anger more easily; music that imitates nobility gradually forms a noble character. Music is the direct formation of emotional habit"},
+              {label:"The four uses of music", children:[
+                {label:"Education", note:"Forming the character of the young through habituating them to noble rhythms and melodies"},
+                {label:"Catharsis", note:"For those overwhelmed by strong emotion — music provides release. Here Aristotle references the Poetics' catharsis: both tragedy and music operate by arousing and purging emotion"},
+                {label:"Noble leisure", note:"The highest use — the free enjoyment of excellent music for its own sake by those whose characters are already formed"},
+                {label:"Intellectual entertainment", note:"For relaxation — the lowest use, but legitimate within bounds"},
+              ]},
+              {label:"Which modes and rhythms", note:"Aristotle recommends the Dorian mode as the best for education — it is earnest and measured, producing the right emotional disposition. The Phrygian mode is too excited; the Lydian too relaxed. The right mode produces the right character: neither too excited nor too passive"},
+              {label:"Connection to Poetics Ch. 14", note:"Catharsis in music and in tragedy operate by the same principle — arousing an emotion in a safe context and thereby purging and ordering it. The Poetics analysed catharsis through tragedy; Politics VIII.7 analyses it through music. Together they give the complete account of how art forms character through the emotional faculty"},
+              {label:"Connection to your thesis", note:"Music's direct formation of character is the aesthetic expression of the causal principle that form shapes matter by acting on it — the active nous acting on the passive nous (DA III.5) at the level of emotional habituation. The rhythms and melodies impose formal patterns on the emotional soul, gradually ordering its dispositions. Education through music is the actualisation of the soul's emotional potentialities into determinate virtuous character — the same actualisation that the Ethics describes as habituation but here operating through the aesthetic medium. The Poetics, the Politics, and De Anima are one account at three levels"},
+              {label:"The incomplete state of the Politics", note:"Book VIII breaks off mid-discussion of music — the Politics as we have it is unfinished. What we have is clearly a working draft; the complete work would have gone further. The Politics ends where the ethical-political project opens onto the educational-aesthetic: at the point where the formation of the citizen's soul through art and music becomes the central concern. The Poetics completes what the Politics begins"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

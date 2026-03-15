@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Prior Analytics Book I</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἀναλυτικὰ Πρότερα Α</h1>
+<p class="subtitle">Prior Analytics Book I — complete interactive reference · chapters 1–46</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Prior Analytics Book I contains the full syllogistic: definitions, three figures, modal syllogisms, reduction, and the method of finding premises. Book II follows.</footer>
+
+<script>
+const cats = [
+
+  // GROUP A: FOUNDATIONS
+  {
+    id:"pa1", label:"Pr. An. I.1 — definitions and scope", greek:"ὅροι", accent:"#BA7517",
+    children:[
+      {label:"Subject of the treatise", note:"Demonstration and demonstrative science — what they are and what they are about"},
+      {label:"Premise", greek:"πρότασις", note:"A sentence affirming or denying one thing of another — universal, particular, or indefinite", children:[
+        {label:"Universal premise", note:"Affirmed or denied of all or none", eg:"Every man is pale · No man is pale"},
+        {label:"Particular premise", note:"Affirmed or denied of some", eg:"Some man is pale · Some man is not pale"},
+        {label:"Indefinite premise", note:"No quantifier — without universal or particular sign", eg:"Man is pale · Man is not pale"},
+      ]},
+      {label:"Term", greek:"ὅρος", note:"That into which the premise is resolved — what is predicated and what it is predicated of"},
+      {label:"Syllogism", greek:"συλλογισμός", note:"A discourse in which certain things being stated, something other than what is stated follows of necessity from their being so", children:[
+        {label:"Perfect syllogism", greek:"τέλειος", note:"Needs nothing other than what is stated to make the necessity evident"},
+        {label:"Imperfect syllogism", greek:"ἀτελής", note:"Needs one or more things not stated but necessarily following from the terms"},
+      ]},
+      {label:"Things in a whole", note:"A is in B as a whole = B is predicated of all A — the universal affirmative relation"},
+      {label:"Predicated of all", greek:"κατὰ παντός", note:"Nothing of the subject can be taken of which the other cannot be said", eg:"If animal is predicated of all man, then of every individual man"},
+      {label:"Predicated of none", greek:"κατὰ μηδενός", note:"Nothing of the subject can be taken of which the other can be said"},
+    ]
+  },
+  {
+    id:"pa2", label:"Pr. An. I.2 — conversion of assertoric propositions", greek:"ἀντιστροφή", accent:"#BA7517",
+    children:[
+      {label:"Conversion defined", note:"Exchanging subject and predicate while preserving truth"},
+      {label:"Universal negative E converts simply", note:"If no B is A then no A is B", eg:"No pleasure is good → No good is pleasure"},
+      {label:"Universal affirmative A converts to particular I", note:"If all B is A then some A is B — not convertible simply", eg:"All man is animal → Some animal is man"},
+      {label:"Particular affirmative I converts simply", note:"If some B is A then some A is B", eg:"Some pleasure is good → Some good is pleasure"},
+      {label:"Particular negative O does not convert", note:"'Some animal is not man' does not give 'some man is not animal'", eg:"The counterexample is immediate"},
+      {label:"Why A does not convert simply", note:"The predicate may be wider than the subject — not every animal is man"},
+    ]
+  },
+  {
+    id:"pa3", label:"Pr. An. I.3 — conversion of modal propositions", greek:"τροπικαί", accent:"#BA7517",
+    children:[
+      {label:"Necessary propositions convert like assertoric", note:"Necessary E converts to necessary E; necessary A to necessary I; necessary I to necessary I"},
+      {label:"Possible propositions", note:"Convert in the same pattern as assertoric — possible E to possible E, possible A to possible I, possible I to possible I"},
+      {label:"The key point", note:"Modal operators do not disrupt the conversion rules — the same logical structure holds under necessity and possibility"},
+    ]
+  },
+
+  // GROUP B: THE THREE FIGURES
+  {
+    id:"pa4", label:"Pr. An. I.4 — first figure", greek:"πρῶτον σχῆμα", accent:"#534AB7",
+    children:[
+      {label:"Structure of the first figure", note:"Middle term is subject of one premise and predicate of the other", children:[
+        {label:"Major term", note:"Predicate of the conclusion — in the major premise"},
+        {label:"Minor term", note:"Subject of the conclusion — in the minor premise"},
+        {label:"Middle term", greek:"μέσον", note:"Appears in both premises but not the conclusion"},
+      ]},
+      {label:"Barbara — AAA-1", note:"All M is P · All S is M → All S is P", eg:"All animal is mortal · All man is animal → All man is mortal"},
+      {label:"Celarent — EAE-1", note:"No M is P · All S is M → No S is P", eg:"No animal is stone · All man is animal → No man is stone"},
+      {label:"Darii — AII-1", note:"All M is P · Some S is M → Some S is P", eg:"All animal is mortal · Some man is animal → Some man is mortal"},
+      {label:"Ferio — EIO-1", note:"No M is P · Some S is M → Some S is not P", eg:"No animal is stone · Some man is animal → Some man is not stone"},
+      {label:"Perfect syllogisms", note:"All four first figure moods are perfect — the necessity is immediately evident"},
+      {label:"Conditions for first figure", note:"Major must be universal; if major is negative conclusion is negative; minor must be affirmative"},
+    ]
+  },
+  {
+    id:"pa5", label:"Pr. An. I.5 — second figure", greek:"δεύτερον σχῆμα", accent:"#534AB7",
+    children:[
+      {label:"Structure of the second figure", note:"Middle term is predicate in both premises", children:[
+        {label:"Both premises have middle as predicate", note:"M is predicated of both S and P in the premises"},
+        {label:"All second figure moods are imperfect", note:"Must be reduced to first figure to establish validity"},
+      ]},
+      {label:"Cesare — EAE-2", note:"No P is M · All S is M → No S is P", eg:"No wise man is happy · All happy men are rich — rearranged to first figure"},
+      {label:"Camestres — AEE-2", note:"All P is M · No S is M → No S is P"},
+      {label:"Festino — EIO-2", note:"No P is M · Some S is M → Some S is not P"},
+      {label:"Baroco — AOO-2", note:"All P is M · Some S is not M → Some S is not P", eg:"Reduced by reductio ad impossibile"},
+      {label:"Key property of second figure", note:"Can only prove negative conclusions — never affirmative"},
+      {label:"Reduction method", note:"Cesare and Festino reduce to Celarent and Ferio by conversion; Camestres by transposition and conversion; Baroco by reductio"},
+    ]
+  },
+  {
+    id:"pa6", label:"Pr. An. I.6 — third figure", greek:"τρίτον σχῆμα", accent:"#534AB7",
+    children:[
+      {label:"Structure of the third figure", note:"Middle term is subject in both premises", children:[
+        {label:"Both premises have middle as subject", note:"M is subject in both major and minor premises"},
+        {label:"All third figure moods are imperfect", note:"Must be reduced to first figure"},
+      ]},
+      {label:"Darapti — AAI-3", note:"All M is P · All M is S → Some S is P", eg:"All horse is animal · All horse is a creature with hoofs → Some creature with hoofs is animal"},
+      {label:"Felapton — EAO-3", note:"No M is P · All M is S → Some S is not P"},
+      {label:"Disamis — IAI-3", note:"Some M is P · All M is S → Some S is P"},
+      {label:"Datisi — AII-3", note:"All M is P · Some M is S → Some S is P"},
+      {label:"Bocardo — OAO-3", note:"Some M is not P · All M is S → Some S is not P", eg:"Reduced by reductio ad impossibile"},
+      {label:"Ferison — EIO-3", note:"No M is P · Some M is S → Some S is not P"},
+      {label:"Key property of third figure", note:"Can only prove particular conclusions — never universal"},
+    ]
+  },
+  {
+    id:"pa7", label:"Pr. An. I.7 — all syllogisms reduce to first figure universals", greek:"ἀναγωγή", accent:"#534AB7",
+    children:[
+      {label:"The central claim", note:"All valid syllogisms can be reduced to Barbara and Celarent in the first figure"},
+      {label:"Reduction by conversion", note:"Converting premises or conclusion to produce a first figure syllogism"},
+      {label:"Reduction by reductio ad impossibile", greek:"εἰς τὸ ἀδύνατον", note:"Assuming the opposite of the conclusion and deriving a contradiction with the premises"},
+      {label:"The significance", note:"Barbara and Celarent are the primitive forms — the logical atoms of the syllogistic. All other valid forms are derivative"},
+    ]
+  },
+
+  // GROUP C: MODAL SYLLOGISMS
+  {
+    id:"pa8", label:"Pr. An. I.8 — syllogisms with two necessary premises", greek:"ἀναγκαῖαι", accent:"#0F6E56",
+    children:[
+      {label:"The rule", note:"If both premises are necessary the conclusion is necessary — in all three figures"},
+      {label:"First figure with necessary premises", note:"Barbara, Celarent, Darii, Ferio all yield necessary conclusions when premises are necessary"},
+      {label:"Why necessity is preserved", note:"If it is necessary that all M is P and necessary that all S is M then it cannot be otherwise that all S is P"},
+    ]
+  },
+  {
+    id:"pa9", label:"Pr. An. I.9 — one necessary, one assertoric premise", greek:"μικτά", accent:"#0F6E56",
+    children:[
+      {label:"The key asymmetry", note:"Which premise is necessary matters — it is not symmetric"},
+      {label:"Necessary major, assertoric minor", note:"Does not always yield a necessary conclusion — the minor asserts only what is, not what must be"},
+      {label:"Assertoric major, necessary minor", note:"The conclusion follows only assertorically"},
+      {label:"The underlying reason", note:"Necessity in the conclusion requires necessity throughout the chain — a single assertoric link breaks it"},
+      {label:"Example", note:"All M is necessarily P (assertoric) · All S is necessarily M → only that all S is P — not necessarily so"},
+    ]
+  },
+  {
+    id:"pa10", label:"Pr. An. I.10 — mixed modal: second figure", greek:"δεύτερον σχῆμα", accent:"#0F6E56",
+    children:[
+      {label:"Second figure with one necessary premise", note:"Same asymmetry applies — which premise is necessary determines whether the conclusion is necessary"},
+      {label:"Necessary major premise", note:"In Cesare and Camestres: if the negative premise is necessary the conclusion is necessary"},
+      {label:"Necessary minor premise only", note:"The conclusion is not necessary — follows only assertorically"},
+    ]
+  },
+  {
+    id:"pa11", label:"Pr. An. I.11 — mixed modal: third figure", greek:"τρίτον σχῆμα", accent:"#0F6E56",
+    children:[
+      {label:"Third figure with one necessary premise", note:"Particular conclusions with necessity when appropriate premise is necessary"},
+      {label:"The general pattern confirmed", note:"Across all three figures: when the premise that necessitates the predication of the major term on the middle is necessary, the conclusion is necessary"},
+    ]
+  },
+  {
+    id:"pa12", label:"Pr. An. I.12 — possible and necessary conclusions compared", greek:"σύγκρισις", accent:"#0F6E56",
+    children:[
+      {label:"Can a possible conclusion follow from necessary premises?", note:"Yes — what is necessary is also possible, so a fortiori"},
+      {label:"Can a necessary conclusion follow from possible premises?", note:"No — what is only possible need not be"},
+      {label:"The modal hierarchy", note:"Necessary > assertoric > possible — conclusions cannot ascend the hierarchy from their premises"},
+    ]
+  },
+  {
+    id:"pa13", label:"Pr. An. I.13 — the definition of the possible", greek:"τὸ ἐνδεχόμενον", accent:"#0F6E56",
+    children:[
+      {label:"Two senses of possible", greek:"δυνατόν / ἐνδεχόμενον", children:[
+        {label:"Possible as not impossible", note:"Whatever is not impossible is possible in a broad sense — includes the necessary"},
+        {label:"Possible as contingent", note:"What is neither necessary nor impossible — the properly contingent, two-sided possibility"},
+      ]},
+      {label:"The two-sided nature of contingency", note:"What is contingent can either be or not be — possibility in both directions"},
+      {label:"Connection to De Interpretatione Ch. 9", note:"The sea battle — future contingents are possible in both directions, neither direction yet necessary"},
+      {label:"Conversion of possible propositions", note:"'It is possible that all S is P' converts to 'it is possible that all P is S' — possible A converts simply unlike assertoric A"},
+      {label:"Why possible A converts simply", note:"If it is possible that all S is P then it is possible that no S is P — the two-sided nature means the universal can be fully reversed"},
+    ]
+  },
+  {
+    id:"pa14", label:"Pr. An. I.14 — first figure with possible premises", greek:"ἐνδεχόμενα", accent:"#0F6E56",
+    children:[
+      {label:"Both premises possible", note:"Conclusion is possible — the figure structure is preserved under possibility"},
+      {label:"Barbara with possible premises", note:"Possibly all M is P · Possibly all S is M → Possibly all S is P"},
+      {label:"The asymmetry with assertoric", note:"Because possible A converts simply, more combinations are valid in modal syllogistic than in assertoric"},
+    ]
+  },
+  {
+    id:"pa15", label:"Pr. An. I.15 — possible and assertoric mixed: first figure", greek:"μικτά", accent:"#0F6E56",
+    children:[
+      {label:"Possible major, assertoric minor", note:"Conclusion is possible"},
+      {label:"Assertoric major, possible minor", note:"Conclusion is possible — but the reasoning differs"},
+      {label:"The general result", note:"When one premise is possible and the other assertoric, the conclusion is possible"},
+    ]
+  },
+  {
+    id:"pa16", label:"Pr. An. I.16 — possible and necessary mixed: first figure", greek:"μικτά", accent:"#0F6E56",
+    children:[
+      {label:"Necessary major, possible minor", note:"Conclusion is possible"},
+      {label:"Possible major, necessary minor", note:"Conclusion is possible"},
+      {label:"The key result", note:"A necessary premise combined with a possible premise yields only a possible conclusion — necessity cannot be preserved when one link is merely possible"},
+    ]
+  },
+  {
+    id:"pa17", label:"Pr. An. I.17 — second figure with possible premises", greek:"δεύτερον", accent:"#0F6E56",
+    children:[
+      {label:"Both premises possible", note:"Second figure still yields only negative conclusions — structure preserved"},
+      {label:"Cesare and Camestres with possible premises", note:"Possible conclusions follow — reduced by conversion to first figure"},
+    ]
+  },
+  {
+    id:"pa18", label:"Pr. An. I.18 — second figure: possible and assertoric mixed", greek:"μικτά", accent:"#0F6E56",
+    children:[
+      {label:"The same asymmetry as first figure", note:"Which premise is possible and which assertoric matters for the form of the conclusion"},
+      {label:"General result", note:"Mixed premises in the second figure yield possible conclusions"},
+    ]
+  },
+  {
+    id:"pa19", label:"Pr. An. I.19 — second figure: possible and necessary mixed", greek:"μικτά", accent:"#0F6E56",
+    children:[
+      {label:"Necessary major, possible minor — second figure", note:"Possible conclusion"},
+      {label:"The pattern across all figures", note:"Possible + necessary always yields possible — the weaker modality governs the conclusion"},
+    ]
+  },
+  {
+    id:"pa20", label:"Pr. An. I.20 — third figure with possible premises", greek:"τρίτον", accent:"#0F6E56",
+    children:[
+      {label:"Both premises possible — third figure", note:"Possible particular conclusions follow — structure preserved"},
+      {label:"All six moods generalized under possibility", note:"Darapti, Felapton, Disamis, Datisi, Bocardo, Ferison all hold with possible premises"},
+    ]
+  },
+  {
+    id:"pa21", label:"Pr. An. I.21 — third figure: possible and assertoric mixed", greek:"μικτά", accent:"#0F6E56",
+    children:[
+      {label:"Same pattern as other figures", note:"Mixed possible and assertoric premises yield possible conclusions in the third figure"},
+    ]
+  },
+  {
+    id:"pa22", label:"Pr. An. I.22 — third figure: possible and necessary mixed", greek:"μικτά", accent:"#0F6E56",
+    children:[
+      {label:"Completes the modal treatment of the third figure", note:"Possible + necessary → possible; the weaker modality governs throughout all three figures"},
+      {label:"Summary of modal syllogistic", note:"Twelve chapters of modal combinations systematically exhaust all combinations of necessary, assertoric, and possible premises across the three figures"},
+    ]
+  },
+
+  // GROUP D: GENERAL PROPERTIES
+  {
+    id:"pa23", label:"Pr. An. I.23 — all syllogisms reduce to first figure universals", greek:"ἀναγωγή πάντων", accent:"#993C1D",
+    children:[
+      {label:"The fundamental theorem", note:"Every syllogism is either in the first figure or can be reduced to a first figure syllogism"},
+      {label:"The proof", note:"By showing that reduction by conversion or by reductio always works for second and third figure moods"},
+      {label:"Barbara and Celarent as primitives", note:"The two universal moods of the first figure are the logical foundation of the entire syllogistic"},
+      {label:"Significance for the Organon", note:"The syllogistic is not a mere list of valid forms — it has a unified logical architecture with two primitive forms at its root"},
+    ]
+  },
+  {
+    id:"pa24", label:"Pr. An. I.24 — one premise must be universal; one must be affirmative", greek:"καθόλου καὶ κατηγορική", accent:"#993C1D",
+    children:[
+      {label:"First necessary condition", note:"At least one premise in every syllogism must be universal — no syllogism from two particulars"},
+      {label:"Second necessary condition", note:"At least one premise must be affirmative — no syllogism from two negatives"},
+      {label:"Proof by exhaustion", note:"All combinations of two particular or two negative premises are shown to yield no conclusion"},
+      {label:"Connection to the conclusion", note:"If the conclusion is universal both premises must be universal; if negative at least one premise must be negative"},
+    ]
+  },
+  {
+    id:"pa25", label:"Pr. An. I.25 — every syllogism requires exactly three terms", greek:"τρεῖς ὅροι", accent:"#993C1D",
+    children:[
+      {label:"The three-term structure is necessary", note:"Every syllogism has exactly one middle term connecting the two extremes"},
+      {label:"Apparent four-term syllogisms", note:"Are really two syllogisms — the middle term is doubled"},
+      {label:"Why three", note:"The middle term is the explanatory link — it is what makes the conclusion follow. Without it there is no syllogism but mere assertion"},
+      {label:"Connection to demonstration", note:"In demonstration the middle term is the cause — what explains why the conclusion is true"},
+    ]
+  },
+  {
+    id:"pa26", label:"Pr. An. I.26 — which problems are easier or harder to prove", greek:"εὐπορία καὶ ἀπορία", accent:"#993C1D",
+    children:[
+      {label:"Universal affirmative A is hardest to prove", note:"Requires a middle term that is both subject of the major and predicate of the minor universally"},
+      {label:"Universal negative E", note:"Easier — can be proved in both first and second figures"},
+      {label:"Particular affirmative I", note:"Easier — many more combinations of premises yield it"},
+      {label:"Particular negative O", note:"Easiest — the most combinations are available"},
+      {label:"Which figure for which conclusion", children:[
+        {label:"First figure", note:"Proves all four types — the most powerful"},
+        {label:"Second figure", note:"Proves only negatives"},
+        {label:"Third figure", note:"Proves only particulars"},
+      ]},
+    ]
+  },
+  {
+    id:"pa27", label:"Pr. An. I.27 — how to find premises: the method of selection", greek:"ἐκλογή", accent:"#993C1D",
+    children:[
+      {label:"The problem", note:"Given a conclusion to be proved, how to find the premises — the method of analysis"},
+      {label:"Predicates of the subject", note:"Collect all the things truly predicated of the subject term S — these are candidates for the middle term"},
+      {label:"Subjects of the predicate", note:"Collect all the things the predicate P is truly predicated of — further candidates for the middle"},
+      {label:"Finding the middle", note:"The middle term M must be predicated of S and have P predicated of it — it sits between S and P in the order of predication"},
+      {label:"The matrix of predicates", note:"Aristotle envisions a systematic inventory of predications — the basis of any science is its predication structure"},
+    ]
+  },
+  {
+    id:"pa28", label:"Pr. An. I.28 — the method continued: three cases", greek:"τρεῖς τρόποι", accent:"#993C1D",
+    children:[
+      {label:"To prove a universal affirmative A", note:"Find M such that M is predicated of all S and P is predicated of all M — Barbara"},
+      {label:"To prove a universal negative E", note:"Find M such that M is predicated of all S and P is predicated of no M — Celarent; or find M predicated of no P but of all S — Cesare"},
+      {label:"To prove a particular I or O", note:"Fewer constraints on the middle term — more candidates are available"},
+      {label:"The method is complete", note:"For any conclusion there is a determinate procedure for finding the relevant premises — Aristotle presents a decision procedure"},
+    ]
+  },
+  {
+    id:"pa29", label:"Pr. An. I.29 — the same method in all figures", greek:"ἐν ἅπασι τοῖς σχήμασι", accent:"#993C1D",
+    children:[
+      {label:"The method applies to all three figures", note:"Not just first figure — any figure can be systematically searched for valid syllogisms"},
+      {label:"Reductio ad impossibile", note:"The method also applies to indirect proofs — assume the contradictory of the desired conclusion and find a middle that yields a contradiction with the premises"},
+    ]
+  },
+  {
+    id:"pa30", label:"Pr. An. I.30 — the method applies to all inquiry", greek:"πᾶσα μέθοδος", accent:"#993C1D",
+    children:[
+      {label:"Universal scope of the method", note:"The procedure for finding middle terms applies not only to demonstration but to dialectic and rhetoric"},
+      {label:"All reasoning seeks a middle term", note:"Whether in science, persuasion, or argument, the essential move is finding what connects subject to predicate"},
+      {label:"The unity of Aristotle's logical project", note:"The Prior Analytics does not merely systematize formal logic — it describes the structure of all inquiry. Every question is a search for the right middle term"},
+    ]
+  },
+  {
+    id:"pa31", label:"Pr. An. I.31 — division is not syllogism", greek:"διαίρεσις", accent:"#993C1D",
+    children:[
+      {label:"Platonic division", note:"The method of dividing a genus by differentiae to reach a species — used in the Sophist, Statesman, Phaedrus"},
+      {label:"Why division is not a syllogism", note:"Division assumes what it is supposed to prove — it presupposes that the subject falls under the genus rather than demonstrating it"},
+      {label:"The key failure", note:"In division: man is animal · animal is either rational or irrational · man is rational. But this assumes man falls under animal rather than proving it"},
+      {label:"What division can do", note:"Division is not worthless — it gives an ordered grasp of the predicate structure and is useful for finding definitions. But it is not demonstrative"},
+    ]
+  },
+
+  // GROUP E: METHODOLOGICAL AND DIAGNOSTIC
+  {
+    id:"pa32", label:"Pr. An. I.32 — how to recognize and reduce syllogisms", greek:"ἀναγνώρισις", accent:"#185FA5",
+    children:[
+      {label:"The practical problem", note:"Given an argument in ordinary language, how to identify its figure and reduce it to canonical form"},
+      {label:"Step 1: identify the conclusion", note:"What is the proposition being established?"},
+      {label:"Step 2: identify the terms", note:"Which term is predicated in the conclusion (major), which is subject (minor), which connects them (middle)?"},
+      {label:"Step 3: identify the figure", note:"Is the middle subject of one premise and predicate of the other (first), predicate of both (second), or subject of both (third)?"},
+      {label:"Step 4: reduce to canonical form", note:"Restate the premises in standard form and apply conversion or transposition as needed"},
+    ]
+  },
+  {
+    id:"pa33", label:"Pr. An. I.33 — error about necessity and contingency", greek:"πλάνη", accent:"#185FA5",
+    children:[
+      {label:"The error", note:"Thinking that because the premises are true the conclusion is necessary — confusing truth with necessity"},
+      {label:"Truth is not necessity", note:"A conclusion can be true without being necessary — it follows necessarily from the premises but need not be a necessary truth"},
+      {label:"The second error", note:"Thinking that because something is contingent it cannot be the conclusion of a demonstration — confusing contingency of the fact with the contingency of the inference"},
+      {label:"Correct understanding", note:"Necessary follows from the premises — the inference is valid. Whether the conclusion is a necessary truth is a separate question about the modality of the content"},
+    ]
+  },
+  {
+    id:"pa34", label:"Pr. An. I.34 — errors from incorrect term-setting", greek:"ἁμαρτήματα", accent:"#185FA5",
+    children:[
+      {label:"The problem", note:"Apparent syllogisms that fail because the terms have not been set out correctly"},
+      {label:"Homonymous terms", note:"Using one word for two things — generates an apparent middle term that is really two different terms", eg:"'Bank' meaning river bank and financial bank"},
+      {label:"Connection to Categories Ch. 1", note:"Homonymy at the level of terms is the source of invalid syllogisms — same failure as improper predication in the Categories"},
+      {label:"Connection to De Interpretatione Ch. 8", note:"Unity of the proposition requires one thing said of one thing — homonymous terms fracture the syllogism just as they fracture the proposition"},
+    ]
+  },
+  {
+    id:"pa35", label:"Pr. An. I.35 — terms need not always be single words", greek:"ὅροι", accent:"#185FA5",
+    children:[
+      {label:"The point", note:"A term in a syllogism can be a phrase rather than a single word — what matters is that it signifies one thing"},
+      {label:"Example", note:"'That which is good' or 'that which is honourable' can serve as a term if they signify one thing consistently"},
+      {label:"Constraint", note:"Whatever serves as a term must be singular in reference throughout the syllogism — the unity condition from De Int. Ch. 8 extended to terms"},
+    ]
+  },
+  {
+    id:"pa36", label:"Pr. An. I.36 — the predication relation in syllogism", greek:"κατηγορεῖσθαι", accent:"#185FA5",
+    children:[
+      {label:"Not all predications are the same", note:"'Man is an animal' and 'the animal is man' differ in the direction of predication — though both are true"},
+      {label:"In a syllogism the direction matters", note:"The term that is wider in predication should be the predicate — the term that is narrower should be the subject"},
+      {label:"Connecting to the Categories", note:"The hierarchy of being in Cat. 5 — primary being → species → genus — determines the natural direction of predication. Reversing it generates improper predication"},
+    ]
+  },
+  {
+    id:"pa37", label:"Pr. An. I.37 — different modes of predication", greek:"τρόποι κατηγορίας", accent:"#185FA5",
+    children:[
+      {label:"Being predicated of a subject in different senses", note:"'Is' can be used in different senses — as essential predication, as accidental, as in a definition"},
+      {label:"The categories as modes of predication", note:"Each of the ten categories represents a distinct mode in which something can be predicated of a being — the Prior Analytics reconnects to the Categories here"},
+      {label:"Why the mode matters", note:"Mixing modes of predication generates invalid syllogisms — the middle term must connect subject and predicate in the same mode throughout"},
+    ]
+  },
+  {
+    id:"pa38", label:"Pr. An. I.38 — additional predicate repeated in a premise", greek:"πρόσθεσις", accent:"#185FA5",
+    children:[
+      {label:"The situation", note:"When a premise contains an extra predicate added to the subject — 'the just pleasant man' rather than just 'man'"},
+      {label:"The rule", note:"The additional predicate belongs to whatever term it is added to throughout the syllogism — it cannot be silently dropped"},
+      {label:"Failing this rule", note:"Generates apparent syllogisms where the middle term silently changes — the addition must be tracked consistently"},
+    ]
+  },
+  {
+    id:"pa39", label:"Pr. An. I.39 — substitution of equivalent terms", greek:"ἀντικατάστασις", accent:"#185FA5",
+    children:[
+      {label:"The rule", note:"Terms that are equivalent in meaning can be substituted for each other in a syllogism without affecting validity"},
+      {label:"The constraint", note:"The substitution must preserve the meaning exactly — partial synonymy or context-dependence can introduce error"},
+      {label:"Practical use", note:"Allows syllogisms to be restated in clearer terms without changing their logical structure — the basis of logical paraphrase"},
+    ]
+  },
+  {
+    id:"pa40", label:"Pr. An. I.40 — 'the pleasure is the good' vs 'pleasure is good'", greek:"ἄρθρον", accent:"#185FA5",
+    children:[
+      {label:"The distinction", note:"'The pleasure is the good' identifies pleasure with the good — a definite, singular predication. 'Pleasure is good' predicates goodness of pleasure in general"},
+      {label:"In a syllogism", note:"If the conclusion is 'the pleasure is the good' the premises must support identity, not merely predication. These are different logical relations"},
+      {label:"Connection to De Interpretatione Ch. 5", note:"Unity of the proposition — 'the pleasure is the good' is a different logical form than 'pleasure is good', requiring different premisses"},
+    ]
+  },
+  {
+    id:"pa41", label:"Pr. An. I.41 — 'A belongs to all B' vs 'A belongs to all to which B belongs'", greek:"ᾧ τὸ Β", accent:"#185FA5",
+    children:[
+      {label:"The distinction", note:"'A belongs to all B' and 'A belongs to all that B belongs to' are not the same — the second makes A follow B's predication range"},
+      {label:"Example", note:"'Animal belongs to all man' is not the same as 'animal belongs to all that man belongs to' — because man is predicated of individuals, not species"},
+      {label:"Why it matters", note:"Confusing these generates invalid syllogisms where the scope of predication is tacitly shifted — a subtle form of the homonymy error"},
+    ]
+  },
+  {
+    id:"pa42", label:"Pr. An. I.42 — not all conclusions from the same premises have the same syllogism", greek:"οὐ πάντα", accent:"#185FA5",
+    children:[
+      {label:"The observation", note:"From the same set of premises, different conclusions may follow — and they need not all be proved by the same syllogism"},
+      {label:"Implication", note:"The syllogistic is not a mechanical procedure but requires judgment about which conclusion is being targeted and which figure and mood are appropriate"},
+    ]
+  },
+  {
+    id:"pa43", label:"Pr. An. I.43 — arguments about parts of definitions", greek:"μέρη ὅρου", accent:"#185FA5",
+    children:[
+      {label:"When a term is part of a definition", note:"The syllogism can use either the whole definition or part of it as a term — depending on what the argument requires"},
+      {label:"The constraint", note:"The part used must be predicated in the same way as the whole definition would be — partial use of a definition must not distort the predication"},
+    ]
+  },
+  {
+    id:"pa44", label:"Pr. An. I.44 — syllogism from a hypothesis", greek:"ἐξ ὑποθέσεως", accent:"#185FA5",
+    children:[
+      {label:"Syllogism from a hypothesis defined", note:"An argument that establishes its conclusion not directly but conditionally — if X then Y is proved, and X is conceded, therefore Y"},
+      {label:"Distinction from direct syllogism", note:"In a direct syllogism the conclusion follows necessarily from the premises as stated. In a hypothetical syllogism an additional agreement or hypothesis is required"},
+      {label:"The hypothesis cannot be demonstrated", note:"Whatever is established by the hypothesis is only as secure as the hypothesis itself — this is not demonstration but a weaker form of argument"},
+      {label:"Connection to demonstration", note:"Posterior Analytics will distinguish: demonstration is from premises known to be true and primary. Hypothetical reasoning is dialectical — it proceeds from what is conceded"},
+    ]
+  },
+  {
+    id:"pa45", label:"Pr. An. I.45 — reduction of syllogisms across figures", greek:"μετάληψις", accent:"#185FA5",
+    children:[
+      {label:"The question", note:"Can every syllogism in one figure be converted into a syllogism in another figure?"},
+      {label:"First to second and third", note:"Some but not all first figure syllogisms can be restated in the second or third figure — the figures are not fully interchangeable"},
+      {label:"Second and third to first", note:"All second and third figure syllogisms can be reduced to first — but not all first figure syllogisms can be expressed in the second or third"},
+      {label:"The asymmetry", note:"The first figure is logically more powerful — it alone can prove all four types of categorical proposition universally and particularly, affirmatively and negatively"},
+    ]
+  },
+  {
+    id:"pa46", label:"Pr. An. I.46 — 'not to be X' vs 'to be not-X'", greek:"τὸ μὴ εἶναι καὶ τὸ εἶναι μή", accent:"#BA7517",
+    children:[
+      {label:"The distinction restated", note:"'S is not P' (negation of the predication) is different from 'S is not-P' (affirmation of the indefinite predicate)", eg:"'Socrates is not just' vs 'Socrates is unjust'"},
+      {label:"In the syllogistic", note:"'Not to be just' negates a predication. 'To be not-just' affirms an indefinite predicate. In a syllogism these must not be confused — they occupy different logical positions"},
+      {label:"Connection to De Interpretatione Ch. 10", note:"The four proposition forms — S is P / S is not P / S is not-P / S is not not-P — are now carried into the syllogistic. The indefinite name does real logical work here"},
+      {label:"Connection to the Categories Ch. 1", note:"Homonymy at the level of the name 'just' vs 'not-just' — the indefinite name is not the contrary but the logical complement. Conflating them is a form of improper predication"},
+      {label:"Significance for paper one", note:"This chapter closes the loop: the indefinite name introduced in De Int. Ch. 2–3 and the four forms of Ch. 10 are shown here to be essential to valid syllogistic reasoning. The tetralemmic structure is operational throughout the Organon"},
+    ]
+  },
+
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Foundations and definitions (1–3)", ids:["pa1","pa2","pa3"] },
+  { label:"II — The three figures (4–7)", ids:["pa4","pa5","pa6","pa7"] },
+  { label:"III — Modal syllogisms (8–22)", ids:["pa8","pa9","pa10","pa11","pa12","pa13","pa14","pa15","pa16","pa17","pa18","pa19","pa20","pa21","pa22"] },
+  { label:"IV — General properties of syllogism (23–31)", ids:["pa23","pa24","pa25","pa26","pa27","pa28","pa29","pa30","pa31"] },
+  { label:"V — Methodological and diagnostic (32–46)", ids:["pa32","pa33","pa34","pa35","pa36","pa37","pa38","pa39","pa40","pa41","pa42","pa43","pa44","pa45","pa46"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

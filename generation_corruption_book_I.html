@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — On Generation and Corruption Book I</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Γενέσεως καὶ Φθορᾶς Α</h1>
+<p class="subtitle">On Generation and Corruption Book I — complete interactive reference · chapters 1–10</p>
+<p class="subtitle">Subject: the nature of generation, corruption, alteration, growth, and contact — distinguished from mere change of quality or place</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book I establishes the fundamental distinctions among the kinds of change: generation and corruption (coming-to-be and passing-away absolutely), alteration (change of quality while the subject persists), and growth and diminution (change of quantity). It then analyses the conditions of contact, action, and passion that make change possible. Book II treats the four elements and their transformations.</footer>
+
+<script>
+const cats = [
+  {
+    id:"gc1_1", label:"GC I.1 — the subject and the pre-Socratic predecessors", greek:"ἱστορία", accent:"#BA7517",
+    children:[
+      {label:"The subject of the treatise", note:"Generation and corruption — coming-to-be and passing-away — and the conditions under which they occur in natural things"},
+      {label:"The pre-Socratic positions reviewed", children:[
+        {label:"Those who posit one element", note:"Thales (water), Anaximenes (air), Heraclitus (fire) — for them all apparent generation is alteration of the one underlying stuff"},
+        {label:"Those who posit many elements", note:"Empedocles (four roots: earth, water, fire, air) — generation is mixture, corruption is separation"},
+        {label:"The atomists", note:"Leucippus and Democritus — generation is association of atoms, corruption is dissociation. The atoms themselves neither come to be nor pass away"},
+        {label:"Anaxagoras", note:"Everything is in everything; generation is the separating out of what was always present. The Nous initiates the original rotation"},
+      ]},
+      {label:"The problem with all predecessors", note:"None adequately distinguishes generation from alteration — they either collapse generation into alteration (monists) or make genuine generation impossible (atomists, who allow only rearrangement)"},
+      {label:"Aristotle's agenda", note:"To establish genuine generation and corruption as distinct from alteration, growth, and locomotion — and to give their proper account in terms of matter, form, and privation"},
+    ]
+  },
+  {
+    id:"gc1_2", label:"GC I.2 — distinguishing generation, alteration, growth, and locomotion", greek:"γένεσις, ἀλλοίωσις, αὔξησις, φορά", accent:"#BA7517",
+    children:[
+      {label:"Generation and corruption", greek:"γένεσις καὶ φθορά", note:"Coming-to-be and passing-away absolutely — a being comes into existence or ceases to exist. Not merely a change in an already-existing subject", eg:"A living thing is born or dies — not merely changes colour or size"},
+      {label:"Alteration", greek:"ἀλλοίωσις", note:"Change in quality while the underlying subject persists — the subject remains but becomes different in some quality", eg:"A man becomes pale or musical — he persists while the quality changes"},
+      {label:"Growth and diminution", greek:"αὔξησις καὶ φθίσις", note:"Change in quantity while the subject persists and retains its form — the subject grows or shrinks but remains what it is", eg:"A child grows into an adult — the same living being, larger"},
+      {label:"Locomotion", greek:"φορά", note:"Change of place — the subject moves from one location to another while remaining what it is"},
+      {label:"The key distinction", note:"Generation is not alteration — in alteration a subject persists and gains or loses a quality. In generation there is no pre-existing subject of the same kind that persists — what comes to be did not previously exist as that kind of thing"},
+      {label:"Connection to the Categories", note:"The four kinds of change correspond to four categories — being (generation/corruption), quality (alteration), quantity (growth), place (locomotion). The Categories' taxonomy of being underlies the taxonomy of change"},
+      {label:"Connection to your thesis", note:"The four kinds of change are a tetralemmic structure — each is irreducible to the others. The pre-Socratics collapsed them; Aristotle's achievement is to hold all four simultaneously as distinct. This is the catuṣkoṭi operating in natural philosophy"},
+    ]
+  },
+  {
+    id:"gc1_3", label:"GC I.3 — is there unqualified generation? Against the atomists", greek:"γένεσις ἁπλῶς", accent:"#BA7517",
+    children:[
+      {label:"The atomist denial", note:"Leucippus and Democritus: nothing truly comes to be or passes away — atoms associate and dissociate but are themselves eternal. All apparent generation is merely rearrangement"},
+      {label:"Aristotle's response", note:"There is genuine generation — something comes to be that was not before, not merely rearranged. The atomists cannot account for qualitative difference among compound things if the atoms are purely quantitative"},
+      {label:"The matter of generation", note:"What comes to be comes to be from something — but that something is not the same kind of thing as what comes to be. Bronze comes to be a statue — the bronze persists as matter, but the statue is genuinely new"},
+      {label:"Matter, form, and privation", children:[
+        {label:"Matter", greek:"ὕλη", note:"What persists through the change — the underlying substrate"},
+        {label:"Form", greek:"εἶδος / μορφή", note:"What comes to be — the new determination of the matter"},
+        {label:"Privation", greek:"στέρησις", note:"The absence of the form that was there before generation — what the matter lacked before the form arrived"},
+      ]},
+      {label:"Genuine generation requires all three", note:"Matter + privation → matter + form. The matter persists; the form is genuinely new; the privation is genuinely gone. This is irreducible to mere rearrangement"},
+    ]
+  },
+  {
+    id:"gc1_4", label:"GC I.4 — generation from contraries; the role of matter", greek:"ἐναντία", accent:"#BA7517",
+    children:[
+      {label:"Generation is always from a contrary", note:"What comes to be comes to be from its opposite — the hot from the cold, the moist from the dry, the living from the non-living. Change always involves opposites"},
+      {label:"The matter underlies the contraries", note:"The matter is neither the contrary itself — it is what receives both contraries in succession. The matter is the third term beyond the pair of contraries"},
+      {label:"Matter is not a contrary", note:"A common error: identifying matter with one of the contraries — treating the cold as what fire comes from, as if cold were the substrate. But the substrate is neither hot nor cold; it receives both"},
+      {label:"The three principles", note:"In every generation: matter (persisting substrate) + two contraries (form and its privation). The matter is potentiality for both; the form is actuality; the privation is what was actually the case before"},
+      {label:"Connection to Physics I", note:"This is the argument of Physics I.6–9 — the three principles of natural change. Generation and Corruption applies it to the specific case of generation and corruption of natural substances"},
+      {label:"Connection to Cat. Ch. 5", note:"Primary being receives contraries through time — this is the temporal structure of generation. The substance that endures is the matter receiving successive contrary forms"},
+    ]
+  },
+  {
+    id:"gc1_5", label:"GC I.5 — when is a change generation vs alteration?", greek:"πότε γένεσις", accent:"#BA7517",
+    children:[
+      {label:"The criterion", note:"If what underlies the change persists as a subject of a definite kind, the change is alteration. If what underlies the change does not persist as a subject of the same kind, the change is generation"},
+      {label:"Example: alteration", note:"A man becomes musical — the man persists. The change is in an attribute (quality), not in the being of the subject. This is alteration"},
+      {label:"Example: generation", note:"Bronze becomes a statue — the bronze persists as matter, but what comes to be (the statue) is not a further determination of bronze as bronze. The statue is a new kind of thing. This is generation"},
+      {label:"The ambiguous case", note:"Water becomes air — does water persist as a subject and merely become qualified differently? Or does something more fundamental persist while water ceases to be and air comes to be?"},
+      {label:"Aristotle's answer", note:"Water and air are not related as subject and quality — there is no persisting subject that is neither water nor air but becomes first one then the other. The change of water to air is genuine generation, not alteration"},
+      {label:"The role of the categories again", note:"Alteration is change in quality while being persists; generation is change in being itself. The category of being is what distinguishes them — not any superficial feature of the change"},
+    ]
+  },
+  {
+    id:"gc1_6", label:"GC I.6 — mixture", greek:"μῖξις", accent:"#534AB7",
+    children:[
+      {label:"The problem of mixture", note:"When two things mix — wine and water — what is the result? Are the original ingredients still there? Have they generated something new? Have they been altered?"},
+      {label:"Previous accounts fail", children:[
+        {label:"Components persist unchanged", note:"If wine and water persist unchanged in the mixture, then mixture is merely juxtaposition — there is no genuine blend, just very fine interleaving"},
+        {label:"Components are destroyed", note:"If both are destroyed and a genuinely new thing comes to be, that is generation, not mixture — mixture implies that the components are recoverable"},
+        {label:"One destroys the other", note:"If wine destroys water or vice versa, then only one persists — this is not mixture but domination"},
+      ]},
+      {label:"Aristotle's account", note:"In genuine mixture both components are potentially present in the result — they are not destroyed but they are not fully actual either. The mixture is a new actuality in which both are present potentially"},
+      {label:"The conditions for mixture", note:"Only things that can act on each other and be acted on can mix — the components must be capable of mutual interaction. Things that cannot interact merely lie alongside each other"},
+      {label:"Mixture and the elements", note:"The four elements can mix because they share qualities — hot, cold, wet, dry. Earth and fire can mix because fire's heat can act on earth. Book II develops this fully"},
+    ]
+  },
+  {
+    id:"gc1_7", label:"GC I.7 — more on mixture: the recoverable components", greek:"δυνάμει", accent:"#534AB7",
+    children:[
+      {label:"The recoverability condition", note:"Genuine mixture is distinguished from generation by recoverability — in principle the components of a mixture can be separated out again. What has been generated cannot be decomposed back into its generative matter in the same way"},
+      {label:"Potential presence", note:"The components are present in the mixture potentially — they can be recovered because their potentiality is preserved, not destroyed, in the mixing"},
+      {label:"The homoeomerous result", note:"A genuine mixture is homoeomerous — any part of it has the same composition as the whole. Wine and water in a homoeomerous mixture yield a blend that is wine-and-water throughout, not wine in some places and water in others"},
+      {label:"Connection to Anaxagoras", note:"Anaxagoras held that everything is in everything — a version of the potential presence idea. Aristotle accepts the insight but restricts it: in a mixture the components are potentially present; in an Anaxagorean way everything need not be in everything"},
+    ]
+  },
+  {
+    id:"gc1_8", label:"GC I.8 — action and passion", greek:"ποιεῖν καὶ πάσχειν", accent:"#534AB7",
+    children:[
+      {label:"The problem", note:"For one thing to act on another and produce change, they must be able to interact — what are the conditions for action and passion?"},
+      {label:"Same genus, opposite qualities", note:"Things act on each other when they belong to the same genus but have opposite qualities — fire acts on water because both are material bodies but fire is hot and dry while water is cold and wet"},
+      {label:"Identical things cannot act on each other", note:"Fire cannot heat fire — there is nothing for the action to accomplish. Action requires a difference in quality between agent and patient"},
+      {label:"Wholly different things cannot act on each other", note:"A line cannot heat water — they share no genus. Action requires a common genus within which the opposing qualities can be transferred"},
+      {label:"The mechanism", note:"The agent imposes its form on the patient — the patient comes to have the quality the agent has. Fire heats water by imposing the quality of heat on it"},
+      {label:"Connection to Categories Ch. 9", note:"Doing and being-affected (ποιεῖν καὶ πάσχειν) are two of the ten categories — this chapter is the physical analysis of the categorical pair introduced in the Categories"},
+    ]
+  },
+  {
+    id:"gc1_9", label:"GC I.9 — contact", greek:"ἁφή", accent:"#534AB7",
+    children:[
+      {label:"Contact defined", note:"Things are in contact when their extremities are together — when the limits of each are simultaneously in the same place"},
+      {label:"Contact requires magnitude", note:"Only things with magnitude can be in contact — points can coincide but do not touch in the proper sense. Contact is a relation between extended things"},
+      {label:"Mutual vs one-sided contact", note:"Contact can be mutual (A touches B and B touches A) or apparently one-sided (A touches B without B touching A in the relevant sense — as when the soul moves the body)"},
+      {label:"Contact as condition of action", note:"For one thing to act on another they must be in contact — action at a distance is impossible in Aristotle's physics. Contact is the necessary condition of causal interaction"},
+      {label:"Contact and mixture", note:"Mixture requires contact — components that cannot come into contact cannot mix. Contact is the physical basis of the possibility of mixture"},
+      {label:"The soul and the body", note:"The soul moves the body without being moved by it in the same sense — the soul is the form of the body, not a separate body that touches it. This is a case where the contact relation is not fully reciprocal"},
+    ]
+  },
+  {
+    id:"gc1_10", label:"GC I.10 — the reciprocity of action and passion; activity and passivity", greek:"ἀντιπεπονθός", accent:"#993C1D",
+    children:[
+      {label:"Reciprocal action", note:"When A acts on B, B also acts on A to some degree — there is no purely one-sided causal relation between material things. Fire heats water; water cools fire"},
+      {label:"But the action is not equal", note:"The stronger agent acts more than it is acted on — fire heats more than it is cooled. The reciprocity is real but asymmetric"},
+      {label:"The limit: what is fully actual cannot be acted upon", note:"What is completely actual in some quality cannot be further acted upon in that quality — fully hot things cannot be made hotter by hot things. Action requires potentiality in the patient"},
+      {label:"Actuality and potentiality in action", note:"The agent is actually F; the patient is potentially F. Action is the transfer of F-ness from agent to patient — the patient becomes actually F while the agent remains actually F"},
+      {label:"The termination of action", note:"Action terminates when the patient is fully actualized — when it is as F as the agent. At that point there is no further difference and action ceases"},
+      {label:"Connection to the Metaphysics", note:"Actuality is prior to potentiality — this is Metaphysics Θ's central thesis. The analysis of action and passion in GC I.10 is the physical application of that metaphysical priority"},
+      {label:"Connection to your thesis", note:"The four kinds of change, the three principles, the six chapters on mixture and action — these constitute the physical counterpart of the logical tetralemma. Generation, alteration, growth, locomotion are the four irreducible modes of physical change, as the four predicate-types are the four irreducible modes of logical predication"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — The subject; the pre-Socratics; the four kinds of change (1–2)", ids:["gc1_1","gc1_2"] },
+  { label:"II — Generation vs alteration; matter, form, and privation; contraries (3–5)", ids:["gc1_3","gc1_4","gc1_5"] },
+  { label:"III — Mixture, action, passion, and contact (6–10)", ids:["gc1_6","gc1_7","gc1_8","gc1_9","gc1_10"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

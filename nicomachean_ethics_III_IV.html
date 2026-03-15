@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Nicomachean Ethics III–IV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἠθικὰ Νικομάχεια Γ–Δ</h1>
+<p class="subtitle">Nicomachean Ethics Books III & IV — complete interactive reference</p>
+<p class="subtitle">III: voluntary action, choice, and deliberation; courage and temperance · IV: the remaining virtues of character</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book III establishes the conditions under which actions are voluntary and therefore subject to praise and blame — the logical foundation of moral responsibility. It then analyses courage and temperance in detail as the first two virtues. Book IV catalogues the remaining virtues of character — liberality, magnificence, magnanimity, proper ambition, gentleness, the social virtues, and shame — completing the survey begun in Book II.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book III — Ἠθικὰ Νικομάχεια Γ · Voluntary action and choice; courage and temperance",
+    groups: [
+      {
+        label: "Voluntary action and involuntary action (III.1)",
+        chapters: [
+          {
+            id:"ne3_1", label:"NE III.1 — voluntary and involuntary action", greek:"ἑκούσιον καὶ ἀκούσιον", accent:"#BA7517",
+            children:[
+              {label:"Why the distinction matters", note:"Praise and blame apply only to voluntary actions — we do not blame someone for what they could not help. Forgiveness and pardon apply to involuntary actions. The distinction between voluntary and involuntary is the foundation of moral responsibility"},
+              {label:"Involuntary action defined", note:"What is done by compulsion or through ignorance. These are the two sources of involuntariness"},
+              {label:"Compulsion", greek:"βία", children:[
+                {label:"Pure compulsion", note:"When the moving principle is external and the agent contributes nothing — being physically carried off by a storm. Genuinely involuntary"},
+                {label:"Mixed actions", note:"Actions done under threat — throwing cargo overboard to save the ship. The moving principle is in the agent but under extreme pressure. These are voluntary rather than involuntary — done knowingly and chosen at the time, even if not wished for in themselves"},
+              ]},
+              {label:"Ignorance", greek:"ἄγνοια", children:[
+                {label:"Acting in ignorance", note:"Acting while ignorant — the drunk who acts badly. The ignorance is the agent's own fault; the action is voluntary though regretted"},
+                {label:"Acting through ignorance", note:"Ignorance of the particular circumstances — not knowing this is one's father, not knowing the sword is real. Genuinely involuntary — and followed by pain and regret when the ignorance is dispelled"},
+                {label:"Ignorance of universal vs particular", note:"Ignorance of the universal (that cruelty is wrong) is not exculpatory — we are responsible for knowing the moral law. Ignorance of the particular circumstances is exculpatory"},
+              ]},
+              {label:"The voluntary", note:"What is done knowingly, with the moving principle in the agent — when none of the conditions for involuntariness are met. Virtue and vice are voluntary — and therefore subject to praise and blame"},
+              {label:"Connection to Metaphysics Theta.2", note:"Rational potentialities require choice for their actualization. NE III.1 gives the ethical analysis of the same structure — voluntary action is action from the agent's own rational principle, not compelled by external force or distorted by ignorance"},
+              {label:"Connection to your thesis", note:"The conditions for voluntary action — knowingly, from one's own principle — are conditions of proper predication. Praise and blame predicate virtue and vice of the agent. But predication of virtue or vice requires that the action was the agent's own — that the agent was the proper subject of the predication. The four conditions of involuntariness (compulsion, ignorance of particulars, ignorance of circumstances, ignorance of manner) are the ethical counterparts of the four elenchus conditions — they specify when the predication of moral responsibility is properly applied"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Choice and deliberation (III.2–5)",
+        chapters: [
+          {
+            id:"ne3_2", label:"NE III.2 — choice", greek:"προαίρεσις", accent:"#BA7517",
+            children:[
+              {label:"Choice is the most distinctive mark of virtue", note:"More than actions themselves, choice reveals character — a person can do the right thing accidentally or under compulsion, but choice shows what they really are"},
+              {label:"What choice is not", children:[
+                {label:"Not desire", note:"Desire is for the pleasant; choice can be for the painful. Animals have desire but not choice. Choice is specifically rational"},
+                {label:"Not spirit", note:"Spirit acts without deliberation — in anger we act impulsively. Choice involves prior deliberation"},
+                {label:"Not wish", note:"Wish can be for the impossible (we can wish to be immortal). Choice is only of things in our power"},
+                {label:"Not opinion", note:"Opinion is about what is true or false; choice is about what to do. We are not praised or blamed for our opinions as such"},
+              ]},
+              {label:"Choice defined", note:"Choice is deliberate desire of things in our own power — ὄρεξις βουλευτική τῶν ἐφ᾽ ἡμῖν. It involves both the rational element (deliberation) and the desiderative element (desire). Neither alone is sufficient"},
+              {label:"Connection to DA III.9–10", note:"DA III.10: action requires both practical nous and desire jointly. NE III.2 gives the ethical analysis of the same structure — choice is the joint product of deliberation (practical nous) and desire oriented by deliberation. The psychology and the ethics are one account"},
+            ]
+          },
+          {
+            id:"ne3_3", label:"NE III.3 — deliberation", greek:"βούλευσις", accent:"#BA7517",
+            children:[
+              {label:"What we deliberate about", note:"We deliberate about things that are in our power and can be done — not about eternal things (the cosmos), not about things that happen by chance, not about things that always happen the same way (the solstice)"},
+              {label:"Deliberation is about means, not ends", note:"We do not deliberate about our ends — the end is given by our character and desire. We deliberate about the means to our ends — what will bring about what we want"},
+              {label:"The process of deliberation", note:"We first set the end, then ask what will achieve it, then what will achieve that, and so on — until we reach something immediately in our power. Deliberation is analysis working backward from the end to the first action required"},
+              {label:"Deliberation and the practical syllogism", note:"The deliberative process has the structure of a practical syllogism — major premise (this end is good), minor premise (this action achieves it), conclusion (do this action). The conclusion of the practical syllogism is an action, not a proposition"},
+              {label:"Connection to Post. An. II and Physics II.9", note:"Hypothetical necessity runs from end to required conditions. Deliberation has the same structure — it works backward from the end to what is necessary for it. The logical structure of deliberation is the same as the logical structure of teleological natural explanation"},
+            ]
+          },
+          {
+            id:"ne3_4", label:"NE III.4 — wish", greek:"βούλησις", accent:"#BA7517",
+            children:[
+              {label:"Wish is of the end", note:"We wish for the end — happiness, health, victory. We deliberate and choose the means. Wish and choice operate at different levels of the practical structure"},
+              {label:"What do we wish for — the good or the apparent good?", note:"A puzzle: if we wish for what is good, then people who wish for bad things do not really wish for them — which seems wrong. If we wish for the apparent good, there is no objective standard for wish — whatever seems good to anyone is what they wish for"},
+              {label:"The resolution", note:"What is truly wished for is the good. But each person's wish is determined by what appears good to them — and the good person's appearances track the truth while the bad person's do not. The virtuous person is the measure of what genuinely appears good"},
+              {label:"Connection to NE II.6", note:"The practically wise person determines the mean — NE II.6. The good person determines what truly appears good — NE III.4. Both make the virtuous person the standard and criterion, not a rule or formula"},
+            ]
+          },
+          {
+            id:"ne3_5", label:"NE III.5 — virtue and vice are voluntary; we are responsible for our character", greek:"ἑκούσιοι αἱ ἀρεταί", accent:"#BA7517",
+            children:[
+              {label:"Virtues and vices are in our power", note:"If acting virtuously is in our power, then being virtuous is in our power — and if acting viciously is in our power, so is being vicious. Therefore praise and blame are justified"},
+              {label:"The objection: we cannot help our character", note:"Some say we cannot be blamed for our character — we simply have the character we have, determined by nature or upbringing. We did not choose our starting points"},
+              {label:"The response", note:"Though we did not choose our starting points, we chose how to act at each moment — and our choices formed our character. The person who is now unjust chose to act unjustly at each opportunity. They could have acted otherwise. The starting points do not determine the outcome — the individual choices do"},
+              {label:"The analogy with illness", note:"If someone deliberately neglects their health and becomes ill, we say they chose to be ill — their illness is voluntary. Similarly the person who has formed a vicious character through voluntary choices has chosen their character, even if they can no longer easily change it"},
+              {label:"Connection to your thesis", note:"The voluntariness of character is the ethical application of the temporal identity condition. The question of whether the person-now is the same subject as the person-who-chose is exactly the Ship of Theseus at the ethical level. Aristotle's answer: yes — because the causal chain of choices constitutes the continuity. Character is the temporal identity of the moral subject"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Courage and temperance (III.6–12)",
+        chapters: [
+          {
+            id:"ne3_6", label:"NE III.6–9 — courage", greek:"ἀνδρεία", accent:"#534AB7",
+            children:[
+              {label:"III.6 — what courage properly is", note:"Courage is the mean with respect to fear and confidence. Its proper object is the noble death in battle — the greatest and most terrible thing, faced for the right reason at the right time in the right way"},
+              {label:"III.7 — the five kinds of courage-like states", children:[
+                {label:"Civic courage", note:"Facing danger from shame, law, and the reproach of cowardice — the closest to genuine courage but motivated by external pressure"},
+                {label:"Experience", note:"The courage of the professional soldier who appears brave because he knows the danger is less than it seems — not genuine because it depends on knowledge, not character"},
+                {label:"Spirit", note:"Courage-like because spirit makes men rush into danger — but genuine courage involves choice and the right end"},
+                {label:"Optimism", note:"The courageous appearance of those who have often succeeded and think they will again — collapses when the situation changes"},
+                {label:"Ignorance", note:"Those who appear brave because they do not perceive the danger — vanishes when the situation becomes clear"},
+              ]},
+              {label:"III.8 — genuine courage involves pain", note:"The courageous person faces genuine danger — and this is genuinely fearful and therefore genuinely painful. Courage is not painless but noble, and its nobility makes the pain worth bearing"},
+              {label:"III.9 — courage and the pleasantness of noble action", note:"The courageous person acts for the sake of the noble — and the noble is pleasant to those of good character, though the circumstances (wounds, death) are painful. Virtue involves finding the noble pleasant even when it is costly"},
+            ]
+          },
+          {
+            id:"ne3_10", label:"NE III.10–12 — temperance", greek:"σωφροσύνη", accent:"#534AB7",
+            children:[
+              {label:"III.10 — temperance and the bodily pleasures", note:"Temperance concerns bodily pleasures — specifically those of touch and taste. Not all pleasures of the senses: not visual pleasures of beautiful things, not auditory pleasures of music. The pleasures of temperance and intemperance are the most animal"},
+              {label:"III.11 — the intemperate and the self-indulgent", note:"The intemperate person pursues bodily pleasures excessively and is pained by their absence — their desires are disordered. The self-indulgent person also pursues excessive pleasures but with pain — they struggle against their better nature"},
+              {label:"The temperate person", note:"The temperate person desires the right things, in the right way, at the right time — not every pleasant thing, not in excess. Their desires are ordered by reason and do not conflict with what reason prescribes"},
+              {label:"III.12 — desire must be obedient to reason", note:"The desiderative part of the soul must be guided by reason — as a child is guided by a parent. Intemperance is a childish failing: acting on immediate desires without the guidance of reason. Moral education is the education of desire into rational obedience"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IV — Ἠθικὰ Νικομάχεια Δ · The remaining virtues of character",
+    groups: [
+      {
+        label: "Virtues concerning wealth and honour (IV.1–4)",
+        chapters: [
+          {
+            id:"ne4_1", label:"NE IV.1 — liberality and its opposed vices", greek:"ἐλευθεριότης", accent:"#BA7517",
+            children:[
+              {label:"Liberality defined", note:"The mean with respect to giving and taking wealth. The liberal person gives the right amount to the right people at the right time — from the right motive (the noble) and with pleasure"},
+              {label:"The prodigal", note:"Gives too much and takes too little — pleasant but not praiseworthy. Prodigality can be cured by age and poverty; it lacks the meanness of miserliness"},
+              {label:"The miser", note:"Takes too much and gives too little — a more serious vice than prodigality. The miser's attachment to wealth is a form of misplaced love — treating money as an end rather than a means"},
+              {label:"Wealth is a means, not an end", note:"The liberal person understands that wealth is for use — for giving and spending. Those who love wealth for its own sake have confused means and ends — the same category error as the life of money-making (NE I.5)"},
+            ]
+          },
+          {
+            id:"ne4_2", label:"NE IV.2 — magnificence", greek:"μεγαλοπρέπεια", accent:"#BA7517",
+            children:[
+              {label:"Magnificence defined", note:"The mean with respect to large expenditure — spending the right amount on the right occasion with the right motive. The magnificent person equips a trireme, funds a chorus, adorns the city — for the public good"},
+              {label:"The vulgar", note:"Spends lavishly for show rather than for the noble — ostentatious expenditure without taste or public spirit"},
+              {label:"The petty", note:"Spends too little on occasions that call for magnificence — meanness where generosity is required"},
+              {label:"The standard: the occasion determines the right amount", note:"What counts as magnificent depends on who the person is and what the occasion is. The rich man's appropriate expenditure differs from the poor man's. The standard is relative — but determined by the practically wise person's judgment"},
+            ]
+          },
+          {
+            id:"ne4_3", label:"NE IV.3 — magnanimity: the crown of the virtues", greek:"μεγαλοψυχία", accent:"#BA7517",
+            children:[
+              {label:"Magnanimity defined", note:"The mean with respect to great honour — thinking oneself worthy of great things and being correct in this assessment. The magnanimous person is great and knows it"},
+              {label:"The vain", note:"Thinks themselves worthy of great things but is not — false self-assessment. The vain person claims what they have not earned"},
+              {label:"The pusillanimous", note:"Is worthy of great things but underestimates themselves — false modesty. The pusillanimous person fails to claim what they deserve, which is a kind of injustice to themselves and a loss to the community"},
+              {label:"The magnanimous person's character", note:"The magnanimous person is slow and dignified — they do not rush about for small things, do not take many things seriously, are not given to admiration (since nothing is great to them), cannot live for another's sake (unless a friend), are truthful about themselves"},
+              {label:"Magnanimity as the crown of virtue", note:"Magnanimity presupposes all the other virtues — one cannot be truly magnanimous without being genuinely virtuous. It is not a separate virtue but the proper self-assessment of the fully virtuous person"},
+              {label:"Connection to your thesis", note:"The magnanimous person's truthfulness about themselves — neither overclaiming nor underclaiming — is the ethical expression of the elenchus condition: same subject, properly identified. The magnanimous person predicates greatness of themselves correctly — proper predication applied to self-knowledge"},
+            ]
+          },
+          {
+            id:"ne4_4", label:"NE IV.4 — proper ambition and its extremes", greek:"φιλοτιμία", accent:"#BA7517",
+            children:[
+              {label:"The unnamed virtue", note:"The virtue concerning smaller honours has no established name — it lies between the ambitious (who seek too much honour) and the unambitious (who seek too little)"},
+              {label:"Ambition can be good or bad", note:"'Ambitious' is used as praise in some contexts ('he is ambitious — he works hard for honour') and as blame in others ('he is too ambitious — he seeks undeserved honours'). The same word covers both the virtue and the vice"},
+              {label:"The general point about unnamed virtues", note:"Some virtues lack names — either because they are rare or because they occur only in limited contexts. The absence of a name does not mean the absence of the virtue — the triadic structure is universal even when the middle term has no established label"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Virtues concerning anger, social relations, and self-presentation (IV.5–9)",
+        chapters: [
+          {
+            id:"ne4_5", label:"NE IV.5 — gentleness", greek:"πραότης", accent:"#BA7517",
+            children:[
+              {label:"Gentleness defined", note:"The mean with respect to anger — being angry at the right things, toward the right people, in the right way, at the right time, for the right duration. The gentle person is not easily provoked and not moved to revenge beyond what reason dictates"},
+              {label:"The irascible", note:"Gets angry too quickly, too intensely, at the wrong people — but their anger passes. Hot-tempered but not nursing grievances"},
+              {label:"The sulky and the harsh", note:"The sulky nurse their anger too long; the harsh are angry at the wrong things and cannot be appeased. Both are worse than the irascible in different ways"},
+              {label:"The deficiency of anger", note:"The person who is not angry at the right things — who accepts insults to themselves and their friends without anger — is deficient. Anger at injustice is appropriate and even necessary. Complete passivity before injustice is a failing, not a virtue"},
+            ]
+          },
+          {
+            id:"ne4_6", label:"NE IV.6–7 — the social virtues: friendliness and truthfulness", greek:"κοινωνικαὶ ἀρεταί", accent:"#BA7517",
+            children:[
+              {label:"IV.6 — friendliness", note:"The mean between obsequiousness (agreeing with everyone to please them) and quarrelsomeness (disagreeing with everyone from contrariness). The friendly person agrees when agreement is appropriate and disagrees when it is — aiming at what is good and pleasant without excessive deference"},
+              {label:"IV.7 — truthfulness about oneself", note:"The mean between boastfulness (claiming more than one has) and self-deprecation (claiming less). The truthful person represents themselves accurately — neither overclaiming for reputation nor underclaiming from false modesty"},
+              {label:"Boastfulness", note:"Claims virtues or achievements one does not have — for gain or reputation. A form of dishonesty about oneself"},
+              {label:"Self-deprecation", note:"Denies or minimizes genuine qualities — a form of dishonesty in the other direction. The ironic person (εἴρων) understates for effect, not for gain — more likeable than the boaster but still not fully truthful"},
+              {label:"Connection to your thesis", note:"Truthfulness about oneself — neither overclaiming nor underclaiming — is the ethical expression of proper predication applied to the self. The boaster predicates of themselves what does not belong; the self-deprecator denies what does belong. Both are cases of improper predication — the ethical analogue of the logical fallacies of accident and ignoratio elenchi"},
+            ]
+          },
+          {
+            id:"ne4_8", label:"NE IV.8 — wit", greek:"εὐτραπελία", accent:"#BA7517",
+            children:[
+              {label:"Wit defined", note:"The mean with respect to humour and play. The person of ready wit (εὐτράπελος) says what is apt, amusing, and appropriate — neither too much nor too little, neither too crude nor too refined"},
+              {label:"The buffoon", note:"Says anything for a laugh — will demean themselves or others, crosses appropriate limits for the sake of amusement. No sense of what is fitting"},
+              {label:"The boor", note:"Cannot take a joke — humourless, uncomfortable with playfulness. Takes offence at appropriate wit and contributes nothing to the pleasure of social life"},
+              {label:"Social life requires playfulness", note:"Play and rest are necessary in a complete human life — the person who cannot play or be playful is deficient. Wit is a genuine virtue, not a minor courtesy"},
+            ]
+          },
+          {
+            id:"ne4_9", label:"NE IV.9 — shame", greek:"αἰδώς", accent:"#BA7517",
+            children:[
+              {label:"Shame is not strictly a virtue", note:"Shame is a praiseworthy state but not a virtue — it is a feeling, not a stable disposition toward action. The virtuous person rarely has occasion to feel shame because they rarely do shameful things"},
+              {label:"Shame is appropriate in the young", note:"The young need shame — they live by feeling and make mistakes, and shame restrains them. For the mature virtuous person, shame would indicate that shameful things have been done"},
+              {label:"Conditional praise", note:"We praise the young for feeling shame appropriately. We do not praise the fully mature for feeling shame — if they need to feel it, something has gone wrong. Shame is a corrective, not a constitutive element of virtue"},
+              {label:"Transition to Book V", note:"Book IV completes the survey of virtues of character begun in Book II. Book V turns to justice — the most complete virtue, because it is exercised toward others — and then to the intellectual virtues. The Ethics moves from character to intellect"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

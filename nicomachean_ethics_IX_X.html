@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Nicomachean Ethics IX–X</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .theoria-flag { font-size: 10px; color: #185FA5; font-style: italic; margin-left: 8px; font-weight: 600; letter-spacing: 0.04em; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-header-th { background: #e8f0fb; border-left: 4px solid #185FA5 !important; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .th-group-label { font-size: 10px; color: #185FA5; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Ἠθικὰ Νικομάχεια Ι–Κ</h1>
+<p class="subtitle">Nicomachean Ethics Books IX & X — complete interactive reference</p>
+<p class="subtitle">IX: friendship concluded — self-love, the friend as another self, political friendship · X: pleasure; the contemplative life as the highest happiness</p>
+<p class="subtitle" style="color:#185FA5; font-weight:600;">Book X.6–8 on the contemplative life receives extended treatment — the human Unmoved Mover, the Ethics meeting Lambda</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Book IX completes the treatment of friendship with its deepest questions: the basis of self-love, the friend as another self, the relation between friendship and self-knowledge, and the friend's role in the happy life. Book X gives the final account of pleasure as the completion of activity, then establishes the contemplative life as the highest happiness — the life most like the Unmoved Mover's eternal self-thinking, and the human realisation of what the Metaphysics identified as pure actuality.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book IX — Ἠθικὰ Νικομάχεια Ι · Friendship concluded",
+    groups: [
+      {
+        label: "Dissolving puzzles about friendship (IX.1–3)",
+        chapters: [
+          {
+            id:"ne9_1", label:"NE IX.1–3 — competing claims and the dissolution of friendship puzzles", greek:"ἀπορίαι φιλίας", accent:"#BA7517",
+            children:[
+              {label:"IX.1 — competing claims in friendship", note:"When friends have different expectations — one seeking virtue, one seeking utility — whose claim takes priority when conflict arises? The answer: the terms of the friendship govern. Each kind of friendship has its own standard of what is owed"},
+              {label:"IX.2 — should we always obey our fathers?", note:"We owe more to some than to others — but the kind of what we owe differs. We owe our fathers existence; our teachers knowledge; our fellow-citizens safety. These cannot be ranked on a single scale — each has its own incommensurable claim"},
+              {label:"IX.3 — when should friendships be dissolved?", note:"When a friend changes radically — becomes vicious — the friendship of virtue no longer has its basis. We should not dissolve hastily but recognise when the person we loved is genuinely gone. The continuity of character is the continuity of the friendship"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Self-love, the friend as another self, and self-knowledge (IX.4–9)",
+        chapters: [
+          {
+            id:"ne9_4", label:"NE IX.4 — friendly feelings toward others derive from friendly feelings toward oneself", greek:"ἐκ τῶν πρὸς ἑαυτόν", accent:"#BA7517",
+            children:[
+              {label:"The five marks of friendship applied to oneself", note:"We wish what is good for the friend for the friend's own sake. We wish the friend to exist and to live. We spend time with the friend. We share the friend's joys and sorrows. These five apply to the good person's relation to themselves — and from this the friendly feelings toward others derive"},
+              {label:"The good person as self-friend", note:"The good person is a friend to themselves — they have a unified soul in which reason and desire agree. Their wish for themselves is coherent. Bad people are not friends to themselves — they are divided, wishing one thing and doing another"},
+              {label:"Connection to weakness of will", note:"The weak-willed person is not a friend to themselves — they are divided against themselves. Their incoherence at the moment of action is the breakdown of the self-friendship that grounds all other friendship"},
+            ]
+          },
+          {
+            id:"ne9_8", label:"NE IX.8 — self-love: the noble and the base", greek:"φιλαυτία", accent:"#BA7517",
+            children:[
+              {label:"Two kinds of self-love", children:[
+                {label:"Base self-love", note:"Assigning to oneself more money, honour, and bodily pleasures than one deserves — gratifying the irrational part of the soul. This is what self-love is criticised as being"},
+                {label:"Noble self-love", note:"Assigning to oneself the finest and best things — noble actions, virtue, the exercise of reason. This is the self-love of the good person: giving the best of themselves to themselves"},
+              ]},
+              {label:"The good person should be a self-lover in the noble sense", note:"The good person does more noble actions than anyone else — and assigns these to themselves. They gratify the authoritative part of the soul and obey it. This is praiseworthy self-love"},
+              {label:"Apparent self-sacrifice is really noble self-love", note:"The good person who gives up wealth or honour or life for the sake of the noble is not sacrificing themselves — they are acquiring for themselves the greatest good: noble action. They choose the noble over comfort or safety because the noble is what they most are"},
+              {label:"Connection to your thesis", note:"Noble self-love is the ethical expression of proper self-predication — predicating of oneself what genuinely belongs to one's essence. The good person's self-love is accurate self-knowledge expressed as action: knowing what one most essentially is (a rational being oriented toward the noble) and acting from that knowledge. Improper self-love — base self-love — is a form of improper self-predication: attributing to oneself what belongs only accidentally (wealth, pleasure) rather than essentially (virtue, noble action)"},
+            ]
+          },
+          {
+            id:"ne9_9", label:"NE IX.9 — does the happy person need friends?", greek:"δεῖται φίλων ὁ εὐδαίμων", accent:"#BA7517",
+            children:[
+              {label:"The puzzle", note:"If the happy person is self-sufficient, why do they need friends? Self-sufficiency seems to exclude the need for others"},
+              {label:"The answer: friends are needed for self-knowledge", note:"We cannot observe ourselves directly — we see ourselves in our friends, who are like other selves. The friend is a mirror for the self. Without friends we cannot achieve the self-knowledge that complete happiness requires"},
+              {label:"The friend as another self", greek:"ἄλλος αὐτός", note:"The friend is another self — someone in whom we see ourselves reflected. The love of a friend is the love of what is essentially oneself in another. This is the deepest account of what friendship is"},
+              {label:"Activity with friends is more continuous", note:"Virtuous activity is pleasanter with friends — we can act more continuously and with greater pleasure in the company of those who share our aims and character. Friends sustain the virtuous life"},
+              {label:"Connection to NE I.7 function argument", note:"The function argument established that happiness is activity — not a state but an exercise. Friends are needed not as supplements to the happy state but as conditions for the continuous exercise of the activity that constitutes happiness. Self-sufficiency does not mean isolation but completeness — and complete virtuous activity includes activity with others"},
+            ]
+          },
+          {
+            id:"ne9_12", label:"NE IX.10–12 — how many friends; living together", greek:"πόσους φίλους", accent:"#BA7517",
+            children:[
+              {label:"Virtue friendship is few", note:"Perfect friends are few — the time and intimacy required mean that only a small number are possible. The person with very many friends is friends with none in the full sense"},
+              {label:"Living together is necessary for friendship", note:"Friends must spend time together — sharing conversation, thought, and activity. The friendship that exists only in principle but involves no actual communion is not fully actualized"},
+              {label:"What friends share depends on what they value", note:"Friends who are good share thought and discourse — the highest activities. Friends who share only eating or drinking have a lesser friendship. What is shared defines the level of the friendship"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book X — Ἠθικὰ Νικομάχεια Κ · Pleasure; the contemplative life as the highest happiness",
+    groups: [
+      {
+        label: "Pleasure: the final account (X.1–5)",
+        chapters: [
+          {
+            id:"ne10_1", label:"NE X.1–3 — pleasure and its importance; previous views", greek:"ἡδονή", accent:"#534AB7",
+            children:[
+              {label:"Why pleasure matters for ethics", note:"The management of pleasure and pain is central to virtue — it is what moral education is about. Any account of the good life must give an account of pleasure"},
+              {label:"X.1 — Eudoxus: pleasure is the good", note:"Eudoxus argued that pleasure is the good — because all things pursue it, both rational and irrational. What all things aim at is the good; all aim at pleasure; therefore pleasure is the good"},
+              {label:"Aristotle's partial agreement", note:"Eudoxus was right that pleasure is one of the goods — and that some pleasures are the best things. But not all pleasures are good — some are bad, and the good life cannot be identified simply with the pleasant life"},
+              {label:"X.3 — pleasure is not a process", note:"Pleasures are not processes toward an end (as building is toward a house) — they are complete at every moment. 'I am pleased' implies 'I have been pleased' — the tense test from Metaphysics Theta.6. Pleasure is a complete actuality, not an incomplete process"},
+            ]
+          },
+          {
+            id:"ne10_4", label:"NE X.4–5 — pleasure as the completion of activity", greek:"τελειοῦσα ἐνέργεια", accent:"#534AB7",
+            children:[
+              {label:"The final definition of pleasure", note:"Pleasure completes activity as a kind of supervenient end — as the bloom of youth does for those in the flower of their age. Pleasure is not the activity but the completion of the activity — what accompanies and perfects it"},
+              {label:"Pleasure and activity are inseparable", note:"Each activity has its own proper pleasure — the pleasure of learning, the pleasure of seeing, the pleasure of acting justly. The pleasure completes the activity; the activity determines the quality of the pleasure"},
+              {label:"The best activity has the best pleasure", note:"The pleasure of the best activity is the best pleasure. Philosophical contemplation is the best activity; therefore its pleasure is the best pleasure. This grounds the argument of X.7–8"},
+              {label:"Connection to Metaphysics Theta.6 and Lambda.7", note:"Pleasure as complete actuality — Theta.6 distinguished complete activity (ἐνέργεια) from process (κίνησις). The Unmoved Mover's activity is supremely complete and therefore supremely pleasant — it lives the best life, eternally and without interruption. NE X.4–5 gives the ethical analysis of what the Metaphysics describes cosmologically"},
+              {label:"Connection to your thesis", note:"Pleasure as the completion of activity is the ethical expression of the form-matter relation: pleasure is to activity as form is to matter — it completes and perfects without being separate. This is the ethical counterpart of the metaphysical doctrine that form is the cause of being. The complete actuality of the Unmoved Mover is supremely pleasant because form and activity are perfectly unified in it — no gap between what it is and what it does"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "⬦ THEORIA — the contemplative life as the highest happiness (X.6–8)",
+        chapters: [
+          {
+            id:"ne10_6", label:"NE X.6 — happiness is activity; the contemplative life is superior", greek:"εὐδαιμονία ἐνέργεια", accent:"#185FA5",
+            th: true,
+            children:[
+              {label:"Happiness is not rest but activity", note:"Happiness cannot be mere relaxation or amusement — these are for the sake of activity, not ends in themselves. A life spent in amusement would be absurd as an account of the highest good"},
+              {label:"The best activity is the activity of the best part", note:"If happiness is activity in accordance with virtue, it will be activity in accordance with the highest virtue — and this belongs to the best part of us. The best part is nous"},
+              {label:"Contemplative activity is the best", note:"The activity of nous — theoretical contemplation — is the best human activity. It is continuous (nous can contemplate more continuously than we can do anything else), most pleasant (the pleasures of philosophy are the purest and most lasting), most self-sufficient (requires fewest external goods), and most complete (complete in itself)"},
+              {label:"The contemplative life is loved for its own sake", note:"We contemplate for the sake of nothing beyond the contemplation itself — unlike practical activity which aims at an external result. Theoretical contemplation is the purest end — chosen solely for its own sake"},
+              {label:"Connection to the function argument", note:"NE I.7 established that happiness is activity of the soul in accordance with the best and most complete virtue in a complete life. NE X.6 now identifies the best and most complete virtue — sophia and nous. The function argument has found its full content"},
+            ]
+          },
+          {
+            id:"ne10_7", label:"NE X.7 — the contemplative life is the divine life; nous is what we most are", greek:"θεῖος βίος", accent:"#185FA5",
+            th: true,
+            children:[
+              {label:"The contemplative life is more than human", note:"Such a life is too high for a human being — insofar as he is human. But insofar as something divine is in him, he should live by it and make every effort to live in accordance with the best thing in him"},
+              {label:"Nous is what we most are", note:"If nous is divine compared to the rest of human nature, the life according to nous is divine compared to human life. We must not follow those who advise us to think human thoughts because we are human — we must immortalize ourselves as much as possible and do everything to live by the best thing in us"},
+              {label:"Nous is what a human being most is", note:"Though nous is small in bulk, it surpasses everything in power and value. It would seem strange if one were to choose not to live according to one's own life but that of something else. What is proper to each thing is by nature best and most pleasant for it — and for the human being this is the life according to nous"},
+              {label:"The contemplative life as the Unmoved Mover's life", note:"The Unmoved Mover lives eternally the life of self-thinking nous — Lambda.7. The human being who lives the contemplative life participates in that divine activity — not eternally, but in glimpses. We briefly live the life that the Unmoved Mover lives completely and forever"},
+              {label:"Connection to Lambda.7 and DA III.5", note:"Lambda.7: the Unmoved Mover lives the best life continuously and eternally in the activity of nous. DA III.5: the active nous is separable, unmixed, impassible, immortal — the divine element within us. NE X.7 brings these together: the contemplative life is the human realisation of what Lambda describes cosmologically and DA III.5 describes psychologically. The Ethics, the Psychology, and the Metaphysics converge"},
+              {label:"Connection to Buddhist contemplative ideal", note:"The Buddhist ideal of the arahant — one who has realised the unconditioned — is structurally parallel. The arahant lives without clinging, without becoming, in the direct presence of the unconditioned. The contemplative philosopher lives without the distraction of appetite and desire, in the direct presence of the first principles grasped by nous. Both describe a mode of human life that participates in what transcends the human without ceasing to be human"},
+              {label:"Connection to your thesis", note:"NE X.7 is the ethical culmination of the entire argument. The highest human life is the life that most closely approximates the Unmoved Mover — the pure actuality that is the limit and ground of all being. The catuṣkoṭi's fourth position — beyond is and is-not, beyond predication — is what nous touches when it thinks the highest things. The contemplative life is the human inhabitation of that fourth position: not a predication but a direct contact, not a state that can be described but an activity that can only be lived. Paper Four's central claim is present here: the Aristotelian and Buddhist highest ideals are structurally identical — not by analogy but by identity of logical and experiential form"},
+            ]
+          },
+          {
+            id:"ne10_8", label:"NE X.8 — the second-best life: the life of practical virtue", greek:"δεύτερος βίος", accent:"#185FA5",
+            th: true,
+            children:[
+              {label:"The life of practical virtue is second-best", note:"The life according to the other virtues — courage, justice, temperance, practical wisdom — is happy in a secondary sense. It is the life of the politician and the soldier — active in the world, exercising virtue toward others"},
+              {label:"The practically active life is human rather than divine", note:"The practical virtues are tied to the body and to other people — they require circumstances, opponents, beneficiaries. They cannot be exercised by the Unmoved Mover. They are distinctively human virtues"},
+              {label:"External goods are needed more for the practical life", note:"The practical life requires wealth, political power, health, friendship — many external goods that the contemplative life can largely do without. The contemplative person needs only the necessities"},
+              {label:"The two lives are not in conflict", note:"Aristotle does not say we must choose between the contemplative and practical lives — the complete human life combines both. But the contemplative is higher, and when contemplation is possible it should be pursued"},
+              {label:"Connection to the political life", note:"The second-best life is the life of the statesman — who exercises all the political and ethical virtues in the service of the community. The Politics will analyse the conditions under which this life is fully possible. The Ethics ends; the Politics begins"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Pleasure, virtue, and the transition to politics (X.5, X.9)",
+        chapters: [
+          {
+            id:"ne10_5", label:"NE X.5 — different activities have different pleasures", greek:"ἑκάστῃ ἐνεργείᾳ ἴδια ἡδονή", accent:"#534AB7",
+            children:[
+              {label:"Each activity has its proper pleasure", note:"The pleasure proper to an activity intensifies and perfects it. Foreign pleasures interfere with and weaken activities — the pleasure of the flute distracts the person who loves music when they are trying to reason. Activities and their pleasures are paired"},
+              {label:"The proper pleasure of contemplation", note:"The pleasure of philosophical contemplation — understanding, seeing how things are — is pure, stable, and self-renewing. It is not exhausted by exercise but deepened. This distinguishes it from the pleasures of appetite which are exhausted and leave only the desire for more"},
+              {label:"The criterion of the good person", note:"What the good person finds pleasant is what is truly pleasant — their pleasure tracks genuine value, not mere appetite. The good person's pleasures are the measure of what is truly pleasant, just as their judgments are the measure of what is truly good"},
+            ]
+          },
+          {
+            id:"ne10_9", label:"NE X.9 — the transition to politics: laws and moral education", greek:"μετάβασις εἰς πολιτικήν", accent:"#534AB7",
+            children:[
+              {label:"Individual moral education is not enough", note:"To become good, human beings need laws and institutions — individual exhortation rarely suffices. People are generally moved by compulsion or shame, not by argument. Laws provide the compulsion; education provides the habits"},
+              {label:"The father vs the lawgiver", note:"A father can influence his own children — but he cannot compel. The lawgiver can compel the whole community — this is why political institutions are necessary for moral education at scale"},
+              {label:"The science of legislation", note:"To understand how laws produce virtue, we need the science of legislation — which is part of politics. But the sophists who claim to teach this actually know nothing about it. True political science requires both theoretical understanding and practical experience"},
+              {label:"The transition", note:"The Ethics has analysed the good for the individual; the Politics will analyse the conditions under which that good can be realised in the community. The transition is not from one subject to another but from one level of the same inquiry to the next"},
+              {label:"The unity of Ethics and Politics", note:"The Ethics and Politics are one continuous philosophical inquiry — the Nicomachean Ethics is not a complete work in itself but the first half of a two-part investigation into the human good. The Politics completes what the Ethics begins"},
+              {label:"The closing of the Ethics", note:"The Ethics ends by handing off to the Politics — the investigation of the good for human beings requires both the analysis of individual virtue and the analysis of the political conditions that make virtue possible. Neither is sufficient alone. This is the final word of the Nicomachean Ethics — and the opening of the next stage of the inquiry"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  const isTh = c.th;
+  return `<div class="cat-block">
+    <div class="header-row toggle ${isTh ? 'cat-header-th' : 'cat-header'}" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+      ${isTh ? `<span class="theoria-flag">◆ THEORIA</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g => {
+      const isTh = g.label.includes('THEORIA');
+      return `<div class="${isTh ? 'th-group-label' : 'group-label'}">${g.label}</div>` +
+        g.chapters.map(c => renderCat(c)).join('');
+    }).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

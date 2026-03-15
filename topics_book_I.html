@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Topics Book I</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 1.5rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Τοπικά Α</h1>
+<p class="subtitle">Topics Book I — complete interactive reference · chapters 1–18</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. Topics Book I establishes the nature and purpose of dialectic, the four predicables, the ten categories, and the instruments of argument. Books II–VII treat each predicable in detail. Book VIII treats the practice of dialectical exchange.</footer>
+
+<script>
+const cats = [
+  {
+    id:"t1", label:"Top. I.1 — the purpose of the treatise", greek:"πρόθεσις", accent:"#BA7517",
+    children:[
+      {label:"The aim", note:"To find a method by which we can reason about any problem set before us from reputable opinions, and avoid saying anything self-contradictory when defending a thesis"},
+      {label:"Dialectical syllogism defined", note:"Reasoning from reputable opinions — as opposed to demonstration which reasons from what is true and primary"},
+      {label:"Reputable opinions", greek:"ἔνδοξα", note:"What is accepted by everyone, or by the majority, or by the wise — and among the wise, by all or most or the most reputable"},
+      {label:"Three uses of dialectic", children:[
+        {label:"Mental training", note:"Exercises the capacity for argument on both sides of any question"},
+        {label:"Conversation", note:"Enables engagement with anyone — using premises the interlocutor will accept"},
+        {label:"The philosophical sciences", note:"Examines the first principles of each science — dialectic can scrutinize what demonstration must assume"},
+      ]},
+      {label:"The connection to demonstration", note:"Dialectic and demonstration share the syllogistic form — they differ only in the epistemic status of their premises. Dialectic is the critical examination of what demonstration takes for granted"},
+    ]
+  },
+  {
+    id:"t2", label:"Top. I.2 — the usefulness of the treatise", greek:"χρεία", accent:"#BA7517",
+    children:[
+      {label:"For training", note:"Regular practice in giving and taking arguments — the gymnastic of reason"},
+      {label:"For encounters", note:"Meeting any interlocutor on their own terms — using what they will accept as premises"},
+      {label:"For the philosophical sciences", note:"Scrutiny of first principles — since first principles cannot be demonstrated, dialectic is the only method for examining them critically"},
+      {label:"The deepest use", note:"Dialectic can probe the premises of every science because it proceeds from reputable opinions — it can ask whether the accepted foundations are coherent"},
+      {label:"Connection to Post. An. I.3 and I.10", note:"First principles are grasped by nous — but dialectic tests whether what we think we grasp is coherent. Dialectic is the critical complement to nous"},
+    ]
+  },
+  {
+    id:"t3", label:"Top. I.3 — the scope of the method", greek:"ἐφ᾽ ὅσον", accent:"#BA7517",
+    children:[
+      {label:"Not perfection but the capacity", note:"The goal is not to find the best argument in every case but to have a general method that works across all cases"},
+      {label:"The method is complete", note:"It covers all types of dialectical problem — definition, genus, property, accident — and all three figures of syllogism"},
+      {label:"Relation to the Prior Analytics", note:"The Prior Analytics gives the formal theory; the Topics gives the material application — what kinds of content can serve as premises in dialectical argument"},
+    ]
+  },
+  {
+    id:"t4", label:"Top. I.4 — the materials of argument", greek:"ἐξ ὧν οἱ συλλογισμοί", accent:"#BA7517",
+    children:[
+      {label:"Propositions and problems", note:"Arguments consist of propositions; dialectic addresses problems. A proposition is a positive claim; a problem raises a question"},
+      {label:"Every argument is from propositions", note:"The premises of any argument are propositions — accepted or reputable claims about the subject"},
+      {label:"Every problem concerns a predicable", note:"Each dialectical problem is about whether something is a definition, a genus, a property, or an accident of the subject"},
+      {label:"The four predicables as the complete field", note:"Any predication of anything falls under one of these four types — the Topics covers the complete logical space of predication"},
+    ]
+  },
+  {
+    id:"t5", label:"Top. I.5 — the four predicables", greek:"τέτταρα", accent:"#534AB7",
+    children:[
+      {label:"Definition", greek:"ὁρισμός", note:"A phrase signifying the essence — what the thing is. The definition gives the genus and differentiae", eg:"Man is a rational animal"},
+      {label:"Genus", greek:"γένος", note:"That which is predicated essentially of several specifically different things — wider than species, predicated in the what-it-is", eg:"Animal is the genus of man and horse"},
+      {label:"Property", greek:"ἴδιον", note:"What belongs to a thing alone, to all of it, and always — but is not the essence. Convertible with the subject but not definitional", eg:"Capable of learning grammar belongs to man alone but is not his definition"},
+      {label:"Accident", greek:"συμβεβηκός", note:"What may belong or not belong to a thing — neither definition, genus, nor property", eg:"Being seated · being pale — may or may not belong to a given man"},
+      {label:"The four are exhaustive", note:"Every predication of one thing of another is one of these four — definition, genus, property, or accident. This is the complete logical taxonomy of predication"},
+      {label:"Connection to the Organon", note:"The five predicables of the Isagoge (Porphyry) add species and differentia to Aristotle's four — Porphyry's elaboration of this passage"},
+    ]
+  },
+  {
+    id:"t6", label:"Top. I.6 — how propositions and problems differ", greek:"διαφορά", accent:"#534AB7",
+    children:[
+      {label:"A proposition", note:"A dialectical assertion — takes a positive form, assumes the interlocutor's assent or dissent"},
+      {label:"A problem", note:"A dialectical question — asks whether something is or is not the case. Genuinely open — neither side is obvious"},
+      {label:"Not all questions are problems", note:"What is obvious to everyone is not a dialectical problem — nor is what everyone would deny. A problem is what has arguments on both sides"},
+      {label:"Connection to the elenchus", note:"The elenchus (De Int. Ch. 11) is the four-condition contradictory pair — dialectical problems are what the elenchus operates on. The Topics presupposes the logical analysis of De Interpretatione"},
+    ]
+  },
+  {
+    id:"t7", label:"Top. I.7 — the senses in which things are the same", greek:"ταὐτόν", accent:"#534AB7",
+    children:[
+      {label:"Numerical sameness", note:"One individual referred to by different names", eg:"Cicero and Tully — same man"},
+      {label:"Specific sameness", note:"Things of the same species but numerically different", eg:"This man and that man — both man"},
+      {label:"Generic sameness", note:"Things of the same genus but different species", eg:"Man and horse — both animal"},
+      {label:"Why sameness matters for dialectic", note:"Arguments that treat things as the same when they differ in sense generate fallacies — particularly the fallacy of equivocation. Identifying the sense of sameness is essential to valid argument"},
+      {label:"Connection to homonymy", note:"Cat. Ch. 1 — homonymous terms share a name but have different definitions of being. Distinguishing the senses of sameness is the logical defence against homonymy"},
+    ]
+  },
+  {
+    id:"t8", label:"Top. I.8 — which problems are most useful", greek:"χρησιμώτατα", accent:"#534AB7",
+    children:[
+      {label:"Problems about choice and avoidance", note:"Practical problems — what to pursue and what to avoid. Most immediately useful for action"},
+      {label:"Problems contributing to knowledge", note:"Theoretical problems — what is the case and why. Most important for understanding"},
+      {label:"Problems that are merely ancillary", note:"Subsidiary problems that support the resolution of the main problem — useful but not primary"},
+      {label:"The ranking", note:"Aristotle does not rank these rigidly — the usefulness depends on the context and the interlocutor. The method covers all three"},
+    ]
+  },
+  {
+    id:"t9", label:"Top. I.9 — the categories as the field of predication", greek:"κατηγορίαι", accent:"#534AB7",
+    children:[
+      {label:"The categories revisited", note:"Every predication falls under one of the ten categories — every proposition predicates something in one of these modes"},
+      {label:"The categories and the predicables", note:"When we predicate a definition we predicate in the being category. When we predicate a quality we predicate in the quality category. The predicables cross-cut the categories"},
+      {label:"Identifying the category", note:"To evaluate a dialectical argument, identify which category the predication falls under — this immediately constrains what can be said and what cannot"},
+      {label:"Cross-category predication as error", note:"Predicating in the wrong category generates fallacies — the same error as improper predication in the Categories and the homonymy fallacy of Prior Analytics I.34"},
+    ]
+  },
+  {
+    id:"t10", label:"Top. I.10 — dialectical propositions and problems", greek:"προτάσεις καὶ προβλήματα", accent:"#534AB7",
+    children:[
+      {label:"Dialectical proposition", note:"A question about what is reputable — asking the interlocutor to accept a premise that most people or the wise would accept"},
+      {label:"Dialectical problem", note:"A question about which there is disagreement among the wise, or which contradicts popular opinion, or which is puzzling"},
+      {label:"Thesis", greek:"θέσις", note:"A belief contrary to general opinion held by a notable philosopher — not a mere oddity but a position with supporting argument", eg:"Heraclitus: everything is in flux. Antisthenes: contradiction is impossible"},
+      {label:"Distinction from sophistry", note:"A dialectical problem is a genuine question — both sides have arguments. A sophistic problem is designed only to confuse, not to illuminate"},
+    ]
+  },
+  {
+    id:"t11", label:"Top. I.11 — what makes a thesis dialectically interesting", greek:"ποῖα θέσις", accent:"#534AB7",
+    children:[
+      {label:"Theses contrary to appearance", note:"Most interesting dialectically — they go against what seems obvious and require genuine argument to defend or attack"},
+      {label:"Theses of the philosophers", note:"The positions of notable thinkers — examining them develops philosophical capacity even if they turn out to be wrong"},
+      {label:"What is not a dialectical thesis", note:"What requires mere punishment or perception to settle — 'should one honour the gods?' is not a dialectical problem"},
+      {label:"The boundary condition", note:"A genuine dialectical thesis is one where argument on both sides is possible and the question is not settled by obvious appeal to perception or common decency"},
+    ]
+  },
+  {
+    id:"t12", label:"Top. I.12 — the types of dialectical argument", greek:"εἴδη διαλεκτικῆς", accent:"#993C1D",
+    children:[
+      {label:"Induction", greek:"ἐπαγωγή", note:"Proceeding from particular cases to a universal — the interlocutor is led to accept the universal by agreeing to the cases"},
+      {label:"Syllogism", greek:"συλλογισμός", note:"Proceeding from accepted premises to a conclusion — the interlocutor cannot deny the conclusion if they accept the premises"},
+      {label:"Which is better for what", note:"Induction is more persuasive and clearer to the untrained; syllogism is more compulsive and effective against those who argue"},
+      {label:"Connection to rhetoric", note:"The Rhetoric uses the same distinction — example (induction) vs enthymeme (syllogism). The Topics and Rhetoric share the same underlying logical structure"},
+    ]
+  },
+  {
+    id:"t13", label:"Top. I.13 — the instruments of argument", greek:"ὄργανα", accent:"#993C1D",
+    children:[
+      {label:"Four instruments", children:[
+        {label:"Securing propositions", note:"Collecting reputable opinions that can serve as premises — building the stock of accepted claims to draw on"},
+        {label:"Distinguishing ambiguities", note:"Identifying when a term is used in multiple senses — the first defence against equivocation and homonymy"},
+        {label:"Finding differences", note:"Distinguishing things that appear similar — resisting false unifications"},
+        {label:"Finding similarities", note:"Recognizing common structure in different things — the basis of inductive argument and analogical reasoning"},
+      ]},
+      {label:"These four are the complete toolkit", note:"Every dialectical move uses one of these four instruments — the Topics is the systematic development of all four"},
+    ]
+  },
+  {
+    id:"t14", label:"Top. I.14 — securing propositions", greek:"προτάσεις λαμβάνειν", accent:"#993C1D",
+    children:[
+      {label:"What propositions to collect", note:"Reputable opinions — from common belief, from the wise, from both"},
+      {label:"Contrary propositions", note:"When collecting propositions also note their contraries — having the contrary ready enables refutation"},
+      {label:"Propositions from the predicables", note:"Collect what is true of things as their definition, genus, property, or accident — these are the materials for all dialectical argument"},
+      {label:"Propositions from the categories", note:"Collect what is predicated in each category — being, quantity, quality, relation, etc. The categories structure the inventory of reputable claims"},
+      {label:"Written collections", note:"Aristotle recommends keeping written collections organized by subject — the practice underlying his own works on animals, on politics, on rhetoric"},
+    ]
+  },
+  {
+    id:"t15", label:"Top. I.15 — distinguishing ambiguities", greek:"διαιρεῖν τὰς ὁμωνυμίας", accent:"#993C1D",
+    children:[
+      {label:"Why ambiguity matters", note:"An ambiguous term allows an interlocutor to affirm or deny what they have not really understood — every equivocation is a hidden ambiguity"},
+      {label:"How to identify ambiguity", children:[
+        {label:"By contrary", note:"If the supposed contraries of a term differ the term is ambiguous", eg:"'Sharp' contrary to 'flat' in taste; contrary to 'dull' in sound — two different senses"},
+        {label:"By genus", note:"If the same term admits of predication in different categories it is ambiguous", eg:"'Sound' applies to health and to music — different genera"},
+        {label:"By definition", note:"State the definition — if more than one definition emerges the term is ambiguous"},
+      ]},
+      {label:"Connection to the Categories", note:"Homonymy (Cat. Ch. 1) is the theoretical analysis; this chapter is the practical method for detecting it in argument"},
+      {label:"Connection to the elenchus", note:"De Int. Ch. 11's first condition: same subject — not homonymous. This chapter gives the method for enforcing that condition in dialectical exchange"},
+    ]
+  },
+  {
+    id:"t16", label:"Top. I.16 — finding differences", greek:"διαφοραί", accent:"#993C1D",
+    children:[
+      {label:"Why differences matter", note:"Distinguishing things that appear the same prevents false unifications — and enables precise definition by differentia"},
+      {label:"Differences within a genus", note:"Things in the same genus differ by differentia — finding the differentia is finding the definition"},
+      {label:"Differences across genera", note:"Things in different genera differ more fundamentally — their definitions share no common element beyond the most general being"},
+      {label:"Differences of degree vs kind", note:"Some things differ only in degree (more or less) — these are in the same species. Things that differ in kind are in different species"},
+      {label:"Connection to the Porphyrian tree", note:"The tree is built by finding differences — the differentia at each node divides the genus. This chapter is the practical method for building the tree"},
+    ]
+  },
+  {
+    id:"t17", label:"Top. I.17 — finding similarities", greek:"ὁμοιότητες", accent:"#993C1D",
+    children:[
+      {label:"Why similarities matter", note:"Similarities are the basis of inductive argument — moving from particular cases to a universal requires recognizing what the cases have in common"},
+      {label:"Analogy", note:"A specific kind of similarity — A is to B as C is to D. Analogical reasoning extends predication across different genera", eg:"As sight is to the eye so reason is to the soul"},
+      {label:"Similarities in different genera", note:"When the same predicate applies in different genera it may do so by analogy rather than univocally — the analogical extension of a term"},
+      {label:"Connection to the Metaphysics", note:"Being is said in many ways but always in relation to one — πρὸς ἕν equivocity. Analogy and focal meaning connect the Topics to the central doctrine of the Metaphysics"},
+    ]
+  },
+  {
+    id:"t18", label:"Top. I.18 — how the instruments relate to each other", greek:"σύνδεσμος", accent:"#993C1D",
+    children:[
+      {label:"The instruments are interdependent", note:"Securing propositions requires distinguishing ambiguities — you cannot collect reliable premises without knowing whether the terms are used consistently"},
+      {label:"Differences enable definitions", note:"Finding differences leads to definitions — definitions are the most powerful premises in dialectical argument"},
+      {label:"Similarities enable induction", note:"Finding similarities enables inductive argument — moving from accepted cases to universal conclusions"},
+      {label:"The complete method", note:"The four instruments together — collecting, distinguishing, differentiating, unifying — constitute the complete method for generating and evaluating dialectical arguments"},
+      {label:"Preview of Books II–VII", note:"Books II–VII apply these instruments systematically to each predicable in turn — accident (II–III), genus (IV), property (V), definition (VI–VII)"},
+    ]
+  },
+];
+
+const open = {};
+cats.forEach(c => open[c.id] = false);
+const subOpen = {};
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+const groups = [
+  { label:"I — Purpose, usefulness, and scope (1–3)", ids:["t1","t2","t3"] },
+  { label:"II — The materials: propositions, problems, predicables (4–11)", ids:["t4","t5","t6","t7","t8","t9","t10","t11"] },
+  { label:"III — The instruments of dialectical argument (12–18)", ids:["t12","t13","t14","t15","t16","t17","t18"] },
+];
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  const catMap = {};
+  cats.forEach(c => catMap[c.id] = c);
+  document.getElementById('tree').innerHTML = groups.map(g => {
+    return `<div class="group-label">${g.label}</div>` +
+      g.ids.map(id => renderCat(catMap[id])).join('');
+  }).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

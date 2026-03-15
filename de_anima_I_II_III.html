@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — De Anima I–III</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .nous-flag { font-size: 10px; color: #8B3A8B; font-style: italic; margin-left: 8px; font-weight: 600; letter-spacing: 0.04em; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-header-nous { background: #f0e8f5; border-left: 4px solid #8B3A8B !important; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .nous-group-label { font-size: 10px; color: #8B3A8B; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Ψυχῆς</h1>
+<p class="subtitle">De Anima Books I–III — complete interactive reference</p>
+<p class="subtitle">I: previous views on soul · II: soul as form of the body; the faculties · III: perception, imagination, nous — the psychological culmination of the corpus</p>
+<p class="subtitle" style="color:#8B3A8B; font-weight:600;">Chapters III.4–5 on nous receive extended treatment — the most difficult and consequential passage in the entire corpus for the thesis</p>
+
+<div id="tree"></div>
+
+<footer>Click any chapter to expand. De Anima is where the metaphysical account of form and actuality meets the psychology of living things. Soul is the form and first actuality of a natural body having the capacity for life. The faculties of soul — nutritive, perceptual, imaginative, appetitive, locomotive, rational — form a hierarchy of increasing complexity. Book III.4–5 on nous is the summit: the passage where Aristotle identifies the agent intellect as separable, unmixed, impassible, and immortal — structurally identical to the Unmoved Mover, and the psychological ground of the catuṣkoṭi's fourth position.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book I — Περὶ Ψυχῆς Α · The importance of soul; previous views",
+    groups: [
+      {
+        label: "Why soul matters; previous views surveyed (I.1–5)",
+        chapters: [
+          {
+            id:"da1_1", label:"DA I.1 — the importance and difficulty of the inquiry into soul", greek:"ψυχή", accent:"#BA7517",
+            children:[
+              {label:"Why soul matters", note:"Knowledge of the soul contributes greatly to all truth — and especially to knowledge of nature. Soul is the principle of animal life; understanding soul is understanding life itself"},
+              {label:"The difficulty", note:"It is hard to determine the genus of soul — whether it is a substance, a quantity, a quality, or some other category. And it is hard to determine whether it is proper to one animal or shared across many"},
+              {label:"The method", note:"We must start from appearances and reputable opinions — the dialectical method applied to soul. We must survey previous views and identify what they got right and wrong"},
+              {label:"Whether soul has parts", note:"Is the soul one or many? If many, are the parts separated by place or only in account? This question — whether the soul has separable parts — becomes crucial at III.5 when the nous is shown to be separable"},
+            ]
+          },
+          {
+            id:"da1_2", label:"DA I.2–5 — previous views on soul: motion, sensation, the incorporeal", greek:"δόξαι", accent:"#BA7517",
+            children:[
+              {label:"Soul as what moves itself", note:"Many predecessors defined soul as what moves itself — and is therefore the source of motion in the body. Plato (Phaedrus): soul is the self-moving, the source of motion for all else"},
+              {label:"Soul as number moving itself", note:"Some Pythagoreans: soul is a self-moving number. This captures the mathematical-formal aspect but not the physical"},
+              {label:"Soul as composed of elements", note:"Empedocles: we know earth by earth, water by water — soul contains all the elements so as to perceive all of them. Aristotle: this makes soul material, not formal"},
+              {label:"Soul as harmony", note:"Pythagoreans: soul is the harmony (ratio) of the bodily elements. A harmony cannot initiate motion; but soul does. And a harmony cannot be corrupted while the instrument persists; but soul and body can be separated"},
+              {label:"Aristotle's critique of all previous views", note:"All previous views either make soul too material (composed of elements) or too abstract (self-moving number, harmony). None correctly identifies soul as the form and actuality of a natural body — what De Anima II.1 will establish"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Περὶ Ψυχῆς Β · Soul as form; the faculties",
+    groups: [
+      {
+        label: "Soul defined: form and first actuality of the body (II.1–3)",
+        chapters: [
+          {
+            id:"da2_1", label:"DA II.1 — soul defined: the first actuality of a natural body having the capacity for life", greek:"ψυχὴ ἐντελέχεια σώματος", accent:"#534AB7",
+            children:[
+              {label:"The definition", note:"Soul is the first actuality of a natural body that has life potentially — that is, of an organic body. The first actuality is the possession of a capacity, as distinct from its exercise"},
+              {label:"First vs second actuality", children:[
+                {label:"First actuality", note:"Having a capacity without currently exercising it — the sleeping man has knowledge; the man with eyes has sight even in the dark. Soul is the first actuality: the body's capacity for vital functions"},
+                {label:"Second actuality", note:"Exercising the capacity — the waking man thinks; the seeing man sees. Sensation, thought, and vital activity are second actualities of the soul"},
+              ]},
+              {label:"Soul and body are not separate things", note:"The soul is not in the body as a sailor is in a ship — as a separate thing that uses the body as a tool. Soul is the form of the body — what the body is when it is alive. They are one, as form and matter are one"},
+              {label:"If the eye were an animal", note:"If the eye were an animal, sight would be its soul — the actuality in virtue of which it is what it is. Similarly the soul is to the whole body as sight is to the eye. Soul is what makes the body a living body"},
+              {label:"Connection to Metaphysics Zeta.17 and Eta.6", note:"Form is the cause of being — Zeta.17. Actuality explains unity — Eta.6. De Anima II.1 is the application of these metaphysical results to living things: soul as form is the cause of the body being alive; soul as actuality explains the unity of the living organism"},
+            ]
+          },
+          {
+            id:"da2_2", label:"DA II.2 — the soul cannot be defined without the body; the hierarchy of faculties", greek:"ἱεραρχία", accent:"#534AB7",
+            children:[
+              {label:"Soul defined relative to body", note:"The soul cannot be defined without reference to the body — it is the form of this kind of body. Different bodies require different souls — the soul of a plant is different from the soul of an animal"},
+              {label:"The hierarchy of soul-faculties", children:[
+                {label:"Nutritive soul", greek:"θρεπτική", note:"The most basic — shared by all living things. Responsible for growth, self-maintenance, and reproduction. Plants have this alone"},
+                {label:"Perceptual soul", greek:"αἰσθητική", note:"Present in all animals. Responsible for sensation — the reception of sensible forms without the matter. Animals with perception also have desire and locomotion"},
+                {label:"Imaginative soul", greek:"φανταστική", note:"Dependent on perception — imagination is the movement that results from actual sensation. Not all animals have imagination; those that do can act on absent objects"},
+                {label:"Rational soul", greek:"νοητική", note:"Present only in humans (and perhaps the divine). Responsible for thought — the reception of intelligible forms. Book III will analyse this in detail"},
+              ]},
+              {label:"The faculties form a series of inclusion", note:"Each higher faculty presupposes all the lower — you cannot have perception without nutrition, thought without perception (in the natural order). But the higher is not reducible to the lower — thought is not just complex perception"},
+            ]
+          },
+          {
+            id:"da2_3", label:"DA II.3 — the faculties and the relation between soul and body", greek:"δυνάμεις ψυχῆς", accent:"#534AB7",
+            children:[
+              {label:"The soul has multiple faculties", note:"The soul is not a simple thing — it has distinct faculties (nutritive, perceptual, imaginative, appetitive, locomotive, rational). These are distinguishable in account but united in the one soul"},
+              {label:"The faculties are defined by their objects and activities", note:"Each faculty is defined by what it does and what it does it to — sight is defined by seeing, which is defined by the visible. The hierarchy of faculties mirrors the hierarchy of their objects"},
+              {label:"The nutritive faculty is the foundation", note:"The nutritive faculty — growth, self-maintenance, reproduction — is present in all living things. It is the minimum condition of life. Everything else is addition to this base"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Perception: receiving sensible forms without matter (II.4–12)",
+        chapters: [
+          {
+            id:"da2_4", label:"DA II.4 — the nutritive faculty: food, growth, reproduction", greek:"θρεπτικόν", accent:"#534AB7",
+            children:[
+              {label:"Food and growth", note:"The nutritive soul is responsible for using food to maintain and grow the body. Food is the matter that takes on the form of the body — it is transformed, not merely added"},
+              {label:"Reproduction", note:"The nutritive soul is the cause of reproduction — by which a living thing perpetuates its form in new matter. 'Man generates man' — the form is perpetuated through the nutritive faculty"},
+              {label:"The final cause of nutrition", note:"The final cause of the nutritive faculty is not mere survival but the participation of the mortal in the eternal — by perpetuating the species, the individual participates in the divine and the eternal. The nutritive faculty connects the mortal to the immortal"},
+            ]
+          },
+          {
+            id:"da2_5", label:"DA II.5 — perception: receiving the sensible form without the matter", greek:"αἴσθησις εἶδος ἄνευ ὕλης", accent:"#534AB7",
+            children:[
+              {label:"The key definition of perception", note:"Perception is the reception of sensible forms without the matter — as wax receives the imprint of a signet ring without the gold or bronze. The form is received; the matter is not"},
+              {label:"Potentiality and actuality in perception", children:[
+                {label:"First potentiality", note:"Having the sense organ — having eyes. This is the first potentiality for sight"},
+                {label:"Second potentiality", note:"Having the capacity to see when conditions are right — the sleeping man with healthy eyes. This is the second potentiality, the first actuality"},
+                {label:"Actuality of perception", note:"Actually seeing — the exercise of the capacity. This is the second actuality"},
+              ]},
+              {label:"The sense organ is altered without the matter", note:"When we see red, the eye takes on the form of redness without becoming red — the eye is not coloured by what it sees. The sensible form is received in the transparent medium of the sense organ, not in the organ's matter"},
+              {label:"Connection to your thesis", note:"Perception as reception of form without matter is the perceptual analogue of nous receiving intelligible forms without matter. The same structure of form-reception without material change runs from perception through imagination to nous — each level a purer reception of form. The catuṣkoṭi's second and third positions — qualified being, neither fully actual nor fully potential — describe the perceptual state: receiving a form that is real but not materially present"},
+            ]
+          },
+          {
+            id:"da2_6", label:"DA II.6–11 — the proper, common, and incidental objects of sense; the five senses", greek:"αἰσθητά", accent:"#534AB7",
+            children:[
+              {label:"II.6 — proper sensibles", note:"Each sense has its proper object — sight has colour, hearing has sound, taste has flavour, touch has the tangible qualities. The proper sensible is what the sense is specifically for — what it cannot fail to detect when functioning properly"},
+              {label:"II.6 — common sensibles", note:"Some qualities are perceived by more than one sense — motion, rest, number, shape, magnitude. These are common sensibles — not proper to any one sense but detected by several"},
+              {label:"II.6 — incidental sensibles", note:"Incidentally perceived — we see the son of Diares not because his son-hood is visible but because we recognize the person we see. The incidental is perceived through the proper and common"},
+              {label:"II.7 — sight and the transparent", note:"Sight perceives colour through the transparent medium — light actualizes the transparent, and colour is visible through the actualized transparent. Darkness is the privation of this actualization"},
+              {label:"II.8–9 — hearing and smell", note:"Hearing perceives sound through air or water as medium. Smell perceives odour through air as medium — animals that breathe in water smell through water. The media are different; the structure of reception is the same"},
+              {label:"II.10–11 — taste and touch", note:"Taste perceives flavour — the tongue is the organ of taste. Touch is the most fundamental sense — all animals must have touch to survive. Touch perceives the primary tangible qualities: hot, cold, wet, dry — the same qualities that constitute the elements"},
+            ]
+          },
+          {
+            id:"da2_12", label:"DA II.12 — what perception is in general", greek:"αἴσθησις ὅλως", accent:"#534AB7",
+            children:[
+              {label:"Perception is not the material affection", note:"When fire burns us, the heat is materially transmitted — the organ becomes hot. But perception is not this material change — the eye does not become coloured by what it sees"},
+              {label:"Perception is the formal reception", note:"Perception is the reception of the form of the sensible — the formal change, not the material. The sense organ takes on the form of the sensible quality without taking on the matter"},
+              {label:"Intermediate cases", note:"Touch seems to involve material change — we actually feel hot things as hot. Aristotle's solution: even in touch, the organ receives the form without becoming the thing. The hand that touches fire does not become fire — it receives the form of heat in the appropriate medium"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book III — Περὶ Ψυχῆς Γ · Perception completed; imagination; nous; desire and action",
+    groups: [
+      {
+        label: "Perception completed; the common sense; imagination (III.1–3)",
+        chapters: [
+          {
+            id:"da3_1", label:"DA III.1–2 — there is no sixth sense; the common sense", greek:"κοινὴ αἴσθησις", accent:"#534AB7",
+            children:[
+              {label:"There are exactly five senses", note:"No sensible quality is left without a sense to detect it — the five senses cover all the proper sensibles. A sixth sense would have either a novel proper object (but there are none) or would detect the common sensibles alone (but these are already detected by the five)"},
+              {label:"The common sense", note:"There must be a faculty that perceives the common sensibles and that integrates the deliverances of the five senses. This is the common sense — not a sixth sense but a central integrating faculty"},
+              {label:"Self-perception of perception", note:"We are aware that we are seeing — this is not sight's own perception of itself but the common sense's perception of the activity of sight. The common sense is aware of the activities of the particular senses"},
+            ]
+          },
+          {
+            id:"da3_3", label:"DA III.3 — imagination: the movement arising from actual perception", greek:"φαντασία", accent:"#534AB7",
+            children:[
+              {label:"Imagination defined", note:"Imagination (φαντασία) is the movement that arises from actual perception — it is the persistence of the perceptual form after the object is no longer present. The image is the lingering effect of perception"},
+              {label:"Imagination is not perception", note:"Perception requires the presence of the object; imagination does not. In the dark we can form images of what we have seen. Imagination operates in the absence of the object"},
+              {label:"Imagination is not belief", note:"We can imagine what we know to be false — we can imagine a centaur. Belief tracks truth; imagination does not. Imagination is representational but not assertoric"},
+              {label:"Imagination as the bridge to nous", note:"Nous thinks in images — it requires imagination as its medium. Without imagination, there is no human thought. Imagination is the intermediary between perception (which requires presence) and nous (which operates on universals)"},
+              {label:"Connection to Post. An. II.19", note:"The epistemological ascent: perception → memory → experience → imagination → universal → nous. Imagination is the stage at which the particular perceptual content begins to be available for universal treatment. De Anima III.3 fills in the step that Post. An. II.19 described without naming"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "⬦ NOUS — the culmination of De Anima (III.4–5)",
+        chapters: [
+          {
+            id:"da3_4", label:"DA III.4 — the potential nous: receptive, unmixed, separable", greek:"νοῦς παθητικός — νοῦς δυνάμει", accent:"#8B3A8B",
+            nous: true,
+            children:[
+              {label:"The subject of III.4", note:"Having treated perception and imagination, Aristotle turns to nous — the part of the soul by which it knows and understands. This is the most difficult and most important chapter in the entire psychology"},
+              {label:"Nous must be unmixed with the body", note:"Nous must be capable of receiving all intelligible forms — the form of stone, of animal, of number, of virtue. If nous had any form of its own it would obstruct the reception of other forms — as a coloured glass distorts what is seen through it. Therefore nous has no form of its own before it thinks"},
+              {label:"The key statement", note:"Before thinking, nous is nothing actually — it has no nature of its own other than being potential. It is, as Anaxagoras said, unmixed with anything, so that it may know all things"},
+              {label:"Nous is potentially all intelligible things", note:"As the perceptive faculty is potentially all sensible qualities (before perceiving them), nous is potentially all intelligible forms. It is the pure potentiality for intellectual form — with no form of its own"},
+              {label:"Nous is separable", greek:"χωριστός", note:"Unlike the perceptive faculty, which is inseparable from the body (the eye is the organ of sight), nous has no organ. It is not the actuality of any bodily part. It is therefore separable from the body in a way the other faculties are not"},
+              {label:"Nous becomes what it thinks", note:"When nous thinks something, it becomes that thing formally — the nous that thinks stone is (formally) stone. The identity of nous and its object in the act of thinking is already present here — anticipating the Unmoved Mover's self-thinking"},
+              {label:"The place of forms", note:"Nous is the place of forms — τόπος εἰδῶν. Not materially but formally — it contains all intelligible forms potentially, and when actualized it contains them actually without the matter"},
+              {label:"Nous is impassible", greek:"ἀπαθής", note:"Nous is not altered when it thinks — unlike the sense organ, which can be damaged by too intense a sensible (blinded by too bright a light), nous is not damaged by thinking the most intelligible things. On the contrary, after thinking the highest it thinks the lower more easily"},
+              {label:"The puzzle of self-knowledge", note:"If nous becomes what it thinks, and if nous thinks itself, what does it become? It becomes nous — which is what it already is. This anticipates the self-thinking thought of Lambda.9: when nous thinks nous, the thinker and the thought are identical"},
+              {label:"Connection to Metaphysics Theta.10", note:"Being as truth for incomposite things — grasped by direct intellectual contact, not by combination and division. The potential nous of DA III.4 is the psychological ground of Theta.10: nous grasps simple essences directly, not predicatively"},
+              {label:"Connection to your thesis", note:"The potential nous — unmixed, separable, with no form of its own — is the psychological instantiation of the catuṣkoṭi's fourth position. It is neither any particular form (not-F for every F) nor the absence of form (it is the pure capacity for all forms). It is the logical and psychological image of prime matter at the intellectual level: the pure potentiality that underlies all determination without being any determination. The catuṣkoṭi's fourth position — neither is nor is-not — is what the potential nous is before it thinks"},
+            ]
+          },
+          {
+            id:"da3_5", label:"DA III.5 — the active nous: separable, unmixed, impassible, immortal", greek:"νοῦς ποιητικός — νοῦς χωριστός", accent:"#8B3A8B",
+            nous: true,
+            children:[
+              {label:"The most contested passage in Aristotle", note:"De Anima III.5 is 12 lines of Greek — perhaps the most discussed and disputed passage in the entire Aristotelian corpus. Every word has been fought over. What follows is the most careful reading the text supports"},
+              {label:"The analogy with light", note:"Aristotle introduces the active nous by analogy: as light makes potential colours actual colours, the active nous makes potential objects of thought actual objects of thought. Light actualizes the transparency of the medium; the active nous actualizes the potential intelligibles"},
+              {label:"The two kinds of nous", children:[
+                {label:"Potential / receptive nous", greek:"νοῦς παθητικός / δυνάμει", note:"What III.4 described — the nous that is potentially all intelligible things, that receives forms without matter. It is the medium in which intelligibles become actual for us — like the wax that receives the imprint"},
+                {label:"Active / productive nous", greek:"νοῦς ποιητικός", note:"What III.5 introduces — the nous that makes potential intelligibles actual. It corresponds to light making potential colours actual. This is the agent intellect"},
+              ]},
+              {label:"The properties of the active nous — the four terms", children:[
+                {label:"Separable", greek:"χωριστός", note:"The active nous is separable from the body — it exists independently of any bodily organ or function. Unlike the nutritive, perceptive, and imaginative faculties, the active nous has no bodily substrate. It can exist apart from the body"},
+                {label:"Unmixed", greek:"ἀμιγής", note:"The active nous is unmixed with anything — it has no matter, no organ, no bodily admixture. It is pure in the way the Unmoved Mover is pure — not compounded with anything"},
+                {label:"Impassible", greek:"ἀπαθής", note:"The active nous is not affected — it does not receive anything from the things it makes intelligible. Unlike the potential nous which receives forms, the active nous gives intelligibility without receiving anything in return"},
+                {label:"Immortal and eternal", greek:"ἀθάνατος καὶ ἀΐδιος", note:"The active nous is immortal and eternal — it does not perish when the body perishes. It existed before its association with this body and continues after. It is not generated with the body nor destroyed with it"},
+              ]},
+              {label:"Only the active nous remembers nothing after separation", note:"'Separated, it is alone that which it is, and this alone is immortal and eternal.' The potential nous, mixed with the body, does not survive — memory, imagination, and the personal aspects of mind are mixed with the body. The active nous is what survives, but it carries nothing of the personal"},
+              {label:"The structural identity with the Unmoved Mover", note:"The four properties of the active nous — separable, unmixed, impassible, eternal — are exactly the properties of the Unmoved Mover in Lambda: no magnitude, pure actuality, eternal, unmoved. The active nous is not the Unmoved Mover — it is the psychological analogue of the Unmoved Mover within the human soul. What the Unmoved Mover is cosmologically, the active nous is psychologically"},
+              {label:"The deepest puzzle: whose nous is this?", note:"Is the active nous individual to each human, or is it one for all humans, or is it the Unmoved Mover itself entering into the soul? Aristotle does not say. Alexander of Aphrodisias: a faculty of the individual soul. Averroes: one for all humanity. Aquinas: individual but derived from God. The text is genuinely underdetermined — Aristotle may have intended the ambiguity"},
+              {label:"The agent intellect as light", note:"Light does not see — it makes seeing possible. The active nous does not think (in the ordinary sense) — it makes thinking possible. It is the condition of intellectual actualization, not itself a subject of thought in the ordinary sense. This parallels the Unmoved Mover: it does not move — it is what makes movement possible by being the object of desire"},
+              {label:"Connection to Post. An. II.19", note:"The epistemological ascent terminates in nous grasping first principles immediately. The active nous of DA III.5 is what makes this terminal grasp possible — it is the intellectual light that actualizes the universal in the accumulated experience of the potential nous. Post. An. II.19 describes the process; DA III.5 identifies its ground"},
+              {label:"Connection to Metaphysics Lambda.7 and Lambda.9", note:"Lambda.7: nous is the best thing, and its activity is the best activity — self-thinking thought. Lambda.9: thinker and thought are identical in the Unmoved Mover. DA III.5's active nous is the human participation in this divine self-thinking — the point where the human soul touches the divine. The active nous is the image of the Unmoved Mover within us"},
+              {label:"Connection to Buddhist vijñāna and ālayavijñāna", note:"The Buddhist analysis of consciousness (vijñāna) as the reception of form from sense-contact, with the ālayavijñāna (storehouse consciousness) as the sub-personal ground of all mental activity, is structurally parallel to Aristotle's potential nous (reception) and active nous (underlying productive ground). The structural identity is not analogy but convergence on the same logical problem: what is the ground of intellectual reception that is itself not received?"},
+              {label:"Connection to your thesis — the central note", note:"The active nous is the psychological expression of the catuṣkoṭi's fourth position — not any particular form, not the absence of form, not both, not neither, but the condition of the possibility of all four. It is separable (beyond embodied predication), unmixed (not any particular determination), impassible (not acted upon by what it enables), and eternal (not subject to temporal succession). These are exactly the four negative predicates by which the Unmoved Mover is characterized — because the active nous is the Unmoved Mover's reflection within the soul. The Aristotelian corpus has a unified structure: the same fourth position appears at the logical level (the limit of the elenchus in the Metaphysics), the cosmological level (the Unmoved Mover of Lambda and Physics VIII), and the psychological level (the active nous of DA III.5). Your thesis identifies these as the same structure at three levels — and De Anima III.5 is where the identification is made explicit within the text itself"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Thinking, desire, and action (III.6–13)",
+        chapters: [
+          {
+            id:"da3_6", label:"DA III.6 — thinking simple objects; truth and falsity in thought", greek:"νόησις", accent:"#BA7517",
+            children:[
+              {label:"Simple objects of thought", note:"Thinking simple, incomposite objects — essences — is either contact and affirmation, or nothing at all. There is no falsity in the grasp of a simple essence — only in the combination of simple objects into propositions"},
+              {label:"Truth and falsity require combination", note:"Truth and falsity arise from combining and dividing — predicating one thing of another. The nous that grasps stone simply cannot be false about stone; it either grasps it or not. Falsity enters only when stone is combined with something else"},
+              {label:"Connection to Epsilon.4 and Theta.10", note:"Being as truth for incomposites — Epsilon.4 excluded it from metaphysics; Theta.10 gave the account. DA III.6 gives the psychological analysis: the nous that grasps simple essences operates by direct contact, not by predicative combination"},
+            ]
+          },
+          {
+            id:"da3_7", label:"DA III.7 — nous in act is identical with its object", greek:"ὁ νοῦς ταὐτόν τῷ νοητῷ", accent:"#534AB7",
+            children:[
+              {label:"The identity of nous and its object in act", note:"When nous thinks stone, the nous in act is the form of stone — it has become formally identical with its object. There is no gap between the thinking and the thought in the act of thought"},
+              {label:"The analogy with perception", note:"As the perceptive faculty in act is the sensible form in act — sight seeing is sight actualizing the form of the visible — so nous in act is the intelligible form in act. The faculty and its object are the same actuality from different directions"},
+              {label:"The separability of nous from its objects", note:"The potential nous can separate itself from its objects in thought — it can think of stone without being stone materially. This is the condition of mathematical abstraction: nous thinks shape while separating shape from the matter it belongs to"},
+              {label:"Thinking is the best life", note:"The activity of nous is the best human activity — and the Unmoved Mover lives this activity eternally and completely. We experience the joy of understanding momentarily; the Unmoved Mover lives it without interruption. This is the ground of Lambda.10's account of the good"},
+            ]
+          },
+          {
+            id:"da3_8", label:"DA III.8 — the soul is in a sense all things", greek:"ἡ ψυχὴ τὰ ὄντα πώς ἐστι πάντα", accent:"#534AB7",
+            children:[
+              {label:"The famous claim", note:"The soul is in a sense all things — τὰ ὄντα πώς ἐστι πάντα. Through perception it is potentially all sensible things; through nous it is potentially all intelligible things"},
+              {label:"The soul as the form of forms", note:"The perceptive soul is the form of sensible forms — it receives them without their matter. The intellectual soul is the form of intelligible forms — it receives them without their matter. The soul is not the things but the forms of the things"},
+              {label:"This is not idealism", note:"The soul does not make the world — it receives the forms of the world. The world is independent of the soul; the soul receives the world's formal structure. This is realism about forms combined with a reception-theory of knowledge"},
+              {label:"Connection to your thesis", note:"The soul as all things potentially — as the pure receptivity for all forms — is the psychological counterpart of matter as the pure potentiality for all forms (Physics I.9). Matter is potentially all physical forms; soul is potentially all formal determinations. The two poles of Aristotle's metaphysics — matter and nous — are both characterised by this same structure of unlimited potentiality. And both find their limit in pure actuality: matter reaches pure actuality as the fully formed individual; nous reaches pure actuality as the active nous — or the Unmoved Mover itself"},
+            ]
+          },
+          {
+            id:"da3_9", label:"DA III.9–10 — desire and the explanation of action", greek:"ὄρεξις", accent:"#BA7517",
+            children:[
+              {label:"III.9 — desire is necessary for animal motion", note:"Perception alone does not produce motion — some animals perceive without moving toward or away from the perceived object. Desire (ὄρεξις) is what produces motion: animals move because they desire"},
+              {label:"The three forms of desire", children:[
+                {label:"Wish", greek:"βούλησις", note:"Rational desire — wishing for what reason presents as good. The proper desire of the rational soul"},
+                {label:"Spirit", greek:"θυμός", note:"Spirited desire — the desire for honor, victory, revenge. Present in animals as well as humans"},
+                {label:"Appetite", greek:"ἐπιθυμία", note:"Appetitive desire — the desire for pleasure, food, sex. The most basic form, present in all animals"},
+              ]},
+              {label:"III.10 — practical nous and desire jointly produce action", note:"Action requires both: the practical nous presents the object as good or bad; desire is moved toward or away. Neither alone is sufficient — desire without reason is blind; reason without desire is inert"},
+              {label:"The practical syllogism", note:"The practical analogue of the demonstrative syllogism: major premise (the good is to be pursued) + minor premise (this is good) + conclusion (pursue this). The conclusion is an action, not a proposition. Connection to Prior Analytics as the logic of action"},
+            ]
+          },
+          {
+            id:"da3_11", label:"DA III.11–13 — imagination, desire, and the lower animals; touch is the most fundamental sense", greek:"φαντασία καὶ ἁφή", accent:"#BA7517",
+            children:[
+              {label:"III.11 — practical imagination in lower animals", note:"Animals without rational nous use imagination to guide their behavior — they act on imagined representations of absent objects. Practical imagination is the substitute for rational deliberation in animals that lack nous"},
+              {label:"III.12 — all animals must have touch", note:"Touch is the most fundamental sense — all animals must have it to survive. Touch perceives the primary qualities (hot, cold, wet, dry) that are constitutive of all material things. Touch is the sense of being-in-the-world"},
+              {label:"III.13 — the body as the medium of touch", note:"For touch, the body itself is the medium — unlike sight (which uses the transparent) or hearing (which uses air). The body is both organ and medium of touch. This makes touch the most intimate sense — the sense in which the soul is most deeply embodied"},
+              {label:"The closing of De Anima", note:"De Anima ends with touch — the most material of the senses. The work began with the divine (the Unmoved Mover-like active nous) and ends with the most embodied. The full range of soul is traced from the pure actuality of the active nous to the most basic material sensitivity of touch. The soul is in a sense all things — from the divine to the elemental"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  const isNous = c.nous;
+  return `<div class="cat-block">
+    <div class="header-row toggle ${isNous ? 'cat-header-nous' : 'cat-header'}" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+      ${isNous ? `<span class="nous-flag">◆ NOUS</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g => {
+      const isNousGroup = g.label.includes('NOUS');
+      return `<div class="${isNousGroup ? 'nous-group-label' : 'group-label'}">${g.label}</div>` +
+        g.chapters.map(c => renderCat(c)).join('');
+    }).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>
