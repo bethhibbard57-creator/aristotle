@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Meteorology I–IV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .context-note { background: #f3f1eb; border: 0.5px solid #ddd; border-radius: 8px; padding: 0.9rem 1.1rem; margin: 0 0 1.5rem; font-size: 12.5px; color: #444; line-height: 1.6; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Μετεωρολογικά</h1>
+<p class="subtitle">Meteorology Books I–IV — complete interactive reference</p>
+<p class="subtitle">The sublunary region between the heavens and the earth — weather, the sea, earthquakes, minerals, and the properties of homoeomerous bodies</p>
+
+<div id="tree"></div>
+
+<footer>Click any section to expand. The Meteorology occupies the middle position in the natural philosophy — between the celestial (On the Heavens) and the terrestrial (GC, biological works). It applies the four-cause framework and the elemental analysis of GC to the phenomena of the sublunary atmosphere: winds, rain, clouds, thunder, lightning, earthquakes, rivers, the sea, comets, and the Milky Way. Book IV, which analyses the properties of homoeomerous bodies, is the most philosophically significant for the thesis — it bridges the elemental analysis of GC II and the biological analysis of PA II.</footer>
+
+<script>
+const contextNote = `
+<div class="context-note">
+  <strong>Place in the corpus:</strong> The Meteorology sits between On the Heavens / GC (the analysis of the elements and their transformations) and the biological works (the analysis of living things). It analyses the <em>sublunary region</em> — the atmosphere, the sea, the earth's surface — as a domain governed by the same elemental principles as GC but producing phenomena more complex than simple elemental interaction and less organised than biological life. Meteorology is applied natural philosophy: the principles are established elsewhere; their application here generates the explanation of weather, geological, and atmospheric phenomena. Book IV is the exception — it introduces the two exhalations (dry and moist) as the principles governing the formation of minerals and homoeomerous stuffs, and connects directly to the biological analysis of PA II.
+</div>
+`;
+
+const books = [
+  {
+    book: "Book I — Μετεωρολογικά Α · The sublunary region; comets, the Milky Way, rain, clouds, mist",
+    groups: [
+      {
+        label: "The place of Meteorology in the natural philosophy; the two exhalations (I.1–4)",
+        chapters: [
+          {
+            id:"met1_1", label:"Meteor. I.1–3 — the subject and its place in the natural philosophy", greek:"τόπος ἐν φυσικῇ", accent:"#BA7517",
+            children:[
+              {label:"The scope of Meteorology", note:"Meteorology studies: what the ancients called meteorology (things in the region between the earth and the moon) · the sea and its properties · earthquakes · wind · rain · snow · hail · thunder · lightning · comets and the Milky Way. A wide domain, unified by its location: the sublunary atmosphere"},
+              {label:"The place in the causal chain", note:"The sublunary region receives the influence of celestial motion — the sun's heat drives the evaporation of moisture from earth and sea, producing the atmospheric phenomena. The Meteorology is the intermediate link in the causal chain: Unmoved Mover → celestial motion → solar heat → sublunary evaporation → weather phenomena → elemental cycle → homoeomerous stuffs → organisms"},
+              {label:"The two exhalations — the key principle", note:"The fundamental principle of Meteorology: two kinds of exhalation rise from the earth under solar heat. (1) Moist exhalation (ἀτμίς) — warm moist vapour from water and wet earth, the source of rain, clouds, mist, and rivers. (2) Dry exhalation (καπνώδης) — warm dry vapour from dry earth, the source of wind, thunder, lightning, earthquakes, and minerals. The two exhalations are the material principles of all meteorological phenomena"},
+              {label:"Connection to GC II.2–4", note:"GC II.2–4 established the elemental cycle driven by the sun's annual motion. Meteorology I.1–3 gives the specific mechanism: the sun's heat produces the two exhalations from the surface of the earth, and these exhalations are the immediate material cause of all the phenomena in the sublunary atmosphere. The Meteorology extends GC into the specific domain of atmospheric phenomena"},
+              {label:"Connection to your thesis", note:"The two exhalations are a pair of contrary principles — moist and dry — governed by the same hot-cold, wet-dry framework as the four elements of GC II.1. The atmospheric domain instantiates the same elemental tetralemmic structure as the domain of the elements: four primary qualities, two pairs of contraries, and phenomena explained by their ratios and combinations. The Meteorology confirms that the four-quality, four-element framework is universal in the sublunary world"},
+            ]
+          },
+          {
+            id:"met1_4", label:"Meteor. I.4–12 — comets, the Milky Way, rain, clouds, mist, dew, frost, snow", greek:"κομῆται, γαλαξίας, νέφη", accent:"#BA7517",
+            children:[
+              {label:"Comets and the Milky Way", note:"Aristotle explains comets as dry exhalation ignited in the upper atmosphere — not celestial bodies (as some thought) but sublunary phenomena. The Milky Way similarly: a concentration of dry exhalation in the upper atmosphere that catches and reflects light. Both explanations are wrong empirically but philosophically significant: Aristotle consistently applies the two-exhalation principle to every atmospheric phenomenon"},
+              {label:"Rain, clouds, mist, dew, frost, snow", note:"All are products of the moist exhalation at different stages of condensation: moist exhalation rises → cools → condenses into clouds → falls as rain. Mist is condensing exhalation near the ground. Dew is moist exhalation condensed on surfaces. Frost is frozen dew. Snow is frozen rain. Each is the same material (moist exhalation) at a different stage of condensation and at different temperatures"},
+              {label:"The unity of the analysis", note:"Every atmospheric phenomenon is explained by the same two materials (the exhalations) acted on by the same two agents (heat and cold). The variety of phenomena is the variety of combinations — different proportions, different temperatures, different pressures. The analytical framework is the same throughout"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book II — Μετεωρολογικά Β · The sea; winds; earthquakes",
+    groups: [
+      {
+        label: "The sea, winds, and earthquakes explained by the two exhalations (II.1–9)",
+        chapters: [
+          {
+            id:"met2_1", label:"Meteor. II.1–3 — the sea: its saltiness, its permanence, its role in the elemental cycle", greek:"θάλασσα", accent:"#BA7517",
+            children:[
+              {label:"Why the sea is salt", note:"The sea's saltiness is explained by analogy with the sweating of the earth — the dry exhalation, when mixed with the moist exhalation in the sea, makes the sea salt. Just as sweat is salt because it carries waste products of the body's processes, the sea is salt because it carries the residue of the earth's processes"},
+              {label:"The sea is not eternal but very old", note:"The sea is not eternal — it is slowly drying up as the sun evaporates more than is replenished. The basins of ancient seas are now dry land; current seas will eventually dry up too. The geological timescale is vast but the process is real and directional"},
+              {label:"The sea's role in the elemental cycle", note:"The sea is the great reservoir of the moist exhalation — the evaporation of the sea produces clouds, which produce rain, which flows back to the sea in rivers. The hydrological cycle is the most visible expression of the elemental cycle of GC II"},
+            ]
+          },
+          {
+            id:"met2_4", label:"Meteor. II.4–6 — winds: their causes, directions, and properties", greek:"ἄνεμοι", accent:"#BA7517",
+            children:[
+              {label:"Wind as moving dry exhalation", note:"Wind is the dry exhalation in motion — warm dry vapour moving through the atmosphere. The direction of wind is determined by the direction of the dry exhalation's movement, which is determined by the sun's position and the nature of the terrain beneath"},
+              {label:"The catalogue of winds", note:"Aristotle gives a detailed catalogue of the winds from different directions with their properties — their temperature, moisture, strength, and seasonal character. Each wind has per se properties determined by its origin: north winds are cold and dry; south winds are warm and moist; east winds differ from west winds in their properties"},
+              {label:"Winds as per se attributes of regions and seasons", note:"The prevailing winds of a region are per se attributes of that region — determined by the region's position relative to the sun's path and the nature of its terrain. The seasonal winds are per se attributes of the seasons — determined by the sun's position at that time of year. The same truth-condition structure (per se attributes indexed to the appropriate level) applies to meteorological phenomena as to biological ones"},
+            ]
+          },
+          {
+            id:"met2_7", label:"Meteor. II.7–9 — earthquakes: their causes and kinds", greek:"σεισμοί", accent:"#BA7517",
+            children:[
+              {label:"Earthquakes caused by trapped dry exhalation", note:"Earthquakes are caused by dry exhalation trapped within the earth — when the exhalation is prevented from escaping, it pushes against the earth's interior and eventually breaks out, shaking the ground. The mechanism is the same as wind (dry exhalation in motion) but operating underground"},
+              {label:"The kinds of earthquake", note:"Different kinds of shaking correspond to different directions of the trapped exhalation's escape: upward (lifting), sideways (swaying), circular. The direction of the earthquake is determined by the direction of the exhalation's movement"},
+              {label:"Geographical patterns", note:"Earthquakes are more common in certain regions — where the soil is porous and allows exhalation to accumulate, where rivers change course and block escape routes, and near the sea where moisture and dry exhalation interact. The geographical pattern is explicable by the same two-exhalation principle"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book III — Μετεωρολογικά Γ · Thunder, lightning, hurricanes, halos, and rainbows",
+    groups: [
+      {
+        label: "Atmospheric fire phenomena and optical effects (III.1–6)",
+        chapters: [
+          {
+            id:"met3_1", label:"Meteor. III.1–3 — thunder and lightning; hurricanes and whirlwinds", greek:"βροντή καὶ ἀστραπή", accent:"#BA7517",
+            children:[
+              {label:"Thunder as compressed dry exhalation", note:"Thunder is the sound of dry exhalation being violently compressed and expelled from a cloud — the cloud squeezes the exhalation, which bursts out with force, producing the sound. The mechanism: moisture condenses → traps dry exhalation → the trapped exhalation is compressed → it bursts out → the bursting produces sound (thunder) and fire (lightning)"},
+              {label:"Lightning as fire from the dry exhalation", note:"Lightning is the fire produced when the compressed dry exhalation breaks out of the cloud. It precedes thunder because light travels faster than sound — we see the flash before we hear the crack. This is the correct observational point even if the mechanism is wrong"},
+              {label:"Hurricanes and whirlwinds", note:"Hurricanes and whirlwinds are produced when a large mass of dry exhalation moves in a circle — driven by the interaction of wind currents. The circular motion is an imitation of celestial circular motion — but in a very imperfect form, produced by accidental combinations of wind rather than by the necessary motion of the spheres"},
+            ]
+          },
+          {
+            id:"met3_4", label:"Meteor. III.4–6 — halos, rainbows, and mock suns: reflection and colour", greek:"ἅλως, ἶρις", accent:"#BA7517",
+            children:[
+              {label:"Halos as reflection in mist", note:"Halos around the sun and moon are produced by the reflection of light in the moist exhalation surrounding the luminous body. The circular shape is produced by the equal distribution of moisture around the light source — the halo is always circular because the moisture distributes evenly in all directions"},
+              {label:"The rainbow as refraction and reflection", note:"The rainbow is produced by the reflection of sunlight in a cloud of water droplets — each droplet acts as a tiny mirror reflecting a specific colour. The arc shape is produced by the geometrical relationship between the observer, the sun, and the cloud. Aristotle gets the geometrical analysis approximately right even if the detailed optics are incomplete"},
+              {label:"Colours of the rainbow", note:"The rainbow shows red, yellow-green, and violet (Aristotle's three primary colours of the rainbow). The colours are produced by the varying amounts of darkness mixed with the reflected light at different parts of the arc. The colour analysis connects to the physical analysis of colour in On Sense Ch. 3"},
+              {label:"The significance of optical meteorology", note:"The analysis of halos and rainbows is the most mathematically sophisticated part of the Meteorology — Aristotle uses geometrical reasoning to explain optical phenomena. This confirms that mathematical explanation is appropriate wherever the phenomena have the right kind of formal structure — the method varies with the domain but the four-cause framework is universal"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IV — Μετεωρολογικά Δ · The properties of homoeomerous bodies — the bridge to biology",
+    groups: [
+      {
+        label: "The two exhalations as principles of homoeomerous stuffs (IV.1–4)",
+        chapters: [
+          {
+            id:"met4_1", label:"Meteor. IV.1–4 — the two exhalations as material principles of minerals and stuffs", greek:"δύο ἀναθυμιάσεις", accent:"#BA7517",
+            children:[
+              {label:"Book IV as the bridge to the biological works", note:"Meteorology IV is philosophically distinct from Books I–III — it applies the two-exhalation principle to the formation of the homoeomerous stuffs (metals, minerals, stones, organic materials) that are the proximate matter of both geological formations and living bodies. It is the bridge between the atmospheric analysis of Met. I–III and the biological analysis of PA II"},
+              {label:"The moist exhalation produces liquids and fusible stuffs", note:"The moist exhalation, when cooled and condensed inside the earth, produces water, oil, wine, and other liquid homoeomerous stuffs. When heated and concocted inside the earth it produces metals — iron, copper, gold — which are fusible (can be melted) and malleable (can be worked). The moist exhalation is the material principle of all liquid and metallic stuffs"},
+              {label:"The dry exhalation produces solids and combustible stuffs", note:"The dry exhalation, when trapped and concocted inside the earth, produces stones, minerals, and combustible stuffs — sulphur, charcoal, realgar. These are not fusible but friable (can be broken) or combustible (can be burned). The dry exhalation is the material principle of all stony and combustible stuffs"},
+              {label:"Connection to GC II.5", note:"GC II.5 established that homoeomerous stuffs arise from specific ratios of the primary qualities acting on the elements. Meteor. IV gives the specific mechanism for geological homoeomerous stuffs: the two exhalations (which are themselves products of elemental interaction) combine and are worked on by the earth's heat to produce the variety of mineral and metallic stuffs. The analysis is continuous from GC through Meteor. IV to PA II"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The active and passive qualities; the analysis of specific stuffs (IV.5–12)",
+        chapters: [
+          {
+            id:"met4_5", label:"Meteor. IV.5–9 — active and passive qualities: hot, cold, wet, dry in combination", greek:"ποιητικαί καὶ παθητικαί", accent:"#BA7517",
+            children:[
+              {label:"Active and passive qualities", note:"Hot and cold are the active qualities — they produce change in other things. Wet and dry are the passive qualities — they are changed by the active ones. The combination of all four governs the formation of every homoeomerous stuff: hot concocts and separates; cold consolidates and compresses; wet receives any shape; dry retains whatever shape is imposed on it"},
+              {label:"Concoction and its kinds", note:"Concoction (πέψις) is the process by which the natural heat works on raw material to produce a more perfect form — ripening, cooking, digestion, and the formation of homoeomerous stuffs in the earth are all forms of concoction. Concoction is the material analogue of the formal cause's action on matter: the natural heat imposes a higher degree of organisation on the raw material"},
+              {label:"The kinds of concoction", children:[
+                {label:"Ripening", note:"The completion of the fruit by the natural heat — the raw fruit becomes sweet and fully formed. Ripening is concoction in the plant"},
+                {label:"Digestion", note:"The transformation of food into blood — concoction in the animal. The nutritive soul uses the vital heat to concoct food into the body's nourishing material"},
+                {label:"Boiling and roasting", note:"Artificial concoctions — the craftsman's heat imitates the natural heat in transforming raw food into cooked food. Art imitates nature"},
+              ]},
+              {label:"Connection to the biological analysis", note:"The concoction analysis of Meteor. IV is continuous with the nutritive analysis of DA II.4 and GA I.17: the nutritive soul uses the vital heat (an instance of natural hot) to concoct food into blood. The same process of concoction by natural heat that produces minerals in the earth produces blood in the animal. The analysis of Meteor. IV and the biology share the same material principles"},
+            ]
+          },
+          {
+            id:"met4_10", label:"Meteor. IV.10–12 — specific homoeomerous stuffs: their properties and causes", greek:"ὁμοιομερῆ ἴδια", accent:"#BA7517",
+            children:[
+              {label:"The analysis of specific stuffs", note:"Aristotle analyses the properties of specific homoeomerous stuffs — bronze, iron, gold, stone, oil, wine, blood, bone, flesh — in terms of their ratio of the four qualities and the specific combination of the two exhalations that produced them. Each stuff has per se properties determined by its material constitution"},
+              {label:"Bronze and iron", note:"Bronze and iron are fusible metals produced by the moist exhalation — their fusibility (they can be melted) reflects the predominance of the moist exhalation in their constitution. Their hardness (they resist deformation at normal temperatures) reflects the concoction they have undergone inside the earth"},
+              {label:"Gold and silver", note:"Gold is the most perfectly concocted of the metals — the moist exhalation most thoroughly worked on by the earth's heat. Its malleability, resistance to tarnish, and weight are all per se properties determined by its high degree of concoction. Silver is less perfectly concocted than gold"},
+              {label:"The closing bridge to biology", note:"Meteor. IV.10–12 closes with the analysis of organic homoeomerous stuffs — blood, bone, flesh, sinew — in the same terms as the mineral stuffs. Blood is the most thoroughly concocted of the nutritive materials; bone is the most thoroughly dried; flesh is intermediate. The same analytical framework (active and passive qualities, concoction, the two exhalations as material principles) governs both the geological and the biological stuffs. Meteor. IV is where geology and biology meet — both are analyses of homoeomerous stuffs produced by the same principles operating at different scales"},
+              {label:"Connection to your thesis", note:"Meteor. IV completes the causal chain from the elements (GC II) through the sublunary atmosphere (Meteor. I–III) to the homoeomerous stuffs (Meteor. IV) to the organs and organisms (PA II–IV). Every level is governed by the same four-quality, four-cause framework. The truth conditions for predications about homoeomerous stuffs are grounded in their material constitution (ratio of qualities) and their productive history (what concoction produced them). This is the geological and mineralogical extension of the biological thesis: categorical placement gives truth values for the actual at every level of the natural world, from gold to blood to bone to flesh"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML =
+    contextNote +
+    books.map(b =>
+      `<div class="book-label">${b.book}</div>` +
+      b.groups.map(g =>
+        `<div class="group-label">${g.label}</div>` +
+        g.chapters.map(c => renderCat(c)).join('')
+      ).join('')
+    ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

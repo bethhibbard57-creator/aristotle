@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Parts of Animals II–IV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .method-note { background: #f0f4f8; border: 0.5px solid #b0c4d8; border-radius: 8px; padding: 0.9rem 1.1rem; margin: 0 0 1.5rem; font-size: 12.5px; color: #1a3a5a; line-height: 1.6; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Ζῴων Μορίων Β–Δ</h1>
+<p class="subtitle">Parts of Animals Books II–IV — complete interactive reference</p>
+<p class="subtitle">The causal analysis of animal parts: uniform parts (blood, bone, flesh) · non-uniform parts (organs) · organised by the four-cause framework established in Book I</p>
+
+<div class="method-note">
+  <strong>How to read this file:</strong> Parts of Animals I established the methodological principle — the final cause is primary, the formal cause determines which material parts are required (hypothetical necessity), and the four causes together give the complete explanation. Books II–IV apply this framework systematically to every major category of animal part. The focus here is on the <em>causal and classificatory structure</em> rather than the empirical detail — on how each part is explained by its function (final cause), which animals have it (genus-level per se attribute), and what matter it requires (hypothetical necessity). The empirical content is the matter; the causal structure is the form.
+</div>
+
+<div id="tree"></div>
+
+<footer>Click any section to expand. Parts of Animals II–IV constitute the most extensive application of the four-cause framework in the corpus. Every part of every animal is explained by its function — what it is for — and the matter required for that function. The analysis confirms at the empirical level what Parts of Animals I established methodologically: the final cause is the primary explanatory principle, and the categorical placement of an animal (its genus and species) determines which parts it has per se and which it lacks.</footer>
+
+<script>
+const books = [
+  {
+    book: "Book II — Περὶ Ζῴων Μορίων Β · The uniform parts: blood, marrow, fat, bone, cartilage, nails, horns, hair, flesh",
+    groups: [
+      {
+        label: "Blood and the fluid uniform parts (II.1–5)",
+        chapters: [
+          {
+            id:"pa2_1", label:"PA II.1–3 — blood: its nature, function, and variations across genera", greek:"αἷμα", accent:"#BA7517",
+            children:[
+              {label:"Blood as the final nutritive matter", note:"Blood is the final stage of nutrition in blooded animals — the material that has been worked up by the nutritive faculty to the point where it can nourish every part of the body. It is the proximate matter of every blooded part"},
+              {label:"The function of blood", note:"Blood nourishes all the parts — it is the material cause of growth and self-maintenance throughout the body. Its function determines its qualities: it must be fluid enough to flow, warm enough to nourish, and nutritive enough to sustain the parts it reaches"},
+              {label:"Variations across species", note:"Blooded animals differ in the quality of their blood — thicker or thinner, colder or warmer, purer or more mixed. These variations are per se attributes of the species: the blood of the lion differs from the blood of the hare in ways that correspond to the species' characteristic strength and temperament"},
+              {label:"The truth-condition connection", note:"The quality of blood is a per se attribute at the species level — 'lions have thick, warm blood' is per se true of lions, not of blooded animals in general. This is the biological instantiation of the principle that per se attributes are indexed to the correct node of the Porphyrian tree"},
+              {label:"Connection to GC II.4–5", note:"GC II.4–5 analysed how the homoeomerous stuffs arise from specific ratios of the primary qualities. Blood is a specific ratio of hot, cold, wet, and dry — the most nutritive ratio. PA II.1–3 gives the functional analysis of what GC II establishes chemically"},
+            ]
+          },
+          {
+            id:"pa2_4", label:"PA II.4–5 — marrow, fat, and their functions", greek:"μυελός καὶ πιμελή", accent:"#BA7517",
+            children:[
+              {label:"Marrow as residual blood", note:"Marrow is the purest form of blood — so thoroughly concocted that it can no longer serve as nutritive material but becomes the generative material. Marrow in the spine and long bones is the material from which the semen is derived"},
+              {label:"Fat as surplus nutrition", note:"Fat arises from surplus blood that has been concocted beyond the point needed for immediate nourishment. It is stored energy — the body's reserve of nutritive material for times of shortage"},
+              {label:"The functional analysis", note:"Both marrow and fat are explained entirely by their functions — what they are for. Marrow is for generation; fat is for nutritive reserve. The final cause determines both what they are and why they exist where they do in the body"},
+              {label:"Connection to GA I.17", note:"GA I.17 gave the account of semen as derived from the purest blood — the most thoroughly concocted nutritive material. PA II.4 confirms this from the side of the parts: marrow is the purest blood-product, and semen is derived from marrow. The generative and somatic analyses converge"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The solid uniform parts: bone, cartilage, nails, horns, hair, flesh (II.6–9)",
+        chapters: [
+          {
+            id:"pa2_6", label:"PA II.6–8 — bone, cartilage, and their analogues across genera", greek:"ὀστοῦν καὶ χόνδρος", accent:"#BA7517",
+            children:[
+              {label:"Bone as the structural framework", note:"Bone exists for the sake of protection and support — it is the material framework that allows animals to maintain their form against external forces and provides attachment points for muscles. The final cause (structural support and protection) determines the material properties required: hardness, rigidity, density"},
+              {label:"Cartilage as intermediate", note:"Cartilage is intermediate between bone and flesh — harder than flesh, softer than bone. It exists where the rigidity of bone would be excessive and the flexibility of flesh insufficient: the nose, the ears, the windpipe. The function determines the intermediate material"},
+              {label:"Analogues in bloodless animals", note:"Bloodless animals have structural analogues to bone — the shell of the crustacean, the external skeleton of the insect. The function is the same (structural support); the material is different. This is the analogy principle: the same function realised in different matter across the genus divide"},
+              {label:"Per se attributes at the genus level", note:"Having bone is per se true of blooded vertebrates as a genus. Having cartilage in specific locations (nose, ears) is per se true at lower levels of the tree. Having an exoskeleton instead is per se true of the crustacean genus. The function is the constant; the material realisation varies by genus"},
+            ]
+          },
+          {
+            id:"pa2_8", label:"PA II.8–9 — nails, hooves, horns, beaks, and hair", greek:"ὄνυχες, κέρατα, τρίχες", accent:"#BA7517",
+            children:[
+              {label:"Nails and hooves as protective extremities", note:"Nails, hooves, claws, and talons are the same part — extremity coverings — realised in different material forms for different functions. Claws grip and tear (carnivores); hooves support weight on hard ground (ungulates); nails manipulate (primates). The final cause differentiates the species-specific form"},
+              {label:"Horns as weapons and tools", note:"Horns exist for defence and offence — the final cause is protection from predators and competition with rivals. The material (bone covered with horn-material) is determined by this function: hard enough to withstand impact, attached firmly enough to be used as a weapon"},
+              {label:"Hair and feathers as insulation", note:"Hair (in mammals) and feathers (in birds) exist primarily for insulation — protection from cold. The final cause is temperature regulation. The material differs (keratin-based filaments vs. branched keratin structures) but the function is the same. This is another instance of the analogy principle across the genus divide"},
+              {label:"The connection to species identity", note:"The specific form of these extremity coverings is a per se attribute of the species — lions have retractile claws, horses have single hooves, eagles have hooked talons. Each is determined by the species' way of life, which is itself a per se attribute. The truth conditions cascade: the way of life is per se true of the species; the extremity form is per se true given the way of life"},
+            ]
+          },
+          {
+            id:"pa2_9", label:"PA II.9 — flesh: the organ of touch and the medium of sensation", greek:"σάρξ", accent:"#534AB7",
+            children:[
+              {label:"Flesh as the organ of touch", note:"Flesh is the primary organ of touch — the sensory medium through which tangible qualities are perceived. As the transparent medium is to sight, flesh is to touch. It is both the organ and the medium — which makes touch unique among the senses"},
+              {label:"Flesh as nutritive material", note:"Flesh also serves the nutritive function — it is the final nutritive matter of the muscles that produce motion. The same material serves two functions: sensory reception and muscular contraction"},
+              {label:"Connection to DA III.12", note:"DA III.12: all animals must have touch to survive; touch is the most fundamental sense. PA II.9 gives the physical-biological analysis of what DA III.12 established functionally: flesh is the physical realisation of the touch organ, and its distribution throughout the body is the physical expression of touch's universal presence in all animals"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book III — Περὶ Ζῴων Μορίων Γ · The non-uniform parts I: blood vessels, heart, lungs, oesophagus, stomach",
+    groups: [
+      {
+        label: "The vascular system and the heart (III.1–7)",
+        chapters: [
+          {
+            id:"pa3_1", label:"PA III.1–4 — the vascular system: veins and arteries", greek:"φλέβες", accent:"#BA7517",
+            children:[
+              {label:"The vascular system as the distribution network", note:"The blood vessels exist to distribute blood to every part of the body. The final cause — universal nourishment — determines the structure: a branching network that reaches every extremity, originating from a single centre (the heart)"},
+              {label:"The heart as the centre", note:"The heart is the origin of the vascular system — all vessels branch from it. The heart is the first organ to form in development (GA II.1) and the seat of the vital principle. Its centrality is functional: it is the source of the blood that nourishes everything else"},
+              {label:"Two main vessels", note:"The great vein (aorta in Aristotle's sense) and the aorta (in our sense) — two main channels from the heart distributing blood through the body. The structure is determined by the function: two channels for the double circuit of distribution"},
+              {label:"The truth-condition structure", note:"Having a vascular system centred on the heart is per se true of all blooded animals as a genus. The specific layout of vessels — the number and arrangement — varies by species and is per se true at the species level. The genus-level truth condition (centralised vascular system) is grounded in the genus-level function (distributing blood to all parts)"},
+            ]
+          },
+          {
+            id:"pa3_4", label:"PA III.4–7 — the heart: its structure, position, and primacy", greek:"καρδία", accent:"#BA7517",
+            children:[
+              {label:"The heart as the seat of the soul's sensitive and nutritive functions", note:"In blooded animals the heart is the seat of the sensitive soul — it is where sensation ultimately terminates and where the vital heat originates. The brain cools the vital heat; the heart generates it. This is Aristotle's controversial but consistent position"},
+              {label:"Why the heart is at the centre", note:"The heart must be at the centre of the body because it distributes blood and vital heat to all parts equally. A peripheral position would give unequal distribution — some parts would be too far from the source. The function determines the position: centrality is the formal expression of the distribution function"},
+              {label:"The heart has three chambers", note:"Aristotle describes three chambers — corresponding roughly to the right ventricle, left ventricle, and (imprecisely) the atria. The specific structure is less important than the principle: the heart's internal structure is determined by its function as the origin of the vascular distribution"},
+              {label:"Connection to GA II.1 and DA II.1", note:"GA II.1: the heart is the first organ to form in embryonic development — the nutritive and sensitive soul actualises first in the heart. DA II.1: soul is the first actuality of a natural body. The heart is the first actualisation of the soul in the developing body — the material expression of the soul's primary function. PA III confirms this from the anatomical side"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The respiratory and digestive systems (III.3, III.6–14)",
+        chapters: [
+          {
+            id:"pa3_6", label:"PA III.6 — the lung: the cooling organ of blooded breathing animals", greek:"πλεύμων", accent:"#BA7517",
+            children:[
+              {label:"The lung exists to cool the vital heat", note:"The lung's function is to admit air for the cooling of the heart's vital heat. All animals with lungs breathe air; all air-breathing animals have lungs. This is a per se biconditional at the genus level — the function and the organ are mutually determining"},
+              {label:"The spongy texture of the lung", note:"The lung must be spongy — full of air spaces — because its function is air exchange. A dense solid lung would be unable to admit air throughout its volume. The material property (sponginess) is determined by the function (air exchange): hypothetical necessity in operation"},
+              {label:"Bloodless animals and gills", note:"Bloodless animals that live in water breathe through gills — the analogous organ for water-exchange rather than air-exchange. The function is the same (cooling the vital principle); the medium differs (water vs air); the organ differs accordingly (gill vs lung). The analogy principle across the genus divide"},
+              {label:"Connection to On Respiration", note:"On Respiration will give the full causal analysis of breathing as the mechanism of cooling. PA III.6 establishes the anatomical basis — the lung as the organ — that On Respiration will analyse as a process"},
+            ]
+          },
+          {
+            id:"pa3_14", label:"PA III.14 — the digestive system: stomach, intestines, and their variations", greek:"κοιλία καὶ ἔντερα", accent:"#BA7517",
+            children:[
+              {label:"The stomach as the organ of primary digestion", note:"The stomach exists to receive food and begin the process of concoction — transforming raw food into a form the body can use. Its size and structure vary by diet: large-stomached animals eat coarse food that requires more concoction; smaller-stomached animals eat more refined food"},
+              {label:"The intestines as the organ of final absorption", note:"The intestines receive the concocted food from the stomach and extract the final nutritive material (blood) from it. Their length varies with the diet — herbivores have longer intestines because plant matter requires more processing than flesh"},
+              {label:"Diet as the final cause of digestive structure", note:"The entire digestive system is shaped by the animal's diet — which is itself shaped by the animal's way of life — which is a per se attribute of the species. The truth conditions cascade: species → way of life → diet → digestive structure. Each level is per se determined by the level above it. This is the most concrete demonstration in the corpus of how the species-form determines per se attributes through functional chains"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Book IV — Περὶ Ζῴων Μορίων Δ · The non-uniform parts II: sense organs, brain, locomotive organs, and the parts of bloodless animals",
+    groups: [
+      {
+        label: "The sense organs and the brain (IV.1–2, IV.10)",
+        chapters: [
+          {
+            id:"pa4_1", label:"PA IV.1–2 — the sense organs: eye, ear, nose, tongue", greek:"αἰσθητήρια", accent:"#BA7517",
+            children:[
+              {label:"Each sense organ exists for its specific function", note:"The eye exists for seeing — its structure (transparent cornea, lens, retina) is entirely determined by the function of receiving light and transmitting it to the sensitive soul. The ear exists for hearing; the nose for smelling. In every case the organ is explained by its function"},
+              {label:"The eye as the clearest case", note:"The eye is the most perfectly designed of the sense organs — its structure most clearly exhibits the principle that form follows function. The transparent outer layer admits light; the dark inner layer prevents internal reflection; the lens focuses; the fluid maintains the transparent medium. Every structural feature is explained by its contribution to vision"},
+              {label:"Variations across species", note:"Eyes vary across species in ways determined by the species' way of life — nocturnal animals have larger eyes with more light-gathering capacity; diurnal animals have eyes optimised for colour discrimination. These variations are per se attributes of the species, not accidents"},
+              {label:"Connection to DA II.7–11", note:"DA II.7–11 gave the theoretical analysis of each sense as the reception of sensible form without matter. PA IV.1–2 gives the material analysis — the physical structures through which this formal reception is realised. The theoretical and the empirical analyses are complementary: DA gives the form; PA gives the matter that instantiates it"},
+            ]
+          },
+          {
+            id:"pa4_10", label:"PA IV.10 — the brain: cooling organ and seat of sleep", greek:"ἐγκέφαλος", accent:"#BA7517",
+            children:[
+              {label:"The brain's primary function is cooling", note:"The brain exists primarily to cool the vital heat of the heart — it is the body's cooling system. This is why the brain is cold and moist by nature: its material properties are determined by its cooling function"},
+              {label:"The brain is not the seat of sensation", note:"Aristotle consistently maintains that the heart, not the brain, is the seat of sensation. The brain is an accessory cooling organ, not the centre of mental activity. This position is anatomically incorrect but philosophically consistent: if the heart is the seat of the vital principle, the brain must serve the heart"},
+              {label:"Sleep arises from the brain's cooling action", note:"Sleep occurs when the vital heat rises from digestion, passes through the blood to the brain, is cooled there, and then descends again — cooling the heart and producing the loss of consciousness we call sleep. On Sleep and Waking will develop this account"},
+              {label:"The philosophical significance", note:"Whether or not Aristotle is right about the brain's role, the analytical method is exemplary: every organ is explained by its function, and the function is determined by the organ's place in the overall economy of the living body. No part is arbitrary; every part exists for the sake of the whole"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Locomotive organs across the animal kingdom (IV.6–9)",
+        chapters: [
+          {
+            id:"pa4_6", label:"PA IV.6–9 — limbs, wings, fins, and the analogy of locomotive organs", greek:"κωλύματα", accent:"#534AB7",
+            children:[
+              {label:"Locomotive organs exist for motion", note:"All locomotive organs — legs, wings, fins, tentacles — exist for the same function: moving the animal from place to place. The final cause is locomotion; the specific organ is determined by the medium (land, air, water) and the way of life"},
+              {label:"The four-limb principle", note:"Aristotle notes that no blooded animal has more than four true limbs — the general principle is bilateral symmetry with at most four major locomotive appendages. Insects have six or more because they are bloodless; the principle applies differentially by genus"},
+              {label:"Wings as modified forelimbs", note:"Bird wings are the forelimbs modified for flight — the same structural position, different function and form. The analogy: bird wing : bird forelimb :: bat wing : bat forelimb :: human arm : human forelimb. Same position in the structural plan; different material realisation for different function"},
+              {label:"Fins as the aquatic analogue", note:"Fish fins correspond to the limbs of land animals — they perform the same locomotive function in a different medium. The analogy runs across the water/land divide: fish fin : fish :: leg : land animal :: wing : bird. One function (locomotion), three media (water/land/air), three material realisations"},
+              {label:"Connection to Movement of Animals", note:"Movement of Animals will give the causal analysis of how the soul moves the body through the locomotive organs — the mechanism by which the desire of the soul is translated into the motion of the limbs. PA IV gives the anatomical basis; Movement of Animals gives the causal mechanism"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The parts of bloodless animals (IV.5–9)",
+        chapters: [
+          {
+            id:"pa4_5", label:"PA IV.5 — the parts of cephalopods, crustaceans, and insects", greek:"ἄναιμα μόρια", accent:"#534AB7",
+            children:[
+              {label:"The general principle for bloodless parts", note:"All the parts of bloodless animals are explained by the same four-cause framework as the parts of blooded animals — the final cause (function) determines the formal cause (structure), which in turn determines what material cause (matter) is required. The framework is universal; the empirical content varies by genus"},
+              {label:"Cephalopod tentacles", note:"The tentacles of octopus and squid serve for locomotion, prey capture, and manipulation — three functions requiring one organ. The tentacle's structure (flexible, adhesive, strong) is determined by the combination of these functions. One organ, multiple functions: the formal cause unifies what the material cause must support"},
+              {label:"Crustacean claws", note:"The claws of crabs and lobsters exist for prey capture, defence, and manipulation. Their structure (jointed, hard-shelled, strong) is determined by these functions. The hardness of the shell is hypothetically necessary: if the animal is to have claws strong enough to crush prey and resist predators, the material must be hard"},
+              {label:"Insect wings", note:"Insect wings exist for flight — but unlike bird wings they are not modified limbs but separate outgrowths. This is a genuine structural difference between the blooded and bloodless genera. The analogy (insect wing ≈ bird wing in function) holds; the homology (same structural position) does not. The analogy principle is not the identity principle"},
+              {label:"The closing synthesis of Parts of Animals", note:"Books II–IV have applied the four-cause framework established in Book I to every major category of animal part — uniform and non-uniform, in blooded and bloodless animals. The result is a complete causal anatomy: every part explained by its function, every function grounded in the species' way of life, every way of life a per se attribute of the species-form. The Parts of Animals is the most sustained demonstration in the corpus of the claim that categorical classification gives truth values for the actual — because it shows at every level how the species-form determines which parts an animal has per se, what material those parts must be made of, and why they exist where they do in the body"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

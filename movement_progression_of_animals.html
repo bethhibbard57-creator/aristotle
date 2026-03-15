@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Movement of Animals & Progression of Animals</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Περὶ Ζῴων Κινήσεως &amp; Περὶ Πορείας Ζῴων</h1>
+<p class="subtitle">Movement of Animals (11 chapters) &amp; Progression of Animals (19 chapters) — complete interactive reference</p>
+<p class="subtitle">How the soul moves the body · the mechanics of locomotion · the universal structural principles of animal movement</p>
+
+<div id="tree"></div>
+
+<footer>Click any section to expand. These two short works complete the biological analysis of locomotion. Movement of Animals analyses the causal mechanism by which the soul produces motion in the body — the bridge between psychology and biology. Progression of Animals analyses the structural principles governing how animals actually move — why they have the number of limbs they do, why the joints bend the way they do, and what the universal conditions of locomotion are. Together they show the same four-cause framework operating at the most concrete level of biological analysis.</footer>
+
+<script>
+const books = [
+  {
+    book: "Movement of Animals — Περὶ Ζῴων Κινήσεως · How the soul moves the body",
+    groups: [
+      {
+        label: "The unmoved mover within the animal (Ch. 1–4)",
+        chapters: [
+          {
+            id:"ma_1", label:"MA Ch. 1–2 — the problem: how does the soul move the body?", greek:"πῶς ἡ ψυχὴ κινεῖ τὸ σῶμα", accent:"#BA7517",
+            children:[
+              {label:"The central question", note:"How does the soul — which is immaterial — produce motion in the body — which is material? The question bridges psychology (DA) and biology (PA, HA, GA). The answer must show how desire in the soul becomes motion in the limbs"},
+              {label:"The animal needs a fixed point", note:"For any motion to occur there must be something that stays fixed — a point of rest from which the moving part moves. A man pushing a wall cannot move the wall if the ground does not hold him firm. Every locomotive motion requires an unmoved point of support"},
+              {label:"The fixed point within the animal", note:"In the animal, the fixed point is provided by the joints — the parts that remain relatively stationary while the limbs move relative to them. The elbow joint is fixed while the forearm moves; the shoulder joint is fixed while the upper arm moves"},
+              {label:"Connection to Physics VIII.5", note:"Physics VIII.5: every moved thing is moved by something; the chain must terminate in an unmoved mover. Movement of Animals Ch. 1–2 shows how this principle operates within the animal body: the soul is the unmoved mover within the animal, and the joints are the internal fixed points that make limb motion possible. The cosmological and biological analyses are structurally identical"},
+            ]
+          },
+          {
+            id:"ma_3", label:"MA Ch. 3–4 — desire as the efficient cause of motion; the practical syllogism", greek:"ὄρεξις καὶ νόησις", accent:"#BA7517",
+            children:[
+              {label:"Desire as the proximate efficient cause", note:"What produces motion in the animal is desire (ὄρεξις) — the soul's orientation toward an object as good or away from it as bad. Desire is the efficient cause of animal motion; the object of desire is the final cause that triggers the efficient cause"},
+              {label:"The practical syllogism in action", note:"The practical syllogism (DA III.10) is the cognitive mechanism that triggers desire and thereby produces motion. Major premise: everything sweet is pleasant. Minor premise: this is sweet. Conclusion (not a proposition but an action): eat this. The conclusion is the motion itself — the reaching out, the taking, the eating"},
+              {label:"Desire and reason jointly produce motion", note:"Neither desire alone nor reason alone is sufficient. Desire without reason is blind appetite — it may move but cannot select. Reason without desire is inert — it may identify the good but cannot move toward it. Motion requires both: reason identifies the object; desire orients toward it; the body moves"},
+              {label:"Connection to DA III.9–10 and NE III.2–3", note:"DA III.9–10 gave the psychological analysis: practical nous and desire jointly produce action; choice is deliberate desire. NE III.2–3 gave the ethical analysis: choice is the unity of deliberation and desire. Movement of Animals Ch. 3–4 gives the biological analysis: the desire of the soul is the efficient cause that moves the joints through the intermediary of the pneuma. Three levels, one mechanism"},
+              {label:"Connection to your thesis", note:"The practical syllogism as the bridge between soul and body is the biological expression of the logical analysis of the middle term. In demonstration, the middle term connects subject and predicate; in the practical syllogism, the minor premise (identifying this as falling under the major) connects the universal desire to the particular action. The logical and the biological converge: the middle term in demonstration and the minor premise in the practical syllogism are the same structure at two levels. Motion is the biological conclusion of a logical argument"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "Pneuma as the instrument of soul-body causation (Ch. 5–11)",
+        chapters: [
+          {
+            id:"ma_5", label:"MA Ch. 5–7 — pneuma as the physical instrument of desire's effect on the body", greek:"πνεῦμα", accent:"#BA7517",
+            children:[
+              {label:"The problem of soul-body causation", note:"How does the immaterial desire of the soul produce the material motion of the limbs? There must be a physical intermediary — something through which the soul's desire is transmitted to the body. This is pneuma"},
+              {label:"Pneuma as the connate vital spirit", note:"Connate pneuma (σύμφυτον πνεῦμα) — the vital spirit present in every animal from birth — is the physical instrument through which the soul moves the body. When desire arises, the pneuma expands or contracts, and this expansion or contraction is transmitted through the sinews to the joints and limbs"},
+              {label:"The expansion-contraction mechanism", note:"Desire produces an expansion of the pneuma in the relevant region — this expansion pushes the limb. Aversion produces a contraction — this contraction pulls the limb back. The alternation of expansion and contraction is the physical mechanism of all animal motion"},
+              {label:"Connection to GA II.4–6", note:"GA II.4–6 introduced pneuma as the vehicle of the soul in generation — the medium through which the semen carries the formal principle to the female matter. Movement of Animals Ch. 5–7 shows pneuma operating in the mature animal: the same vital spirit that transmitted the soul in generation is the instrument through which the soul moves the body throughout life"},
+              {label:"The cosmological parallel", note:"The pneuma is the terrestrial counterpart of the aether — as aether is the incorruptible medium of celestial motion, pneuma is the vital medium of biological motion. The vertical causal chain: Unmoved Mover → celestial motion → solar heat → vital pneuma (in generation) → connate pneuma (in mature motion) → limb motion. One chain from the cosmic to the biological"},
+            ]
+          },
+          {
+            id:"ma_8", label:"MA Ch. 8–11 — the analogy with automata; the unity of the causal analysis", greek:"αὐτόματα", accent:"#534AB7",
+            children:[
+              {label:"The automaton analogy", note:"Animal motion is like the motion of an automaton — a mechanical puppet that moves when a small trigger releases a spring. The trigger corresponds to the minimal sensory stimulus; the spring corresponds to the pneuma; the motion of the puppet's limbs corresponds to the motion of the animal's limbs. Small causes can produce large effects through the intermediary mechanism"},
+              {label:"The analogy illuminates but does not reduce", note:"The automaton analogy shows how small psychic causes can produce large bodily effects — but it does not mean that animals are automata. The animal has a soul that initiates the process through desire; the automaton has a mechanical spring. The formal cause differs entirely; the mechanical analysis of the intermediary is similar"},
+              {label:"The unity of the causal analysis", note:"Movement of Animals closes by showing that the same causal structure governs all animal motion: desire (efficient cause, from the soul) → pneuma (material instrument) → joint motion (the proximate physical cause) → limb motion (the effect). The four causes are present at every stage of the analysis"},
+              {label:"Connection to your thesis", note:"The automaton analogy shows that even mechanical motion can be given a four-cause analysis: the spring has a formal cause (its shape), a material cause (the metal), an efficient cause (the trigger), and a final cause (what the automaton was designed to do). The four-cause analysis is not restricted to biological or psychological phenomena — it is the universal framework for explaining any ordered process. This confirms Paper Four's claim that the four-cause tetralemmic structure runs through every domain of the corpus"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "Progression of Animals — Περὶ Πορείας Ζῴων · The structural principles of locomotion",
+    groups: [
+      {
+        label: "The universal conditions of locomotion (Ch. 1–5)",
+        chapters: [
+          {
+            id:"ia_1", label:"IA Ch. 1–2 — why animals need limbs; the conditions of locomotion", greek:"κωλύματα", accent:"#534AB7",
+            children:[
+              {label:"The subject of Progression of Animals", note:"While Movement of Animals asked how the soul produces motion, Progression of Animals asks about the structural conditions of motion — what an animal must have in order to move at all. These are the necessary material conditions of locomotion"},
+              {label:"Three conditions of locomotion", children:[
+                {label:"A point of support", note:"The animal must have something to push against — the ground for a land animal, the water for an aquatic animal, the air for a flying animal. Without a resistant medium there is no locomotion"},
+                {label:"A fixed point within the body", note:"There must be a part that remains fixed while another part moves relative to it — the joint. Without joints there is no directional motion, only uniform expansion or contraction"},
+                {label:"Alternating motion", note:"Locomotion requires alternating activation — first one side, then the other. A creature that activated all its locomotive parts simultaneously would move in no direction. Alternation is the formal condition of directed locomotion"},
+              ]},
+              {label:"Connection to Physics V.3 and Physics VIII", note:"Physics V.3: contact is the condition of causal interaction. Progression of Animals Ch. 1: contact with a resistant medium is the condition of locomotion. The physical analysis (contact as the condition of causation) and the biological analysis (contact with a medium as the condition of locomotion) are the same principle at two levels"},
+            ]
+          },
+          {
+            id:"ia_3", label:"IA Ch. 3–5 — why blooded animals have four limbs at most", greek:"τέτταρα κωλύματα", accent:"#534AB7",
+            children:[
+              {label:"The four-limb principle in blooded animals", note:"No blooded animal has more than four true limbs. This is a per se truth at the genus level (blooded animals) — not an accident but a structural necessity grounded in the biology of blooded animals"},
+              {label:"Why four and not more", note:"The soul's locomotive capacity in blooded animals operates through four points of application — four limbs. More than four would require either a different soul-type or a different body-plan. The four-limb principle reflects the formal cause: the specific kind of locomotive soul that blooded animals have requires exactly four points of application for directed motion"},
+              {label:"Snakes as apparent exceptions", note:"Snakes have no limbs — yet they move. Their locomotion operates through the lateral undulation of the spine — the vertebrae themselves serve as the joints, and the ground contact of the whole body serves as the point of support. The absence of limbs is not a deficiency but an alternative realisation of the same locomotion function"},
+              {label:"Insects and the six-limb principle", note:"Insects have six limbs (hexapods) or more — but they are bloodless. The six-limb principle is per se true of the insect genus. The different principle (six vs four) reflects the different formal cause: the insect's locomotive soul operates through six points of application. Same function (locomotion), different formal organisation by genus"},
+            ]
+          },
+        ]
+      },
+      {
+        label: "The mechanics of specific locomotion types (Ch. 6–19)",
+        chapters: [
+          {
+            id:"ia_6", label:"IA Ch. 6–10 — walking, running, and the mechanics of quadruped and biped locomotion", greek:"βάδισις καὶ δρόμος", accent:"#534AB7",
+            children:[
+              {label:"The diagonal principle of quadruped motion", note:"Quadrupeds move diagonally — front left with back right, front right with back left. This diagonal alternation is the formal condition of stable quadruped locomotion: it maintains the centre of gravity over the supporting limbs at every point of the stride"},
+              {label:"Biped locomotion", note:"Man is the only perfectly upright biped — no other animal walks habitually on two legs with the body fully erect. The upright posture is per se true of man as a species, and the specific pattern of human locomotion (alternating left-right with upright trunk) follows from it"},
+              {label:"Running as accelerated walking", note:"Running is not a different kind of motion from walking but an acceleration of the same pattern — but with a phase in which both feet are off the ground simultaneously. The formal analysis of running as accelerated walking shows that motion is continuous: the same pattern at different rates"},
+              {label:"Connection to Physics V.4", note:"A motion is strictly one when it is one in kind, subject, and time. Walking and running are the same kind of motion (bipedal alternating locomotion) in the same subject (the same person) — they differ only in rate. This is the Physics V.4 analysis of unity of motion applied to the concrete biological case"},
+            ]
+          },
+          {
+            id:"ia_11", label:"IA Ch. 11–15 — swimming and flying: locomotion in fluid media", greek:"νεῦσις καὶ πτῆσις", accent:"#534AB7",
+            children:[
+              {label:"Swimming as pushing against water", note:"Fish swim by pushing against the water with their fins — the water provides the resistant medium (the external fixed point) while the fins provide the internal locomotive force. The same conditions of locomotion apply: resistant medium, internal fixed point, alternating motion"},
+              {label:"The lateral undulation of fish", note:"Fish swim by lateral undulation — the body curves from side to side while the tail sweeps back and forth. This is the aquatic analogue of the diagonal motion of quadrupeds: alternating activation of opposite sides maintains directional motion"},
+              {label:"Flying as pushing against air", note:"Birds fly by pushing against the air with their wings — the air provides the resistant medium. The wing stroke is the biological version of the oar stroke: the wing pushes backward against the air to move the bird forward. The formal analysis of flying is structurally identical to the analysis of swimming"},
+              {label:"The unity of the locomotion analysis", note:"Walking, swimming, and flying are formally the same: all require a resistant medium, an internal fixed point (joints), and alternating motion. The specific organ (leg, fin, wing) and medium (ground, water, air) differ by genus and way of life. Same form, different matter — the biological expression of the universal four-cause analysis"},
+            ]
+          },
+          {
+            id:"ia_16", label:"IA Ch. 16–19 — the joints: why they bend the way they do; the closing synthesis", greek:"καμπαί", accent:"#534AB7",
+            children:[
+              {label:"Why joints must bend in specific directions", note:"The joints of the limbs bend in specific directions determined by their function in locomotion. The knee bends backward (in the direction of motion) because forward bending would impede forward locomotion. The elbow bends inward for the same reason. The direction of bending is a per se attribute of the limb, determined by its locomotive function"},
+              {label:"The formal determination of joint direction", note:"The direction in which a joint bends is not an accident but a formal necessity — it is determined by what the limb must do. This is the most concrete possible demonstration of the principle that form determines structure: the function (forward locomotion) determines the direction of the joint (backward bending of the knee)"},
+              {label:"The closing synthesis of Progression of Animals", note:"The work closes by showing that all the structural features of animal locomotion — number of limbs, direction of joint bending, pattern of alternation — are formally determined by the function of locomotion and the species' specific way of life. There are no arbitrary structural features; every feature is a per se attribute at the appropriate level of the classificatory tree. Progression of Animals is the final confirmation at the most concrete anatomical level of the thesis that categorical classification gives truth values for the actual"},
+              {label:"Connection to your thesis", note:"The closing synthesis of Progression of Animals confirms the thesis at the most concrete possible level: the direction in which the knee bends is a per se attribute of the human species, determined by the species-form and the way of life it entails. 'The human knee bends backward' is per se true of humans — not accidentally true — because the human form requires forward bipedal locomotion and forward bipedal locomotion requires backward-bending knees. The truth condition is the species-form; the species-form is the final cause; the final cause is what Part of Animals I identified as the primary explanatory principle. The entire biological corpus is one argument confirming one thesis: form determines truth"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>

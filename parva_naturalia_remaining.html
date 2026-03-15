@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Parva Naturalia (remaining)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  .book-label { font-size: 1rem; font-weight: 600; color: #333; margin: 1.5rem 0 0.5rem; border-bottom: 0.5px solid #ddd; padding-bottom: 0.4rem; }
+  .toggle { cursor: pointer; user-select: none; }
+  .toggle:hover { opacity: 0.75; }
+  .leaf { padding: 4px 8px 4px 24px; border-left: 1px solid #ddd; margin: 2px 0; }
+  .section { margin-bottom: 4px; }
+  .greek { font-size: 12px; color: #888; font-style: italic; margin-left: 6px; font-family: Georgia, serif; }
+  .note { font-size: 12px; color: #aaa; font-style: italic; margin-left: 8px; }
+  .eg { font-size: 11px; color: #aaa; margin-left: 6px; }
+  .children { padding-left: 20px; border-left: 1px solid #ddd; margin: 4px 0 4px 8px; }
+  .header-row { display: flex; align-items: baseline; gap: 4px; padding: 6px 8px; border-radius: 6px; flex-wrap: wrap; }
+  .cat-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .sub-label { font-size: 12px; color: #1a1a1a; }
+  .arrow { font-size: 10px; color: #aaa; margin-right: 4px; display: inline-block; width: 10px; flex-shrink: 0; }
+  .cat-block { margin-bottom: 8px; border: 0.5px solid #ddd; border-radius: 10px; overflow: hidden; }
+  .cat-header { background: #f3f1eb; }
+  .cat-body { padding: 8px 12px; }
+  .group-label { font-size: 10px; color: #bbb; font-style: italic; margin: 12px 0 4px 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Παρβά Φυσικά (remaining)</h1>
+<p class="subtitle">On Sense and Sensibles · On Sleep and Waking · On Dreams · On Divination through Sleep · On Length and Shortness of Life · On Youth and Old Age, Life and Death · On Respiration</p>
+<p class="subtitle">The boundary of psychology and biology — the physical basis of the soul's activities</p>
+
+<div id="tree"></div>
+
+<footer>Click any section to expand. The remaining Parva Naturalia extend the analyses of De Anima and the biological works into specific phenomena at the boundary of soul and body. On Sense deepens the account of perception from DA II. On Sleep, Dreams, and Divination analyse the suspension and continuation of soul-activities in sleep. On Length of Life, Youth and Old Age, and Respiration analyse the vital processes that sustain and terminate life. Together they complete the biological analysis of the soul's embodied existence.</footer>
+
+<script>
+const books = [
+  {
+    book: "On Sense and Sensibles — Περὶ Αἰσθήσεως καὶ Αἰσθητῶν",
+    groups: [
+      {
+        label: "The physical analysis of sensation (Ch. 1–7)",
+        chapters: [
+          {
+            id:"sens_1", label:"On Sense Ch. 1–2 — sensation belongs to the soul-body compound; the sense organs revisited", greek:"αἴσθησις σώματος καὶ ψυχῆς", accent:"#BA7517",
+            children:[
+              {label:"Sensation belongs to the compound", note:"Sensation is not a function of the soul alone nor of the body alone — it belongs to the soul-body compound. The soul provides the formal principle of reception; the body provides the material medium through which reception occurs. This confirms DA II.5's account of perception as formal reception without material change"},
+              {label:"The five senses and their organs revisited", note:"On Sense gives a more detailed physical analysis of the sense organs than DA II — it goes further into the material constitution of each organ and the physical processes through which sensation occurs. The formal analysis (DA) is presupposed; the material analysis is extended"},
+              {label:"The common sense revisited", note:"The common sense — which perceives the common sensibles and integrates the five senses — is located in the heart. The physical analysis of the common sense connects DA III.1–2's functional account to the anatomical account of PA III.4"},
+              {label:"Connection to your thesis", note:"On Sense confirms that the truth conditions for perceptual predications are determined by the compound — not by the soul alone and not by the body alone. 'Sees red' is per se true of a being with both the appropriate soul (sensitive faculty for colour) and the appropriate body (functioning eyes with the transparent medium). The compound is the proper subject of perceptual per se predications"},
+            ]
+          },
+          {
+            id:"sens_3", label:"On Sense Ch. 3–7 — colour, sound, smell, taste, and touch analysed physically", greek:"αἰσθητά", accent:"#BA7517",
+            children:[
+              {label:"Colour as the limit of the transparent", note:"Colour is what activates the transparent medium — it is the visible quality of surfaces. The physical analysis: colour is produced by the ratio of light to dark at the surface of a body. Different ratios produce different colours. The formal analysis (DA II.7) gave colour as what activates the transparent; the physical analysis gives what determines which activation occurs"},
+              {label:"Sound as motion in a medium", note:"Sound is a specific kind of motion transmitted through air or water — the motion produced when two solid surfaces strike each other and set the medium in vibration. The physical analysis of sound confirms DA II.8's account while giving the specific mechanism"},
+              {label:"Smell, taste, and touch", note:"Smell is the effect of the evaporation of moist substances on the olfactory medium. Taste is the effect of soluble qualities on the moist tongue. Touch is the direct reception of the primary tangible qualities. Each is given a physical analysis that extends and specifies the formal accounts of DA II.9–11"},
+              {label:"The threshold of sensation", note:"Aristotle notes that there are thresholds below which sensation does not occur — too faint a stimulus produces no perception. This is the physical basis of the distinction between what is potentially perceivable and what is actually perceived: the stimulus must exceed the threshold to actualise the perceptual capacity"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "On Sleep and Waking — Περὶ Ὕπνου καὶ Ἐγρηγόρσεως",
+    groups: [
+      {
+        label: "The physiology of sleep: suspension of sensation (Ch. 1–3)",
+        chapters: [
+          {
+            id:"sleep_1", label:"On Sleep Ch. 1–3 — what sleep is; why the senses are suspended", greek:"ὕπνος", accent:"#BA7517",
+            children:[
+              {label:"Sleep defined", note:"Sleep is the suspension of sensation — the temporary incapacitation of the sensitive faculty. It is not death (permanent suspension) nor mere rest (which does not suspend sensation) but the specific periodic suspension of the sensitive soul's activity"},
+              {label:"The cause of sleep", note:"Sleep is caused by the uprising of vapours from digestion — the warm moist vapour from food rises through the blood to the brain, is cooled there, and descends again, cooling the heart and suspending sensation. The cooling of the vital heat below the threshold of sensory activity is what produces sleep"},
+              {label:"Sleep is necessary", note:"Sleep is necessary for the maintenance of life — the body requires periodic rest from the constant activity of sensation and locomotion. The vital heat must periodically be consolidated and renewed. Sleep is the mechanism of this renewal — per se necessary for the kind of being that has a sensitive soul in a mortal body"},
+              {label:"Connection to PA IV.10", note:"PA IV.10 gave the anatomical analysis of the brain as the cooling organ. On Sleep develops this into the causal analysis of sleep: the brain's cooling function, when it cools the vital heat sufficiently, produces sleep. The anatomical and physiological analyses are continuous"},
+              {label:"Connection to your thesis", note:"Sleep as the periodic suspension of sensation is the biological expression of the having/using distinction from NE VII.3 (the dissolution of weakness of will). The sleeping person has the sensitive faculty but is not using it — exactly as the weak-willed person has knowledge but is not using it. Sleep is the biological case of the having/not-using distinction — the most fundamental case, grounded in the physiology of the vital heat"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "On Dreams — Περὶ Ἐνυπνίων",
+    groups: [
+      {
+        label: "Dreams as residual perceptual motion (Ch. 1–3)",
+        chapters: [
+          {
+            id:"dream_1", label:"On Dreams Ch. 1–3 — what dreams are; why they can deceive", greek:"ἐνύπνια", accent:"#BA7517",
+            children:[
+              {label:"Dreams defined", note:"Dreams are the appearances that arise from the residual movements of perceptual images during sleep. When the senses are suspended, the movements set up by past perceptions continue in the sense organs and produce images — these are dreams"},
+              {label:"Dreams are perceptual afterimages", note:"The dream-image is a residual motion — like the afterimage that persists after looking at a bright light. The external stimulus is absent; the internal motion continues. Dreams are the continuation of perceptual processes after their cause has ceased"},
+              {label:"Why dreams can deceive", note:"In waking life the critical faculty (the common sense and imagination working together with the rational soul) can distinguish perceptual images from reality. In sleep the critical faculty is suspended along with the senses — so the residual perceptual motions are taken for actual perceptions. This is why the sleeping person believes they are truly seeing what they dream"},
+              {label:"Dreams are not supernatural", note:"Aristotle gives a completely naturalistic account of dreams — they are residual perceptual motions, not divine revelations or prophetic visions. The common belief that dreams are sent by the gods is explained as a confusion of natural residual motion with supernatural communication"},
+              {label:"Connection to DA III.3 (imagination)", note:"DA III.3: imagination is the movement that arises from actual sensation. Dreams are imagination operating without the constraint of current sensation — unanchored imagination. The dream-image is a φάντασμα without a present φαντόν (the thing appearing). This is the most vivid confirmation of DA III.3's account: imagination can operate independently of sensation, and when it does without critical oversight, it deceives"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "On Divination through Sleep — Περὶ τῆς καθ᾽ ὕπνον Μαντικῆς",
+    groups: [
+      {
+        label: "Can dreams foretell the future? (Ch. 1–2)",
+        chapters: [
+          {
+            id:"div_1", label:"On Divination Ch. 1–2 — the sceptical analysis of prophetic dreams", greek:"μαντική", accent:"#BA7517",
+            children:[
+              {label:"The phenomenon", note:"Some dreams appear to foretell future events — people dream of illness before it appears, of events before they occur. This is a genuine and widespread human experience. The question is whether this is genuine prophecy (divine communication) or has a natural explanation"},
+              {label:"Aristotle's sceptical but careful position", note:"Aristotle does not simply dismiss prophetic dreams — he takes the phenomenon seriously and asks for a naturalistic explanation. He does not think dreams are divinely sent, but he acknowledges that some dreams do appear to anticipate future events"},
+              {label:"The natural explanation", note:"Some dreams may anticipate future events because: (1) the sleeper's body, freed from the noise of waking perception, can register very faint signals of bodily change that will later become illness or significant events — early symptoms are noticed in sleep before they are noticed awake; (2) chance — given the enormous number of dreams, some will coincidentally match future events"},
+              {label:"The coincidence argument", note:"The person who remembers only the dreams that came true and forgets the many that did not is subject to confirmation bias. The apparent frequency of prophetic dreams is explained by selective memory — we remember the hits and forget the misses"},
+              {label:"Connection to Post. An. I.30", note:"There is no demonstration of what happens by chance. On Divination confirms this: prophetic dreams, where they are not explained by early physical signals, are coincidences — not subject to scientific analysis. The boundary of scientific knowledge is the boundary of probability and necessity; chance events (including most apparent prophetic dreams) fall outside it"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "On Length and Shortness of Life — Περὶ Μακροβιότητος καὶ Βραχυβιότητος",
+    groups: [
+      {
+        label: "Why some animals live longer than others (Ch. 1–6)",
+        chapters: [
+          {
+            id:"long_1", label:"On Length of Life Ch. 1–6 — the causes of longevity and brevity of life", greek:"μακροβιότης", accent:"#BA7517",
+            children:[
+              {label:"Longevity as a per se attribute of species", note:"Each species has a characteristic lifespan — per se true of the species, not an accident of individuals. The elephant lives longer than the mouse; the tortoise longer than most mammals. These are species-level per se truths, determined by the species-form and the material constitution it requires"},
+              {label:"The vital heat as the primary cause", note:"Longevity is primarily determined by the vital heat — how much there is and how efficiently it is maintained. Large vital heat sustained by appropriate cooling produces long life; weak or quickly exhausted vital heat produces short life"},
+              {label:"Moisture and dryness", note:"Vital heat requires moisture to sustain itself — without moisture the heat burns itself out. Animals that are naturally moist live longer (large aquatic animals); animals that are dry live shorter lives (insects, which have little moisture). The material constitution (ratio of hot/cold, wet/dry) determines the lifespan"},
+              {label:"Size and lifespan", note:"Larger animals generally live longer — not because size itself causes longevity but because larger animals tend to have more vital heat and more moisture to sustain it. The correlation is a per se attribute of the genus, not of size as such"},
+              {label:"Connection to GA V.5–8", note:"GA V.5–8 analysed aging as the failure of the vital heat. On Length of Life gives the comparative analysis across species: the same mechanism (vital heat and its maintenance) explains why different species have different lifespans. The biological analysis of longevity is a per se analysis at the species level — the lifespan is determined by the species-form and its material requirements"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "On Youth and Old Age, Life and Death — Περὶ Νεότητος καὶ Γήρως, Ζωῆς καὶ Θανάτου",
+    groups: [
+      {
+        label: "The physiology of aging and death (Ch. 1–23)",
+        chapters: [
+          {
+            id:"youth_1", label:"On Youth and Old Age Ch. 1–6 — the seat of life; youth and old age as states of the vital heat", greek:"νεότης καὶ γῆρας", accent:"#BA7517",
+            children:[
+              {label:"The seat of life is the heart", note:"Life — in the sense of the vital principle — resides in the heart. The heart is the first organ to live and the last to die. Youth, old age, and death are all states of the vital heat in the heart"},
+              {label:"Youth as the flourishing of the vital heat", note:"Youth is the period of maximum vital heat — the soul's nutritive and sensitive faculties are most active, growth is most vigorous, the senses are most acute. Youth is the time of the soul's most complete actualisation in the body"},
+              {label:"Old age as the failure of the vital heat", note:"Old age is the progressive diminution of the vital heat — not by external cooling but by the natural exhaustion of the body's capacity to sustain the heat. The vital heat gradually fails to maintain the moisture it requires; the body becomes cold and dry"},
+              {label:"The analogy with a lamp", note:"Life is like a flame in a lamp — it requires both heat and fuel (moisture). When the fuel runs out the flame dies. Old age is the running out of fuel; death is the extinction of the flame. The analogy illuminates without reducing: the soul is not a flame, but the physical process by which the soul's vital activity sustains itself and fails is analogous to the burning of a lamp"},
+              {label:"Connection to GA V.5–8 and On Length of Life", note:"The three works form a continuous analysis of the same phenomenon from three angles: GA V.5–8 (the developmental perspective — how the vital heat fails in the individual life cycle); On Length of Life (the comparative perspective — why different species fail at different rates); On Youth and Old Age (the physiological perspective — what the failure consists in at the level of the heart and vital heat)"},
+            ]
+          },
+          {
+            id:"youth_20", label:"On Life and Death Ch. 20–23 — the causes of natural death; the priority of the nutritive soul", greek:"θάνατος", accent:"#BA7517",
+            children:[
+              {label:"Natural death defined", note:"Natural death is the extinction of the vital heat by the natural exhaustion of the body's capacity to sustain it — death from old age. Violent death is the extinction of the vital heat by external causes. Natural death is the per se terminus of the life cycle; violent death is accidental"},
+              {label:"The nutritive soul as the most fundamental", note:"The last faculty to fail is the nutritive — growth and self-maintenance continue even when sensation and locomotion have ceased. The nutritive soul is the foundation on which all other soul-faculties rest; when it fails, all the others fail with it. The soul-hierarchy of DA II.2 is confirmed in the order of dying"},
+              {label:"Plants die differently from animals", note:"Plants die by drying out at the extremities — they lack the central vital heat of the heart that animals have. Animal death is the failure of the central principle (the heart's vital heat); plant death is the failure at the periphery. The different mode of death corresponds to the different mode of life — the soul-hierarchy is expressed in the mode of dying"},
+              {label:"Connection to the great chain of being", note:"The order of dying — rational first, then sensitive, then nutritive last — is the reverse of the order of acquiring soul-faculties in development (nutritive first). The life cycle from development to death instantiates and then reverses the great chain of being within the individual. The individual's life is the temporal expression of the ontological hierarchy — ascending toward full actualisation in youth and descending in old age back toward the material"},
+            ]
+          },
+        ]
+      }
+    ]
+  },
+  {
+    book: "On Respiration — Περὶ Ἀναπνοῆς",
+    groups: [
+      {
+        label: "Breathing as the mechanism of cooling the vital heat (Ch. 1–21)",
+        chapters: [
+          {
+            id:"resp_1", label:"On Respiration Ch. 1–7 — why animals breathe; the cooling function", greek:"ἀναπνοή", accent:"#BA7517",
+            children:[
+              {label:"Breathing exists to cool the vital heat", note:"The function of breathing is to cool the vital heat of the heart — to prevent it from burning itself out too quickly. The final cause (cooling the vital heat) determines the mechanism (admitting cool air) and the organ (the lung). Hypothetical necessity: if there is to be sustained vital heat, there must be a cooling mechanism"},
+              {label:"Inhaling cool air, exhaling warm air", note:"Inhalation admits cool air to the heart region; exhalation expels the warmed air. The cycle of inhalation and exhalation is the biological mechanism of heat regulation — the most fundamental vital process after nutrition"},
+              {label:"Not all animals breathe", note:"Only lung-bearing animals breathe in the strict sense — air-breathing animals. Fish and other water-dwellers cool the vital heat through gills and water. The function (cooling) is per se true of all animals; the mechanism varies by genus (lung/air vs gill/water)"},
+              {label:"Breathing and life", note:"Cessation of breathing causes death — not because air itself is the vital principle but because without cooling the vital heat destroys itself. Suffocation is death by failure of the cooling mechanism. This confirms that breathing is a necessary condition of life in lung-bearing animals — per se true of the genus"},
+            ]
+          },
+          {
+            id:"resp_8", label:"On Respiration Ch. 8–21 — the cooling of bloodless animals; the unity of the vital analysis", greek:"ψύξις ἀναίμων", accent:"#534AB7",
+            children:[
+              {label:"Bloodless animals and their cooling mechanisms", note:"Bloodless animals cool the vital principle through different mechanisms — insects through the movement of their abdominal segments, some through the absorption of moisture through their outer surfaces. The function (cooling the vital principle) is universal; the mechanism is genus-specific"},
+              {label:"The unity of the vital analysis", note:"On Respiration closes the Parva Naturalia by showing that the same vital analysis — vital heat, cooling, moisture, and the mechanisms that maintain the balance — governs all living things from the simplest to the most complex. The great chain of being is a great chain of vital heat regulated in progressively more sophisticated ways"},
+              {label:"Connection to Physics II.8–9", note:"Hypothetical necessity — if the form is to be achieved, the matter must be of a certain kind. On Respiration gives the most concrete application: if the vital heat is to be sustained, there must be a cooling mechanism appropriate to the genus. The cooling mechanism is hypothetically necessary given the life-form; the life-form is determined by the species-form; the species-form is the final cause. Form determines necessity; necessity determines the mechanism"},
+              {label:"The closing of the Parva Naturalia", note:"The Parva Naturalia as a collection moves from the most formal (On Sense — the formal analysis of sensation) through the most intermediate (On Sleep, On Dreams — the suspension of soul-activities) to the most material (On Respiration, On Life and Death — the physical mechanisms sustaining and terminating life). The collection traces the soul-body interface from the formal toward the material — confirming at every step that the soul is the form of the body and that every body-process serves the soul's functions. The Parva Naturalia are De Anima made flesh"},
+            ]
+          },
+        ]
+      }
+    ]
+  }
+];
+
+const open = {};
+const subOpen = {};
+books.forEach(b => b.groups.forEach(g => g.chapters.forEach(c => { open[c.id] = false; })));
+
+function nodeId(label, depth) { return (label + depth).replace(/[\s/↔→'"',\.·:]/g,'_'); }
+
+function renderLeaf(n, depth) {
+  const hasKids = n.children && n.children.length;
+  const id = nodeId(n.label, depth);
+  if (!hasKids) {
+    return `<div class="leaf">
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+      ${n.eg ? `<span class="eg">e.g. ${n.eg}</span>` : ''}
+    </div>`;
+  }
+  if (subOpen[id] === undefined) subOpen[id] = false;
+  const isOpen = subOpen[id];
+  return `<div class="section">
+    <div class="header-row toggle" onclick="toggleSub('${id}')">
+      <span class="arrow">${isOpen ? '▾' : '▸'}</span>
+      <span class="sub-label">${n.label}</span>
+      ${n.greek ? `<span class="greek">${n.greek}</span>` : ''}
+      ${n.note ? `<span class="note">— ${n.note}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="children">${n.children.map(c => renderLeaf(c, depth+1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function renderCat(c) {
+  const isOpen = open[c.id];
+  return `<div class="cat-block">
+    <div class="header-row toggle cat-header" style="border-left: 3px solid ${c.accent};" onclick="toggleCat('${c.id}')">
+      <span class="arrow" style="color:${c.accent}">${isOpen ? '▾' : '▸'}</span>
+      <span class="cat-label">${c.label}</span>
+      ${c.greek ? `<span class="greek">${c.greek}</span>` : ''}
+    </div>
+    ${isOpen ? `<div class="cat-body">${c.children.map(n => renderLeaf(n, 1)).join('')}</div>` : ''}
+  </div>`;
+}
+
+function render() {
+  document.getElementById('tree').innerHTML = books.map(b =>
+    `<div class="book-label">${b.book}</div>` +
+    b.groups.map(g =>
+      `<div class="group-label">${g.label}</div>` +
+      g.chapters.map(c => renderCat(c)).join('')
+    ).join('')
+  ).join('');
+}
+
+window.toggleCat = function(id) { open[id] = !open[id]; render(); }
+window.toggleSub = function(id) { subOpen[id] = !subOpen[id]; render(); }
+
+render();
+</script>
+</body>
+</html>
