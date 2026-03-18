@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotle — Metaphysics Zeta: The Sustained Aporia of Substance</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: #faf8f4; color: #1a1a1a; padding: 2rem 1.5rem; max-width: 900px; }
+  h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 0.85rem; color: #888; font-style: italic; margin-bottom: 0.5rem; }
+  h2 { font-size: 1rem; font-weight: 600; color: #333; margin: 2rem 0 0.5rem; padding-bottom: 0.3rem; border-bottom: 0.5px solid #ddd; }
+  .intro { background: #f8f4e8; border-left: 4px solid #c4a800; border-radius: 0 8px 8px 0; padding: 0.9rem 1.1rem; margin: 1rem 0 2rem; font-size: 13px; line-height: 1.75; color: #3a2a00; }
+  .chapter { background: #fff; border: 0.5px solid #ddd; border-radius: 10px; margin-bottom: 1.2rem; overflow: hidden; }
+  .chapter-header { background: #f3f1eb; padding: 0.7rem 1rem; display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; border-bottom: 0.5px solid #ddd; }
+  .ch-num { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+  .bekker { font-size: 11px; color: #bbb; font-style: italic; }
+  .ch-q { font-size: 13px; font-weight: 600; color: #1a1a1a; flex: 1; }
+  .candidate { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 10px; font-weight: 600; margin: 2px; }
+  .survives { background: #d0fde8; color: #00693A; }
+  .fails { background: #fde8d0; color: #9B4A00; }
+  .partial { background: #d0e8fd; color: #00439B; }
+  .chapter-body { padding: 0.8rem 1rem; }
+  .field { margin-bottom: 0.7rem; }
+  .field-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #bbb; margin-bottom: 0.2rem; }
+  .field-content { font-size: 12.5px; color: #333; line-height: 1.65; }
+  .source-tag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 10px; font-weight: 600; margin: 2px; white-space: nowrap; }
+  .plato { background: #d0e8fd; color: #00439B; }
+  .presocratic { background: #fde8d0; color: #9B4A00; }
+  .pythagorean { background: #d0fde8; color: #00693A; }
+  .megarian { background: #f0d0fd; color: #6A008B; }
+  .sophist { background: #fdf0d0; color: #8B6A00; }
+  .aristotle-note { background: #f0f4f8; border-left: 3px solid #4a7aaa; border-radius: 0 6px 6px 0; padding: 0.5rem 0.8rem; font-size: 12px; color: #1a3a5a; font-style: italic; margin-top: 0.5rem; line-height: 1.6; }
+  .thesis-note { background: #f5f0fa; border-left: 3px solid #8B3A8B; border-radius: 0 6px 6px 0; padding: 0.5rem 0.8rem; font-size: 12px; color: #2a003a; font-style: italic; margin-top: 0.5rem; line-height: 1.6; }
+  .running-score { background: #f3f1eb; border-radius: 8px; padding: 0.7rem 1rem; margin: 1.5rem 0; font-size: 12.5px; color: #444; line-height: 1.7; }
+  .running-score strong { color: #1a1a1a; }
+  footer { margin-top: 2rem; font-size: 11px; color: #bbb; font-style: italic; border-top: 0.5px solid #ddd; padding-top: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Aristotle · Μετὰ τὰ Φυσικά Ζ — The Sustained Aporia of Substance</h1>
+<p class="subtitle">Metaphysics Zeta: all seventeen chapters · each candidate for substance · why each fails or partially survives · the original sources · the resolution</p>
+
+<div class="intro">
+<strong>The function of Zeta:</strong> Metaphysics Zeta is the most difficult sustained argument in the Western philosophical tradition. It takes the question left standing by Beta — what is primary substance? — and works through every candidate with ruthless precision. The candidates are: the substratum (matter) · the universal · the genus · the essence (τὸ τί ἦν εἶναι, the what-it-was-to-be). Each is examined, each is found insufficient in some respect, until in Zeta.17 the form — understood as the cause of being, not as a separately existing Platonic entity — is left standing as the only viable answer. Zeta does not proceed by simple elimination. Each candidate is partially right; the error in each case is a suppression of a qualification — treating what is true of the candidate in a secondary sense as if it were true in the primary sense. The chapter by chapter movement of Zeta is the most sustained application in the corpus of the method of the Sophistical Refutations: detecting and dissolving the suppressed qualification at every level of the analysis of substance.
+</div>
+
+<!-- ZETA 1 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.1</span>
+    <span class="bekker">1028a10–b7</span>
+    <div class="ch-q">Being is said in many ways — but substance is the primary sense</div>
+    <span class="candidate partial">orienting</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The move</div>
+      <div class="field-content">Being is said in many ways (the categories) but all the other senses — quality, quantity, relation, place, time, and the rest — are said to be only by reference to substance. Substance is the primary sense of being; the others are secondary. Therefore the investigation of being qua being is primarily the investigation of substance.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Sophist 255c–d</span> — being and the other greatest kinds; being is not reducible to any single kind<br>
+        <span class="source-tag presocratic">Parmenides</span> — being is one and primary; the others are derivative. Aristotle agrees that being is primary but disagrees that it is one<br>
+        <span class="source-tag plato">Plato — Republic 509b</span> — the Form of the Good is beyond being and essence — being has a primary sense toward which all else is oriented
+      </div>
+    </div>
+    <div class="aristotle-note">This chapter establishes the pros hen (toward one) relation that resolves Beta Aporia 3: being is said in many ways but all ways are related to one primary sense — substance. First philosophy is therefore primarily the investigation of substance.</div>
+    <div class="thesis-note">The pros hen relation is the ontological ground of the per se / accidental distinction. All categories are said to be by reference to substance — which means the truth conditions for all predications are ultimately grounded in the categorical placement of the subject as a substance.</div>
+  </div>
+</div>
+
+<!-- ZETA 2 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.2</span>
+    <span class="bekker">1028b8–1029a34</span>
+    <div class="ch-q">What are the candidates for substance?</div>
+    <span class="candidate partial">survey</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The candidates listed</div>
+      <div class="field-content">Bodies (sensible — animals, plants, the elements) · the parts of bodies · the heavenly bodies · mathematical objects (numbers, lines, surfaces) · the Forms. Most people recognise only sensible substances; the Platonists add Forms and mathematicals. Aristotle will examine all candidates.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Phaedo 78c–80b</span> — the Forms as the real substances; sensible things merely participate<br>
+        <span class="source-tag pythagorean">Pythagoreans</span> — numbers as the real substances underlying all things<br>
+        <span class="source-tag plato">Plato — Republic 509d–511e</span> — the hierarchy: Forms (most real) · mathematicals (intermediate) · sensible things (least real)
+      </div>
+    </div>
+    <div class="aristotle-note">The survey establishes the field. Zeta will work through each candidate. The sensible substances are examined in Zeta.3–16; the Forms and mathematicals are examined in Zeta.13–16 and fully in Mu-Nu.</div>
+  </div>
+</div>
+
+<!-- ZETA 3 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.3</span>
+    <span class="bekker">1028b34–1029b12</span>
+    <div class="ch-q">Candidate 1: The substratum (ὑποκείμενον) — matter as substance</div>
+    <span class="candidate fails">matter alone — fails</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The candidate</div>
+      <div class="field-content">Substance is the substratum — what underlies everything else. If we strip away all qualities, all quantities, all relations, what remains is the bare substratum — prime matter. This is substance in the most fundamental sense: what everything else is predicated of, and which is not itself predicated of anything.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Why it fails</div>
+      <div class="field-content">Prime matter — the bare substratum stripped of all qualities — is neither a this (τόδε τι, a determinate individual) nor a quantity nor a quality nor anything else. It has no being of its own; it is pure potentiality. Something that can exist in no way independently cannot be substance in the primary sense. Substance must be capable of separate existence; pure matter cannot exist separately.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag presocratic">Anaximander</span> — the Apeiron (Indefinite) as the underlying substratum of all things; unlimited, formless matter as the primary substance<br>
+        <span class="source-tag plato">Plato — Timaeus 49a–52d</span> — the Receptacle (χώρα) as the formless nurse of becoming; the closest Platonic analogue to prime matter as substratum<br>
+        <span class="source-tag presocratic">Anaximenes</span> — air as the underlying substratum; all things are transformations of one material principle
+      </div>
+    </div>
+    <div class="aristotle-note">Matter fails as primary substance because it cannot exist separately and determinately. But matter is not eliminated — it is the material cause, a genuine constituent of substance. The error is treating what is true of matter in a secondary sense (it underlies everything) as if it were the primary sense of substance.</div>
+    <div class="thesis-note">This is the secundum quid move applied to the analysis of substance. Matter is a genuine constituent of substance — but treating it as the primary substance suppresses the qualification 'as the material cause'. The suppression generates the position of the materialists.</div>
+  </div>
+</div>
+
+<!-- ZETA 4-5 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.4–5</span>
+    <span class="bekker">1029b1–1031a14</span>
+    <div class="ch-q">Candidate 2: The essence (τὸ τί ἦν εἶναι) — what it was to be something</div>
+    <span class="candidate survives">essence — survives, with qualification</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The candidate</div>
+      <div class="field-content">The essence — τὸ τί ἦν εἶναι, literally 'the what it was to be for something' — is what is expressed in the definition. It is what a thing is in virtue of itself, not in virtue of something else. Every thing that has a definition has an essence; the essence is what the definition expresses.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">The qualification required</div>
+      <div class="field-content">Essence belongs primarily to substance — it is most properly the essence of a substance. Other things (qualities, quantities) have essences only in a secondary sense — their essences are always defined by reference to a substance. 'White' has an essence only as 'the essence of white surface'. The essence is not the same as the thing in every case — only in the case of primary substances (Zeta.6).</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Meno 72b–73c</span> — the search for what virtue is — its essence — as the proper object of definition; the essence is what is common to all instances<br>
+        <span class="source-tag plato">Plato — Phaedo 65d–66a</span> — the Equal Itself, the Beautiful Itself — the essence apprehended by thought alone, without the senses<br>
+        <span class="source-tag plato">Plato — Republic 507b</span> — the Form is the essence of each thing; the essence is what the Form is
+      </div>
+    </div>
+    <div class="aristotle-note">The essence survives as a strong candidate — especially for primary substances, where the thing and its essence are identical (Zeta.6). The analysis of essence in Zeta.4–5 establishes the logical apparatus for the rest of Zeta: what has an essence has a definition; what has a definition is knowable per se; what is knowable per se is substance in the primary sense.</div>
+    <div class="thesis-note">The essence is the formal expression of the per se. To know the essence of a thing is to know which predicates are per se true of it — necessarily, always, in virtue of what it is. This is Post. An. I.4 applied to the metaphysical level: essence and per se predication are the same thing from two angles — the ontological (essence) and the logical (per se predication).</div>
+  </div>
+</div>
+
+<!-- ZETA 6 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.6</span>
+    <span class="bekker">1031a15–1032a10</span>
+    <div class="ch-q">Is each thing identical with its essence?</div>
+    <span class="candidate survives">yes — for primary substances</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The argument</div>
+      <div class="field-content">For primary substances — individual men, individual horses — the thing and its essence are identical. Socrates just is what it is to be Socrates. There is no gap between the individual substance and its essence — no further thing that makes the individual what it is. For accidental compounds (the pale man) the thing and its essence are not identical — 'the pale man' and 'what it is to be a pale man' are different.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Parmenides 130b–131e</span> — the problem of self-predication: does the Form of Large participate in itself? If each Form is identical with its essence, does the Form of Man belong to the Form of Man? The Third Man regress begins here<br>
+        <span class="source-tag plato">Plato — Phaedo 100c–d</span> — things are beautiful by the Beautiful Itself — the Form and the essence are identified, generating self-predication
+      </div>
+    </div>
+    <div class="aristotle-note">The identity of a primary substance with its essence resolves the Third Man regress: there is no gap between Socrates and what it is to be Socrates into which a further Form could be inserted. The regress only arises when the essence is treated as a separately existing Platonic Form rather than as immanent in the individual.</div>
+    <div class="thesis-note">The identity of primary substance with its essence is the ontological ground of the categorical placement as truth-condition maker. To know that Socrates is a man is to know his essence — and from his essence all per se predicates follow. The essence is not a separate entity but the formal structure of the individual itself.</div>
+  </div>
+</div>
+
+<!-- ZETA 7-9 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.7–9</span>
+    <span class="bekker">1032a11–1034b19</span>
+    <div class="ch-q">How do substances come to be? The role of form, matter, and the efficient cause in generation</div>
+    <span class="candidate survives">form as the cause of coming-to-be</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The argument</div>
+      <div class="field-content">When a substance comes to be — when a man is generated, when a house is built — what is generated is not the form (form does not come to be) and not the matter (matter persists through generation). What comes to be is the compound of form and matter. The form is the principle of the compound; it is what the efficient cause (the builder, the father) impresses on the matter.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">The key claim</div>
+      <div class="field-content">The form is not itself generated. There is no generation of the form; the form is always already present in the efficient cause — 'man generates man'. The builder has the form of the house in his soul before building; the father has the form of man in his body before generating. The form is transmitted, not created.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Timaeus 28a–29d</span> — the Demiurge fashions the world by imposing form (the Forms as paradigms) on matter (the Receptacle); the closest Platonic account of generation through form imposition<br>
+        <span class="source-tag plato">Plato — Phaedo 96a–100c</span> — Socrates' account of generation through Forms; things come to be by participation in the relevant Form
+      </div>
+    </div>
+    <div class="aristotle-note">Zeta.7–9 establishes the biological parallel: GA I and II confirm that the form is transmitted through the semen (the efficient cause carrying the formal principle) to the female matter. 'Man generates man' is the biological confirmation of the metaphysical claim that form is not itself generated.</div>
+    <div class="thesis-note">The form is not generated — this is the ontological ground of the claim that species are eternal and universals are real. The individual perishes; the form persists through generation. This is the Aristotelian answer to the aporia of universals: they are real (they persist) but not separately existent (they persist only through the causal transmission of individual generation).</div>
+  </div>
+</div>
+
+<!-- ZETA 10-11 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.10–11</span>
+    <span class="bekker">1034b20–1037b7</span>
+    <div class="ch-q">Are the parts of the definition parts of the thing defined? The problem of parts and wholes</div>
+    <span class="candidate partial">form only — not material parts — in the definition</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The aporia</div>
+      <div class="field-content">The definition of man includes 'rational animal' — it does not include 'flesh and bones'. But man is made of flesh and bones. Are flesh and bones parts of the definition or not? If not, how is the definition complete? If yes, why doesn't the definition of the circle include bronze (if the circle is bronze)?</div>
+    </div>
+    <div class="field">
+      <div class="field-label">The resolution</div>
+      <div class="field-content">The definition expresses the formal parts — the genus and differentia — not the material parts. Flesh and bones are the matter required for the form to be realised (hypothetical necessity) but they are not parts of the form itself. The definition of man is the definition of the form of man; the material is presupposed but not included.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Meno 77b–79e</span> — failed attempts at definition that include material or accidental parts; Socrates' demand for the essence without the material<br>
+        <span class="source-tag plato">Plato — Theaetetus 207a–208b</span> — the problem of the syllable: is the syllable just its letters or something over and above them? The parts/whole problem for definitions
+      </div>
+    </div>
+    <div class="aristotle-note">This establishes the formal-material distinction at the level of definition. The definition expresses the form; the matter is the hypothetically necessary medium for the form's realisation. This connects directly to Physics II.9 (hypothetical necessity) and PA I.1 (the method of biological definition).</div>
+  </div>
+</div>
+
+<!-- ZETA 12 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.12</span>
+    <span class="bekker">1037b8–1038a35</span>
+    <div class="ch-q">Why is the definition one? What unifies the genus and differentia?</div>
+    <span class="candidate survives">the last differentia contains all previous ones</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The aporia</div>
+      <div class="field-content">A definition has multiple parts — genus and differentia. What makes it one definition rather than a conjunction of two separate claims? 'Two-footed animal' — why is this one thing, not two (two-footed + animal)?</div>
+    </div>
+    <div class="field">
+      <div class="field-label">The resolution</div>
+      <div class="field-content">In a properly constructed definition the last differentia contains all the previous ones. 'Two-footed' already presupposes 'footed', which presupposes 'land-dwelling', which presupposes 'animal'. The last differentia is not added to the genus — it specifies it completely. The definition is one because the last differentia is the complete specification of what the genus is in this case.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Sophist 218d–221c</span> — the method of division: how to arrive at the final definition of the Angler by successive differentiation; the problem of whether the definition is one<br>
+        <span class="source-tag plato">Plato — Statesman 258b–267c</span> — the method of division applied to the Statesman; the same problem of definitional unity
+      </div>
+    </div>
+    <div class="aristotle-note">This connects to Topics VI.6: a definition must be one, not a conjunction. The unity of the definition is the unity of the form — the form is what makes the compound one rather than a mere aggregate. This prepares for Zeta.17's claim that the form is the cause of being — the cause of the compound's unity.</div>
+  </div>
+</div>
+
+<!-- ZETA 13-14 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.13–14</span>
+    <span class="bekker">1038b1–1039b19</span>
+    <div class="ch-q">Candidate 3: The universal — is the universal substance?</div>
+    <span class="candidate fails">universal as separate substance — fails</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The candidate</div>
+      <div class="field-content">The Platonists hold that the universal — the Form — is substance in the highest sense. The Form of Man is more truly substance than any individual man because it is eternal, unchanging, and the cause of the individual's being what it is.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Why it fails</div>
+      <div class="field-content">No universal is a substance. If the universal Man were a substance, it would be a substance predicated of many individual men — but then it would be both one (as a universal) and many (as predicated of many), generating contradiction. Moreover, the substance of each thing is its own — it is not shared. But a universal is shared by many; what is shared by many cannot be the substance (the what-it-is) of any one of them specifically.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Republic 596a</span> — the Form as the one over the many; the one Form corresponding to each class of things<br>
+        <span class="source-tag plato">Plato — Parmenides 130b–135b</span> — Parmenides' Third Man argument: if the Form is a universal predicated of particulars, and it resembles them, there must be a further Form. Plato himself raises the regress<br>
+        <span class="source-tag plato">Plato — Phaedo 78d</span> — the Form is one, not many; the Beauty Itself is one; yet it is shared by all beautiful things
+      </div>
+    </div>
+    <div class="aristotle-note">The universal is not substance — but the universal is real. This is the resolution of Beta Aporia 12. The universal exists but not as a separately predicated substance. It exists as the form immanent in the individual — the formal cause of the individual, not a separate entity over and above it.</div>
+    <div class="thesis-note">This is the central anti-Platonic move. The universal is real — it grounds per se predication and scientific knowledge. But it is not a separately existing substance. The truth conditions for 'Socrates is a man' are grounded in the form immanent in Socrates — not in a separately existing Form of Man. Russell's type theory makes the same move from the logical side: levels of predication prevent self-predication. Aristotle makes it from the ontological side: the form is immanent, not separate.</div>
+  </div>
+</div>
+
+<!-- ZETA 15 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.15</span>
+    <span class="bekker">1039b20–1040b4</span>
+    <div class="ch-q">Can individuals be defined? Are the Forms definable?</div>
+    <span class="candidate fails">individual as such — not definable · Form as separate — not definable</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The aporia</div>
+      <div class="field-content">Definition is of the universal and the necessary — it cannot capture the individual as such (this man, this horse at this moment). But if the Forms are individuals (each Form is one and unique), as Plato seems to hold, then the Forms cannot be defined either. Yet definition is supposed to be the expression of the Form's essence.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">The resolution</div>
+      <div class="field-content">Definition is of the species-form, not of the individual matter. The individual is known through perception and through the species-form — we know this man because he is a man and because we perceive him. The species-form is definable; the individual matter is not. The Platonic Forms, if they are truly individual (unique), cannot be defined — which refutes the claim that they are the primary objects of knowledge.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Seventh Letter 342a–343a</span> — the problem of names, definitions, images, and knowledge; the difficulty of expressing the essence in language<br>
+        <span class="source-tag plato">Plato — Parmenides 130b</span> — are there Forms of individuals (Socrates, this man)? Plato hesitates
+      </div>
+    </div>
+    <div class="aristotle-note">This prepares for Zeta.17's positive account: definition is of the form — the species-form immanent in the individual. The individual as such (this matter) is not definable; the form it instantiates is. This is the resolution of the tension between particular knowledge (perception) and universal knowledge (definition).</div>
+  </div>
+</div>
+
+<!-- ZETA 16 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.16</span>
+    <span class="bekker">1040b5–1041a5</span>
+    <div class="ch-q">Candidate 4: The genus — is the genus substance?</div>
+    <span class="candidate fails">genus as separate substance — fails · genus as part of definition — survives</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The argument</div>
+      <div class="field-content">The parts of animals (bones, flesh, blood) and the elements (earth, water, fire, air) are not substances in the primary sense — they are not separable from the compounds they constitute. They are substances only potentially — as constituents of actual compounds. The genus is real but it is not primary substance — it is the universal aspect of the form, not the form itself.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag presocratic">Empedocles</span> — the four elements as the primary substances from which all compound bodies are made; the roots are the primary beings<br>
+        <span class="source-tag plato">Plato — Timaeus 53c–56c</span> — the four elements as the primary bodies; the mathematical structures (triangles) as their constitutive principles
+      </div>
+    </div>
+    <div class="aristotle-note">The genus fails as primary substance for the same reason as matter: it cannot exist separately and determinately. The genus is real — it is part of the definition — but it exists only as the universal aspect of the form in the individual, not as a separate entity.</div>
+  </div>
+</div>
+
+<!-- ZETA 17 -->
+<div class="chapter">
+  <div class="chapter-header">
+    <span class="ch-num">Ζ.17</span>
+    <span class="bekker">1041a6–b33</span>
+    <div class="ch-q">The resolution: form as the cause of being — why the compound is one</div>
+    <span class="candidate survives">FORM — the cause of being — survives as the answer</span>
+  </div>
+  <div class="chapter-body">
+    <div class="field">
+      <div class="field-label">The resolution</div>
+      <div class="field-content">Substance must be a cause and a principle. The right question is not 'what is man made of?' but 'why is this matter man?' — why are these bones and flesh a man rather than a heap? The answer is the form — the formal cause that makes the matter be what it is. The form is the cause of being: it is what makes the compound one rather than many, actual rather than merely potential, this kind of thing rather than that.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">The key formulation</div>
+      <div class="field-content">Form (εἶδος) is the cause of being (αἴτιον τοῦ εἶναι). It is not the matter, not the compound, not the universal as separately existing — it is the principle in virtue of which the matter is actually this kind of thing. The form is the answer to the why-question: why is this matter a man? Because the form of man is present in it.</div>
+    </div>
+    <div class="field">
+      <div class="field-label">Original sources</div>
+      <div class="field-content">
+        <span class="source-tag plato">Plato — Phaedo 97b–99d</span> — Socrates' account of the true cause: not the bones and sinews but the good — the final cause as the true explanation. Aristotle takes this insight but reformulates it: the formal cause (not the Platonic Good) is the cause of being<br>
+        <span class="source-tag plato">Plato — Meno 72b</span> — the search for what makes all instances of virtue one — the single form that explains the unity; the same structure Aristotle identifies in Zeta.17
+      </div>
+    </div>
+    <div class="aristotle-note">Zeta.17 is the hinge of the entire Metaphysics. The form as the cause of being is the answer to Beta's first aporia (which causes belong to first philosophy?) — all four causes do, because form unifies them: the form is the formal cause, the expression of the final cause, and (as transmitted through generation) the efficient cause. Lambda.7 will show that in the Unmoved Mover all three coincide completely.</div>
+    <div class="thesis-note">Form is the cause of being — this is the ontological statement of the thesis. The truth conditions for predications about substances are grounded in the form immanent in the individual. The form is what the per se predicate tracks. The categorical classification of the biological works — which gives truth values for the actual — is the empirical expression of this ontological claim. Every per se predicate is true of a subject because the subject's form makes it so. Zeta.17 is the metaphysical foundation of the entire logical and biological argument.</div>
+  </div>
+</div>
+
+<div class="running-score">
+<strong>The movement of Zeta — what survives and what fails:</strong><br><br>
+<strong>Failed candidates:</strong> Matter alone (Zeta.3) — cannot exist separately · The universal as separately existing substance (Zeta.13–14) — if universal, then shared, not one's own · The genus as primary substance (Zeta.16) — same reason as the universal · Individuals as definable (Zeta.15) — the individual as such is not definable<br><br>
+<strong>Surviving candidates (with qualification):</strong> The essence (Zeta.4–5) — survives as the formal expression of the per se · The identity of primary substance with its essence (Zeta.6) — survives for primary substances · The form as immanent in the individual (Zeta.7–9, 17) — survives as the cause of being<br><br>
+<strong>The resolution:</strong> Form — the immanent formal cause — is primary substance. Not separately existing (Plato's error). Not bare matter (the Presocratic error). Not the universal as a separate entity. But the form in the individual, which is the cause of the individual's being what it is, which is what the definition expresses, and which grounds all per se predication.
+</div>
+
+<footer>Metaphysics Zeta is the most sustained philosophical argument in the Aristotelian corpus — seventeen chapters working through every candidate for substance with systematic precision. Each candidate fails by the same move: the secundum quid fallacy applied to substance. What is true of each candidate in a secondary sense (matter underlies everything; the universal is knowable; the genus is common to many) is treated as if it were true in the primary sense. Restoring the qualification in each case — this is substance in a secondary sense, not the primary sense — leaves the form as the only viable candidate. Zeta.17 states the answer: form is the cause of being. Everything in the Metaphysics before Zeta prepares for this; everything after Zeta (Eta, Theta, Iota, Lambda) deepens and extends it. March 2026.</footer>
+
+</body>
+</html>
