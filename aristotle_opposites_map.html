@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotelian Corpus: The Four Kinds of Opposition</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f1;
+    --bg-surface: #f0ece3;
+    --bg-card: #ebe6db;
+    --bg-card-hover: #e2ddd0;
+    --border: #ccc5b5;
+    --border-light: #b8b0a0;
+    --text-primary: #1a1812;
+    --text-secondary: #5a5040;
+    --text-muted: #9a8e7a;
+    --gold: #7a5e08;
+
+    --antiphasis: #a02050;
+    --antiphasis-dim: rgba(160,32,80,0.08);
+    --antiphasis-mid: rgba(160,32,80,0.18);
+
+    --enantia: #8a6010;
+    --enantia-dim: rgba(138,96,16,0.08);
+    --enantia-mid: rgba(138,96,16,0.18);
+
+    --steresis: #306040;
+    --steresis-dim: rgba(48,96,64,0.08);
+    --steresis-mid: rgba(48,96,64,0.18);
+
+    --pros-ti: #205880;
+    --pros-ti-dim: rgba(32,88,128,0.08);
+    --pros-ti-mid: rgba(32,88,128,0.18);
+
+    --general: #502880;
+    --general-dim: rgba(80,40,128,0.08);
+    --general-mid: rgba(80,40,128,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner { max-width: 1440px; margin: 0 auto; }
+
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    margin-bottom: 0.15rem;
+  }
+
+  header .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  /* ── FOUR-KIND STRIP ── */
+  .kind-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin: 0 -2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .kind-cell {
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .kind-cell::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .kind-cell.active::after, .kind-cell:hover::after { opacity: 1; }
+
+  .kind-cell.antiphasis { border-left: 3px solid var(--antiphasis); }
+  .kind-cell.antiphasis::after { background: var(--antiphasis); }
+  .kind-cell.antiphasis:hover, .kind-cell.antiphasis.active { background: var(--antiphasis-dim); }
+
+  .kind-cell.enantia { border-left: 3px solid var(--enantia); }
+  .kind-cell.enantia::after { background: var(--enantia); }
+  .kind-cell.enantia:hover, .kind-cell.enantia.active { background: var(--enantia-dim); }
+
+  .kind-cell.steresis { border-left: 3px solid var(--steresis); }
+  .kind-cell.steresis::after { background: var(--steresis); }
+  .kind-cell.steresis:hover, .kind-cell.steresis.active { background: var(--steresis-dim); }
+
+  .kind-cell.pros-ti { border-left: 3px solid var(--pros-ti); }
+  .kind-cell.pros-ti::after { background: var(--pros-ti); }
+  .kind-cell.pros-ti:hover, .kind-cell.pros-ti.active { background: var(--pros-ti-dim); }
+
+  .kind-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+
+  .antiphasis .kind-name { color: var(--antiphasis); }
+  .enantia .kind-name { color: var(--enantia); }
+  .steresis .kind-name { color: var(--steresis); }
+  .pros-ti .kind-name { color: var(--pros-ti); }
+
+  .kind-greek {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    display: block;
+  }
+
+  .kind-def {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.8rem 0 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1px;
+    border: 1px solid;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .pill.all { border-color: var(--border-light); color: var(--text-secondary); }
+  .pill.all.active, .pill.all:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--gold); }
+
+  .pill.general { border-color: var(--general); color: var(--general); }
+  .pill.general.active, .pill.general:hover { background: var(--general-dim); }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-antiphasis { background: var(--antiphasis); }
+  .dot-enantia { background: var(--enantia); }
+  .dot-steresis { background: var(--steresis); }
+  .dot-pros-ti { background: var(--pros-ti); }
+  .dot-general { background: var(--general); }
+
+  .search-input {
+    margin-left: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    padding: 0.28rem 0.8rem;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  /* ── STATS ── */
+  .stats-bar {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0.6rem 2rem 0;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat { display: flex; align-items: baseline; gap: 0.4rem; font-size: 0.8rem; }
+  .stat-num { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold); }
+  .stat-label { color: var(--text-muted); font-style: italic; }
+
+  /* ── MAIN ── */
+  main { max-width: 1440px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+
+  /* ── SECTION ── */
+  .corpus-section { margin-bottom: 2.5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .section-header:hover .section-title { color: var(--gold); }
+
+  /* ── WORK ── */
+  .work-block { margin-bottom: 1.4rem; }
+
+  .work-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    margin-bottom: 0.45rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .work-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+    color: var(--text-primary);
+  }
+
+  .work-gr {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+  }
+
+  .work-toggle {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-family: 'Cinzel', serif;
+    transition: color 0.2s;
+  }
+
+  .work-title-row:hover .work-toggle { color: var(--gold); }
+
+  .pinnacle-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.08rem 0.45rem;
+    border-radius: 1px;
+  }
+
+  /* ── PASSAGES ── */
+  .passages { display: grid; gap: 0.35rem; }
+
+  .passage {
+    display: grid;
+    grid-template-columns: 155px 1fr auto;
+    gap: 0.7rem 1.1rem;
+    align-items: start;
+    padding: 0.65rem 0.9rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    transition: all 0.18s;
+  }
+
+  .passage:hover { background: var(--bg-card-hover); border-color: var(--border-light); }
+  .passage.hidden { display: none; }
+
+  .passage[data-primary="antiphasis"] { border-left-color: var(--antiphasis); }
+  .passage[data-primary="enantia"]    { border-left-color: var(--enantia); }
+  .passage[data-primary="steresis"]   { border-left-color: var(--steresis); }
+  .passage[data-primary="pros-ti"]    { border-left-color: var(--pros-ti); }
+  .passage[data-primary="general"]    { border-left-color: var(--general); }
+
+  .passage-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    padding-top: 0.1rem;
+  }
+
+  .bekker {
+    display: block;
+    color: var(--gold);
+    font-size: 0.65rem;
+    margin-top: 0.1rem;
+    opacity: 0.75;
+  }
+
+  .passage-greek {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.87rem;
+    margin-bottom: 0.22rem;
+  }
+
+  .passage-desc { font-size: 0.9rem; line-height: 1.52; }
+
+  .passage-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    align-items: flex-end;
+    padding-top: 0.05rem;
+  }
+
+  .tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.07em;
+    padding: 0.12rem 0.45rem;
+    border-radius: 1px;
+    white-space: nowrap;
+  }
+
+  .tag.antiphasis { background: var(--antiphasis-dim); color: var(--antiphasis); border: 1px solid rgba(196,106,138,0.28); }
+  .tag.enantia    { background: var(--enantia-dim);    color: var(--enantia);    border: 1px solid rgba(196,154,58,0.28); }
+  .tag.steresis   { background: var(--steresis-dim);   color: var(--steresis);   border: 1px solid rgba(94,158,114,0.28); }
+  .tag.pros-ti    { background: var(--pros-ti-dim);    color: var(--pros-ti);    border: 1px solid rgba(110,143,190,0.28); }
+  .tag.general    { background: var(--general-dim);    color: var(--general);    border: 1px solid rgba(158,122,190,0.28); }
+
+  .work-body.collapsed .passages { display: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 780px) {
+    .passage { grid-template-columns: 1fr; }
+    .kind-strip { grid-template-columns: repeat(2, 1fr); }
+    .passage-tags { flex-direction: row; }
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>ARISTOTELIAN CORPUS</h1>
+    <div class="subtitle">The Four Kinds of Opposition &mdash; τὰ ἀντικείμενα &mdash; Complete Locus Map</div>
+
+    <div class="kind-strip">
+      <div class="kind-cell antiphasis" onclick="setFilter('antiphasis')">
+        <span class="kind-name">Contradiction</span>
+        <span class="kind-greek">ἀντίφασις</span>
+        <span class="kind-def">Affirm / deny &mdash; no middle, PEM holds</span>
+      </div>
+      <div class="kind-cell enantia" onclick="setFilter('enantia')">
+        <span class="kind-name">Contrary</span>
+        <span class="kind-greek">ἐναντία</span>
+        <span class="kind-def">Maximum difference &mdash; same genus, intermediates possible</span>
+      </div>
+      <div class="kind-cell steresis" onclick="setFilter('steresis')">
+        <span class="kind-name">Privation / Possession</span>
+        <span class="kind-greek">στέρησις / ἕξις</span>
+        <span class="kind-def">Lacking what naturally belongs &mdash; asymmetric, no intermediate</span>
+      </div>
+      <div class="kind-cell pros-ti" onclick="setFilter('pros-ti')">
+        <span class="kind-name">Relative / Correlative</span>
+        <span class="kind-greek">πρός τι</span>
+        <span class="kind-def">Defined by relation to another &mdash; simultaneous by nature</span>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <span class="filter-label">Filter</span>
+      <button class="pill all active" onclick="setFilter('all')">All Loci</button>
+      <button class="pill general" onclick="setFilter('general')">
+        <span class="dot dot-general"></span>ἀντικείμενα — General / All Four
+      </button>
+      <input class="search-input" type="text" placeholder="Search passages…" oninput="doSearch(this.value)">
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-label">passages</span></div>
+  <div class="stat"><span class="stat-num" id="stat-works">0</span><span class="stat-label">works</span></div>
+  <div class="stat"><span class="stat-num" id="stat-visible">0</span><span class="stat-label">visible</span></div>
+</div>
+
+<main id="main-content"></main>
+
+<script>
+const KINDS = {
+  antiphasis: { label: '\u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2', color: '#c46a8a', en: 'Contradiction' },
+  enantia:    { label: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',   color: '#c49a3a', en: 'Contrary' },
+  steresis:   { label: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2', color: '#5e9e72', en: 'Privation/Possession' },
+  'pros-ti':  { label: '\u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9',  color: '#6e8fbe', en: 'Relative/Correlative' },
+  general:    { label: '\u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1', color: '#9e7abe', en: 'Opposites in General' },
+};
+
+const CORPUS = [
+  {
+    section: 'ORGANON',
+    works: [
+      {
+        en: 'Categories',
+        gr: '\u039a\u03b1\u03c4\u03b7\u03b3\u03bf\u03c1\u03af\u03b1\u03b9',
+        ghSlug: 'categories',
+        passages: [
+          {
+            ref: 'Cat. 5',
+            bekker: '3b24\u20134a9',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f50\u03c0\u03bf\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03bf\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Primary being is uniquely defined as the thing that admits contrary qualities while remaining numerically one. This is the functional definition of being through contrariety: at time t1 Socrates is pale, at t2 he is dark. The same individual, contrary predicates, different times. No other category has this feature. The temporal index is doing all the work \u2014 this is the ontological ground of Beth\'s Axiom of Temporality.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Cat. 6',
+            bekker: '5b11\u20136a18',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u03c0\u03bf\u03c3\u03cc\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Quantity has no contraries \u2014 with minor qualifications (place may be an exception: up/down, front/back). The argument: 2 and 3 are not contrary to each other in the way just and unjust are. Contrariety is thus a mark of quality and being, not quantity. The contrast sharpens what contrariety is by showing where it is absent.',
+          },
+          {
+            ref: 'Cat. 7',
+            bekker: '6a36\u20138b24',
+            primary: 'pros-ti',
+            tags: ['pros-ti'],
+            greek: '\u03c4\u1f70 \u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9',
+            desc: 'Relatives (pros ti) defined as those things whose being is said to be of or than something else (double of, half of, father of). They are always correlative: if A is double of B, then B is half of A. They are simultaneous by nature \u2014 neither can exist without the other. Aristotle notes they also admit of contrariety (virtue/vice) and more/less \u2014 relatives can overlap with contraries. Critical for Beth\'s karma/k\u0101raka structural identity: Nāgārjuna\'s agent/action relation is a pros-ti structure.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Cat. 8',
+            bekker: '10b12\u201311b14',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u03c0\u03bf\u03b9\u03cc\u03c4\u03b7\u03c2, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Quality admits of contraries: just/unjust, healthy/sick, hot/cold. Qualities also admit of more and less. The distinction is drawn: having a contrary is different from admitting of degrees \u2014 triangularity has no contrary but does not admit of degrees either. Quality is the category most richly structured by contrariety.',
+          },
+          {
+            ref: 'Cat. 10',
+            bekker: '11b15\u201313b35',
+            primary: 'general',
+            tags: ['general', 'antiphasis', 'enantia', 'steresis', 'pros-ti'],
+            greek: '\u03c4\u03ad\u03c3\u03c3\u03b1\u03c1\u03b1 \u03b5\u1f34\u03b4\u03b7 \u03c4\u1ff6\u03bd \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03c9\u03bd',
+            desc: 'THE primary locus: the four kinds of opposition systematically distinguished. (1) Correlatives (pros ti): double/half. (2) Contraries (enantia): good/bad. (3) Privation/Possession (steresis/hexis): blindness/sight. (4) Contradiction (antiphasis): he-sits/he-does-not-sit. For (3) and (4) no intermediate is possible; for (2) an intermediate often exists (grey between black and white). Only for (4) does one member always have to be true. For (3), once the natural time has passed, it is possible that neither applies (a stone is neither blind nor sighted). This asymmetry between (3) and (4) is philosophically explosive: privation is NOT contradictory opposition \u2014 and this is exactly what Beth needs for the catuṣkoṭi mapping.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Cat. 11',
+            bekker: '13b36\u201314b23',
+            primary: 'enantia',
+            tags: ['enantia', 'steresis'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd \u03b9\u03b4\u03b9\u03cc\u03c4\u03b7\u03c4\u03b5\u03c2',
+            desc: 'Properties peculiar to contraries: (a) contraries need not be in the same genus \u2014 justice and injustice are both in the soul, but black and white are both in colour; yet good and bad span multiple genera. (b) One of a pair of contraries need not exist for the other to be defined (the healthy is defined against the unhealthy even if all things were healthy). (c) Contraries differ from privation: white does not naturally inhere in what loses it; sight does. The privation/contrary distinction is refined here beyond Cat. 10.',
+          },
+          {
+            ref: 'Cat. 13',
+            bekker: '14b33\u201315a12',
+            primary: 'pros-ti',
+            tags: ['pros-ti'],
+            greek: '\u1f14\u03c7\u03b5\u03b9\u03bd, \u03b1\u1f35\u03c3\u03b8\u03b7\u03c3\u03b9\u03c2',
+            desc: 'The post-predicament of having (\u1f14\u03c7\u03b5\u03b9\u03bd) catalogued in eight senses: having a quality, having a quantity, wearing, having a wife, having a part. This borders on the possession side of steresis/hexis. Aristotle notes that the haver and the had are always correlative (pros-ti): you cannot have without there being something had.',
+          },
+        ]
+      },
+      {
+        en: 'De Interpretatione',
+        gr: '\u03a0\u03b5\u03c1\u1f76 \u1f11\u03c1\u03bc\u03b7\u03bd\u03b5\u03af\u03b1\u03c2',
+        ghSlug: 'de-interpretatione',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'DI 5\u20136',
+            bekker: '17a8\u201317b25',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u1f00\u03c0\u03cc\u03c6\u03b1\u03bd\u03c3\u03b9\u03c2, \u03ba\u03b1\u03c4\u03ac\u03c6\u03b1\u03c3\u03b9\u03c2',
+            desc: 'Every affirmation has one and only one contradictory negation. The pair is constituted by predicating the same thing of the same subject: "Socrates is white" / "Socrates is not white." The unity of the contradictory pair requires the same subject, same predicate, same time, same respect \u2014 the four hedges of Cat. 5 / Met. \u0393.3 here made into formal conditions for a proper antiphasis. Improper pairs that lack one of these conditions do not constitute genuine contradictories and PEM does not govern them.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 7',
+            bekker: '17b16\u201318a12',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'enantia'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1\u03b9 \u03b1\u1f31 \u03b1\u1f50\u03c4\u03b1\u03af, \u1f00\u03bd\u03c4\u03b9\u03c6\u03b1\u03c4\u03b9\u03ba\u1ff6\u03c2',
+            desc: 'For universal subjects, the four propositional forms distinguished: All S is P / No S is P (contraries \u2014 both can be false, cannot both be true); All S is P / Some S is not P (contradictories \u2014 must have opposite truth values); Some S is P / No S is P (contradictories). This is the Square of Opposition at the propositional level. The crucial point: propositional contraries (A vs E) can both be false, just as their subject-predicate counterparts can have an intermediate. PEM holds for the contradictory diagonal (A vs O, E vs I) but NOT for the contrary side (A vs E). The Square directly encodes the Cat. 10 four-fold into propositional logic.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 9',
+            bekker: '18a28\u201319b4',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u1f10\u03bd\u03b4\u03ad\u03c7\u03b5\u03c3\u03b8\u03b1\u03b9',
+            desc: 'Sea-battle: for future contingent contradictory pairs, the normal rule (one true, one false) is suspended or restricted. The antiphasis is well-formed but its truth-value is indeterminate. This shows that the conditions for antiphasis (same subject, predicate, time, respect) are necessary but not sufficient for PEM to yield a determinate answer \u2014 futurity introduces a fourth variable, temporal indeterminacy, that the standard account does not cover. The pragma (undecided fact) exceeds the ousia (determinate being) available at the time of utterance.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 10',
+            bekker: '19b5\u201320b12',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'enantia'],
+            greek: '\u03c4\u1f78 \u03bc\u1f74 \u1f04\u03bd\u03b8\u03c1\u03c9\u03c0\u03bf\u03c2',
+            desc: 'Extension to indefinite (infinite) subjects and predicates: "not-man is just" vs "man is not-just." Aristotle works through the full matrix of affirmation/negation combined with definite/indefinite subject and predicate. The infinite noun (non-man, \u03bc\u1f74 \u1f04\u03bd\u03b8\u03c1\u03c9\u03c0\u03bf\u03c2) does not constitute a proper contradictory with "man" \u2014 the negation of the noun is not the same as the negation of the proposition. This is the APr. I.46 point (finite vs infinite predicate) given its full propositional treatment.',
+          },
+          {
+            ref: 'DI 11',
+            bekker: '20b12\u201321b9',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'general'],
+            greek: '\u1f01\u03c0\u03bb\u1fc6 \u03ba\u03b1\u03c4\u03ac\u03c6\u03b1\u03c3\u03b9\u03c2',
+            desc: 'A genuine antiphasis requires a simple (haplo\u0113) affirmation \u2014 one predicate of one subject. Compound predicates accidentally joined ("the white man is a musician") do not constitute a unity and their negation is not a proper contradictory. This is the logical mechanism behind Beth\'s improper-predication thesis: compound predicates create apparent contradictions because they fragment into multiple antiphasis-pairs that cannot all be simultaneously governed by PEM.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 14',
+            bekker: '23a27\u201324b9',
+            primary: 'enantia',
+            tags: ['enantia', 'antiphasis'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1 \u03b1\u1f31 \u03b1\u1f50\u03c4\u03b1\u03af, \u1f00\u03bd\u03c4\u03b9\u03c6\u03b1\u03c4\u03b9\u03ba\u1ff6\u03c2',
+            desc: 'Are contrary assertions those that contradict each other or those whose subjects are contrary? Aristotle argues that "every man is just" and "no man is just" are contraries (both can be false), while "every man is just" and "not every man is just" are contradictories (must differ in truth value). The contrary assertion is the one most opposed in content \u2014 it asserts the maximum incompatible claim. This is propositional contrariety distinguished from propositional contradiction: the four-fold of Cat. 10 now fully mapped onto assertion-pairs.',
+            pinnacle: true,
+          },
+        ]
+      },
+      {
+        en: 'Prior Analytics',
+        gr: '\u1f08\u03bd\u03b1\u03bb\u03c5\u03c4\u03b9\u03ba\u1f70 \u03a0\u03c1\u03cc\u03c4\u03b5\u03c1\u03b1',
+        ghSlug: 'prior-analytics',
+        passages: [
+          {
+            ref: 'APr. I.46',
+            bekker: '51b36\u201352b34',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u03c4\u1f78 \u03bf\u1f50\u03ba \u03b5\u1f36\u03bd\u03b1\u03b9, \u03c4\u1f78 \u03bc\u1f74 \u03b5\u1f36\u03bd\u03b1\u03b9',
+            desc: '"Not-being-F" (\u03bf\u1f50\u03ba \u03b5\u1f36\u03bd\u03b1\u03b9) is not the same as "being-not-F" (\u03b5\u1f36\u03bd\u03b1\u03b9 \u03bc\u1f74). "Socrates is not just" is the proper contradictory of "Socrates is just." "Socrates is unjust" is the contrary. This three-way distinction \u2014 affirmation, contradictory negation, contrary predication \u2014 is the syntactic version of Cat. 10\'s ontological distinction. Infinite predicates (non-just) occupy a middle logical space: they are not the negation of the proposition and do not generate proper antiphasis-pairs. Directly grounds the improper-predication thesis.',
+          },
+          {
+            ref: 'APr. II.15',
+            bekker: '64a11\u2013b28',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'enantia'],
+            greek: '\u1f10\u03be \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+            desc: 'Syllogisms from opposite premises: if both premises are contradictories of each other (both affirmed and denied of the same subject), any conclusion follows \u2014 this is the principle ex contradictione quodlibet. If the premises are contraries (not contradictories), a valid syllogism is sometimes possible but not always. The asymmetry reveals that contradictory and contrary opposition have fundamentally different inferential behaviour. Paraconsistent logics (Priest) are precisely attempts to block the contradictory case.',
+          },
+        ]
+      },
+      {
+        en: 'Posterior Analytics',
+        gr: '\u1f08\u03bd\u03b1\u03bb\u03c5\u03c4\u03b9\u03ba\u1f70 \u038c\u03c3\u03c4\u03b5\u03c1\u03b1',
+        ghSlug: 'posterior-analytics',
+        passages: [
+          {
+            ref: 'APo. I.5',
+            bekker: '74a4\u2013b4',
+            primary: 'enantia',
+            tags: ['enantia', 'antiphasis'],
+            greek: '\u1f10\u03c0\u03b9\u03c3\u03c4\u03ae\u03bc\u03b7 \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+            desc: 'The same demonstrative science covers both a proposition and its opposite: medicine covers health and disease, arithmetic covers odd and even. Opposites fall under the same science because they share the same genus and the same middle terms. The unity of a science is defined partly by its opposition-pairs: a science that could only explain one of a pair of contraries would be incomplete. This is a methodological consequence of the ontological claim in Metaphysics \u0393.2 that being has one science and therefore studies its own opposites.',
+          },
+          {
+            ref: 'APo. I.11',
+            bekker: '77a10\u201377b15',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u03ba\u03bf\u03b9\u03bd\u1f70 \u1f00\u03be\u03b9\u03ce\u03bc\u03b1\u03c4\u03b1',
+            desc: 'PNC and PEM as common axioms presupposed by all demonstrative sciences. They are not proved within any science \u2014 thematising them belongs to first philosophy. Their role here reveals that antiphasis-structure underlies all demonstration: every demonstration works by eliminating one member of a contradictory pair as impossible.',
+          },
+        ]
+      },
+      {
+        en: 'Topics',
+        gr: '\u03a4\u03bf\u03c0\u03b9\u03ba\u03ac',
+        ghSlug: 'topics',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'Top. I.11',
+            bekker: '104b1\u2013105a2',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'general'],
+            greek: '\u03b8\u03ad\u03c3\u03b9\u03c2, \u1f14\u03bd\u03b4\u03bf\u03be\u03bf\u03bd',
+            desc: 'Book I \u2014 PNC/PEM are not proper dialectical theses because they are presupposed by all inquiry, not debatable within it. A genuine thesis is a question where reasonable people can take either side; denying PEM destroys the game rather than playing it. This places the antiphasis-structure above dialectic: the other three kinds of opposition are available as tools precisely because contradiction is the presupposed framework within which they operate.',
+          },
+          {
+            ref: 'Top. I.14',
+            bekker: '105a34\u2013b18',
+            primary: 'general',
+            tags: ['general', 'enantia', 'antiphasis', 'steresis', 'pros-ti'],
+            greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03c9\u03bd',
+            desc: 'Book I \u2014 Opposites as a source of arguments: one of the four primary methods for finding topoi is examining the four kinds of opposition. If a predicate belongs to X, check whether its opposite belongs to the opposite of X; check what the contradictory entails; check whether possession and privation track correctly. This passage is the methodological mandate for using opposition across the entire work. Every subsequent topical use of opposition in Books II\u2013VIII flows from this instruction.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Top. I.15',
+            bekker: '106a1\u2013107b37',
+            primary: 'general',
+            tags: ['general', 'enantia', 'antiphasis', 'steresis', 'pros-ti'],
+            greek: '\u03c4\u03b1\u1f50\u03c4\u03cc\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Book I \u2014 Sameness tested through all four kinds of opposition: if the contrary of A equals the contrary of B, then A = B (good = beneficial because bad = harmful). If the contradictory of A entails the contradictory of B, A and B are the same. If A and B have the same privation and the same correlative, they are the same. Each of the four kinds generates its own identity test, and agreement across all four is the strongest evidence for sameness of meaning.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Top. I.18',
+            bekker: '108a7\u2013b31',
+            primary: 'general',
+            tags: ['general', 'enantia', 'antiphasis', 'steresis', 'pros-ti'],
+            greek: '\u03c4\u1f70 \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1, \u03c0\u03c4\u03ce\u03c3\u03b5\u03b9\u03c2',
+            desc: 'Book I \u2014 Examination of the four kinds of opposition as a routine step in preparing for a dialectical contest: for any given thesis, one should look at what holds of its contrary, its contradictory, its privation, and its correlative. This is the most explicit instruction in the Organon to survey all four kinds systematically. It confirms that the Topics treats the four-fold not as a categorical curiosity but as a working analytical grid deployed at the opening of every investigation.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Top. II.2',
+            bekker: '109b13\u2013110a9',
+            primary: 'general',
+            tags: ['general', 'enantia'],
+            greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd \u03c3\u03c5\u03bc\u03b2\u03b5\u03b2\u03b7\u03ba\u03cc\u03c2',
+            desc: 'Book II \u2014 Testing accidents using contraries: if an accident belongs to X, then the contrary accident belongs to the contrary of X. If being honoured benefits a good man, then being dishonoured harms a bad man. This is the first deployment of the I.14 mandate in the specific context of accidental predication. If the symmetry fails, the original claim is suspect. A direct tool for detecting improper predication: well-formed accidental predicates must respect contrary-symmetry.',
+          },
+          {
+            ref: 'Top. II.7\u20138',
+            bekker: '113a24\u2013114b5',
+            primary: 'enantia',
+            tags: ['enantia', 'pros-ti'],
+            greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f10\u03bd\u03c1\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+            desc: 'Book II \u2014 The richest topical cluster on opposition: eight distinct topoi generated from contraries. If X is F, the opposite of X has the opposite of F. Applied to pros-ti: the correlative of the contrary is the contrary of the correlative. Applied to the four verbal inflections (cases): if justice-nominative is admirable, justly-adverbial is admirably. And the inverse topoi: if F does not belong to X, the contrary of F does not belong to the contrary of X. The topoi run through all four kinds of opposition and all grammatical cases, showing the full inferential reach of the opposition structure.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Top. II.9\u201310',
+            bekker: '114b6\u2013115b10',
+            primary: 'enantia',
+            tags: ['enantia', 'steresis'],
+            greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u03c3\u03c4\u03b5\u03c1\u03ae\u03c3\u03b5\u03c9\u03bd',
+            desc: 'Book II \u2014 Topoi from privation: if X has a privative opposite (\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2), and this privation belongs to Y, then Y lacks what X has by nature. The privation topos is distinguished from the contrary topos: privation is more forceful because it asserts natural lack, not merely contrary quality. If blindness (privation of sight) belongs to moles, then moles naturally lack sight. This is stronger than saying moles have contrary-sight. The topos also applies to the contrary of the privation \u2014 showing possession tracks directly with the contrary side.',
+          },
+          {
+            ref: 'Top. II.11',
+            bekker: '115b11\u2013116a3',
+            primary: 'pros-ti',
+            tags: ['pros-ti', 'enantia'],
+            greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9',
+            desc: 'Book II \u2014 Topoi from correlatives: if knowledge is of the knowable, then the contrary of knowledge (ignorance) is of the contrary of the knowable (the unknowable). If perception is relative to the perceptible, then the privation of perception is relative to the imperceptible. Pros-ti generates topoi by two routes: (a) substitute the contrary for both relata; (b) substitute the privation. Book II thus exhausts all four kinds of opposition as topical sources in sequence: contraries (II.7\u20138), privations (II.9\u201310), correlatives (II.11), with contradictories presupposed throughout.',
+          },
+          {
+            ref: 'Top. III.1',
+            bekker: '116a1\u2013b16',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u03b1\u1f31\u03c1\u03b5\u03c4\u1f7d\u03c4\u03b5\u03c1\u03bf\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Book III \u2014 Comparative topoi using contraries: if A is more choiceworthy than B, then the contrary-evil of B (lesser evil) is more choiceworthy than the contrary-evil of A (greater evil). The comparative structure of Book III is entirely parasitic on the enantia structure: more/less choiceworthy tracks the contrary pairs, because value predicates come in contrary pairs (good/bad, pleasant/painful, noble/base). The doctrine of the mean (NE II.8) is the ethical application of this logical point.',
+          },
+          {
+            ref: 'Top. III.4',
+            bekker: '119a1\u2013b17',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u03bc\u1fb6\u03bb\u03bb\u03bf\u03bd \u03b1\u1f31\u03c1\u03b5\u03c4\u03cc\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03bf\u03bd',
+            desc: 'Book III \u2014 If one contrary is more choiceworthy than another, the less choiceworthy is less bad, and the object whose contrary is more evil is more choiceworthy. Contraries of equally choiceworthy things are equally bad. This is the full inferential algebra of comparative value using enantia: the relation "more choiceworthy than" distributes across contrary pairs in a precise way, so that the topology of value space is determined by the topology of contrariety.',
+          },
+          {
+            ref: 'Top. III.6',
+            bekker: '119b35\u2013120a5',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f22\u03b4\u03bf\u03bd\u03ae, \u03bb\u03cd\u03c0\u03b7, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Book III \u2014 Pleasure and its contrary pain used in comparative judgments: what produces more pleasure is more choiceworthy; what produces more pain is less. The contrary-pair pleasure/pain is the basic scale for comparative value judgments. Connects to NE X.3\u20135 where Aristotle complicates this by arguing pleasure is not simply the contrary of pain but involves a steresis/hexis structure. Book III takes the simpler view; the NE refines it.',
+          },
+          {
+            ref: 'Top. IV.1',
+            bekker: '120b12\u2013121b2',
+            primary: 'enantia',
+            tags: ['enantia', 'general'],
+            greek: '\u03b3\u03ad\u03bd\u03bf\u03c2, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Book IV \u2014 Testing genus-assignments using contraries: if G is proposed as the genus of X, then G must also be the genus of the contrary of X (or a contrary genus). If the proposed genus of courage is virtue, then the genus of cowardice must be vice (the contrary genus). If this does not hold, the genus-assignment is wrong. This is the application of the constraint from Top. IV.3 in the testing context: genus and contrary are structurally correlated.',
+          },
+          {
+            ref: 'Top. IV.3\u20134',
+            bekker: '123b1\u2013124b14',
+            primary: 'enantia',
+            tags: ['enantia', 'general'],
+            greek: '\u03b3\u03ad\u03bd\u03bf\u03c2 \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+            desc: 'Book IV \u2014 Contraries must be in the same genus or in contrary genera. The constraint runs both directions: it is a test for whether a proposed genus is correct, and a feature of the nature of contrariety itself. If two things proposed as contraries are in entirely unrelated genera, they cannot be genuine contraries. This closes the structure: contrariety entails genus-membership, genus-membership constrains contrariety, and the entire system is self-regulating.',
+          },
+          {
+            ref: 'Top. IV.5',
+            bekker: '125b13\u2013126a28',
+            primary: 'steresis',
+            tags: ['steresis', 'enantia'],
+            greek: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2, \u03b3\u03ad\u03bd\u03bf\u03c2',
+            desc: 'Book IV \u2014 Privation in genus-assignment: if blindness is in the genus of affection (pathos), then sight (its possession-counterpart) should also be in that genus. Privation and its corresponding possession must share a genus. This is the genus-level version of the Cat. 10 claim that privation/possession pairs are a distinct kind of opposition: even at the genus level, steresis and hexis co-inhabit the same categorical region. A test for consistency across the opposition structure.',
+          },
+          {
+            ref: 'Top. V.2',
+            bekker: '130a27\u2013b6',
+            primary: 'general',
+            tags: ['general', 'enantia'],
+            greek: '\u1f34\u03b4\u03b9\u03bf\u03bd \u1f10\u03ba \u03c4\u1ff6\u03bd \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03c9\u03bd',
+            desc: 'Book V \u2014 Testing properties (idia) using all four kinds of opposition simultaneously: if F is a property of X, check whether the contrary of F is a property of the contrary of X; check whether the contradictory of F belongs to the contradictory; check the privation; check the correlative. A property that fails any one of these tests is not a genuine property. The four-fold opposition grid is here deployed as a complete falsification procedure for property-claims.',
+          },
+          {
+            ref: 'Top. V.4',
+            bekker: '132b35\u2013133b15',
+            primary: 'enantia',
+            tags: ['enantia', 'steresis'],
+            greek: '\u1f34\u03b4\u03b9\u03bf\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03bf\u03c5',
+            desc: 'Book V \u2014 The property of a contrary must itself be contrary to the property of the other contrary: if the property of good is choiceworthy, the property of bad must be to-be-avoided. And if the privative counterpart has a property, the possessive counterpart must have the contrary property. The property-relation thus inherits the structure of the four kinds of opposition: property-attribution must be systematically symmetric across all four opposition pairs, not just contraries.',
+          },
+          {
+            ref: 'Top. V.6',
+            bekker: '135a9\u2013b6',
+            primary: 'general',
+            tags: ['general', 'enantia'],
+            greek: '\u1f34\u03b4\u03b9\u03bf\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Book V \u2014 Opposition-symmetry as a necessary condition for proper predication: if the contrary of the predicate is a property of the contrary of the subject, the original predicate is a property of the original subject, and vice versa. Well-formed property-predications must respect the opposition structure of their subject-domain. This is a direct expression of the improper-predication thesis: a predicate that violates opposition-symmetry is improperly formed.',
+          },
+          {
+            ref: 'Top. V.7',
+            bekker: '136b33\u2013137a7',
+            primary: 'steresis',
+            tags: ['steresis'],
+            greek: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2, \u1f34\u03b4\u03b9\u03bf\u03bd',
+            desc: 'Book V \u2014 Privation and property: if sight is a property of a being capable of having sight, then blindness is a property of a being capable of having sight but lacking it. Privation-properties track possession-properties exactly, but they require an additional condition: the subject must be a natural haver of the possessed quality. A stone is not blind because it is not the kind of thing that naturally has sight. The natural-norm condition for steresis (from Cat. 10 and Met. \u0394.22) applied to the doctrine of properties.',
+          },
+          {
+            ref: 'Top. VI.6',
+            bekker: '143b11\u2013144a4',
+            primary: 'general',
+            tags: ['general'],
+            greek: '\u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1, \u1f40\u03c1\u03b9\u03c3\u03bc\u03cc\u03c2',
+            desc: 'Book VI \u2014 Testing definitions by all four kinds of opposition: apply the proposed definition to the opposite of the definiendum. If the definition of X does not generate the definition of the contrary/contradictory/privation/correlative of X by corresponding substitution, the definition is faulty. Opposites are a falsification instrument for definitions, confirming that all four kinds of opposition are structurally embedded in the content of any correct definition.',
+          },
+          {
+            ref: 'Top. VI.7',
+            bekker: '145b17\u2013146a20',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd \u1f40\u03c1\u03b9\u03c3\u03bc\u03bf\u03af',
+            desc: 'Book VI \u2014 Definitions of contraries must themselves be contrary in the appropriate respect: if you have defined justice, your definition of injustice must be derivable by systematic substitution of the contrary terms. If the two definitions are not contrary in form, one of them is wrong. This is the strongest version of the definitional-symmetry requirement: the four-fold structure of opposition is not just a test but a generative constraint on the form of correct definitions.',
+          },
+          {
+            ref: 'Top. VI.8',
+            bekker: '146a21\u2013b36',
+            primary: 'enantia',
+            tags: ['enantia', 'steresis'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd, \u03c3\u03c4\u03b5\u03c1\u03ae\u03c3\u03b5\u03c9\u03bd \u1f40\u03c1\u03b9\u03c3\u03bc\u03bf\u03af',
+            desc: 'Book VI \u2014 Further tests for definitions using contraries and privations together: a definition that applies equally well to the privation as to the possession is defective (it is not distinctive enough). And a definition of a contrary that could also serve as a definition of an intermediate is defective (it does not mark the maximum difference). These are precision-tests: opposition structure forces definitional sharpness by requiring the definition to respect both the genus-constraint and the extremity-of-difference condition from Met. \u0399.3.',
+          },
+          {
+            ref: 'Top. VI.11',
+            bekker: '148b4\u2013149a7',
+            primary: 'enantia',
+            tags: ['enantia', 'general'],
+            greek: '\u1f10\u03bd \u03c4\u1ff6\u03b9 \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03b9 \u03b3\u03ad\u03bd\u03b5\u03b9',
+            desc: 'Book VI \u2014 A definition must be in the correct genus, and the genus of a contrary must be either the same as or contrary to the genus of the other contrary. If the proposed definition of a contrary places it in a genus that bears no contrary-relation to the genus of the other contrary, the definition is wrong. The genus-constraint on contrariety (from Top. IV.3) here functions as a test within the definitional context: the definition is evaluated not only for its own accuracy but for its opposition-consistency with the contrary definition.',
+          },
+          {
+            ref: 'Top. VII.1',
+            bekker: '151b28\u2013152b35',
+            primary: 'general',
+            tags: ['general', 'enantia', 'antiphasis', 'steresis', 'pros-ti'],
+            greek: '\u03c4\u03b1\u1f50\u03c4\u03cc\u03bd, \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1',
+            desc: 'Book VII \u2014 Sameness and difference tested by all four kinds of opposition: if A and B are the same, then their contraries, their contradictories, their privations, and their correlatives must respectively be the same. Failure at any one of the four opposition-axes reveals a difference between A and B that the proposed identity claim misses. This is the VII-level recapitulation of I.15 and I.18, now in the context of testing definitions for sameness. It confirms that the four-fold grid is a complete test-procedure applied uniformly across all dialectical contexts.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Top. VII.3',
+            bekker: '153b25\u2013154a1',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03bf\u03c5 \u1f40\u03c1\u03b9\u03c3\u03bc\u03cc\u03c2',
+            desc: 'Book VII \u2014 If the definition of X does not differ from the definition of the contrary of X in the way that X and its contrary differ, the definition is wrong. The form of the definitional difference must mirror the form of the contrary opposition. This is the VII-level definitional test: not just "does the contrary have a different definition?" but "does the definition differ in exactly the way the contraries themselves differ?" \u2014 opposition-tracking at the level of definitional form.',
+          },
+          {
+            ref: 'Top. VIII.1',
+            bekker: '155b3\u2013156a22',
+            primary: 'general',
+            tags: ['general', 'antiphasis', 'enantia'],
+            greek: '\u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1, \u1f00\u03bd\u03c4\u03af\u03ba\u03b5\u03b9\u03c4\u03b1\u03b9',
+            desc: 'Book VIII \u2014 The questioner must construct arguments from opposites as a matter of course: having assembled contrary, privative, and correlative instances, the questioner can force the answerer into contradiction or concession. The opening of Book VIII \u2014 the book Beth has identified as the correct framework for writing the papers \u2014 places opposition-structure at the heart of the elenchic method. The four kinds of opposition are the primary resource for generating the premises that lead to refutation.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Top. VIII.3',
+            bekker: '158b29\u2013159a2',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2, \u1f00\u03bd\u03c4\u03af\u03ba\u03b5\u03b9\u03c4\u03b1\u03b9',
+            desc: 'Book VIII \u2014 The answerer must not contradict themselves across the exchange: if they have affirmed P, they cannot later deny P without losing the argument. The discipline of the dialectical exchange is sustained by the antiphasis-structure: once you have committed to one member of a contradictory pair, you are bound to it. This is PEM and PNC operating as the rules of the dialectical game rather than as abstract logical principles \u2014 the practical face of the axioms that APo. I.11 says all sciences presuppose.',
+          },
+          {
+            ref: 'Top. VIII.14',
+            bekker: '163b9\u2013164a2',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'general'],
+            greek: '\u1f10\u03bb\u03b5\u03b3\u03ba\u03c4\u03b9\u03ba\u03cc\u03c2, \u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2',
+            desc: 'Book VIII \u2014 The elenchus (refutation) is constituted by bringing the answerer to assert the contradictory of their original thesis. Refutation is not merely producing a contrary claim or a privation-claim \u2014 it specifically requires extracting the contradictory. This is why antiphasis is structurally primary among the four kinds of opposition in the dialectical context: only the contradictory constitutes genuine refutation. The other three kinds of opposition are instruments for getting there, but the terminal point of all dialectic is the antiphasis.',
+            pinnacle: true,
+          },
+        ]
+      },
+      {
+        en: 'Sophistical Refutations',
+        gr: '\u03a3\u03bf\u03c6\u03b9\u03c3\u03c4\u03b9\u03ba\u03bf\u1f76 \u1f1c\u03bb\u03b5\u03b3\u03c7\u03bf\u03b9',
+        ghSlug: 'sophistical-refutations',
+        passages: [
+          {
+            ref: 'SE 6',
+            bekker: '168a17\u2013b10',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2, \u03b4\u03cd\u03bf \u1f20\u03c1\u03c9\u03c4\u03ae\u03bc\u03b1\u03c4\u03b1',
+            desc: 'Fallacy of two questions as one: demanding a single yes/no answer to "Is A F and G?" If A is F but not G, neither affirmation nor negation is correct as a unitary response. The proper antiphasis requires a single, simple question. This is a structural "neither" arising from malformed questions \u2014 the catuṣkoṭi\'s fourth position (neither p nor not-p) can arise not from ontological indeterminacy but from asking an improperly formed question. A locus for Beth\'s improper-predication thesis at the level of interrogation.',
+          },
+          {
+            ref: 'SE 22',
+            bekker: '178a23\u2013b23',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'enantia'],
+            greek: '\u03b4\u03c5\u03bd\u03ac\u03bc\u03b5\u03b9, \u1f10\u03bd\u03b5\u03c1\u03b3\u03b5\u03af\u1fb3',
+            desc: 'Fallacy from confusing potential and actual predication: a man can be and can not-be a doctor simultaneously (potentially one, actually the other). If "can be X" and "can be not-X" are taken as an antiphasis, both can be true \u2014 apparent violation of PEM. The resolution: they are not contradictories; "can be X" is not the negation of "can be not-X" \u2014 both are affirmations of different potentialities. Potentiality generates apparent violations of the antiphasis structure when improperly predicated.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'PHYSICS & COSMOLOGY',
+    works: [
+      {
+        en: 'Physics',
+        gr: '\u03a6\u03c5\u03c3\u03b9\u03ba\u1f74 \u1f00\u03ba\u03c1\u03cc\u03b1\u03c3\u03b9\u03c2',
+        ghSlug: 'physics',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'Phys. I.5',
+            bekker: '188a19\u2013189a10',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f00\u03c1\u03c7\u03b1\u1f76 \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Contraries as the necessary first principles of nature: all the pre-Socratics who identified natural principles were right to choose a pair of contraries (hot/cold, dense/rare, love/strife). Why? Because principles must be (a) irreducible to each other, (b) capable of producing all other things from each other, and (c) prior to what they produce. Only contraries satisfy all three: they cannot be derived from each other, they span the entire range of natural variation, and they are logically primitive. Contrariety is the ontological engine of physical change.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Phys. I.6',
+            bekker: '189a10\u2013189b29',
+            primary: 'steresis',
+            tags: ['steresis', 'enantia'],
+            greek: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Are there two principles (a pair of contraries) or three (the pair plus matter)? Aristotle argues for three: privation (steresis) is needed alongside the contrary pair because contraries alone cannot explain how change is directed. The cold does not actively seek warmth \u2014 there must be a lack (privation of form) that drives the process. Privation is the negative face of the potential: it is not just the absence of form but the determinate lack of a specific form that the matter is suited to receive. Steresis enters physical theory as the third principle alongside the contrary pair.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Phys. I.7\u20139',
+            bekker: '189b30\u2013192b4',
+            primary: 'steresis',
+            tags: ['steresis', 'enantia'],
+            greek: '\u03c5\u1f53\u03bb\u03b7, \u03bc\u03bf\u03c1\u03c6\u03ae, \u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2',
+            desc: 'Matter, form, privation as the three principles. Privation is distinguished from the contrary: the unmusical man who becomes musical is not the contrary of the musical man, he is the privation of musicality. The contrary (the musically bad) could be a source of change, but privation is more fundamental \u2014 it is the sheer absence, not the contrary presence, that enables becoming. This is the deepest analysis of steresis in the Physics and the key to distinguishing (2) and (3) in Cat. 10.',
+          },
+          {
+            ref: 'Phys. V.1',
+            bekker: '224a21\u2013225b4',
+            primary: 'enantia',
+            tags: ['enantia', 'antiphasis'],
+            greek: '\u03bc\u03b5\u03c4\u03b1\u03b2\u03bf\u03bb\u1f74 \u1f10\u03be \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+            desc: 'Change is always from an opposite to an opposite or to an intermediate. Generation (genesis) is change from non-being to being \u2014 a contradictory transition. Alteration (alloi\u014dsis) is change between contraries \u2014 from pale to dark, from sick to healthy. The two modes of change map onto two kinds of opposition: genesis/destruction onto antiphasis (being/non-being), alteration onto enantia (contrary qualities). This is one of the most structurally important passages for Beth: the kind of opposition determines the kind of change.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Phys. V.5',
+            bekker: '229a7\u2013b22',
+            primary: 'enantia',
+            tags: ['enantia', 'antiphasis'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1 \u03ba\u03b9\u03bd\u03ae\u03c3\u03b5\u03b9\u03c2',
+            desc: 'Are changes opposite to each other in the same way that their termini are opposite? The change toward health and the change away from health are contrary changes \u2014 they are opposed as contraries, not as contradictories, because both are changes (neither is a non-change). Contrary changes share the same genus (change) just as their contrary termini share the same genus (quality). Opposition at the level of processes mirrors opposition at the level of states.',
+          },
+        ]
+      },
+      {
+        en: 'On Generation and Corruption',
+        gr: '\u03a0\u03b5\u03c1\u1f76 \u03b3\u03b5\u03bd\u03ad\u03c3\u03b5\u03c9\u03c2 \u03ba\u03b1\u1f76 \u03c6\u03b8\u03bf\u03c1\u1fb6\u03c2',
+        ghSlug: 'on-generation-and-corruption',
+        passages: [
+          {
+            ref: 'GC I.2\u20134',
+            bekker: '315b24\u2013318b32',
+            primary: 'enantia',
+            tags: ['enantia', 'antiphasis'],
+            greek: '\u03b3\u03ad\u03bd\u03b5\u03c3\u03b9\u03c2, \u1f00\u03bb\u03bb\u03bf\u03af\u03c9\u03c3\u03b9\u03c2',
+            desc: 'Genesis (absolute becoming) involves the substrate itself changing \u2014 this is change across the antiphasis of being/non-being. Alloiosis (alteration) involves the substrate remaining but taking on contrary qualities. The distinction maps exactly onto Cat. 10\'s (2) vs (4): alteration is change between contraries within the same genus; genesis is the contradictory transition from non-being to being. The kind of opposition between the change-termini determines whether the change is accidental or substantial.',
+          },
+          {
+            ref: 'GC II.2\u20135',
+            bekker: '329b7\u2013332b30',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd',
+            desc: 'The four elemental contrary pairs: hot/cold and wet/dry. Two pairs, four combinations yield four elements (fire = hot+dry, water = cold+wet, air = hot+wet, earth = cold+dry). Elements can transform into each other because they share one contrary quality: fire and air share hot. The four-element system is entirely generated by two pairs of contraries \u2014 a closed group under the operation of contrary-sharing. A beautiful example of contrariety as a generative structure, directly relevant to the catuṣkoṭi as a four-fold generated by two binary oppositions.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'METAPHYSICS',
+    works: [
+      {
+        en: 'Metaphysics \u0393',
+        gr: '\u03a4\u1f70 \u03bc\u03b5\u03c4\u1f70 \u03c4\u1f70 \u03c6\u03c5\u03c3\u03b9\u03ba\u03ac \u0393',
+        ghSlug: 'metaphysics',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'Met. \u0393.2',
+            bekker: '1003b22\u20131005a18',
+            primary: 'general',
+            tags: ['general', 'enantia', 'steresis'],
+            greek: '\u03bc\u03af\u03b1 \u1f10\u03c0\u03b9\u03c3\u03c4\u03ae\u03bc\u03b7 \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+            desc: 'One science studies being and its opposites. All privations and contraries are studied by the same science that studies being, because they are defined through it. Privation is a mode of non-being defined against a positive state; contraries are the maximum differences within a genus of being. First philosophy therefore necessarily studies the four kinds of opposition: they are the ways being is differentiated from, limited by, and absent from itself. The science of being is the science of the structure of opposition.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. \u0393.3\u20138',
+            bekker: '1005b19\u20131012b31',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'enantia'],
+            greek: '\u1f00\u03c1\u03c7\u1f74 \u03b2\u03b5\u03b2\u03b1\u03b9\u03bf\u03c4\u03ac\u03c4\u03b7',
+            desc: 'PNC/PEM defended elenctically. Key structural point: in \u0393.3, PNC is stated with the temporal hedge ("at the same time, in the same respect"), which is exactly the condition that distinguishes contradictory opposition from contrary opposition. A subject that is pale at t1 and dark at t2 does NOT violate PNC because the temporal index differs. The Heraclitean apparent violation (\u0393.5\u20136) is diagnosed as stripping the temporal index from predicates of changing things \u2014 this is improper predication generating apparent antiphasis where there is only enantia across time.',
+            pinnacle: true,
+          },
+        ]
+      },
+      {
+        en: 'Metaphysics \u0394 (Lexicon)',
+        gr: '\u03a4\u1f70 \u03bc\u03b5\u03c4\u1f70 \u03c4\u1f70 \u03c6\u03c5\u03c3\u03b9\u03ba\u03ac \u0394',
+        ghSlug: 'metaphysics',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'Met. \u0394.10',
+            bekker: '1018a20\u201331',
+            primary: 'general',
+            tags: ['general', 'antiphasis', 'enantia', 'steresis', 'pros-ti'],
+            greek: '\u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1',
+            desc: 'LEXICON entry for "opposite" (\u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03bf\u03bd): the four kinds stated as a definition in the Metaphysics. This is the companion entry to Cat. 10, now integrated into the systematic ontology. The entry confirms that the four-fold is not merely a taxonomic curiosity of the Categories but a structural feature of being as such. The \u0394-book is Aristotle\'s philosophical lexicon \u2014 an entry here means the concept is load-bearing for the entire system.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. \u0394.15',
+            bekker: '1020b26\u20131021b11',
+            primary: 'pros-ti',
+            tags: ['pros-ti'],
+            greek: '\u03c4\u1f70 \u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9',
+            desc: 'Lexicon entry for relatives (pros ti): three senses. (1) By number (double of, half of). (2) By activity/passivity (what can heat and what can be heated). (3) By measure (knowledge/the known, perception/the perceived). The third sense is philosophically significant: the known is relative to knowledge but knowledge does not depend on the known in the same way \u2014 knowledge of X can exist when X does not. Relational asymmetry within a pros-ti pair. Connects to the karma/k\u0101raka relational asymmetry in Nāgārjuna\'s MMK Ch. 8.',
+          },
+          {
+            ref: 'Met. \u0394.22',
+            bekker: '1022b22\u201332',
+            primary: 'steresis',
+            tags: ['steresis'],
+            greek: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2',
+            desc: 'Lexicon entry for privation (steresis): five senses. (1) Not having what one naturally has. (2) Not having when one naturally would have it. (3) Not having in a particular way (e.g. entirely, not partially). (4) Forced removal. (5) Having in an inferior way. The richness of this entry reveals that privation is not simple absence but a structured lack \u2014 defined relative to a natural norm, a time, a degree, and a mode of possession. Privation is always relational: it is the lack of a specific form relative to a specific nature at a specific time. This relational structure makes steresis more like pros-ti than like a bare negative.',
+            pinnacle: true,
+          },
+        ]
+      },
+      {
+        en: 'Metaphysics \u0399 (Unity & Opposites)',
+        gr: '\u03a4\u1f70 \u03bc\u03b5\u03c4\u1f70 \u03c4\u1f70 \u03c6\u03c5\u03c3\u03b9\u03ba\u03ac \u0399',
+        ghSlug: 'metaphysics',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'Met. \u0399.3',
+            bekker: '1054a20\u20131055a2',
+            primary: 'enantia',
+            tags: ['enantia', 'general'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03b9\u03cc\u03c4\u03b7\u03c2, \u03bc\u03ad\u03b3\u03b9\u03c3\u03c4\u03b7 \u03b4\u03b9\u03b1\u03c6\u03bf\u03c1\u03ac',
+            desc: 'Contrariety defined as the greatest difference (\u03bc\u03ad\u03b3\u03b9\u03c3\u03c4\u03b7 \u03b4\u03b9\u03b1\u03c6\u03bf\u03c1\u03ac). Of all differences within a genus, the contrary pair marks the maximum distance. This entails that there is exactly one pair of primary contraries within any genus (you cannot have two pairs both claiming to be maximally different within the same genus). Contrariety is the extremity of difference, not arbitrary incompatibility. This is the metaphysical deepening of the Cat. 10 entry.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. \u0399.4',
+            bekker: '1055a3\u20131055b29',
+            primary: 'steresis',
+            tags: ['steresis', 'enantia'],
+            greek: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2 \u1f10\u03bd \u03c0\u03ac\u03c3\u03b3 \u1f10\u03bd\u03b1\u03bd\u03c4\u03b9\u03cc\u03c4\u03b7\u03c4\u03b9',
+            desc: 'Privation is involved in every case of contrariety: when we reach the maximum difference between two things, one of them is defined as the possession of a form and the other as the privation of it. Hot is the positive; cold is the privation of heat in a body suited to receive it. This means that enantia and steresis are not independent kinds of opposition \u2014 steresis underlies all enantia. Every contrary pair is ultimately a possession/privation pair at the level of fundamental form. This is the metaphysical unification of (2) and (3) in Cat. 10: Cat. 10 distinguishes them functionally (intermediates vs no intermediates), but \u0399.4 shows they share a deep structure.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. \u0399.5\u20136',
+            bekker: '1055b30\u20131057a17',
+            primary: 'enantia',
+            tags: ['enantia', 'pros-ti'],
+            greek: '\u1f34\u03c3\u03bf\u03bd, \u1f04\u03bd\u03b9\u03c3\u03bf\u03bd',
+            desc: 'Equal and unequal: equal is the negation of both greater and lesser, not a positive intermediate but a double negation of the contrary pair. Unequal covers both greater and lesser. This is a non-standard logical structure: a term that is the negation of two contraries simultaneously. Aristotle uses this to show that the equal/unequal pair is in fact a pros-ti structure (equal to what? unequal to what?) that intersects with the enantia of more/less.',
+          },
+          {
+            ref: 'Met. \u0399.7',
+            bekker: '1057a18\u20131057b34',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u03bc\u03b5\u03c4\u03b1\u03be\u03cd, \u1f10\u03ba \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+            desc: 'Intermediates (metaxy) are composed from the contraries between which they mediate. Grey is a mixture of black and white; lukewarm is a mixture of hot and cold. This is a physical and logical claim: the intermediate is not a third independent term but a proportion of the two contraries. The continuum between contraries is thus entirely generated by the two extremes \u2014 contraries are ontologically primary, intermediates derivative. This gives contrariety a generative character that antiphasis lacks: you cannot compose anything from a contradictory pair.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. \u0399.8\u20139',
+            bekker: '1057b35\u20131059a14',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1 \u03b5\u1f34\u03b4\u03b5\u03b9',
+            desc: 'Things that differ in species must have contraries in their definitions: the specific difference of a species is always a contrary quality within the genus. Animal is divided into rational/non-rational \u2014 these are contraries within the genus. This means that species-differentiation is always driven by contrariety. The entire tree of natural kinds is structured by pairs of contraries at each branch. Contrariety is the principle of natural classification, not merely of physical change.',
+          },
+        ]
+      },
+      {
+        en: 'Metaphysics \u0398 / \u039a',
+        gr: '\u03a4\u1f70 \u03bc\u03b5\u03c4\u1f70 \u03c4\u1f70 \u03c6\u03c5\u03c3\u03b9\u03ba\u03ac \u0398\u039a',
+        ghSlug: 'metaphysics',
+        passages: [
+          {
+            ref: 'Met. \u0398.10',
+            bekker: '1051b1\u20131052a11',
+            primary: 'antiphasis',
+            tags: ['antiphasis', 'general'],
+            greek: '\u1f00\u03bb\u03b7\u03b8\u03ad\u03c2, \u03c8\u03b5\u1fe6\u03b4\u03bf\u03c2, \u03b8\u03b9\u03b3\u03b5\u1fd6\u03bd',
+            desc: 'Truth and falsity as modes of actuality. For composite things, truth is the combination (synthesis) that corresponds to the actual combination, and falsity is the division (diaeresis) that does not. For simple things (forms, essences), there is no combination and hence no falsity \u2014 only contact (thigein) or non-contact. The true/false opposition maps onto the antiphasis structure for composites, but for simple natures it collapses into a binary: knowing/not knowing. Falsity cannot arise from simple contact \u2014 only from improper combination of composites.',
+          },
+          {
+            ref: 'Met. \u039a.12',
+            bekker: '1068a26\u2013b6',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u03ba\u03af\u03bd\u03b7\u03c3\u03b9\u03c2, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+            desc: 'Recapitulation in \u039a: motion between contraries. This book largely recapitulates earlier doctrines; its value here is confirmation that the Physics I.5 doctrine (contraries as principles of change) is the settled Aristotelian position across the corpus, not a provisional claim.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'PSYCHOLOGY',
+    works: [
+      {
+        en: 'De Anima',
+        gr: '\u03a0\u03b5\u03c1\u1f76 \u03c8\u03c5\u03c7\u1fc6\u03c2',
+        ghSlug: 'de-anima',
+        passages: [
+          {
+            ref: 'DA II.5',
+            bekker: '416b32\u2013418a6',
+            primary: 'steresis',
+            tags: ['steresis', 'enantia'],
+            greek: '\u03c0\u03ac\u03c3\u03c7\u03b5\u03b9\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03c3\u03b9\u03c2',
+            desc: 'Being affected (paschein) involves a kind of opposition: the patient is affected by the agent because it has a contrary quality or lacks (steresis) the quality the agent has. The sense-organ, when stimulated, moves from privation of the sensible quality toward possession of it \u2014 sensing is actualising a privation. The opposition at work in perception is therefore primarily steresis/hexis (privation of the sensible form) rather than enantia or antiphasis.',
+          },
+          {
+            ref: 'DA III.6',
+            bekker: '430a26\u2013b5',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u1f00\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b9\u03c2, \u03c3\u03cd\u03bd\u03b8\u03b5\u03c3\u03b9\u03c2',
+            desc: 'Intellection of simple things involves no combination and therefore no opposition in the antiphasis sense: either you are in contact with the intelligible or you are not. Falsity and error enter only with the combination of two intellectual objects into a proposition \u2014 only there does the antiphasis structure apply. This is the psychological counterpart of Met. \u0398.10: the truth/falsity opposition governs propositions, not simple intellectual acts.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'ETHICS',
+    works: [
+      {
+        en: 'Nicomachean Ethics',
+        gr: '\u1f28\u03b8\u03b9\u03ba\u1f70 \u039d\u03b9\u03ba\u03bf\u03bc\u03ac\u03c7\u03b5\u03b9\u03b1',
+        ghSlug: 'nicomachean-ethics',
+        passages: [
+          {
+            ref: 'NE II.8',
+            bekker: '1108b11\u20131109a19',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u1f00\u03ba\u03c1\u03cc\u03c4\u03b7\u03c4\u03b5\u03c2, \u03bc\u03b5\u03c3\u03cc\u03c4\u03b7\u03c2',
+            desc: 'The doctrine of the mean: each virtue is a mean between two contrary extremes (vices). Courage is between recklessness and cowardice. The vices are not contradictories but contraries \u2014 there is a whole range of intermediate states between them, and virtue is not the mere absence of vice (which would be antiphasis) but a positive state aimed at the intermediate. The ethical doctrine of the mean is a direct application of the metaphysical claim (\u0399.7) that intermediates are composed from the contraries and that contrariety generates a continuum.',
+            pinnacle: true,
+          },
+          {
+            ref: 'NE V.1',
+            bekker: '1129a1\u2013b11',
+            primary: 'enantia',
+            tags: ['enantia'],
+            greek: '\u03b4\u03af\u03ba\u03b1\u03b9\u03bf\u03bd, \u1f04\u03b4\u03b9\u03ba\u03bf\u03bd',
+            desc: 'Justice and injustice as contraries, and the science of justice is the same as the science of injustice (APo. I.5 applied to ethics). Aristotle notes that justice and injustice each have multiple senses, and the contrary relation holds across corresponding senses. This is an application of the rule that contraries are in the same genus \u2014 justice and injustice are both in the genus of disposition relating to others in matters of advantage/disadvantage.',
+          },
+          {
+            ref: 'NE VI.2',
+            bekker: '1139a21\u20131139b13',
+            primary: 'antiphasis',
+            tags: ['antiphasis'],
+            greek: '\u03ba\u03b1\u03c4\u03ac\u03c6\u03b1\u03c3\u03b9\u03c2, \u1f00\u03c0\u03cc\u03c6\u03b1\u03c3\u03b9\u03c2, \u1f00\u03bb\u03ae\u03b8\u03b5\u03b9\u03b1',
+            desc: 'The intellective soul pursues and avoids truth by affirmation and denial (kataphasis/apophasis). These are the only two intellectual acts for propositions \u2014 the antiphasis structure is the universal form of thought about states of affairs. Right action is the practical counterpart of true assertion: as assertion must hit the true member of the contradictory pair, action must hit the right option from among available alternatives.',
+          },
+          {
+            ref: 'NE X.3\u20135',
+            bekker: '1173a13\u20131175b24',
+            primary: 'enantia',
+            tags: ['enantia', 'antiphasis'],
+            greek: '\u1f21\u03b4\u03bf\u03bd\u03ae, \u03bb\u03cd\u03c0\u03b7',
+            desc: 'Pleasure and pain as contraries: the argument that pleasure is good is partly supported by the fact that its contrary (pain) is bad. But Aristotle resists the inference that pleasure is a contrary of pain in the simple enantia sense. Pleasure is not a process toward the removal of pain \u2014 it is an energeia that accompanies activity. The pleasure/pain opposition is therefore not the maximum difference between two states in the same genus but a structural asymmetry: pain is a privation, pleasure is a form of completion. Steresis/hexis again underlies what first appears to be enantia.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'RHETORIC',
+    works: [
+      {
+        en: 'Rhetoric',
+        gr: '\u1fe4\u03b7\u03c4\u03bf\u03c1\u03b9\u03ba\u03ae',
+        ghSlug: 'rhetoric',
+        passages: [
+          {
+            ref: 'Rhet. II.23',
+            bekker: '1397a7\u20131399b9',
+            primary: 'enantia',
+            tags: ['enantia', 'general'],
+            greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd \u03c4\u03cc\u03c0\u03bf\u03c2',
+            desc: 'The topos from contraries is one of the most productive in rhetorical invention: if temperance is beneficial, intemperance is harmful; if we should honour those who have done good, we should punish those who have done harm. The rhetorical topos is the applied form of Top. II.7\u20138 \u2014 the inferential symmetry of contraries deployed in persuasion. The fact that this topos appears in Rhetoric confirms that the structural feature of enantia (inferential symmetry, same genus) is not merely a theoretical curiosity but a practical reasoning tool.',
+          },
+        ]
+      },
+    ]
+  },
+];
+
+// ── FILTER STATE ──────────────────────────────────────────────────────────────
+let activeFilter = 'all';
+let searchTerm = '';
+
+function setFilter(f) {
+  activeFilter = f;
+  // update pills
+  document.querySelectorAll('.pill').forEach(p => {
+    p.classList.toggle('active', p.classList.contains(f) || (f === 'all' && p.classList.contains('all')));
+  });
+  // update kind cells
+  document.querySelectorAll('.kind-cell').forEach(k => {
+    k.classList.toggle('active', k.classList.contains(f));
+  });
+  applyVisibility();
+}
+
+function doSearch(val) {
+  searchTerm = val.toLowerCase().trim();
+  applyVisibility();
+}
+
+function applyVisibility() {
+  let visible = 0;
+  document.querySelectorAll('.passage').forEach(el => {
+    const tags = el.dataset.tags.split(',');
+    const matchFilter = activeFilter === 'all' || tags.includes(activeFilter);
+    const matchSearch = !searchTerm || el.textContent.toLowerCase().includes(searchTerm);
+    const show = matchFilter && matchSearch;
+    el.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('stat-visible').textContent = visible;
+  document.querySelectorAll('.work-block').forEach(wb => {
+    wb.style.display = [...wb.querySelectorAll('.passage')].some(p => !p.classList.contains('hidden')) ? '' : 'none';
+  });
+  document.querySelectorAll('.corpus-section').forEach(cs => {
+    cs.style.display = [...cs.querySelectorAll('.work-block')].some(wb => wb.style.display !== 'none') ? '' : 'none';
+  });
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function renderCorpus() {
+  const main = document.getElementById('main-content');
+  let totalPassages = 0, totalWorks = 0;
+
+  CORPUS.forEach(section => {
+    const sec = document.createElement('div');
+    sec.className = 'corpus-section';
+
+    const hdr = document.createElement('div');
+    hdr.className = 'section-header';
+    hdr.innerHTML = '<span class="section-title">' + section.section + '</span><span class="stat-label" style="font-size:0.78rem">' + section.works.length + ' works</span>';
+    hdr.onclick = () => sec.querySelectorAll('.work-body').forEach(wb => wb.classList.toggle('collapsed'));
+    sec.appendChild(hdr);
+
+    section.works.forEach(work => {
+      totalWorks++;
+      const wb = document.createElement('div');
+      wb.className = 'work-block';
+
+      const titleRow = document.createElement('div');
+      titleRow.className = 'work-title-row';
+      const ghLink = work.ghSlug ? 'href="https://bethhibbard57-creator.github.io/aristotle/' + work.ghSlug + '.html" target="_blank"' : '';
+      titleRow.innerHTML =
+        '<span class="work-en">' + (ghLink ? '<a style="color:inherit;text-decoration:none;" ' + ghLink + '>' + work.en + '</a>' : work.en) + '</span>' +
+        '<span class="work-gr">' + work.gr + '</span>' +
+        (work.pinnacle ? ' <span class="pinnacle-badge">CENTRAL</span>' : '') +
+        '<span class="work-toggle">\u25be</span>';
+
+      const body = document.createElement('div');
+      body.className = 'work-body';
+      const passages = document.createElement('div');
+      passages.className = 'passages';
+
+      work.passages.forEach(p => {
+        totalPassages++;
+        const pEl = document.createElement('div');
+        pEl.className = 'passage';
+        pEl.dataset.primary = p.primary;
+        pEl.dataset.tags = p.tags.join(',');
+
+        const tagsHtml = p.tags.map(t => '<span class="tag ' + t + '">' + (KINDS[t] ? KINDS[t].label : t) + '</span>').join('');
+
+        pEl.innerHTML =
+          '<div class="passage-ref">' + p.ref + (p.pinnacle ? ' <span style="color:var(--gold)">&#9733;</span>' : '') + '<span class="bekker">' + p.bekker + '</span></div>' +
+          '<div class="passage-content"><div class="passage-greek">' + p.greek + '</div><div class="passage-desc">' + p.desc + '</div></div>' +
+          '<div class="passage-tags">' + tagsHtml + '</div>';
+
+        passages.appendChild(pEl);
+      });
+
+      body.appendChild(passages);
+      wb.appendChild(titleRow);
+      wb.appendChild(body);
+
+      titleRow.addEventListener('click', () => {
+        body.classList.toggle('collapsed');
+        titleRow.querySelector('.work-toggle').textContent = body.classList.contains('collapsed') ? '\u25b8' : '\u25be';
+      });
+
+      sec.appendChild(wb);
+    });
+
+    main.appendChild(sec);
+  });
+
+  document.getElementById('stat-total').textContent = totalPassages;
+  document.getElementById('stat-works').textContent = totalWorks;
+  document.getElementById('stat-visible').textContent = totalPassages;
+}
+
+renderCorpus();
+</script>
+</body>
+</html>

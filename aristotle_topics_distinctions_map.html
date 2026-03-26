@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topics: Where the Distinctions Are Drawn</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c0f;
+    --bg-surface: #111318;
+    --bg-card: #171a20;
+    --bg-card-hover: #1f2330;
+    --border: #252933;
+    --border-light: #343a4a;
+    --text-primary: #d8dce8;
+    --text-secondary: #7e88a0;
+    --text-muted: #4a5266;
+    --gold: #b89a3e;
+    --gold-bright: #d4b44a;
+
+    /* The four kinds */
+    --ant: #c45575;   /* antiphasis — rose */
+    --ant-dim: rgba(196,85,117,0.10);
+    --ena: #c4943a;   /* enantia — amber */
+    --ena-dim: rgba(196,148,58,0.10);
+    --ste: #5a9e6e;   /* steresis — sage */
+    --ste-dim: rgba(90,158,110,0.10);
+    --pro: #5e8ab8;   /* pros-ti — slate */
+    --pro-dim: rgba(94,138,184,0.10);
+    --gen: #8a70b8;   /* general/all — violet */
+    --gen-dim: rgba(138,112,184,0.10);
+
+    /* Distinction pairs — for the "bridge" badges */
+    --d-ant-ena: linear-gradient(90deg, var(--ant), var(--ena));
+    --d-ena-ste: linear-gradient(90deg, var(--ena), var(--ste));
+    --d-ste-ant: linear-gradient(90deg, var(--ste), var(--ant));
+    --d-pro-all: linear-gradient(90deg, var(--pro), var(--gen));
+    --d-ant-all: linear-gradient(90deg, var(--ant), var(--gen));
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner { max-width: 1380px; margin: 0 auto; }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.14em;
+    color: var(--gold-bright);
+    margin-bottom: 0.1rem;
+  }
+
+  .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* ── DISTINCTION KEY ── */
+  .dist-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .dist-key-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    align-self: center;
+    margin-right: 0.2rem;
+  }
+
+  .dk-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.28rem 0.7rem;
+    border: 1px solid var(--border-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-secondary);
+    transition: all 0.18s;
+    border-radius: 1px;
+  }
+
+  .dk-pill:hover { color: var(--text-primary); border-color: var(--gold); background: rgba(180,160,60,0.06); }
+  .dk-pill.active { color: var(--gold-bright); border-color: var(--gold-bright); background: rgba(180,160,60,0.10); }
+
+  .dk-swatch {
+    width: 18px; height: 3px; border-radius: 1px; flex-shrink: 0;
+  }
+
+  .search-input {
+    margin-left: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-family: 'EB Garamond', serif;
+    font-size: 0.88rem;
+    padding: 0.26rem 0.75rem;
+    outline: none;
+    width: 190px;
+    transition: border-color 0.18s;
+  }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  /* ── STATS ── */
+  .stats-bar {
+    max-width: 1380px; margin: 0 auto;
+    padding: 0.5rem 2rem 0;
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .stat { display: flex; align-items: baseline; gap: 0.35rem; font-size: 0.78rem; }
+  .stat-num { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--gold-bright); }
+  .stat-label { color: var(--text-muted); font-style: italic; }
+
+  /* ── MAIN ── */
+  main { max-width: 1380px; margin: 0 auto; padding: 1.4rem 2rem 3rem; }
+
+  /* ── BOOK BLOCK ── */
+  .book-block { margin-bottom: 2.8rem; }
+
+  .book-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.7rem 1rem 0.7rem 1.2rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.18s;
+  }
+
+  .book-header:hover { background: var(--bg-card); }
+
+  .book-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .book-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+  }
+
+  .book-theme {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+
+  .book-toggle {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-family: 'Cinzel', serif;
+  }
+
+  .book-body.collapsed .passages { display: none; }
+
+  /* ── BOOK OVERVIEW ── */
+  .book-overview {
+    padding: 0.6rem 1rem 0.8rem 1rem;
+    margin-bottom: 0.7rem;
+    border-left: 2px solid var(--border-light);
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.55;
+  }
+
+  /* ── PASSAGES ── */
+  .passages { display: grid; gap: 0.35rem; }
+
+  .passage {
+    display: grid;
+    grid-template-columns: 148px 1fr auto;
+    gap: 0.6rem 1rem;
+    align-items: start;
+    padding: 0.65rem 0.9rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    transition: all 0.16s;
+  }
+
+  .passage:hover { background: var(--bg-card-hover); border-color: var(--border-light); }
+  .passage.hidden { display: none; }
+
+  /* primary kind border */
+  .passage[data-primary="antiphasis"] { border-left-color: var(--ant); }
+  .passage[data-primary="enantia"]    { border-left-color: var(--ena); }
+  .passage[data-primary="steresis"]   { border-left-color: var(--ste); }
+  .passage[data-primary="pros-ti"]    { border-left-color: var(--pro); }
+  .passage[data-primary="general"]    { border-left-color: var(--gen); }
+
+  .passage-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    padding-top: 0.1rem;
+  }
+
+  .bekker {
+    display: block;
+    color: var(--gold);
+    font-size: 0.62rem;
+    margin-top: 0.08rem;
+    opacity: 0.72;
+  }
+
+  .passage-greek {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .passage-desc {
+    font-size: 0.9rem;
+    line-height: 1.52;
+    color: var(--text-primary);
+  }
+
+  /* ── DISTINCTION BADGE ── */
+  .dist-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-end;
+    padding-top: 0.05rem;
+  }
+
+  .dist-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.22rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.07em;
+    padding: 0.12rem 0.42rem;
+    border-radius: 1px;
+    white-space: nowrap;
+  }
+
+  .dist-badge.antiphasis { background: var(--ant-dim); color: var(--ant); border: 1px solid rgba(196,85,117,0.28); }
+  .dist-badge.enantia    { background: var(--ena-dim); color: var(--ena); border: 1px solid rgba(196,148,58,0.28); }
+  .dist-badge.steresis   { background: var(--ste-dim); color: var(--ste); border: 1px solid rgba(90,158,110,0.28); }
+  .dist-badge.pros-ti    { background: var(--pro-dim); color: var(--pro); border: 1px solid rgba(94,138,184,0.28); }
+  .dist-badge.general    { background: var(--gen-dim); color: var(--gen); border: 1px solid rgba(138,112,184,0.28); }
+
+  /* ── DISTINCTION TYPE MARKER ── */
+  .dist-type {
+    font-family: 'Cinzel', serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 0.08rem 0.4rem;
+    border: 1px solid var(--border);
+    border-radius: 1px;
+    white-space: nowrap;
+    align-self: flex-end;
+  }
+
+  .dist-type.ENUM   { border-color: rgba(180,160,60,0.3); color: var(--gold); }
+  .dist-type.BOUND  { border-color: rgba(196,85,117,0.3); color: var(--ant); }
+  .dist-type.REFINE { border-color: rgba(90,158,110,0.3); color: var(--ste); }
+  .dist-type.INFER  { border-color: rgba(94,138,184,0.3); color: var(--pro); }
+  .dist-type.APPLY  { border-color: rgba(138,112,184,0.3); color: var(--gen); }
+
+  /* highlight key phrases */
+  .kw {
+    font-style: italic;
+    color: var(--text-primary);
+  }
+
+  .star { color: var(--gold); }
+
+  @media (max-width: 780px) {
+    .passage { grid-template-columns: 1fr; }
+    .dist-badges { flex-direction: row; align-items: flex-start; flex-wrap: wrap; }
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>TOPICA &mdash; THE FOUR KINDS OF OPPOSITION</h1>
+    <div class="subtitle">Book by book: where the distinctions are drawn, marked, and refined</div>
+
+    <div class="dist-key">
+      <span class="dist-key-label">Kind</span>
+      <button class="dk-pill active" onclick="setFilter('all')">All</button>
+      <button class="dk-pill" onclick="setFilter('antiphasis')">
+        <span class="dk-swatch" style="background:var(--ant)"></span>\u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2 Contradiction
+      </button>
+      <button class="dk-pill" onclick="setFilter('enantia')">
+        <span class="dk-swatch" style="background:var(--ena)"></span>\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1 Contrary
+      </button>
+      <button class="dk-pill" onclick="setFilter('steresis')">
+        <span class="dk-swatch" style="background:var(--ste)"></span>\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2 Privation
+      </button>
+      <button class="dk-pill" onclick="setFilter('pros-ti')">
+        <span class="dk-swatch" style="background:var(--pro)"></span>\u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9 Relative
+      </button>
+      <button class="dk-pill" onclick="setFilter('general')">
+        <span class="dk-swatch" style="background:var(--gen)"></span>General / All four
+      </button>
+
+      <span class="dist-key-label" style="margin-left:0.8rem">Marker type</span>
+      <button class="dk-pill" onclick="setFilterType('ENUM')"><span style="color:var(--gold)">ENUM</span>&nbsp;Enumeration</button>
+      <button class="dk-pill" onclick="setFilterType('BOUND')"><span style="color:var(--ant)">BOUND</span>&nbsp;Boundary</button>
+      <button class="dk-pill" onclick="setFilterType('REFINE')"><span style="color:var(--ste)">REFINE</span>&nbsp;Refinement</button>
+      <button class="dk-pill" onclick="setFilterType('INFER')"><span style="color:var(--pro)">INFER</span>&nbsp;Inferential diff.</button>
+      <button class="dk-pill" onclick="setFilterType('APPLY')"><span style="color:var(--gen)">APPLY</span>&nbsp;Applied in context</button>
+
+      <input class="search-input" type="text" placeholder="Search passages\u2026" oninput="doSearch(this.value)">
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-label">passages</span></div>
+  <div class="stat"><span class="stat-num" id="stat-visible">0</span><span class="stat-label">visible</span></div>
+</div>
+
+<main id="main-content"></main>
+
+<script>
+// ── DISTINCTION MARKER TYPES ────────────────────────────────────────────────
+// ENUM   = explicit enumeration / listing of the four kinds
+// BOUND  = Aristotle draws a boundary between two specific kinds (X is not Y)
+// REFINE = a refinement or complication within one kind
+// INFER  = inferential difference shown (kind X generates what kind Y cannot)
+// APPLY  = the distinction is applied / deployed in a specific context
+
+const BOOKS = [
+  {
+    num: 'BOOK I',
+    en: 'Instruments of Dialectic',
+    ghSlug: 'topics',
+    theme: 'The mandate: all four kinds are distinct sources for arguments',
+    overview: 'Book I establishes that the four kinds of opposition are not one tool but four distinct tools, each generating arguments that the others cannot. The distinctions are drawn methodologically: by assigning each kind its own place in the inventory of argumentative resources. The crucial move is that the four are listed as parallel but non-equivalent: each has a distinct inferential role. Book I does not argue for the four-fold from scratch \u2014 it inherits it from Cat. 10 \u2014 but it immediately begins to differentiate the four by showing what each contributes to dialectical practice.',
+    passages: [
+      {
+        ref: 'Top. I.14',
+        bekker: '105a34\u2013b18',
+        primary: 'general',
+        tags: ['general','antiphasis','enantia','steresis','pros-ti'],
+        dtype: 'ENUM',
+        greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03c9\u03bd',
+        pinnacle: true,
+        desc: 'The four kinds are explicitly named as four distinct \u03c4\u03cc\u03c0\u03bf\u03b9-sources for arguments. Aristotle lists them as parallel but orders them: correlatives (\u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9), contraries (\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1), privation/possession (\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2/\u1f15\u03be\u03b9\u03c2), contradictories (\u1f00\u03bd\u03c4\u03b9\u03c6\u03b1\u03c3\u03ba\u03ce\u03c2). The ordering is significant: pros-ti is listed first, then enantia, then steresis/hexis, then antiphasis \u2014 from the most relational to the most logically fundamental. The enumeration IS a distinction: four separate tools, not one. This is the mandate that drives all subsequent book-specific usage.',
+      },
+      {
+        ref: 'Top. I.15',
+        bekker: '106a1\u2013107b37',
+        primary: 'general',
+        tags: ['general','antiphasis','enantia','steresis','pros-ti'],
+        dtype: 'INFER',
+        greek: '\u03c4\u03b1\u1f50\u03c4\u03cc\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1, \u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2, \u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9',
+        pinnacle: true,
+        desc: 'Sameness-testing deploys all four kinds simultaneously and shows they are non-equivalent: the same-contrary test, the same-contradictory test, the same-privation test, and the same-correlative test each can succeed or fail independently. If good = beneficial, this is confirmed by contrary (bad = harmful), but the confirmation via correlative (the good OF what? the beneficial FOR what?) is a distinct further test. The four kinds generate four non-redundant identity-criteria. This is the sharpest implicit boundary-drawing in Book I: the tests do not collapse into each other.',
+      },
+      {
+        ref: 'Top. I.18',
+        bekker: '108a7\u2013b31',
+        primary: 'general',
+        tags: ['general','antiphasis','enantia','steresis','pros-ti'],
+        dtype: 'ENUM',
+        greek: '\u03c4\u1f70 \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1, \u03c0\u03c4\u03ce\u03c3\u03b5\u03b9\u03c2',
+        desc: 'The four kinds are listed again as a standard examination procedure: for any given claim, examine what holds of its contrary, its contradictory, its privation, its correlative. The repetition of the enumeration confirms that the distinction is methodologically load-bearing \u2014 it is not a one-off observation but the standard opening move. The four kinds are now habits of examination, not just logical categories.',
+      },
+    ]
+  },
+
+  {
+    num: 'BOOK II',
+    en: 'Topoi for Accidents',
+    ghSlug: 'topics',
+    theme: 'The sequential treatment of contraries, privations, and correlatives draws the distinctions by showing each generates what the others cannot',
+    overview: 'Book II is where the distinctions become inferentially visible. Aristotle treats the three non-contradictory kinds in sequence \u2014 contraries (II.7\u20138), privations (II.9\u201310), correlatives (II.11) \u2014 and in each case shows what that kind specifically generates. The distinctions emerge from the differences in inferential yield: the contrary-topos generates symmetric inferences across the same genus; the privation-topos generates asymmetric inferences indexed to natural capacity; the correlative-topos generates inferences by substituting both relata simultaneously. Contradictories are the presupposed framework throughout, not separately treated here because their role is structural rather than topical.',
+    passages: [
+      {
+        ref: 'Top. II.2',
+        bekker: '109b13\u2013110a9',
+        primary: 'enantia',
+        tags: ['enantia','general'],
+        dtype: 'APPLY',
+        greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd \u03c3\u03c5\u03bc\u03b2\u03b5\u03b2\u03b7\u03ba\u03cc\u03c2',
+        desc: 'The contrary-topos applied to accidents: if accident F belongs to X, the contrary of F belongs to the contrary of X. The topos works because contraries are in the same genus and the genus-structure is preserved across the contrary pair. The restriction to enantia here is the implicit boundary: this topos does NOT work for privations (the privation of F does not necessarily belong to the privation of X) or for correlatives (the correlative of F belongs to the correlative of X, but by a different mechanism). The distinctness of the three topoi is revealed by their non-substitutability.',
+      },
+      {
+        ref: 'Top. II.7',
+        bekker: '113a24\u2013114b5',
+        primary: 'enantia',
+        tags: ['enantia','pros-ti'],
+        dtype: 'INFER',
+        greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+        pinnacle: true,
+        desc: 'Eight topoi from contraries. Two key distinctions are drawn here. (1) <span class="kw">Contrary vs correlative</span>: the contrary-topos applies to monadic predicates (F belongs to X, contrary-of-F to contrary-of-X); the correlative-topos requires substituting both relata simultaneously (if A is double of B, then double-of-greater-B is greater than double-of-lesser-B). The mechanisms are different in kind. (2) <span class="kw">Contrary vs contradictory</span>: the topos is stated for contraries specifically; Aristotle does not run it for contradictories because contradictories share no genus-structure that would support the symmetric inference. If X is F, the contradictory of X (non-X) has no determinate contrary-of-F \u2014 non-X is not a natural kind in a genus.',
+      },
+      {
+        ref: 'Top. II.8',
+        bekker: '114a13\u2013b5',
+        primary: 'enantia',
+        tags: ['enantia'],
+        dtype: 'REFINE',
+        greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd, \u03c0\u03c4\u03ce\u03c3\u03b5\u03b9\u03c2',
+        desc: 'The contrary-topos is extended to all four grammatical cases (\u03c0\u03c4\u03ce\u03c3\u03b5\u03b9\u03c2): if justly (\u03b4\u03b9\u03ba\u03b1\u03af\u03c9\u03c2) is admirable, then unjustly (\u1f00\u03b4\u03af\u03ba\u03c9\u03c2) is disgraceful; if justice (nom.) is admirable, injustice (nom.) is disgraceful; if for justice (dat.) is admirable, for injustice is disgraceful. Refinement within the contrary kind: the inferential symmetry holds not just for the nominative form but across all inflections. This is a refinement of enantia, not a boundary between kinds \u2014 but it shows that the contrary-topos has an internal structure that the other kinds\u2019 topoi do not share.',
+      },
+      {
+        ref: 'Top. II.9',
+        bekker: '114b6\u2013115a14',
+        primary: 'steresis',
+        tags: ['steresis','enantia'],
+        dtype: 'BOUND',
+        greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u03c3\u03c4\u03b5\u03c1\u03ae\u03c3\u03b5\u03c9\u03bd',
+        pinnacle: true,
+        desc: '<span class="kw">Steresis vs enantia</span> \u2014 the sharpest boundary drawn in Book II. The privation-topos is explicitly introduced as a new and distinct source: if sight is good, blindness is bad. Aristotle signals the transition from the contrary-topos: privation is stronger than mere contrariness (\u03bc\u1fb6\u03bb\u03bb\u03bf\u03bd \u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03bd\u03c4\u03b5\u03c2). Why stronger? Because privation asserts a <span class="kw">natural lack</span>, not merely a contrary quality. The man who lacks sight (blindness = steresis) is not just in the contrary state to the sighted man \u2014 he is in the state of lacking what he is naturally capable of having. Blindness entails: (a) a subject capable of sight, (b) the natural time for sight has come, (c) sight is absent. None of these conditions are required for the contrary-topos. This is the functional boundary: steresis always carries a natural-norm presupposition that enantia does not.',
+      },
+      {
+        ref: 'Top. II.10',
+        bekker: '115a15\u2013b10',
+        primary: 'steresis',
+        tags: ['steresis'],
+        dtype: 'REFINE',
+        greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd \u03ba\u03b1\u1f76 \u03c3\u03c4\u03b5\u03c1\u03ae\u03c3\u03b5\u03c9\u03bd',
+        desc: 'Refinement: the privation-topos can be run in both directions \u2014 if the privation of X is bad, the possession of X is good. But also: if the possession of X is bad (e.g., some diseases involve having too much of something), the privation of X may be good. This asymmetric reversibility distinguishes steresis from enantia: the contrary-topos is symmetric (if F is good, contrary-of-F is bad, and vice versa), but the privation-topos can yield non-symmetric results because the natural-norm condition can be violated in either direction.',
+      },
+      {
+        ref: 'Top. II.11',
+        bekker: '115b11\u2013116a3',
+        primary: 'pros-ti',
+        tags: ['pros-ti','enantia','steresis'],
+        dtype: 'BOUND',
+        greek: '\u1f10\u03ba \u03c4\u1ff6\u03bd \u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9',
+        pinnacle: true,
+        desc: '<span class="kw">Pros-ti vs enantia vs steresis</span> \u2014 the third distinct topical source introduced. The correlative-topos: if knowledge is of the knowable, ignorance is of the unknowable; if perception is relative to the perceptible, the privation of perception is relative to the imperceptible. Three boundaries are drawn simultaneously. (1) <span class="kw">Pros-ti vs enantia</span>: the contrary-topos substitutes contrary terms; the correlative-topos substitutes both relata of the relation simultaneously \u2014 a structurally different operation. (2) <span class="kw">Pros-ti vs steresis</span>: the correlative-topos can be combined with the privation-topos (privation of perception / imperceptible), but these are distinct moves that happen to be combinable, not the same move. (3) <span class="kw">Pros-ti vs antiphasis</span>: implicit \u2014 the contradictory of \u201cknowledge is of the knowable\u201d is not another relational claim but a propositional negation, which has a different logical structure entirely. By the end of Book II, all three non-contradictory kinds have been distinguished from each other by their different inferential yields.',
+      },
+    ]
+  },
+
+  {
+    num: 'BOOK III',
+    en: 'Comparative Judgements',
+    ghSlug: 'topics',
+    theme: 'Contraries exclusively drive comparative value; the restriction marks the boundary of enantia',
+    overview: 'Book III is about the more/less choiceworthy \u2014 comparative value judgments. The entire comparative structure is built on enantia, and the restriction to contraries (as opposed to privations, correlatives, or contradictories) is itself a distinction. Aristotle does not invoke the other kinds here because the comparative topos requires that both terms share a genus-scale on which more/less applies \u2014 and only contraries satisfy this. The implicit boundary drawn throughout Book III: comparative judgment requires a continuum between terms, which only enantia generates (privations are asymmetric, contradictories have no intermediate, correlatives are defined by relation not by degree).',
+    passages: [
+      {
+        ref: 'Top. III.1',
+        bekker: '116a1\u2013b16',
+        primary: 'enantia',
+        tags: ['enantia'],
+        dtype: 'BOUND',
+        greek: '\u03b1\u1f31\u03c1\u03b5\u03c4\u1f7d\u03c4\u03b5\u03c1\u03bf\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+        desc: '<span class="kw">Enantia vs antiphasis in comparative contexts</span>: if A is more choiceworthy than B, the contrary-evil of B is more choiceworthy than the contrary-evil of A. This topos works only for contrary pairs. The contradictory of A (non-A) does not have a degree-relation to A: \u201cnot-good\u201d is not less good than \u201cgood\u201d in a graded sense \u2014 it covers everything that fails to be good. The implicit distinction: enantia supports comparative judgment; antiphasis does not, because the contradictory negation does not carve a position on the same genus-scale.',
+      },
+      {
+        ref: 'Top. III.4',
+        bekker: '119a1\u2013b17',
+        primary: 'enantia',
+        tags: ['enantia'],
+        dtype: 'REFINE',
+        greek: '\u03bc\u1fb6\u03bb\u03bb\u03bf\u03bd \u03b1\u1f31\u03c1\u03b5\u03c4\u03cc\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03bf\u03bd',
+        desc: 'Refinement within enantia: contraries of equally choiceworthy things are equally bad; if the contraries are unequal in choiceworthiness, their contraries are unequal in the same direction. This internal algebra of the contrary pair reveals that enantia has a metric structure: the gap between contraries is preserved under the choiceworthiness ordering. This metric structure is what distinguishes enantia from steresis (no metric \u2014 you either have the form or lack it) and from antiphasis (no metric \u2014 strict binary).',
+      },
+      {
+        ref: 'Top. III.5',
+        bekker: '119b18\u2013120a5',
+        primary: 'steresis',
+        tags: ['steresis','enantia'],
+        dtype: 'BOUND',
+        greek: '\u1f15\u03be\u03b9\u03c2, \u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2, \u03b1\u1f31\u03c1\u03b5\u03c4\u1f7d\u03c4\u03b5\u03c1\u03bf\u03bd',
+        pinnacle: true,
+        desc: '<span class="kw">Steresis vs enantia in comparative contexts</span>: possession is more choiceworthy than privation (sight than blindness). But is this a comparison on the same scale as the contrary comparison (health more choiceworthy than sickness)? Aristotle\u2019s comparative topoi for privations are structurally different: the privation/possession comparison is not a matter of degree along a continuum but an absolute asymmetry. You cannot be \u201cmore sighted\u201d in the way you can be \u201chealthier\u201d \u2014 sight is either present or absent relative to its natural norm. This marks the boundary: enantia admits of degrees along a continuum; steresis is an on/off structure relative to a natural capacity.',
+      },
+    ]
+  },
+
+  {
+    num: 'BOOK IV',
+    en: 'Genus',
+    ghSlug: 'topics',
+    theme: 'The genus-constraint distinguishes genuine contraries from mere differences and from privations',
+    overview: 'Book IV tests whether a proposed genus is correct. The four kinds of opposition generate different genus-constraints, and these differences are used to distinguish the kinds from each other. The key distinction drawn in Book IV: contraries must share a genus (or be in contrary genera), while privation/possession pairs are within the same genus but asymmetric. This genus-level analysis extends and deepens the Cat. 10 taxonomy.',
+    passages: [
+      {
+        ref: 'Top. IV.1',
+        bekker: '120b12\u2013121b2',
+        primary: 'enantia',
+        tags: ['enantia','general'],
+        dtype: 'APPLY',
+        greek: '\u03b3\u03ad\u03bd\u03bf\u03c2, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+        desc: 'Genus-test via contraries: if G is the genus of X, G must contain the contrary of X or be a contrary genus. If the proposed genus of courage is virtue, and cowardice (contrary of courage) falls under vice (contrary of virtue), the genus-assignment passes the test. The application reveals the distinction: this test is specific to enantia. You cannot run the analogous test with privation (\u201cthe genus of sight must contain blindness or be a contrary genus\u201d is wrong \u2014 blindness is the privation, in the same genus as sight, not in a contrary genus). Genus-assignment for steresis has a different structure.',
+      },
+      {
+        ref: 'Top. IV.3',
+        bekker: '123b1\u2013124a10',
+        primary: 'enantia',
+        tags: ['enantia'],
+        dtype: 'BOUND',
+        greek: '\u03b3\u03ad\u03bd\u03bf\u03c2 \u03c4\u1ff6\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd',
+        pinnacle: true,
+        desc: '<span class="kw">The genus-constraint on enantia</span>: contraries are always in the same genus or in contrary genera. This is both a test and a constitutive mark of genuine contrariety. It draws the boundary between enantia and mere incompatibility: two things can be mutually exclusive (cannot both be predicated of the same subject at the same time) without being contrary \u2014 they might be in different genera entirely. Genuine contraries must be in the same genus because contrariety is <span class="kw">maximum difference within a genus</span> (the \u03bc\u03ad\u03b3\u03b9\u03c3\u03c4\u03b7 \u03b4\u03b9\u03b1\u03c6\u03bf\u03c1\u03ac of Met. \u0399.3). Things in entirely different genera cannot have a maximum difference because there is no common scale.',
+      },
+      {
+        ref: 'Top. IV.4',
+        bekker: '124a10\u2013b14',
+        primary: 'enantia',
+        tags: ['enantia','general'],
+        dtype: 'REFINE',
+        greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1, \u03b3\u03ad\u03bd\u03b7 \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+        desc: 'Refinement: contrary genera are themselves contrary (virtue/vice are contrary genera; their species are contrary). The contrary-genus relation is well-defined and closed: you cannot have an infinite regress of contrary genera. This refinement draws a boundary within enantia between (a) cases where the contraries share the same proximate genus and (b) cases where they are in contrary genera. Both are genuine enantia, but their genus-structure differs.',
+      },
+      {
+        ref: 'Top. IV.5',
+        bekker: '125b13\u2013126a28',
+        primary: 'steresis',
+        tags: ['steresis','enantia'],
+        dtype: 'BOUND',
+        greek: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2, \u03b3\u03ad\u03bd\u03bf\u03c2',
+        pinnacle: true,
+        desc: '<span class="kw">Steresis vs enantia at the genus level</span>: privation and possession must share the same genus (blindness and sight are both in the genus of affection of the eyes). This differs from the contrary-genus rule: contraries can be in the same genus OR in contrary genera; privation/possession must be in the SAME genus. Why? Because privation is defined as the lack of a form that the subject is naturally suited to have \u2014 and that natural suitability is defined by the genus. Blindness and sight are not in contrary genera (vision-genus vs anti-vision-genus) \u2014 they are asymmetric members of the same genus. This is a clear structural difference from enantia.',
+      },
+    ]
+  },
+
+  {
+    num: 'BOOK V',
+    en: 'Properties (idia)',
+    ghSlug: 'topics',
+    theme: 'The four-fold is a complete falsification procedure; each kind generates a distinct necessary condition for a genuine property',
+    overview: 'Book V tests whether a proposed property (idion) genuinely belongs to a subject. The four kinds of opposition are systematically deployed as four independent tests, and the distinctions emerge from the fact that each test is independently necessary \u2014 passing one does not entail passing another. The natural-norm condition for privation is drawn sharply here: properties of privations require an additional condition (the subject must be a natural haver of the possessed quality) that properties of contraries do not require.',
+    passages: [
+      {
+        ref: 'Top. V.2',
+        bekker: '130a27\u2013b6',
+        primary: 'general',
+        tags: ['general','enantia','antiphasis','steresis','pros-ti'],
+        dtype: 'APPLY',
+        greek: '\u1f34\u03b4\u03b9\u03bf\u03bd \u1f10\u03ba \u03c4\u1ff6\u03bd \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03c9\u03bd',
+        pinnacle: true,
+        desc: 'The four-fold applied as a complete test-procedure: if F is a property of X, then (a) the contrary of F is a property of the contrary of X, (b) the contradictory of F belongs to the contradictory of X, (c) the privation of F belongs to the privative counterpart of X, (d) the correlative of F belongs to the correlative of X. Each of these is a distinct, independently necessary condition. The fact that they are listed as four separate tests is itself an argument for the distinctness of the four kinds: if any two were logically equivalent, the test-list could be shortened. Aristotle does not shorten it.',
+      },
+      {
+        ref: 'Top. V.4',
+        bekker: '132b35\u2013133b15',
+        primary: 'enantia',
+        tags: ['enantia','steresis'],
+        dtype: 'BOUND',
+        greek: '\u1f34\u03b4\u03b9\u03bf\u03bd \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03bf\u03c5',
+        desc: '<span class="kw">Enantia vs steresis in property-attribution</span>: the property of a contrary must be contrary to the property of the other contrary; the property of the privation must be contrary to the property of the possession. The surface looks symmetric, but Aristotle draws a difference: the contrary-property relation is bidirectional (if F is a property of X, the contrary of F is a property of the contrary of X \u2014 and conversely); the privation-property relation is directional (the possession side is primary; the privation-property is derived from it). Steresis is asymmetric; enantia is symmetric.',
+      },
+      {
+        ref: 'Top. V.6',
+        bekker: '135a9\u2013b6',
+        primary: 'general',
+        tags: ['general','enantia'],
+        dtype: 'APPLY',
+        greek: '\u1f34\u03b4\u03b9\u03bf\u03bd, \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1',
+        desc: 'Opposition-symmetry as a necessary condition for proper predication: well-formed property-attributions must respect the opposition structure. The application reveals the boundary between enantia and general predication: not every predicate that fails of the contrary of X is thereby defective (some predicates are genuinely asymmetric \u2014 like privation-predicates), but those that are supposed to be contrary-symmetric must be. The distinction between predicates that should obey contrary-symmetry and those that should not is itself a distinction between kinds of opposition.',
+      },
+      {
+        ref: 'Top. V.7',
+        bekker: '136b33\u2013137a7',
+        primary: 'steresis',
+        tags: ['steresis','antiphasis'],
+        dtype: 'BOUND',
+        greek: '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2, \u1f34\u03b4\u03b9\u03bf\u03bd',
+        pinnacle: true,
+        desc: '<span class="kw">Steresis vs antiphasis</span>: if sight is a property of what naturally has sight, then blindness is a property of what naturally has sight but lacks it. The critical boundary: a stone is not blind, because blindness (steresis) requires a subject that is naturally a haver of sight. The contradictory of \u201chas sight\u201d would apply to a stone (\u201cnot-sighted\u201d applies to everything without sight, stones included). But the privation of sight does NOT apply to a stone. This is the cleanest boundary in the Topics between steresis and antiphasis: the contradictory is unrestricted (applies to anything that lacks the predicate); the privation is restricted to natural havers. A stone is not-sighted (antiphasis) but is not blind (steresis). The two are not the same.',
+      },
+    ]
+  },
+
+  {
+    num: 'BOOK VI',
+    en: 'Definitions',
+    ghSlug: 'topics',
+    theme: 'Definitions must be consistent across all four opposition-axes; each kind enforces a different formal constraint',
+    overview: 'Book VI is where the distinctions are drawn most finely. Each kind of opposition imposes a distinct constraint on definitions, and the three books VI.6\u201311 collectively work through how each kind functions as a definitional test. The most important distinction drawn here: contrary-definitions must be contrary in form (enantia imposes a formal symmetry on definitions); privation-definitions must be derivable from possession-definitions by natural-norm subtraction (steresis imposes an asymmetric derivation constraint); correlative definitions must be co-defined (pros-ti imposes a simultaneity-of-definition constraint).',
+    passages: [
+      {
+        ref: 'Top. VI.6',
+        bekker: '143b11\u2013144a4',
+        primary: 'general',
+        tags: ['general','antiphasis','enantia','steresis','pros-ti'],
+        dtype: 'APPLY',
+        greek: '\u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1, \u1f40\u03c1\u03b9\u03c3\u03bc\u03cc\u03c2',
+        desc: 'All four kinds are simultaneously deployed as definitional tests. Apply the proposed definition to the contrary, the contradictory, the privation, and the correlative of the definiendum. If the definition does not transform correctly under any of these, it is faulty. The four tests are listed as jointly exhaustive: a definition that passes all four is well-formed with respect to opposition. The listing itself draws the distinctions by assigning each kind its own test-direction.',
+      },
+      {
+        ref: 'Top. VI.7',
+        bekker: '145b17\u2013146a20',
+        primary: 'enantia',
+        tags: ['enantia','antiphasis'],
+        dtype: 'BOUND',
+        greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd \u1f40\u03c1\u03b9\u03c3\u03bc\u03bf\u03af',
+        pinnacle: true,
+        desc: '<span class="kw">Enantia vs antiphasis in definitions</span>: contrary definitions must be contrary in form \u2014 the definition of injustice must be the contrary of the definition of justice, not merely its negation (contradictory). If I define justice as \u201cgood disposition toward others in matters of advantage\u201d, the definition of injustice must be \u201cbad disposition toward others in matters of advantage\u201d (contrary substitution) not \u201cnot-good disposition\u201d (contradictory). Aristotle draws the boundary explicitly: contrary substitution and contradictory negation are distinct operations on definitions, and only the former is appropriate for contrary definitions. A definition that uses contradictory negation where contrary substitution is required is too weak \u2014 it includes intermediates.',
+      },
+      {
+        ref: 'Top. VI.8',
+        bekker: '146a21\u2013b36',
+        primary: 'steresis',
+        tags: ['steresis','enantia'],
+        dtype: 'BOUND',
+        greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03bd, \u03c3\u03c4\u03b5\u03c1\u03ae\u03c3\u03b5\u03c9\u03bd \u1f40\u03c1\u03b9\u03c3\u03bc\u03bf\u03af',
+        pinnacle: true,
+        desc: '<span class="kw">Steresis vs enantia in definitions</span>: a definition that would apply equally to the privation as to the possession is too broad (it does not capture the form of the possessed quality, only the genus). And a definition of a contrary that would also apply to an intermediate is too broad (it does not mark the maximum difference \u2014 Met. \u0399.3). These are two distinct precision-tests that reveal the difference between steresis and enantia: the steresis-test requires that the definition distinguish the form from its absence; the enantia-test requires that the definition mark the extremity of difference, not just a difference. A definition can pass the steresis-test and fail the enantia-test, confirming they are independent.',
+      },
+      {
+        ref: 'Top. VI.9',
+        bekker: '146b37\u2013148a5',
+        primary: 'pros-ti',
+        tags: ['pros-ti','enantia'],
+        dtype: 'BOUND',
+        greek: '\u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9, \u1f40\u03c1\u03b9\u03c3\u03bc\u03cc\u03c2',
+        desc: '<span class="kw">Pros-ti vs enantia in definitions</span>: if X is a relative (pros-ti), its definition must be given relative to its correlate, and the definition must be simultaneous with the definition of the correlate. If knowledge is defined as \u201cknowledge of the knowable,\u201d the definition of the knowable must refer back to knowledge. The contrary-test does not have this simultaneity requirement: you can define justice without simultaneously defining injustice. Pros-ti imposes a co-definitional constraint that enantia does not. This is the definitional boundary between the relational and the contrary kinds.',
+      },
+      {
+        ref: 'Top. VI.11',
+        bekker: '148b4\u2013149a7',
+        primary: 'enantia',
+        tags: ['enantia','general'],
+        dtype: 'APPLY',
+        greek: '\u1f10\u03bd \u03c4\u1ff6\u03b9 \u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03b9 \u03b3\u03ad\u03bd\u03b5\u03b9',
+        desc: 'The genus-constraint on contraries (IV.3) applied to definitions: if the definition of X places X in genus G, and X has a contrary Y, then the definition of Y must place Y in G or in the contrary of G. A definition that violates this is internally inconsistent with the nature of contrariety. This is the VI-level application of the IV.3 rule \u2014 drawing the same boundary (enantia requires genus-relatedness) in the definitional rather than the genus-assignment context.',
+      },
+    ]
+  },
+
+  {
+    num: 'BOOK VII',
+    en: 'Sameness',
+    ghSlug: 'topics',
+    theme: 'Four non-redundant identity-criteria confirm the four kinds are genuinely distinct',
+    overview: 'Book VII returns to the identity-testing of Book I but now in the context of evaluating definitions for sameness or difference of meaning. The four kinds generate four independent identity-criteria, and their non-redundancy is confirmed: a definition can agree with another on the contrary-test but diverge on the correlative-test. This is the strongest argument in the Topics for the distinctness of the four kinds: they are not just different names for the same logical relationship but four different relations that can come apart.',
+    passages: [
+      {
+        ref: 'Top. VII.1',
+        bekker: '151b28\u2013152b35',
+        primary: 'general',
+        tags: ['general','antiphasis','enantia','steresis','pros-ti'],
+        dtype: 'INFER',
+        greek: '\u03c4\u03b1\u1f50\u03c4\u03cc\u03bd, \u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1',
+        pinnacle: true,
+        desc: 'Sameness-testing by all four kinds simultaneously. The key structural point: if A and B are claimed to be the same, they must agree across all four opposition-axes. If their contraries differ, A and B differ. If their correlatives differ, A and B differ. These are independent tests. The most revealing case: two terms that share a contrary but diverge in their correlative (e.g., double and triple both have the contrary \u201cunequal\u201d in some sense, but their correlatives are half and third respectively \u2014 different). The fact that the contrary-test is passed but the correlative-test is failed shows that the two kinds are genuinely different relations. The four-fold is vindicated as a complete and non-redundant set of identity-criteria.',
+      },
+      {
+        ref: 'Top. VII.3',
+        bekker: '153b25\u2013154a1',
+        primary: 'enantia',
+        tags: ['enantia','antiphasis'],
+        dtype: 'BOUND',
+        greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03bf\u03c5 \u1f40\u03c1\u03b9\u03c3\u03bc\u03cc\u03c2',
+        desc: '<span class="kw">Enantia vs antiphasis in sameness-testing</span>: if A and B are being tested for identity, and their contrary definitions differ in form, A and B are not the same. But if their contradictory negations are merely formally different (not-A =/= not-B) while their contrary definitions agree, this is a weaker signal \u2014 the contradictory is just the negation, which introduces no positive content. The boundary: contrary-difference reveals genus-level divergence; contradictory-difference may only reveal a surface verbal difference. The contrary-identity test is therefore more informative than the contradictory-identity test for definitions, because enantia carries genus-content that antiphasis does not.',
+      },
+    ]
+  },
+
+  {
+    num: 'BOOK VIII',
+    en: 'The Dialectical Exchange',
+    ghSlug: 'topics',
+    theme: 'Antiphasis is the terminal point of all dialectic; the other three kinds are instruments for reaching it',
+    overview: 'Book VIII is the payoff. The distinctions drawn in the preceding seven books are now integrated into a theory of the dialectical exchange. The most important distinction drawn here \u2014 which recapitulates all the others \u2014 is between antiphasis as terminal (the form of refutation) and the other three kinds as instrumental (the means of generating the premises that lead to refutation). This is the structural hierarchy of the four kinds within dialectic: all four are used, but only antiphasis is the destination.',
+    passages: [
+      {
+        ref: 'Top. VIII.1',
+        bekker: '155b3\u2013156a22',
+        primary: 'general',
+        tags: ['general','antiphasis','enantia','steresis','pros-ti'],
+        dtype: 'APPLY',
+        greek: '\u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1, \u1f00\u03bd\u03c4\u03af\u03ba\u03b5\u03b9\u03c4\u03b1\u03b9',
+        desc: 'Opening instructions for the questioner: construct arguments from contraries, privations, and correlatives \u2014 these are the three instrumental kinds. Note the deliberate absence of antiphasis from the list of argumentative resources: contradictories are not a resource for argument-construction but the target. You do not build an argument \u201cfrom contradictories\u201d the way you build one from contraries \u2014 you build an argument \u201ctoward a contradictory.\u201d The structural distinction: enantia/steresis/pros-ti are used, antiphasis is reached.',
+      },
+      {
+        ref: 'Top. VIII.3',
+        bekker: '158b29\u2013159a2',
+        primary: 'antiphasis',
+        tags: ['antiphasis'],
+        dtype: 'BOUND',
+        greek: '\u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2, \u1f00\u03bd\u03c4\u03af\u03ba\u03b5\u03b9\u03c4\u03b1\u03b9',
+        desc: '<span class="kw">Antiphasis as the rule of the game</span>: the answerer must not contradict themselves. Once you have affirmed P, you are bound. This is the only kind of opposition that functions as a game-rule rather than a game-resource. Enantia, steresis, pros-ti are weapons; antiphasis is the constitution. The boundary: the other three kinds can be used or not used in a given exchange; the antiphasis-rule cannot be suspended within the exchange. It is presupposed by the exchange, not deployed within it.',
+      },
+      {
+        ref: 'Top. VIII.11',
+        bekker: '161a16\u2013b30',
+        primary: 'enantia',
+        tags: ['enantia','antiphasis'],
+        dtype: 'BOUND',
+        greek: '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03c9\u03c2, \u1f00\u03bd\u03c4\u03b9\u03c6\u03b1\u03c4\u03b9\u03ba\u1ff6\u03c2',
+        pinnacle: true,
+        desc: '<span class="kw">Enantia vs antiphasis as modes of refutation</span>: Aristotle distinguishes two kinds of erroneous response \u2014 asserting a contrary (enantia-failure: asserting a claim in the same genus that is maximally opposed to the true claim) vs. asserting a contradiction (antiphasis-failure: asserting the contradictory of a thesis one has already committed to). Only the second is a refutation in the strict sense (\u1f14\u03bb\u03b5\u03b3\u03c7\u03bf\u03c2). The first is a different kind of error: getting the genus right but hitting the wrong extreme. This boundary is philosophically important: a Heraclitean who asserts both P and not-P commits antiphasis-failure; someone who asserts P when they should assert the contrary commits enantia-failure. These are different logical errors with different diagnoses.',
+      },
+      {
+        ref: 'Top. VIII.14',
+        bekker: '163b9\u2013164a2',
+        primary: 'antiphasis',
+        tags: ['antiphasis','general'],
+        dtype: 'BOUND',
+        greek: '\u1f10\u03bb\u03b5\u03b3\u03ba\u03c4\u03b9\u03ba\u03cc\u03c2, \u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2',
+        pinnacle: true,
+        desc: '<span class="kw">Antiphasis as the exclusive form of refutation</span>: a genuine elenchus (\u1f14\u03bb\u03b5\u03b3\u03c7\u03bf\u03c2) consists in establishing the contradictory of the answerer\'s thesis. Not the contrary, not the privation, not the correlative \u2014 the contradictory. This is the terminal distinction of the entire Topics: after eight books of using all four kinds of opposition as argumentative tools, Aristotle establishes a strict hierarchy. The other three kinds are the means; antiphasis is the end. The elenchus is complete when and only when a contradictory has been established. This locates the Topics within the broader architecture: the Topics is ultimately a treatise about how to achieve, or defend against, antiphasis.',
+      },
+    ]
+  },
+];
+
+// ── FILTER ────────────────────────────────────────────────────────────────────
+let activeKind = 'all';
+let activeType = 'all';
+let searchTerm = '';
+
+function setFilter(f) {
+  activeKind = f;
+  document.querySelectorAll('.dk-pill').forEach(p => {
+    if (!p.dataset.type) p.classList.toggle('active', p.textContent.trim().toLowerCase().includes(f) || f === 'all');
+  });
+  applyVisibility();
+}
+
+function setFilterType(t) {
+  activeType = activeType === t ? 'all' : t;
+  document.querySelectorAll('.dk-pill[data-type]').forEach(p => p.classList.toggle('active', p.dataset.type === activeType));
+  applyVisibility();
+}
+
+function doSearch(v) { searchTerm = v.toLowerCase().trim(); applyVisibility(); }
+
+function applyVisibility() {
+  let visible = 0;
+  document.querySelectorAll('.passage').forEach(el => {
+    const tags = el.dataset.tags.split(',');
+    const matchKind = activeKind === 'all' || tags.includes(activeKind);
+    const matchType = activeType === 'all' || el.dataset.dtype === activeType;
+    const matchSearch = !searchTerm || el.textContent.toLowerCase().includes(searchTerm);
+    const show = matchKind && matchType && matchSearch;
+    el.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('stat-visible').textContent = visible;
+  document.querySelectorAll('.book-block').forEach(bb => {
+    bb.style.display = [...bb.querySelectorAll('.passage')].some(p => !p.classList.contains('hidden')) ? '' : 'none';
+  });
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function renderBooks() {
+  const main = document.getElementById('main-content');
+  let total = 0;
+
+  BOOKS.forEach(book => {
+    const bb = document.createElement('div');
+    bb.className = 'book-block';
+
+    // header
+    const hdr = document.createElement('div');
+    hdr.className = 'book-header';
+    hdr.innerHTML =
+      '<span class="book-num">' + book.num + '</span>' +
+      '<span class="book-en">' + book.en + '</span>' +
+      '<span class="book-theme">' + book.theme + '</span>' +
+      '<span class="book-toggle">\u25be</span>';
+
+    const body = document.createElement('div');
+    body.className = 'book-body';
+
+    // overview
+    const ov = document.createElement('div');
+    ov.className = 'book-overview';
+    ov.textContent = book.overview;
+    body.appendChild(ov);
+
+    // passages
+    const pContainer = document.createElement('div');
+    pContainer.className = 'passages';
+
+    book.passages.forEach(p => {
+      total++;
+      const el = document.createElement('div');
+      el.className = 'passage';
+      el.dataset.primary = p.primary;
+      el.dataset.tags = p.tags.join(',');
+      el.dataset.dtype = p.dtype;
+
+      const badgesHtml = p.tags.map(t =>
+        '<span class="dist-badge ' + t + '">' + t.replace('pros-ti', '\u03c0\u03c1\u03cc\u03c2 \u03c4\u03b9').replace('antiphasis', '\u1f00\u03bd\u03c4\u03af\u03c6\u03b1\u03c3\u03b9\u03c2').replace('enantia', '\u1f10\u03bd\u03b1\u03bd\u03c4\u03af\u03b1').replace('steresis', '\u03c3\u03c4\u03ad\u03c1\u03b7\u03c3\u03b9\u03c2').replace('general', '\u1f00\u03bd\u03c4\u03b9\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03b1') + '</span>'
+      ).join('') + '<span class="dist-type ' + p.dtype + '">' + p.dtype + '</span>';
+
+      el.innerHTML =
+        '<div class="passage-ref">' + p.ref + (p.pinnacle ? ' <span class="star">\u2605</span>' : '') + '<span class="bekker">' + p.bekker + '</span></div>' +
+        '<div><div class="passage-greek">' + p.greek + '</div><div class="passage-desc">' + p.desc + '</div></div>' +
+        '<div class="dist-badges">' + badgesHtml + '</div>';
+
+      pContainer.appendChild(el);
+    });
+
+    body.appendChild(pContainer);
+    bb.appendChild(hdr);
+    bb.appendChild(body);
+
+    hdr.addEventListener('click', () => {
+      body.classList.toggle('collapsed');
+      hdr.querySelector('.book-toggle').textContent = body.classList.contains('collapsed') ? '\u25b8' : '\u25be';
+    });
+
+    main.appendChild(bb);
+  });
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-visible').textContent = total;
+
+  // wire up type-filter pills
+  document.querySelectorAll('.dk-pill[data-type]').forEach(p => {
+    // already handled
+  });
+}
+
+// tag the type pills with data-type
+document.querySelectorAll('.dk-pill').forEach(p => {
+  const types = ['ENUM','BOUND','REFINE','INFER','APPLY'];
+  types.forEach(t => { if (p.textContent.includes(t)) p.dataset.type = t; });
+});
+
+renderBooks();
+</script>
+</body>
+</html>

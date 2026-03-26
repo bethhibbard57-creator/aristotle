@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aristotelian Corpus: Change, Potentiality, Becoming & Excluded Middle</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f6f1;
+    --bg-surface: #f0ece3;
+    --bg-card: #ebe6db;
+    --bg-card-hover: #e2ddd0;
+    --border: #ccc5b5;
+    --border-light: #b8b0a0;
+    --text-primary: #1a1812;
+    --text-secondary: #5a5040;
+    --text-muted: #9a8e7a;
+
+    --kinesis: #8a5c10;
+    --kinesis-dim: rgba(138,92,16,0.10);
+    --kinesis-mid: rgba(138,92,16,0.22);
+    --dunamis: #286040;
+    --dunamis-dim: rgba(40,96,64,0.10);
+    --dunamis-mid: rgba(40,96,64,0.22);
+    --genesis: #8a3820;
+    --genesis-dim: rgba(138,56,32,0.10);
+    --genesis-mid: rgba(138,56,32,0.22);
+    --energeia: #205880;
+    --energeia-dim: rgba(32,88,128,0.10);
+    --energeia-mid: rgba(32,88,128,0.22);
+    --pragma: #602880;
+    --pragma-dim: rgba(96,40,128,0.10);
+    --pem: #902040;
+    --pem-dim: rgba(144,32,64,0.10);
+    --pem-mid: rgba(144,32,64,0.22);
+
+    --gold: #7a5e08;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2.4rem 2rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 0.2rem;
+  }
+
+  header .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .filter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-right: 0.3rem;
+    text-transform: uppercase;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 2px;
+    border: 1px solid;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+  }
+
+  .pill.all { border-color: var(--border-light); color: var(--text-secondary); }
+  .pill.all.active, .pill.all:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--gold); }
+
+  .pill.kinesis { border-color: var(--kinesis); color: var(--kinesis); }
+  .pill.kinesis.active, .pill.kinesis:hover { background: var(--kinesis-dim); }
+
+  .pill.dunamis { border-color: var(--dunamis); color: var(--dunamis); }
+  .pill.dunamis.active, .pill.dunamis:hover { background: var(--dunamis-dim); }
+
+  .pill.genesis { border-color: var(--genesis); color: var(--genesis); }
+  .pill.genesis.active, .pill.genesis:hover { background: var(--genesis-dim); }
+
+  .pill.energeia { border-color: var(--energeia); color: var(--energeia); }
+  .pill.energeia.active, .pill.energeia:hover { background: var(--energeia-dim); }
+
+  .pill.pem { border-color: var(--pem); color: var(--pem); }
+  .pill.pem.active, .pill.pem:hover { background: var(--pem-dim); }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-kinesis { background: var(--kinesis); }
+  .dot-dunamis { background: var(--dunamis); }
+  .dot-genesis { background: var(--genesis); }
+  .dot-energeia { background: var(--energeia); }
+  .dot-pem { background: var(--pem); }
+
+  /* ── LEGEND STRIP ── */
+  .legend {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.9rem 2rem 0;
+    display: flex;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .legend-swatch {
+    width: 10px; height: 10px; border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  .legend-greek {
+    font-style: italic;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* ── CORPUS SECTION ── */
+  .corpus-section {
+    margin-bottom: 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .section-count {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── WORK BLOCK ── */
+  .work-block {
+    margin-bottom: 1.5rem;
+  }
+
+  .work-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .work-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+  }
+
+  .work-gr {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .work-toggle {
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+
+  .work-title-row:hover .work-toggle { color: var(--gold); }
+
+  /* ── PASSAGE TABLE ── */
+  .passages {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .passage {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: 0.8rem 1.2rem;
+    align-items: start;
+    padding: 0.7rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .passage:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-light);
+  }
+
+  .passage.hidden { display: none; }
+
+  /* border-left colors by primary concept */
+  .passage[data-primary="kinesis"] { border-left-color: var(--kinesis); }
+  .passage[data-primary="dunamis"] { border-left-color: var(--dunamis); }
+  .passage[data-primary="genesis"] { border-left-color: var(--genesis); }
+  .passage[data-primary="energeia"] { border-left-color: var(--energeia); }
+  .passage[data-primary="pem"] { border-left-color: var(--pem); }
+
+  .passage-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    padding-top: 0.15rem;
+    line-height: 1.4;
+  }
+
+  .passage-ref .bekker {
+    display: block;
+    color: var(--gold);
+    font-size: 0.68rem;
+    margin-top: 0.1rem;
+    opacity: 0.8;
+  }
+
+  .passage-content {}
+
+  .passage-greek {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .passage-desc {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .passage-desc .hl {
+    font-style: italic;
+  }
+
+  .passage-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-end;
+    padding-top: 0.1rem;
+  }
+
+  .tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 1px;
+    white-space: nowrap;
+  }
+
+  .tag.kinesis { background: var(--kinesis-dim); color: var(--kinesis); border: 1px solid rgba(201,149,42,0.3); }
+  .tag.dunamis { background: var(--dunamis-dim); color: var(--dunamis); border: 1px solid rgba(107,158,120,0.3); }
+  .tag.genesis { background: var(--genesis-dim); color: var(--genesis); border: 1px solid rgba(184,109,74,0.3); }
+  .tag.energeia { background: var(--energeia-dim); color: var(--energeia); border: 1px solid rgba(122,143,181,0.3); }
+  .tag.pem { background: var(--pem-dim); color: var(--pem); border: 1px solid rgba(196,106,138,0.3); }
+
+  /* ── COLLAPSED ── */
+  .work-body.collapsed .passages {
+    display: none;
+  }
+
+  /* ── PINNACLE BADGE ── */
+  .pinnacle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    border: 1px solid rgba(212,168,67,0.3);
+    padding: 0.1rem 0.5rem;
+    border-radius: 1px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    max-width: 1400px;
+    margin: 0 auto 1rem;
+    padding: 0 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .stat-label {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .passage {
+      grid-template-columns: 1fr;
+    }
+    .passage-tags { flex-direction: row; align-items: flex-start; }
+  }
+
+  /* ── SECTION COLLAPSED STATE ── */
+  .section-header { cursor: pointer; }
+  .section-header:hover .section-title { color: var(--gold); }
+
+  /* Search */
+  .search-wrap {
+    margin-left: auto;
+  }
+
+  .search-input {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+    outline: none;
+    width: 220px;
+    transition: border-color 0.2s;
+  }
+
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  /* scroll */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>ARISTOTELIAN CORPUS</h1>
+    <div class="subtitle">Change &middot; Potentiality &middot; Becoming &middot; Actuality &middot; Excluded Middle &mdash; A Complete Locus Map</div>
+    <div class="filter-bar">
+      <span class="filter-label">Filter</span>
+      <button class="pill all active" onclick="setFilter('all')">All Loci</button>
+      <button class="pill kinesis" onclick="setFilter('kinesis')">
+        <span class="dot dot-kinesis"></span>κίνησις / μεταβολή — Change
+      </button>
+      <button class="pill dunamis" onclick="setFilter('dunamis')">
+        <span class="dot dot-dunamis"></span>δύναμις — Potentiality
+      </button>
+      <button class="pill genesis" onclick="setFilter('genesis')">
+        <span class="dot dot-genesis"></span>γένεσις / φθορά — Becoming
+      </button>
+      <button class="pill energeia" onclick="setFilter('energeia')">
+        <span class="dot dot-energeia"></span>ἐνέργεια / ἐντελέχεια — Actuality
+      </button>
+      <button class="pill pem" onclick="setFilter('pem')">
+        <span class="dot dot-pem"></span>PEM — ἢ φάναι ἢ ἀποφάναι
+      </button>
+      <div class="search-wrap">
+        <input class="search-input" type="text" placeholder="Search passages…" oninput="doSearch(this.value)">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-label">passages</span></div>
+  <div class="stat"><span class="stat-num" id="stat-works">0</span><span class="stat-label">works</span></div>
+  <div class="stat"><span class="stat-num" id="stat-visible">0</span><span class="stat-label">visible</span></div>
+</div>
+
+<main id="main-content">
+<!-- Dynamically rendered -->
+</main>
+
+<script>
+const CONCEPTS = {
+  kinesis:  { label: 'κίνησις',   color: '#c9952a', en: 'Change / Motion' },
+  dunamis:  { label: 'δύναμις',   color: '#6b9e78', en: 'Potentiality / Power' },
+  genesis:  { label: 'γένεσις',   color: '#b86d4a', en: 'Becoming / Perishing' },
+  energeia: { label: 'ἐνέργεια',  color: '#7a8fb5', en: 'Actuality / Fulfilment' },
+  pem:      { label: 'PEM',        color: '#c46a8a', en: 'Excluded Middle / Bivalence' },
+};
+
+// ── CORPUS DATA ───────────────────────────────────────────────────────────────
+const CORPUS = [
+  {
+    section: 'ORGANON',
+    works: [
+      {
+        en: 'Categories',
+        gr: 'Κατηγορίαι',
+        ghSlug: 'categories',
+        passages: [
+          {
+            ref: 'Cat. 8',
+            bekker: '8b25–9a13',
+            primary: 'dunamis',
+            tags: ['dunamis'],
+            greek: 'δύναμις ἢ ἀδυναμία',
+            desc: 'Capacity (δύναμις) listed as a sub-species of quality — the first canonical appearance of potentiality in the corpus. A thing is said to be capable (δυνατόν) by virtue of a power inhering in it.',
+          },
+          {
+            ref: 'Cat. 8',
+            bekker: '9a14–27',
+            primary: 'kinesis',
+            tags: ['kinesis'],
+            greek: 'πάσχειν, ποιεῖν',
+            desc: 'Being-affected (πάσχειν) and doing (ποιεῖν) treated as quasi-categories — the categorical furniture for later analysis of active/passive change.',
+          },
+          {
+            ref: 'Cat. 14',
+            bekker: '15a13–15b17',
+            primary: 'kinesis',
+            tags: ['kinesis', 'genesis'],
+            greek: 'μεταβολή',
+            desc: 'The six species of change (μεταβολή) treated as post-predicaments: generation (γένεσις), destruction (φθορά), increase (αὔξησις), decrease (μείωσις), alteration (ἀλλοίωσις), change of place (φορά). First systematic taxonomy of change in the corpus.',
+          },
+          {
+            ref: 'Cat. 10',
+            bekker: '11b15–13b35',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'τέσσαρα εἴδη τῶν ἀντικειμένων',
+            desc: 'The four kinds of opposition: correlatives (πρός τι), contraries (ἐναντία), privation/possession (στέρησις/ἕξις), and contradiction (ἀντίφασις). PEM holds strictly only for the fourth kind. Contraries admit of intermediates (e.g. grey between white and black); contradictories do not. This is the categorical foundation for Beth\'s thesis that what appears as contradiction in Aristotle is actually contrary opposition — the four-fold grid of opposition maps directly onto the catuṣkoṭi.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Cat. 5',
+            bekker: '4a10–21',
+            primary: 'kinesis',
+            tags: ['kinesis', 'dunamis'],
+            greek: 'ὑποκείμενον',
+            desc: 'Primary being as the subject that persists through change — being\'s defining feature is admitting of contrary properties at different times while remaining numerically one.',
+          },
+        ]
+      },
+      {
+        en: 'De Interpretatione',
+        gr: 'Περὶ ἑρμηνείας',
+        ghSlug: 'de-interpretatione',
+        passages: [
+          {
+            ref: 'DI 1–4',
+            bekker: '16a1–17a7',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ὄνομα, ῥῆμα, λόγος ἀποφαντικός',
+            desc: 'The semantic preconditions for PEM: only the ἀποφαντικὸς λόγος (declarative sentence) is the kind of utterance to which truth or falsity — and therefore PEM — applies. Names (ὀνόματα) and verbs (ῥήματα) alone are neither true nor false. The verb is defined as σημαίνει χρόνον — it signifies time. This is the rhema/copula/temporal-index analysis that Beth has been developing: stripping the temporal index from the verb generates apparent contradictions because the apophantic form is destroyed.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 6–7',
+            bekker: '17a26–17b26',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἀντίφασις, ἀντίκειται',
+            desc: 'Every affirmation (κατάφασις) has exactly one contradictory negation (ἀπόφασις) — they are opposed as contradictories (ἀντίφασις), not as contraries (ἐναντία). For every declarative sentence and its negation, one must be true and the other false. The most direct statement of bivalence in the corpus, immediately before the sea-battle.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 9',
+            bekker: '18a28–19b4',
+            primary: 'pem',
+            tags: ['pem', 'dunamis', 'kinesis'],
+            greek: 'ἐνδέχεσθαι, ἀναγκαῖον',
+            desc: 'The sea-battle: Aristotle\'s most famous challenge to PEM. Future contingent statements (ναυμαχία ἔσται αὔριον) lack determinate truth-values before the event — PEM is suspended (or restricted) for future contingents. This is the single most important PEM passage for Beth\'s project: the pragma/ousia node where logic, potentiality, and becoming converge. Priest\'s dialetheism and the catuṣkoṭi\'s "both" and "neither" positions both illuminate this passage.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 11',
+            bekker: '20b12–21b9',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἓν κατηγορεῖν, ἁπλῆ κατάφασις',
+            desc: 'A simple affirmation (ἁπλῆ κατάφασις) predicates one thing of one thing. When two predicates are accidentally yoked together (e.g. "the white man is musical"), the result is not one statement and PEM does not apply to it as a unit. Improper compound predication undermines the bipolarity that PEM requires — this is the logical mechanism of Beth\'s improper-predication thesis stated in Aristotle\'s own terms.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DI 12–13',
+            bekker: '21b10–23a26',
+            primary: 'dunamis',
+            tags: ['dunamis'],
+            greek: 'δυνατόν, ἐνδεχόμενον',
+            desc: 'Exhaustive analysis of modal terms: possible (δυνατόν), impossible, necessary, contingent. The square of modal opposition. Potentiality enters logical space formally here.',
+          },
+        ]
+      },
+      {
+        en: 'Prior Analytics',
+        gr: 'Ἀναλυτικὰ Πρότερα',
+        ghSlug: 'prior-analytics',
+        passages: [
+          {
+            ref: 'APr. I.8–22',
+            bekker: '29b29–40b16',
+            primary: 'dunamis',
+            tags: ['dunamis'],
+            greek: 'τὸ ἐνδεχόμενον',
+            desc: 'Modal syllogistic: syllogisms with contingent (ἐνδεχόμενον) premises. Potentiality enters formal inference. The notorious difficulties here (including non-transitivity of contingency) prefigure the four-valued logic Beth is working with.',
+          },
+          {
+            ref: 'APr. I.46',
+            bekker: '51b36–52b34',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'τὸ οὐκ εἶναι, τὸ μὴ εἶναι',
+            desc: 'Critical distinction: "not-being-F" (οὐκ εἶναι) vs. "being not-F" (εἶναι μὴ) are not the same. The infinite or indefinite predicate (μὴ ἄνθρωπος) is not a negation that generates a proper contradictory pair. PEM applies only to finite contradictories, not to infinite-predicate constructions — a locus for Beth\'s improper-predication thesis meeting the excluded middle.',
+          },
+        ]
+      },
+      {
+        en: 'Posterior Analytics',
+        gr: 'Ἀναλυτικὰ Ὕστερα',
+        ghSlug: 'posterior-analytics',
+        passages: [
+          {
+            ref: 'APo. I.11',
+            bekker: '77a10–77b15',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'κοινὰ ἀξιώματα',
+            desc: 'PNC and PEM as common axioms (κοινὰ ἀξιώματα) that every demonstrative science presupposes but does not prove. They are not premises of demonstrations but the condition of the possibility of all demonstration. Sciences use them (χρῶνται) without thematising them — thematising them is the job of first philosophy (Metaphysics Γ). The structural role of PEM in the architecture of the Organon.',
+          },
+          {
+            ref: 'APo. II.12',
+            bekker: '95a10–b1',
+            primary: 'kinesis',
+            tags: ['kinesis', 'genesis'],
+            greek: 'τὸ γίγνεσθαι',
+            desc: 'Demonstration applied to processes of becoming (γίγνεσθαι): the middle term of a syllogism explaining becoming must itself refer to something in the process of becoming. Temporal structure enters the demonstrative syllogism.',
+          },
+          {
+            ref: 'APo. II.19',
+            bekker: '99b15–100b17',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia'],
+            greek: 'νοῦς',
+            desc: 'Nous as the faculty that grasps first principles — characterised as a potentiality (δύναμις) actualised through experience. The epistemological arc from potential to actual knowledge mirrors the ontological arc in Metaphysics Θ.',
+          },
+        ]
+      },
+      {
+        en: 'Topics',
+        gr: 'Τοπικά',
+        ghSlug: 'topics',
+        passages: [
+          {
+            ref: 'Top. I.11',
+            bekker: '104b1–105a2',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'θέσις, ἔνδοξον',
+            desc: 'PEM distinguished from a mere thesis (θέσις): it is not a position that anyone might reasonably hold or deny in dialectic, but an axiom that must be presupposed. A dialectical problem must be a genuine question — one where PEM leaves room for either side. PNC/PEM violations are not proper dialectical problems because there is no real opponent to argue against, only someone who has stopped meaning anything (Γ.4). This places PEM above the dialectical game while grounding why the game is possible.',
+          },
+          {
+            ref: 'Top. II.7',
+            bekker: '113a24–b14',
+            primary: 'dunamis',
+            tags: ['dunamis'],
+            greek: 'δυνατὸν ἢ ἀδύνατον',
+            desc: 'Dialectical topos on whether something is possible or impossible — the Topics as the rhetorical mirror of the formal modal analysis in DI 12–13.',
+          },
+          {
+            ref: 'Top. VI.6',
+            bekker: '143b11–144a4',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἀντικείμενα, ἀντιφατικῶς',
+            desc: 'Dialectical rules for testing definitions using opposites: if the definition is faulty, its contradictory opposite will fail to characterise the contradictory subject. PEM deployed as a dialectical test — contradiction as the instrument of refutation (ἔλεγχος).',
+          },
+          {
+            ref: 'Top. IV.1–2',
+            bekker: '120b12–121b2',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis'],
+            greek: 'γένος, γένεσις',
+            desc: 'Genus and coming-to-be: discussion of how genus is predicated of what comes into being. The becoming of a species within a genus — a locus for the pragma/ousia distinction.',
+          },
+          {
+            ref: 'Top. VIII.1–3',
+            bekker: '155b3–157b16',
+            primary: 'kinesis',
+            tags: ['kinesis'],
+            greek: 'πρόβλημα',
+            desc: 'Rules for dialectical exchange — identified by Beth as the correct framework for the papers. Change of position under questioning is itself a form of μεταβολή at the dialectical level.',
+          },
+        ]
+      },
+      {
+        en: 'Sophistical Refutations',
+        gr: 'Σοφιστικοὶ Ἔλεγχοι',
+        ghSlug: 'sophistical-refutations',
+        passages: [
+          {
+            ref: 'SE 5',
+            bekker: '166b22–167a20',
+            primary: 'kinesis',
+            tags: ['kinesis', 'dunamis'],
+            greek: 'κατὰ συμβεβηκός',
+            desc: 'Fallacy of accident: predicating of a changing or composite thing what belongs only to one of its aspects. Improper predication meets change — directly relevant to Beth\'s central thesis.',
+          },
+          {
+            ref: 'SE 6',
+            bekker: '168a17–b10',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἀντίφασις, ψευδής',
+            desc: 'Fallacy of two questions as one: forcing a single yes/no answer to a question with multiple components — a violation of the proper domain of PEM. PEM presupposes a single, properly-formed proposition; ask two questions as one, and neither affirm nor deny is an available response. This is a structural catuṣkoṭi-adjacent point: the "neither" position can arise from an ill-formed question.',
+          },
+          {
+            ref: 'SE 22',
+            bekker: '178a23–b23',
+            primary: 'dunamis',
+            tags: ['dunamis'],
+            greek: 'δυνάμει, ἐνεργείᾳ',
+            desc: 'Fallacy arising from conflating potential and actual predication — a locus classicus for the predication / potentiality nexus.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'PHYSICS & COSMOLOGY',
+    works: [
+      {
+        en: 'Physics',
+        gr: 'Φυσικὴ ἀκρόασις',
+        ghSlug: 'physics',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'Phys. I.2',
+            bekker: '184b25–185b27',
+            primary: 'pem',
+            tags: ['pem', 'kinesis'],
+            greek: 'ἓν τὸ ὂν καὶ ἀκίνητον',
+            desc: 'Against the Eleatics (Parmenides, Melissus): if being is one and unmoved, change is impossible and physics has no subject matter. Aristotle refuses to argue against this on purely logical grounds — the Eleatic denial of change is not a contradiction within physics but a denial of its starting points. PEM and PNC are presupposed by any inquiry; to deny them is to have stepped outside inquiry, not to have produced a valid argument within it. The natural-philosophy framing of the logical principles.',
+          },
+          {
+            ref: 'Phys. I.7–9',
+            bekker: '189b30–192b4',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis', 'dunamis'],
+            greek: 'ὕλη, μορφή, στέρησις',
+            desc: 'The three principles of natural becoming: matter (ὕλη), form (μορφή), and privation (στέρησις). Privation is the negative potentiality — the absence that makes becoming possible. The Axiom of Temporality (A − A = 0 = CHANGE) is grounded here.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Phys. II.1–3',
+            bekker: '192b8–195a3',
+            primary: 'kinesis',
+            tags: ['kinesis', 'genesis'],
+            greek: 'φύσις, αἰτία',
+            desc: 'Nature (φύσις) defined as an internal principle of change and rest; the four causes as the explanatory framework for all becoming. Formal and final cause as the telos immanent in potentiality.',
+          },
+          {
+            ref: 'Phys. III.1–3',
+            bekker: '200b12–202b29',
+            primary: 'kinesis',
+            tags: ['kinesis', 'dunamis', 'energeia'],
+            greek: 'ἡ τοῦ δυνάμει ὄντος ἐντελέχεια',
+            desc: 'THE definition of change: the actuality of what potentially is, qua potential. This is the most compressed and radical statement in the corpus — kinesis is a peculiar incomplete actuality, neither pure potentiality nor full actuality. The ontological hinge of Beth\'s project.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Phys. III.4–8',
+            bekker: '202b30–208a23',
+            primary: 'dunamis',
+            tags: ['dunamis', 'kinesis'],
+            greek: 'τὸ ἄπειρον',
+            desc: 'The infinite (ἄπειρον) as potential only — it never is, but is always in the process of becoming. The infinite is the paradigm case of something that exists only δυνάμει, never ἐνεργείᾳ.',
+          },
+          {
+            ref: 'Phys. V.1–2',
+            bekker: '224a21–226a23',
+            primary: 'kinesis',
+            tags: ['kinesis', 'genesis'],
+            greek: 'εἴδη τῆς κινήσεως',
+            desc: 'The four species of change: in being (generation/destruction), quality (alteration), quantity (growth/diminution), place (locomotion). Plus change-of-change as a fifth problematic type. Maps onto Categories 14 but now with full causal analysis.',
+          },
+          {
+            ref: 'Phys. V.3–6',
+            bekker: '226a23–230a18',
+            primary: 'kinesis',
+            tags: ['kinesis'],
+            greek: 'ἅμα, ἁφή, ἐφεξῆς',
+            desc: 'Contact, succession, continuity: the conditions for two changes to constitute one continuous change. The metaphysics of temporal continuity across change.',
+          },
+          {
+            ref: 'Phys. VI.1–4',
+            bekker: '231a21–235a13',
+            primary: 'kinesis',
+            tags: ['kinesis'],
+            greek: 'συνεχές, ἄτομον',
+            desc: 'Proof that the continuous cannot be composed of indivisibles. Zeno\'s paradoxes addressed by distinguishing potential and actual infinity in the continuum of motion.',
+          },
+          {
+            ref: 'Phys. VII.1–3',
+            bekker: '241b24–246a9',
+            primary: 'kinesis',
+            tags: ['kinesis', 'dunamis'],
+            greek: 'κινοῦν, κινούμενον',
+            desc: 'Everything that is in motion is moved by something — the causal regress argument. Active potentiality (the power to cause change) and passive potentiality (the power to be changed) distinguished.',
+          },
+          {
+            ref: 'Phys. VIII.1–6',
+            bekker: '250b11–259b20',
+            primary: 'kinesis',
+            tags: ['kinesis', 'energeia'],
+            greek: 'ἀεὶ ἦν καὶ ἀεὶ ἔσται',
+            desc: 'Proof that change is eternal — always was and always will be. Change cannot have come into being or will cease to be, since that would itself be a change. Eternity of kinesis as the cosmological conclusion.',
+          },
+          {
+            ref: 'Phys. VIII.7–10',
+            bekker: '259b20–267b26',
+            primary: 'energeia',
+            tags: ['energeia', 'kinesis', 'dunamis'],
+            greek: 'ἀκίνητον κινοῦν',
+            desc: 'The unmoved mover: a cause of change that is itself free of all potentiality — pure actuality (ἐνέργεια). The logical terminus of the potentiality/actuality distinction. Connects to Metaphysics Λ.',
+            pinnacle: true,
+          },
+        ]
+      },
+      {
+        en: 'On the Heavens',
+        gr: 'Περὶ οὐρανοῦ',
+        ghSlug: 'on-the-heavens',
+        passages: [
+          {
+            ref: 'Cael. I.10–12',
+            bekker: '279b4–283b22',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia'],
+            greek: 'ἀΐδιον, δυνατόν',
+            desc: 'Eternity and possibility: something eternal cannot have a potentiality not to be — for the eternal, being and being-able-to-be coincide fully. A key constraint on modal logic applied cosmologically.',
+          },
+          {
+            ref: 'Cael. II.3–4',
+            bekker: '286a3–287a22',
+            primary: 'kinesis',
+            tags: ['kinesis'],
+            greek: 'κύκλῳ φορά',
+            desc: 'Circular motion as the only truly eternal, continuous, and uniform change — the physical paradigm of actuality without potentiality-for-rest.',
+          },
+          {
+            ref: 'Cael. III.7–8',
+            bekker: '305b5–307b18',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis'],
+            greek: 'γένεσις στοιχείων',
+            desc: 'Generation of the elements from one another: the theoretical basis for reciprocal transformation (earth ↔ water ↔ air ↔ fire). Elemental becoming as a closed cycle.',
+          },
+        ]
+      },
+      {
+        en: 'On Generation and Corruption',
+        gr: 'Περὶ γενέσεως καὶ φθορᾶς',
+        ghSlug: 'on-generation-and-corruption',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'GC I.1–4',
+            bekker: '314a1–318b32',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis'],
+            greek: 'γένεσις, φθορά',
+            desc: 'Absolute coming-to-be (γένεσις) distinguished from mere alteration (ἀλλοίωσις): genuine genesis is when the substrate itself changes, not just its quality. The entire treatise is the sustained study of becoming and perishing qua becoming and perishing.',
+            pinnacle: true,
+          },
+          {
+            ref: 'GC I.5–7',
+            bekker: '320a2–324a5',
+            primary: 'kinesis',
+            tags: ['kinesis', 'dunamis'],
+            greek: 'ἁφή, δρᾶν, πάσχειν',
+            desc: 'Contact as a necessary condition for action and passion. Active and passive powers (δύναμεις) must be in contact for change to occur — relational potentiality.',
+          },
+          {
+            ref: 'GC I.10',
+            bekker: '327b22–328b22',
+            primary: 'genesis',
+            tags: ['genesis', 'dunamis'],
+            greek: 'μίξις, κρᾶσις',
+            desc: 'Mixture (μίξις) as a distinct mode of becoming — neither pure addition nor fusion, but a reciprocal potentialisation. Mixed components persist δυνάμει (potentially) in the mixture.',
+          },
+          {
+            ref: 'GC II.1–5',
+            bekker: '328b26–332b30',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis'],
+            greek: 'τἀναντία',
+            desc: 'The contrariety (hot/cold, wet/dry) as the basis for elemental transformation. Contraries (not contradictories) drive genesis — directly supporting Beth\'s thesis that apparent contradiction in change is really contrary opposition.',
+          },
+          {
+            ref: 'GC II.10–11',
+            bekker: '336a15–338b19',
+            primary: 'kinesis',
+            tags: ['kinesis', 'genesis', 'energeia'],
+            greek: 'ἐνδελεχής κίνησις',
+            desc: 'The eternal continuity of generation explained by reference to the eternal circular motion of the sun — terrestrial becoming grounded in celestial actuality. The cosmic connection of kinesis and energeia.',
+          },
+        ]
+      },
+      {
+        en: 'Meteorology',
+        gr: 'Μετεωρολογικά',
+        ghSlug: 'meteorology',
+        passages: [
+          {
+            ref: 'Meteor. I.1–3',
+            bekker: '338a20–341a35',
+            primary: 'kinesis',
+            tags: ['kinesis', 'genesis'],
+            greek: 'ἄνω τόπος',
+            desc: 'The upper region as the site of continuous change driven by the sun\'s revolution — meteorological phenomena as the terrestrial effects of celestial kinesis.',
+          },
+          {
+            ref: 'Meteor. IV.1–12',
+            bekker: '378b10–390b22',
+            primary: 'dunamis',
+            tags: ['dunamis', 'kinesis', 'genesis'],
+            greek: 'δυνάμεις, πάθη',
+            desc: 'Meteorologica Book IV: the active and passive powers (δυνάμεις) of the tangible qualities — solidification, liquefaction, condensation, etc. Potentiality at work in material change. This book may be a later addition but is philosophically continuous.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'PSYCHOLOGY',
+    works: [
+      {
+        en: 'De Anima',
+        gr: 'Περὶ ψυχῆς',
+        ghSlug: 'de-anima',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'DA II.1',
+            bekker: '412a1–413a10',
+            primary: 'energeia',
+            tags: ['energeia', 'dunamis'],
+            greek: 'ψυχὴ ἐντελέχεια σώματος',
+            desc: 'THE definition of soul: first actuality (ἐντελέχεια) of a natural body that potentially (δυνάμει) has life. Soul is what actualises the body\'s potentiality for life. The most condensed application of the dunamis/energeia distinction to psychology.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DA II.5',
+            bekker: '416b32–418a6',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia'],
+            greek: 'αἴσθησις δυνάμει',
+            desc: 'The sense faculty is a potentiality (δύναμις) that becomes actual only when affected by a sensible object. First and second potentiality distinguished: the capacity to perceive vs. the exercise of perceiving. Critical for the two-level theory of potentiality.',
+          },
+          {
+            ref: 'DA II.12',
+            bekker: '424a17–425a13',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia', 'kinesis'],
+            greek: 'εἶδος ἄνευ ὕλης',
+            desc: 'Sense organ receives the form of the sensible object without its matter — the paradigm of potentiality actualised without the transference of a material substrate. Change without material kinesis.',
+          },
+          {
+            ref: 'DA III.4–5',
+            bekker: '429a10–430a25',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia'],
+            greek: 'νοῦς δυνάμει, νοῦς ποιητικός',
+            desc: 'Passive intellect as pure potentiality (like a blank tablet); active intellect as pure actuality that causes thinking. The nous passage — the most contested potentiality text in the corpus. The two intellects as δύναμις and ἐνέργεια at the level of mind.',
+            pinnacle: true,
+          },
+          {
+            ref: 'DA III.9–10',
+            bekker: '432b26–434b30',
+            primary: 'kinesis',
+            tags: ['kinesis', 'dunamis'],
+            greek: 'ὄρεξις, κίνησις',
+            desc: 'Desire (ὄρεξις) as the proximate cause of animal motion — desire is a potentiality for movement. The unmoved mover of animal action is the object of desire, not a material force.',
+          },
+        ]
+      },
+      {
+        en: 'Parva Naturalia',
+        gr: 'Μικρὰ Φυσικά',
+        ghSlug: 'parva-naturalia',
+        passages: [
+          {
+            ref: 'Mem. 449b–453b',
+            bekker: '449b1–453b11',
+            primary: 'kinesis',
+            tags: ['kinesis'],
+            greek: 'κίνημα, μνήμη',
+            desc: 'Memory as a persisting movement (κίνημα) — the trace left by past sensation. Temporal becoming inscribed in the soul as retained kinetic trace.',
+          },
+          {
+            ref: 'De Somn. 1–3',
+            bekker: '453b11–458b26',
+            primary: 'dunamis',
+            tags: ['dunamis', 'kinesis'],
+            greek: 'ἠρεμία αἰσθήσεως',
+            desc: 'Sleep as cessation of the activity of sense — a return of the sense faculty to potentiality. Waking / sleeping as the rhythm of actualization and repose of δύναμις.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'BIOLOGY',
+    works: [
+      {
+        en: 'Parts of Animals',
+        gr: 'Περὶ ζῴων μορίων',
+        ghSlug: 'parts-of-animals',
+        passages: [
+          {
+            ref: 'PA I.1',
+            bekker: '639b1–642b4',
+            primary: 'genesis',
+            tags: ['genesis', 'energeia'],
+            greek: 'οὗ ἕνεκα, τέλος',
+            desc: 'Form and final cause as prior in logos to material generation — the teleological priority of actuality over the process of becoming. The whole (telos) is prior to the parts that come to be for it.',
+          },
+          {
+            ref: 'PA I.5',
+            bekker: '644b22–645b28',
+            primary: 'energeia',
+            tags: ['energeia', 'genesis'],
+            greek: 'ἔργον, τέλος',
+            desc: 'The work (ἔργον) or function of the animal is its actuality — biology as the science of the actualization of living potentialities.',
+          },
+        ]
+      },
+      {
+        en: 'Generation of Animals',
+        gr: 'Περὶ ζῴων γενέσεως',
+        ghSlug: 'generation-of-animals',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'GA I.2',
+            bekker: '716a2–716b12',
+            primary: 'dunamis',
+            tags: ['dunamis', 'genesis'],
+            greek: 'δύναμις γεννητική',
+            desc: 'The generative faculty (δύναμις γεννητική) — potentiality for reproduction as a distinct capacity possessed by living things. The power to generate another of the same kind.',
+          },
+          {
+            ref: 'GA I.20–22',
+            bekker: '727b31–730b32',
+            primary: 'dunamis',
+            tags: ['dunamis', 'genesis', 'kinesis'],
+            greek: 'σπέρμα, δύναμις',
+            desc: 'Semen as the vehicle of active generative potentiality; the female contribution as passive material potentiality. The male/female dyad as active/passive δύναμις — potentiality gendered at the biological level.',
+          },
+          {
+            ref: 'GA II.1–4',
+            bekker: '731b18–738b23',
+            primary: 'genesis',
+            tags: ['genesis', 'dunamis', 'kinesis'],
+            greek: 'ψυχή, δύναμις, κίνησις',
+            desc: 'Soul transmitted through the movement of the semen: the formal/psychic principle is carried as a δύναμις in the pneuma, causing the embryo to develop. Potentiality transmitted through kinesis to produce a new actuality.',
+            pinnacle: true,
+          },
+          {
+            ref: 'GA II.6',
+            bekker: '742a16–745b23',
+            primary: 'genesis',
+            tags: ['genesis', 'dunamis'],
+            greek: 'ἐπιγένεσις',
+            desc: 'Epigenesis: the organism develops sequentially, each part coming into being in order. A staged becoming in which each earlier form is a potentiality for the next. The temporal structure of biological becoming.',
+          },
+          {
+            ref: 'GA IV.3',
+            bekker: '767b8–769b29',
+            primary: 'dunamis',
+            tags: ['dunamis', 'genesis'],
+            greek: 'ἀδυναμία, ἀτυχία',
+            desc: 'Failure of generation: when the generative movement is too weak to impose the father\'s form, the offspring resembles the mother or is female. Privation of potentiality as the cause of biological variation — δύναμις and its ἀδυναμία.',
+          },
+        ]
+      },
+      {
+        en: 'History of Animals',
+        gr: 'Τῶν περὶ τὰ ζῷα ἱστοριῶν',
+        ghSlug: 'history-of-animals',
+        passages: [
+          {
+            ref: 'HA VIII.1',
+            bekker: '588a16–589a2',
+            primary: 'genesis',
+            tags: ['genesis', 'dunamis'],
+            greek: 'μεταβολή, ζωή',
+            desc: 'The scale of nature: continuous gradation from plants through animals to humans. Each level is a further actualisation of the potentialities latent in the lower — a great chain of becoming.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'METAPHYSICS',
+    works: [
+      {
+        en: 'Metaphysics',
+        gr: 'Τὰ μετὰ τὰ φυσικά',
+        ghSlug: 'metaphysics',
+        pinnacle: true,
+        passages: [
+          {
+            ref: 'Met. Γ.3',
+            bekker: '1005b19–1006a18',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἀρχὴ βεβαιοτάτη',
+            desc: 'The Principle of Non-Contradiction (PNC) stated as the most certain of all principles: it is impossible for the same thing both to belong and not to belong to the same subject at the same time and in the same respect. Aristotle notes that PEM and PNC are inseparable: denial of PNC entails denial of PEM. The hedged phrase "at the same time, in the same respect" is precisely where Beth\'s temporality thesis intervenes — the Axiom A − A = 0 = CHANGE operates on the temporal index.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Γ.4',
+            bekker: '1006a18–1007b18',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἔλεγχος, σημαίνειν τι',
+            desc: 'Defense of PNC by elenctic method: not a proof (no proof of a first principle is possible), but a demonstration that anyone who says anything significant has already committed to PNC. To mean something (σημαίνειν τι) is to mean one determinate thing — which presupposes PNC and PEM. The improper-predication connection: what generates apparent PNC-violations is predication that fails to mean one thing.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Γ.5–6',
+            bekker: '1009a1–1011b22',
+            primary: 'pem',
+            tags: ['pem', 'kinesis', 'dunamis'],
+            greek: 'Ἡράκλειτος, πάντα ῥεῖ',
+            desc: 'Historical survey of those who denied PNC/PEM: Heraclitus (everything changes, so contraries co-inhere), Protagoras (all appearances are equally true), Anaxagoras. Aristotle diagnoses each as committing improper predication — predicating of a changing thing at t₁ what it has only at t₂. CHANGE is what generates apparent contradictions when the temporal index is stripped from the predicate. Direct confirmation of Beth\'s central thesis.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Γ.7',
+            bekker: '1011b23–1012a17',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἀνάγκη ἢ φάναι ἢ ἀποφάναι',
+            desc: 'THE statement of PEM: between contradictories there is no middle (οὐδὲν ἔστι μεταξύ). The proof turns on the exhaustiveness of classical negation: anything that is not-p already falls under not-p, since not-p is defined as the complete complement of p. Any supposed middle M that is not p therefore just is not-p — but the middle-positor also claims M is not-(not-p), which is a PNC violation. The PEM proof reduces to the PNC proof; they are mutually entailing. The dialetheist response (Priest) requires showing that negation need not be exhaustive in this sense — that is precisely the fork in the road. On Beth\'s reading, apparent (3)-both and (4)-neither positions in the catuṣkoṭi arise from improperly formed propositions with the temporal index stripped; PEM holds for all properly formed apophantic sentences with their temporal indices intact.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Γ.8',
+            bekker: '1012a17–1012b31',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'μεταξύ, τοῦ ἀναγκαίου',
+            desc: 'Defense of PEM against those who posit a middle between contradictories: Aristotle argues that positing a middle forces an infinite regress (the middle itself will need a middle), that practical action is impossible without PEM, and that the Heraclitean view makes all inquiry impossible. The argument from action is particularly telling: we act on determinate beliefs, which requires that beliefs be either true or false.',
+          },
+          {
+            ref: 'Met. Δ.7',
+            bekker: '1017a7–1017b9',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis'],
+            greek: 'τὸ ὂν λέγεται πολλαχῶς',
+            desc: 'Being said in many ways — the four senses of being include being-as-truth and being-as-actuality. Being-as-becoming is located here among the many ways of being. The foundation for the improper predication thesis.',
+          },
+          {
+            ref: 'Met. Δ.12',
+            bekker: '1019a15–1020a6',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia'],
+            greek: 'δύναμις',
+            desc: 'Lexicon entry for δύναμις: six senses distinguished — source of movement in another, source of being moved, capacity for good/bad change, capacity not to be changed, states of impassivity. The complete conceptual map of potentiality.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Δ.18',
+            bekker: '1022a4–14',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis'],
+            greek: 'καθ\' αὑτό παρεῖναι',
+            desc: 'On privation (στέρησις): the condition of lacking a natural form. Privation is the logical precondition of becoming — things can only become what they potentially already (privatively) are.',
+          },
+          {
+            ref: 'Met. Ζ.7–9',
+            bekker: '1032a12–1034b19',
+            primary: 'genesis',
+            tags: ['genesis', 'dunamis', 'kinesis'],
+            greek: 'γένεσις φυσική, τέχνη, αὐτόματον',
+            desc: 'Three modes of coming-to-be: by nature, by art, spontaneously. In all three, form is prior to matter in logos — what comes to be is always a form actualising a potential material. The triangulation of γένεσις.',
+          },
+          {
+            ref: 'Met. Η.1–2',
+            bekker: '1042a3–1043a29',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia'],
+            greek: 'ὕλη δυνάμει',
+            desc: 'Matter as potentiality: each level of matter is characterised as the potentiality (δύναμις) for the next level up. The hylomorphic analysis of being as the analysis of a potentiality-actuality structure.',
+          },
+          {
+            ref: 'Met. Θ.1–5',
+            bekker: '1045b27–1048a24',
+            primary: 'dunamis',
+            tags: ['dunamis'],
+            greek: 'δύναμις κατὰ κίνησιν',
+            desc: 'Potentiality correlated with change: rational vs. non-rational potencies, one-way vs. two-way powers. The Megaric thesis (that only what is actual is possible) refuted — potentiality is real, not reducible to actuality.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Θ.6',
+            bekker: '1048a25–1048b36',
+            primary: 'energeia',
+            tags: ['energeia', 'dunamis'],
+            greek: 'ἐνέργεια',
+            desc: 'Actuality grasped by analogy, not definition: as the builder is to the one who can build, as the waking is to the sleeping. The ratio of actuality to potentiality stated for all the categories. The definition-by-analogy is Aristotle\'s most important logical move on this topic.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Θ.7–8',
+            bekker: '1048b37–1051a2',
+            primary: 'energeia',
+            tags: ['energeia', 'dunamis', 'genesis'],
+            greek: 'πρότερον ἐνέργεια δυνάμεως',
+            desc: 'Actuality is prior to potentiality in three senses: in logos (definition), in being (form is the telos of matter), and in time (the actual is the cause of the potential). The asymmetry of the pair — actuality is the ground, potentiality is derivative.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Θ.9',
+            bekker: '1051a3–1051b33',
+            primary: 'energeia',
+            tags: ['energeia', 'dunamis'],
+            greek: 'κακόν, ἀγαθόν',
+            desc: 'Good and evil relative to actuality and potentiality: good is prior among actualities, bad among potentialities. Ethical value asymmetry as a consequence of the ontological asymmetry of the pair.',
+          },
+          {
+            ref: 'Met. Θ.10',
+            bekker: '1051b1–1052a11',
+            primary: 'energeia',
+            tags: ['energeia', 'genesis', 'pem'],
+            greek: 'ἀληθές, ψεῦδος',
+            desc: 'Truth and falsity as forms of actuality: for simple things, being is being-in-actuality and truth is grasping/being-with-it. Simple natures cannot be false, only unknown. Truth as contact (θιγεῖν) — energeia at the level of logic.',
+          },
+          {
+            ref: 'Met. Κ.5',
+            bekker: '1061b34–1062b11',
+            primary: 'pem',
+            tags: ['pem'],
+            greek: 'ἀντιφάσεως οὐδὲν μεταξύ',
+            desc: 'Recapitulation of Metaphysics Γ in the companion book Κ: the same elenctic defense of PNC and the statement of PEM (οὐδὲν ἔστι μεταξὺ ἀντιφάσεως) re-given with slight variations. Κ.5 adds that the person who denies PEM must treat all things as the same — a reductio that connects to the Heraclitean passage in Γ.5–6. Confirms that Γ is not an isolated context but the systematic position.',
+          },
+          {
+            ref: 'Met. Κ.9',
+            bekker: '1065b5–1066a34',
+            primary: 'kinesis',
+            tags: ['kinesis', 'dunamis', 'energeia'],
+            greek: 'ἡ τοῦ δυνάμει ἐντελέχεια',
+            desc: 'Recapitulation of the Physics III.1 definition of change — change as the actuality of the potential qua potential, now integrated into the Metaphysics. Cross-reference confirming the Physics definition is the definitive one.',
+          },
+          {
+            ref: 'Met. Λ.1–5',
+            bekker: '1069a18–1071a29',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis', 'dunamis'],
+            greek: 'ἀρχαί, ὑποκείμενον',
+            desc: 'Principles of being: all becoming involves three principles (matter/privation/form). The eternal beings are the unmoved movers and the heavenly spheres — the scaffolding for the teleology of becoming.',
+          },
+          {
+            ref: 'Met. Λ.6–7',
+            bekker: '1071b3–1073a13',
+            primary: 'energeia',
+            tags: ['energeia', 'dunamis', 'kinesis'],
+            greek: 'ἐνέργεια ἡ οὐσία αὐτοῦ',
+            desc: 'The unmoved mover as pure actuality — its essence IS its actuality. It moves as the object of desire and thought: the good moves without being moved. The culmination of the potentiality/actuality doctrine. The Aristotelian God is what pure energeia looks like.',
+            pinnacle: true,
+          },
+          {
+            ref: 'Met. Ν.1–2',
+            bekker: '1087b4–1089b14',
+            primary: 'genesis',
+            tags: ['genesis', 'dunamis'],
+            greek: 'τὸ μὴ ὄν',
+            desc: 'Against the Platonists: the non-being involved in becoming is non-being in the sense of privation (κατὰ στέρησιν), not non-being simpliciter. Becoming does not require a separate principle of non-being — privation as potentiality covers it.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'ETHICS & POLITICS',
+    works: [
+      {
+        en: 'Nicomachean Ethics',
+        gr: 'Ἠθικὰ Νικομάχεια',
+        ghSlug: 'nicomachean-ethics',
+        passages: [
+          {
+            ref: 'NE VI.2',
+            bekker: '1139a21–1139b13',
+            primary: 'pem',
+            tags: ['pem', 'energeia'],
+            greek: 'κατάφασις, ἀπόφασις, ἀλήθεια, ψεῦδος',
+            desc: 'The intellectual soul pursues and avoids truth and falsity by affirmation and denial — the two cognitive acts that exactly parallel affirmation and negation in speech. PEM at the psychological level: the intellect must affirm or deny, and these are the only two options. Truth is the correspondence (ὁμοίωσις) of affirmation with fact. The energeia of correct intellectual activity is hitting the true member of the contradictory pair — right action as the practical analogue.',
+          },
+          {
+            ref: 'NE I.7',
+            bekker: '1097a15–1098a20',
+            primary: 'energeia',
+            tags: ['energeia', 'dunamis'],
+            greek: 'εὐδαιμονία, ἐνέργεια',
+            desc: 'Happiness (εὐδαιμονία) defined as the activity (ἐνέργεια) of the soul in accordance with virtue. NOT a state or potentiality but an exercise — being well rather than having the capacity to be well. Ethics grounded in the energeia/dunamis distinction.',
+            pinnacle: true,
+          },
+          {
+            ref: 'NE II.1',
+            bekker: '1103a14–1103b25',
+            primary: 'dunamis',
+            tags: ['dunamis', 'kinesis', 'energeia'],
+            greek: 'ἕξις, ἐνέργεια',
+            desc: 'Virtue as a stable disposition (ἕξις) — a second-order potentiality acquired through habituation (the first-order kinesis of practice). We become virtuous by doing virtuous acts: genesis of character through repeated kinesis.',
+          },
+          {
+            ref: 'NE X.4–5',
+            bekker: '1174a13–1175b24',
+            primary: 'energeia',
+            tags: ['energeia', 'kinesis'],
+            greek: 'ἡδονή, ἐνέργεια',
+            desc: 'Pleasure as completion (τελειοῖ) that supervenes on activity as a bloom on youth — pleasure is not a kinesis (process toward a goal) but an energeia (complete at every moment). The distinction of process from activity in its most refined form.',
+          },
+          {
+            ref: 'NE VI.4',
+            bekker: '1140a1–1140b30',
+            primary: 'dunamis',
+            tags: ['dunamis', 'genesis'],
+            greek: 'ποίησις, πρᾶξις',
+            desc: 'Production (ποίησις) vs. action (πρᾶξις): production has its end outside itself in the thing produced (becoming); action has its end in itself (being). The ethics/craft distinction mirrors the kinesis/energeia distinction.',
+          },
+        ]
+      },
+      {
+        en: 'Politics',
+        gr: 'Πολιτικά',
+        ghSlug: 'politics',
+        passages: [
+          {
+            ref: 'Pol. I.2',
+            bekker: '1252a24–1253a39',
+            primary: 'energeia',
+            tags: ['energeia', 'genesis', 'dunamis'],
+            greek: 'πόλις φύσει, τέλος',
+            desc: 'The polis exists by nature — it is the telos toward which the family and village were becoming. Prior in nature (φύσει) and actuality (ἐνεργείᾳ) to the individual, though posterior in the order of becoming. The political teleology of human potentiality.',
+          },
+          {
+            ref: 'Pol. VII.13–15',
+            bekker: '1331b39–1334b28',
+            primary: 'dunamis',
+            tags: ['dunamis', 'energeia'],
+            greek: 'σχολή, ἀσχολία',
+            desc: 'Leisure (σχολή) as the condition for the actualization of human potentialities — war and business are for the sake of peace, which is for the sake of the highest energeia. Potentiality and its actualization as the telos of political life.',
+          },
+        ]
+      },
+    ]
+  },
+
+  {
+    section: 'RHETORIC & POETICS',
+    works: [
+      {
+        en: 'Rhetoric',
+        gr: 'Ῥητορική',
+        ghSlug: 'rhetoric',
+        passages: [
+          {
+            ref: 'Rhet. I.2',
+            bekker: '1355b25–1356b10',
+            primary: 'dunamis',
+            tags: ['dunamis'],
+            greek: 'δύναμις τοῦ θεωρῆσαι',
+            desc: 'Rhetoric defined as the faculty (δύναμις) of observing in any given case the available means of persuasion — potentiality as the defining mark of a τέχνη. The capacity-definition of an art.',
+          },
+          {
+            ref: 'Rhet. III.11',
+            bekker: '1412a9–1413b2',
+            primary: 'kinesis',
+            tags: ['kinesis', 'energeia'],
+            greek: 'ἐνέργεια, ὁράν ποιεῖν',
+            desc: 'Vivid metaphors as language that "makes things seen in action" (ἐνέργεια). Actuality-language vs. potentiality-language in rhetoric — making things live through energeia-words.',
+          },
+        ]
+      },
+      {
+        en: 'Poetics',
+        gr: 'Περὶ ποιητικῆς',
+        ghSlug: 'poetics',
+        passages: [
+          {
+            ref: 'Po. 4',
+            bekker: '1448b4–24',
+            primary: 'genesis',
+            tags: ['genesis', 'kinesis'],
+            greek: 'μίμησις, μάθησις',
+            desc: 'The natural genesis of poetry from mimesis and the pleasure of learning — the becoming of an art form traced to natural human potentialities (δύναμις for mimesis and for learning).',
+          },
+          {
+            ref: 'Po. 6–7',
+            bekker: '1449b24–1451a15',
+            primary: 'kinesis',
+            tags: ['kinesis', 'energeia'],
+            greek: 'πρᾶξις, μίμησις πράξεως',
+            desc: 'Tragedy as mimesis of an action (πρᾶξις) — of something complete and whole with a certain magnitude. The action is defined as a kinesis with a proper beginning, middle, and end. Poetic wholeness as the formal structure of a teleological kinesis.',
+          },
+        ]
+      },
+    ]
+  },
+];
+
+// ── FILTER STATE ──────────────────────────────────────────────────────────────
+let activeFilter = 'all';
+let searchTerm = '';
+
+function setFilter(f) {
+  activeFilter = f;
+  document.querySelectorAll('.pill').forEach(p => {
+    p.classList.toggle('active', p.classList.contains(f) || (f === 'all' && p.classList.contains('all')));
+  });
+  applyVisibility();
+}
+
+function doSearch(val) {
+  searchTerm = val.toLowerCase().trim();
+  applyVisibility();
+}
+
+function applyVisibility() {
+  let visible = 0;
+  document.querySelectorAll('.passage').forEach(el => {
+    const tags = el.dataset.tags.split(',');
+    const matchFilter = activeFilter === 'all' || tags.includes(activeFilter);
+    const text = el.textContent.toLowerCase();
+    const matchSearch = !searchTerm || text.includes(searchTerm);
+    const show = matchFilter && matchSearch;
+    el.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('stat-visible').textContent = visible;
+
+  // hide works with no visible passages
+  document.querySelectorAll('.work-block').forEach(wb => {
+    const any = [...wb.querySelectorAll('.passage')].some(p => !p.classList.contains('hidden'));
+    wb.style.display = any ? '' : 'none';
+  });
+
+  // hide sections with no visible works
+  document.querySelectorAll('.corpus-section').forEach(cs => {
+    const any = [...cs.querySelectorAll('.work-block')].some(wb => wb.style.display !== 'none');
+    cs.style.display = any ? '' : 'none';
+  });
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function renderCorpus() {
+  const main = document.getElementById('main-content');
+  let totalPassages = 0;
+  let totalWorks = 0;
+
+  CORPUS.forEach(section => {
+    const sec = document.createElement('div');
+    sec.className = 'corpus-section';
+
+    const hdr = document.createElement('div');
+    hdr.className = 'section-header';
+    hdr.innerHTML = `<span class="section-title">${section.section}</span><span class="section-count">${section.works.length} works</span>`;
+    hdr.onclick = () => {
+      sec.querySelectorAll('.work-body').forEach(wb => wb.classList.toggle('collapsed'));
+    };
+    sec.appendChild(hdr);
+
+    section.works.forEach(work => {
+      totalWorks++;
+      const wb = document.createElement('div');
+      wb.className = 'work-block';
+
+      const titleRow = document.createElement('div');
+      titleRow.className = 'work-title-row';
+      const ghLink = work.ghSlug
+        ? `href="https://bethhibbard57-creator.github.io/aristotle/${work.ghSlug}.html" target="_blank"`
+        : '';
+      titleRow.innerHTML = `
+        <span class="work-en">${ghLink ? `<a style="color:inherit;text-decoration:none;" ${ghLink}>${work.en}</a>` : work.en}</span>
+        <span class="work-gr">${work.gr}</span>
+        ${work.pinnacle ? '<span class="pinnacle">★ CENTRAL</span>' : ''}
+        <span class="work-toggle">▾</span>
+      `;
+
+      const body = document.createElement('div');
+      body.className = 'work-body';
+
+      const passages = document.createElement('div');
+      passages.className = 'passages';
+
+      work.passages.forEach(p => {
+        totalPassages++;
+        const pEl = document.createElement('div');
+        pEl.className = 'passage';
+        pEl.dataset.primary = p.primary;
+        pEl.dataset.tags = p.tags.join(',');
+
+        const tagsHtml = p.tags.map(t =>
+          `<span class="tag ${t}">${CONCEPTS[t].label}</span>`
+        ).join('');
+
+        pEl.innerHTML = `
+          <div class="passage-ref">
+            ${p.ref}${p.pinnacle ? ' <span style="color:var(--gold);font-size:0.8em;">★</span>' : ''}
+            <span class="bekker">${p.bekker}</span>
+          </div>
+          <div class="passage-content">
+            <div class="passage-greek">${p.greek}</div>
+            <div class="passage-desc">${p.desc}</div>
+          </div>
+          <div class="passage-tags">${tagsHtml}</div>
+        `;
+        passages.appendChild(pEl);
+      });
+
+      body.appendChild(passages);
+      wb.appendChild(titleRow);
+      wb.appendChild(body);
+
+      titleRow.addEventListener('click', () => {
+        body.classList.toggle('collapsed');
+        titleRow.querySelector('.work-toggle').textContent =
+          body.classList.contains('collapsed') ? '▸' : '▾';
+      });
+
+      sec.appendChild(wb);
+    });
+
+    main.appendChild(sec);
+  });
+
+  document.getElementById('stat-total').textContent = totalPassages;
+  document.getElementById('stat-works').textContent = totalWorks;
+  document.getElementById('stat-visible').textContent = totalPassages;
+}
+
+renderCorpus();
+</script>
+</body>
+</html>
